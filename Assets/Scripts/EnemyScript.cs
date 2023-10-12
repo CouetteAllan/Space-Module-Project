@@ -33,6 +33,13 @@ public class EnemyScript : MonoBehaviour, IHittable
         }
     }
 
+    private void Update()
+    {
+        Vector2 dir = (Vector2)_playerController.transform.position - this._rigidbody.position;
+        this._rigidbody.velocity = dir.normalized * speed;
+
+    }
+
     public void TryHit(IDamageSource source)
     {
         GameManager.Instance.GrantXP(5);
