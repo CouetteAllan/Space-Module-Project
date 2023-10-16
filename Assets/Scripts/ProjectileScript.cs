@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ProjectileScript : MonoBehaviour,IDamageSource
 {
+    public Transform Transform => this.transform;
+
+    private int _damage = 10;
+
     public void Launch(Vector2 dir, float speed)
     {
         this.GetComponent<Rigidbody2D>().velocity = dir * speed;
@@ -19,7 +23,7 @@ public class ProjectileScript : MonoBehaviour,IDamageSource
     {
         if(collision.gameObject.TryGetComponent<IHittable>(out IHittable objectHit))
         {
-            objectHit.TryHit(this);
+            objectHit.TryHit(this,_damage);
             Destroy(gameObject);
         }
     }

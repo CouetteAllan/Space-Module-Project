@@ -5,6 +5,8 @@ using UnityEngine;
 public class Module : MonoBehaviour
 {
 
+    [SerializeField] private Transform[] _firePoints;
+
     public enum ModuleClass
     {
         Offense,
@@ -44,9 +46,12 @@ public class Module : MonoBehaviour
     private void Fire()
     {
         //Instantiate projectile prefab from module prefab
-        
-        var projectile = Instantiate(_data.ProjectilePrefab,this.transform.position + this.transform.up.normalized * 1.8f,this.transform.rotation).GetComponent<ProjectileScript>();
-        projectile.Launch(this.transform.up.normalized, 6.0f);
+        foreach(Transform t in _firePoints)
+        {
+            var projectile = Instantiate(_data.ProjectilePrefab, t.position,this.transform.rotation).GetComponent<ProjectileScript>();
+            projectile.Launch((t.position - this.transform.position).normalized, 6.0f);
+
+        }
     }
 
 

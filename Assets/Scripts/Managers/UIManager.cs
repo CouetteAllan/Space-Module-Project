@@ -7,10 +7,12 @@ public class UIManager : Singleton<UIManager>
 
     [SerializeField] private GameObject _moduleShop;
     [SerializeField] private UI_XPScript _xpScript;
+    private ModuleImageScript[] _moduleImageScripts;
 
     private void Start()
     {
         GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
+        _moduleImageScripts = _moduleShop.GetComponentsInChildren<ModuleImageScript>();
     }
 
     private void GameManager_OnGameStateChanged(GameState newState)
@@ -33,11 +35,21 @@ public class UIManager : Singleton<UIManager>
 
     public void OpenShop()
     {
+
+        if(GameManager.Instance.CurrentLevel != 1)
+        {
+            foreach (var moduleImage in  _moduleImageScripts)
+            {
+                moduleImage.SetModuleDatas(ModuleManager.Instance.GetRandomModuleData());
+            }
+
+        }
         _moduleShop.SetActive(true);
     }
 
     public void CloseShop()
     {
+        ModuleManager.Instance.ResetModuleList();
         _moduleShop.SetActive(false);
         UpdateXpBar(GameManager.Instance.CurrentXP);
         UpdateLevel(GameManager.Instance.CurrentLevel);

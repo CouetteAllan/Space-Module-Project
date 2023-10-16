@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89150d2f8cfb26541b83fa36721d0c3c, type: 3}
+  m_Name: 4SlotsModule
+  m_EditorClassIdentifier: 
+  ModuleName: 4 Slots Module
+  ModuleClass: 4
+  ModuleSprite: {fileID: 21300000, guid: 5f27f2231340c72498e81303965a99d3, type: 3}
+  ModulePrefab: {fileID: 5653764616274984447, guid: fd69d1726e9de1d4590214c393a27f59, type: 3}
+  ProjectilePrefab: {fileID: 0}

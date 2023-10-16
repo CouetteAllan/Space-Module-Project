@@ -28,7 +28,6 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         _canvasGroup = GetComponent<CanvasGroup>();
         _layoutElement = GetComponent<LayoutElement>();
         _image = GetComponent<Image>();
-        _image.sprite = _moduleDatas.ModuleSprite;
         _startLocalPosition = _rectTransform.localPosition;
     }
 
@@ -69,5 +68,12 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
     public ModuleDatas GetModuleDatas()
     {
         return _moduleDatas;
+    }
+
+    public void SetModuleDatas(ModuleDatas datas)
+    {
+        _moduleDatas = datas;
+        _image.sprite = _moduleDatas.ModuleSprite;
+
     }
 }

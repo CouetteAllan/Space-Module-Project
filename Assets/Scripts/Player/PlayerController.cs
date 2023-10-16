@@ -29,6 +29,10 @@ public class PlayerController : MonoBehaviour
         SetUpInputAction();
         GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
     }
+    private void Start()
+    {
+        GameManager.Instance.SetPlayer(this);
+    }
 
     private void GameManager_OnGameStateChanged(GameState newState)
     {

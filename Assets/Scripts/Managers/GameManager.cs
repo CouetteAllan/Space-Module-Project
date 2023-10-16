@@ -97,8 +97,7 @@ public class GameManager : Singleton<GameManager>
 
     public void SetPlayer(PlayerController player)
     {
-        if(PlayerController == null)
-            this.PlayerController = player;
+         this.PlayerController = player;
     }
 
     private void Update()
