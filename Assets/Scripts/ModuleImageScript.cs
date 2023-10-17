@@ -29,6 +29,8 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         _layoutElement = GetComponent<LayoutElement>();
         _image = GetComponent<Image>();
         _startLocalPosition = _rectTransform.localPosition;
+        _image.sprite = _moduleDatas.ModuleSprite;
+
     }
 
     private void Start()

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public enum GameState
 {
@@ -15,6 +16,8 @@ public enum GameState
 
 public class GameManager : Singleton<GameManager>
 {
+    [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+
     public static event Action<GameState> OnGameStateChanged;
     public static event Action<uint> OnLevelUp;
     public GameState CurrentState { get; private set; }
@@ -74,7 +77,7 @@ public class GameManager : Singleton<GameManager>
     private void LevelUp()
     {
         CurrentLevel++;
-
+        _virtualCamera.m_Lens.OrthographicSize += 0.2f;
         OnLevelUp?.Invoke(CurrentLevel);
 
         CurrentXP -= NextTresholdLevelUp;
