@@ -35,6 +35,7 @@ public class PlayerModule : MonoBehaviour
         mousePos.z = 0; 
         foreach (var attach in AttachPoints)
         {
+            if(attach == null) continue;
             Vector3 directionToTarget = attach.gameObject.transform.position - mousePos;
             float dSqrToTarget = directionToTarget.sqrMagnitude;
             if (dSqrToTarget < minDist)

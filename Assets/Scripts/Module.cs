@@ -17,22 +17,29 @@ public class Module : MonoBehaviour
     }
     private ModuleClass _moduleClass;
     private ModuleDatas _data;
+    private AttachPointScript _attachPoint;
 
     public static Module CreateMod(Vector2 position, ModuleDatas datas, Transform parentTransform)
     {
         GameObject go = new GameObject();
         Module module = Instantiate(datas.ModulePrefab.GetComponent<Module>(),position,parentTransform.rotation,parentTransform);
-        module.SetUpModule(datas);
+        module.SetUpModule(datas, parentTransform.GetComponent<AttachPointScript>());
         return module;
     }
 
-    private void SetUpModule( ModuleDatas datas)
+    private void SetUpModule( ModuleDatas datas, AttachPointScript attachPointScript)
     {
         _data = datas;
         _moduleClass = datas.ModuleClass;
         this.gameObject.name = datas.ModuleName;
+        _attachPoint = attachPointScript;
         if(_moduleClass == ModuleClass.Offense)
             TimeTickSystemDataHandler.OnTick += TimeTickSystemDataHandler_OnTick;
+        if(_moduleClass == ModuleClass.Placement)
+        {
+            var healthScript = this.gameObject.AddComponent<HealthScript>();
+            healthScript.SetAttachPoint(attachPointScript);
+        }
     }
 
     private void TimeTickSystemDataHandler_OnTick(uint tick)

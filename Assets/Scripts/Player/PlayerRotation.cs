@@ -34,7 +34,6 @@ public class PlayerRotation : MonoBehaviour
     private void Rotate_performed(InputAction.CallbackContext context)
     {
         _rotDir = - _inputActions.Player.Rotate.ReadValue<float>();
-        Debug.Log(context);
         _isRotating = true;
     }
 

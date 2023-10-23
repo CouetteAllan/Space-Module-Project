@@ -19,7 +19,7 @@ public class AttachPointScript : MonoBehaviour
 
     private void ModuleImageScript_OnEndDragModule()
     {
-        if(_isActive)
+        if(_isActive && _spriteRenderer != null)
         {
             _spriteRenderer.enabled = false;
         }
@@ -27,7 +27,7 @@ public class AttachPointScript : MonoBehaviour
 
     private void ModuleImageScript_OnStartDragModule()
     {
-        if(_isActive)
+        if(_isActive && _spriteRenderer != null)
         {
             _spriteRenderer.enabled = true;
         }
@@ -51,12 +51,22 @@ public class AttachPointScript : MonoBehaviour
         _spriteRenderer.enabled = false;
     }
 
+    public void EnableAttachPoint()
+    {
+        _isActive = true;
+    }
+
     private void OnDisable()
     {
         ModuleImageScript.OnStartDragModule -= ModuleImageScript_OnStartDragModule;
         ModuleImageScript.OnEndDragModule -= ModuleImageScript_OnStartDragModule;
         DropModule.OnDropModule -= DropModule_OnDropModule;
+    }
 
-
+    private void OnDestroy()
+    {
+        ModuleImageScript.OnStartDragModule -= ModuleImageScript_OnStartDragModule;
+        ModuleImageScript.OnEndDragModule -= ModuleImageScript_OnStartDragModule;
+        DropModule.OnDropModule -= DropModule_OnDropModule;
     }
 }

@@ -20,8 +20,7 @@ public class DropModule : MonoBehaviour, IDropHandler
 
     }
     public void OnDrop(PointerEventData eventData)
-    {
-        Debug.Log("DROP THE BASS");
+    {   
         if(eventData.pointerDrag != null)
         {
             _playerModule.PlaceModule(Module.CreateMod(PlayerModule.GetNearestModule(), eventData.pointerDrag.GetComponent<ModuleImageScript>().GetModuleDatas(), _transformParent));

@@ -79,4 +79,11 @@ public class EnemyScript : MonoBehaviour, IHittable
         _spriteRenderer.color = _baseColor;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.TryGetComponent<HealthScript>(out HealthScript healthScript))
+        {
+            healthScript.ChangeHealth(-1);
+        }
+    }
 }
