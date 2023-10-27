@@ -5,7 +5,7 @@ using UnityEngine;
 public class TimeTickSystem : MonoBehaviour
 {
     private const float TICK_TIMER_MAX = 0.2f;
-    private const float TICK_TIMERFAST_MAX = 0.08f;
+    private const float TICK_TIMERFAST_MAX = 0.04f;
 
     private uint _tick = 0;
     private uint _tickFast = 0;

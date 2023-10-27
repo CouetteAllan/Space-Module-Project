@@ -8,6 +8,7 @@ using Cinemachine;
 public enum GameState
 {
     MainMenu,
+    BeforeGameStart,
     StartGame,
     InGame,
     GameOver,
@@ -28,7 +29,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        ChangeGameState(GameState.StartGame);
+        ChangeGameState(GameState.BeforeGameStart);
     }
 
     public void ChangeGameState(GameState newState)

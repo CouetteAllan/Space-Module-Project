@@ -13,7 +13,6 @@ public class ModuleManager : Singleton<ModuleManager>
         var selectedModule = _modules[randomIndex];
         _modulesUsed.Add(selectedModule);
         _modules.RemoveAt(randomIndex);
-        Debug.Log(selectedModule);
         return selectedModule;
     }
 

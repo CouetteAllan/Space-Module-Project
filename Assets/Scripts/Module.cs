@@ -15,9 +15,11 @@ public class Module : MonoBehaviour
         Engine,
         Placement
     }
+
     private ModuleClass _moduleClass;
     private ModuleDatas _data;
     private AttachPointScript _attachPoint;
+    private StatClass _playerStatClass;
 
     public static Module CreateMod(Vector2 position, ModuleDatas datas, Transform parentTransform)
     {
@@ -33,8 +35,10 @@ public class Module : MonoBehaviour
         _moduleClass = datas.ModuleClass;
         this.gameObject.name = datas.ModuleName;
         _attachPoint = attachPointScript;
+        _playerStatClass = StatSystem.Instance.PlayerStat;
+
         if(_moduleClass == ModuleClass.Offense)
-            TimeTickSystemDataHandler.OnTick += TimeTickSystemDataHandler_OnTick;
+            TimeTickSystemDataHandler.OnTickFaster += TimeTickSystemDataHandler_OnTick;
         if(_moduleClass == ModuleClass.Placement)
         {
             var healthScript = this.gameObject.AddComponent<HealthScript>();
@@ -44,7 +48,7 @@ public class Module : MonoBehaviour
 
     private void TimeTickSystemDataHandler_OnTick(uint tick)
     {
-        if(tick % 4 == 0)
+        if(tick % (20 / _playerStatClass.GetStatValue(StatType.ReloadSpeed)) == 0)
         {
             Fire();
         }
