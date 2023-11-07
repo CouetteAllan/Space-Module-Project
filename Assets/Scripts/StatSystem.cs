@@ -5,8 +5,17 @@ using UnityEngine.InputSystem;
 
 public class StatSystem : Singleton<StatSystem>
 {
+    [SerializeField] private BaseStatDatas _baseStatDatas;
+
     private StatClass _playerStat;
-    public StatClass PlayerStat { get { return _playerStat; } }
+    public StatClass PlayerStat {
+        get
+        {
+            if( _playerStat == null )
+                _playerStat = new StatClass(_baseStatDatas);
+            return _playerStat;
+        }
+    }
 
     public void Start()
     {
@@ -17,7 +26,8 @@ public class StatSystem : Singleton<StatSystem>
     {
         if(newState == GameState.BeforeGameStart)
         {
-            _playerStat = new StatClass();
+            if(_playerStat == null)
+                _playerStat = new StatClass(_baseStatDatas);
 
             GameManager.Instance.ChangeGameState(GameState.StartGame);
         }
@@ -28,13 +38,7 @@ public class StatSystem : Singleton<StatSystem>
     {
         if (Keyboard.current.uKey.wasPressedThisFrame)
         {
-            _playerStat.ChangeStat(StatType.ReloadSpeed, 1);
-            Debug.Log("reload up");
-        }
-
-        if (Keyboard.current.hKey.wasPressedThisFrame)
-        {
-            Debug.Log("Reload speed is: " + _playerStat.GetStatValue(StatType.ReloadSpeed));
+            _playerStat.MultiplyPercentStat(StatType.ReloadSpeed, 0.2f);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -10,18 +11,23 @@ public enum StatType
     Resist,
     ReloadSpeed,
     NbProjectile,
-    Weight
+    Weight,
+    MaxWeight
 }
 
+[Serializable]
 public class SingleStat
 {
+    [SerializeField] private string _name;
+    [SerializeField] private float _baseValue;
+    [SerializeField] private StatType _type;
     private float _value;
-    private StatType _type;
     private StatClass _statClass;
 
     public SingleStat(float value, StatType type, StatClass statClass)
     {
-        _value = value;
+        _baseValue = value;
+        _value = _baseValue;
         _type = type;
         _statClass = statClass;
     }
@@ -29,6 +35,7 @@ public class SingleStat
 
 
     public float Value => _value;
+    public float BaseValue => _baseValue;
     public StatType Type => _type;
     public void SetValue(float value)
     {
@@ -47,6 +54,10 @@ public class SingleStat
     public void MultiplyValue(float value)
     {
         _value *= value;
+    }public void MultiplyPercentValue(float percent)
+    {
+        float newValue = _baseValue * percent;
+        _value += newValue;
     }
 
     public static SingleStat operator +(SingleStat a, SingleStat b){
@@ -55,6 +66,11 @@ public class SingleStat
 
         b.ChangeValue(a.Value);
         return b;
+    }
+
+    public override string ToString()
+    {
+        return _name + ": " + Value;
     }
 
 }

@@ -6,12 +6,14 @@ public class ProjectileScript : MonoBehaviour,IDamageSource
 {
     public Transform Transform => this.transform;
 
-    private int _damage = 10;
+    private float _damage;
+    private int _baseDamage = 10;
 
-    public void Launch(Vector2 dir, float speed)
+    public void Launch(Vector2 dir, float speed, float damageMult = 1)
     {
         this.GetComponent<Rigidbody2D>().velocity = dir * speed;
         Invoke("Die", 2.0f);
+        _damage = _baseDamage * damageMult;
     }
 
     private void Die()
@@ -23,7 +25,7 @@ public class ProjectileScript : MonoBehaviour,IDamageSource
     {
         if(collision.gameObject.TryGetComponent<IHittable>(out IHittable objectHit))
         {
-            objectHit.TryHit(this,_damage);
+            objectHit.TryHit(this,(int)_damage);
             Destroy(gameObject);
         }
     }

@@ -48,7 +48,7 @@ public class Module : MonoBehaviour
 
     private void TimeTickSystemDataHandler_OnTick(uint tick)
     {
-        if(tick % (20 / _playerStatClass.GetStatValue(StatType.ReloadSpeed)) == 0)
+        if(tick % GetTickNeeded() == 0)
         {
             Fire();
         }
@@ -60,7 +60,7 @@ public class Module : MonoBehaviour
         foreach(Transform t in _firePoints)
         {
             var projectile = Instantiate(_data.ProjectilePrefab, t.position,this.transform.rotation).GetComponent<ProjectileScript>();
-            projectile.Launch((t.position - this.transform.position).normalized, 6.0f);
+            projectile.Launch((t.position - this.transform.position).normalized, 6.0f,_playerStatClass.GetStatValue(StatType.Damage));
 
         }
     }
@@ -70,5 +70,12 @@ public class Module : MonoBehaviour
     {
         TimeTickSystemDataHandler.OnTick -= TimeTickSystemDataHandler_OnTick;
 
+    }
+
+    private int GetTickNeeded()
+    {
+        float n = 20 / _playerStatClass.GetStatValue(StatType.ReloadSpeed);
+        int i = Mathf.Clamp(Mathf.CeilToInt(n),1,20);
+        return i;
     }
 }

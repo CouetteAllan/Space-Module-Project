@@ -2565,6 +2565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isPersistant: 0
+  _baseStatDatas: {fileID: 11400000, guid: 494978be1c3f2324aa3d81271d160e6e, type: 2}
 --- !u!1 &352828621
 GameObject:
   m_ObjectHideFlags: 0
