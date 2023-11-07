@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CodeMonkey.Utils;
 
 public class Module : MonoBehaviour
 {
@@ -31,14 +32,15 @@ public class Module : MonoBehaviour
 
     private void SetUpModule( ModuleDatas datas, AttachPointScript attachPointScript)
     {
+        this.gameObject.name = datas.ModuleName;
         _data = datas;
         _moduleClass = datas.ModuleClass;
-        this.gameObject.name = datas.ModuleName;
         _attachPoint = attachPointScript;
         _playerStatClass = StatSystem.Instance.PlayerStat;
 
         if(_moduleClass == ModuleClass.Offense)
             TimeTickSystemDataHandler.OnTickFaster += TimeTickSystemDataHandler_OnTick;
+
         if(_moduleClass == ModuleClass.Placement)
         {
             var healthScript = this.gameObject.AddComponent<HealthScript>();
@@ -50,16 +52,21 @@ public class Module : MonoBehaviour
     {
         if(tick % GetTickNeeded() == 0)
         {
-            Fire();
+            for(int i = 0; i < _playerStatClass.GetStatValue(StatType.NbProjectile); i++)
+            {
+                Fire(i == 0);
+            }
         }
     }
 
-    private void Fire()
+    private void Fire(bool firstProjectile)
     {
         //Instantiate projectile prefab from module prefab
         foreach(Transform t in _firePoints)
         {
-            var projectile = Instantiate(_data.ProjectilePrefab, t.position,this.transform.rotation).GetComponent<ProjectileScript>();
+            Vector3 position = firstProjectile ? t.position : t.position + UtilsClass.GetRandomDir() * Random.Range(0.1f,0.6f);
+
+            var projectile = Instantiate(_data.ProjectilePrefab, position, this.transform.rotation).GetComponent<ProjectileScript>();
             projectile.Launch((t.position - this.transform.position).normalized, 6.0f,_playerStatClass.GetStatValue(StatType.Damage));
 
         }

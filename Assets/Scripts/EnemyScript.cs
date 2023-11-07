@@ -13,6 +13,7 @@ public class EnemyScript : MonoBehaviour, IHittable
     private PlayerController _playerController;
 
     private int _baseHealth = 1;
+    private bool _gotHit = false;
     private int _health;
 
     private void Start()
@@ -50,6 +51,9 @@ public class EnemyScript : MonoBehaviour, IHittable
     public void TryHit(IDamageSource source, int damage)
     {
         //recoil + feedback
+        if (_gotHit)
+            return;
+        _gotHit = true;
         _rigidbody.AddForce((Vector2)source.Transform.position - this._rigidbody.position * 5.0f, ForceMode2D.Impulse);
         StartCoroutine(ChangeColorCoroutine());
         ChangeHealth(-damage);
@@ -60,14 +64,18 @@ public class EnemyScript : MonoBehaviour, IHittable
         _health += healthChange;
         if (_health <= 0)
             Die();
+        _gotHit = false;
+
     }
 
     private void Die()
     {
+        StopAllCoroutines();
         GameManager.Instance.GrantXP(5);
         Instantiate(_particleEffect,this.transform.position,Quaternion.identity);
+        _gotHit = false;
         Destroy(this.gameObject);
-
+        return;
     }
 
     private IEnumerator ChangeColorCoroutine()

@@ -13,17 +13,24 @@ MonoBehaviour:
   m_Name: Base Stat
   m_EditorClassIdentifier: 
   singleStats:
-  - _baseValue: 100
+  - _name: Health
+    _baseValue: 100
     _type: 0
-  - _baseValue: 1
+  - _name: Damage
+    _baseValue: 1
     _type: 1
-  - _baseValue: 0
+  - _name: Resist
+    _baseValue: 0
     _type: 2
-  - _baseValue: 1
+  - _name: Reload
+    _baseValue: 1
     _type: 3
-  - _baseValue: 1
+  - _name: Nb Projectile
+    _baseValue: 1
     _type: 4
-  - _baseValue: 0
+  - _name: Weight
+    _baseValue: 0
     _type: 5
-  - _baseValue: 100
+  - _name: Max Weight
+    _baseValue: 100
     _type: 6

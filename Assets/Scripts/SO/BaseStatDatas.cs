@@ -16,6 +16,7 @@ public class BaseStatDatas : ScriptableObject
             statDictionary.Add(stat.Type, newStat);
             Debug.Log(newStat.ToString());
         }
+
         return statDictionary;
     }
 }

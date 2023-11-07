@@ -38,7 +38,8 @@ public class StatSystem : Singleton<StatSystem>
     {
         if (Keyboard.current.uKey.wasPressedThisFrame)
         {
-            _playerStat.MultiplyPercentStat(StatType.ReloadSpeed, 0.2f);
+            //_playerStat.MultiplyPercentStat(StatType.ReloadSpeed, 0.2f);
+            _playerStat.ChangeStat(StatType.NbProjectile, 1);
         }
     }
 }
