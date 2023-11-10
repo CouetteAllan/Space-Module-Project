@@ -1,10 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyScript : MonoBehaviour, IHittable
 {
-    //simple ennemi qui avance pour le proto et quand il meurt ça donne de l'xp
+    public struct EnemyStat
+    {
+        //Data we need to know when an enemy dies (tier, level, timer ?)
+        public int level;
+        public int tier;
+        public Vector2 finalPos;
+    }
+
+    public static event Action<EnemyStat> OnDeath;
+
     [SerializeField] private float speed = 2.0f;
     [SerializeField] private GameObject _particleEffect;
     [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -74,6 +84,11 @@ public class EnemyScript : MonoBehaviour, IHittable
         GameManager.Instance.GrantXP(5);
         Instantiate(_particleEffect,this.transform.position,Quaternion.identity);
         _gotHit = false;
+        OnDeath?.Invoke(new EnemyStat {
+            level = (int)GameManager.Instance.CurrentLevel ,
+            tier = 1,
+            finalPos = this.transform.position,
+        });
         Destroy(this.gameObject);
         return;
     }

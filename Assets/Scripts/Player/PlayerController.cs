@@ -68,5 +68,10 @@ public class PlayerController : MonoBehaviour
     {
         return _playerModule;
     }
+
+    public void GatherScrapMetal(int value)
+    {
+        ScrapManagerDataHandler.PickUpScrap(value);
+    }
 }
 
