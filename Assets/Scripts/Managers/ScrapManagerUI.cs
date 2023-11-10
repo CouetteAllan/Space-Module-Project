@@ -14,7 +14,7 @@ public class ScrapManagerUI : MonoBehaviour
     private void Awake()
     {
         ScrapManagerDataHandler.OnUpdateScrap += OnUpdateScrapUI;
-        _scrapText.text = string.Empty;
+        _scrapText.text = "0";
     }
 
     private void OnUpdateScrapUI(int updatedValue)

@@ -11,6 +11,18 @@ namespace Tools
         {
             return Vector2.zero;
         }
+
+        /// <summary>
+        /// Return true if a random number is under the parameter
+        /// </summary>
+        /// <param name="chance"> the chances to succeed (must be between 0.0 and 1.0 inclusive </param>
+        /// <returns></returns>
+        public static bool RollChance(float chance)
+        {
+            chance = Mathf.Clamp01(chance);
+            float randomNumber = Random.value;
+            return randomNumber < chance;
+        }
     }
 
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
+using Tools;
 
 public class ScrapManager : MonoBehaviour
 {
@@ -26,16 +27,14 @@ public class ScrapManager : MonoBehaviour
 
     private void OnEnemyDeath(EnemyScript.EnemyStat enemyStat)
     {
-        if(RollChance(chance: .5f)) //50% chances to drop scrap metal
-            SpawnScrapMetal(enemyStat.finalPos);
+        if (Utils.RollChance(chance: .4f)) //40% chances to drop scrap metal
+        {
+            var newScrap = SpawnScrapMetal(enemyStat.finalPos);
+            newScrap.value = enemyStat.tier;
+        }
     }
 
-    private ScrapMetal SpawnScrapMetal(Vector2 pos)
-    {
-        ScrapMetal newScrapMetal = Instantiate(_scrapTransform,pos,Quaternion.identity).GetComponent<ScrapMetal>();
-
-        return newScrapMetal;
-    }
+        
 
     public void SellScrapMetal(int scrapSold)
     {
@@ -44,15 +43,13 @@ public class ScrapManager : MonoBehaviour
             UtilsClass.CreateWorldTextPopup("Don't have enough Scrap", UtilsClass.GetMouseWorldPosition());
             return;
         }
+
         _numberOfScrap -= scrapSold;
         this.SellScrap(scrapSold);
+        this.UpdateScrap(_numberOfScrap);
     }
 
-    private bool RollChance(float chance)
-    {
-        float randomNumber = Random.value;
-        return randomNumber < chance;
-    }
+    private ScrapMetal SpawnScrapMetal(Vector2 pos) => Instantiate(_scrapTransform, pos, Quaternion.identity).GetComponent<ScrapMetal>();
 
     private void OnDisable()
     {
