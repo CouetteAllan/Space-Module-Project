@@ -20,6 +20,5 @@ public interface IObstacle : IHittable
 
 public interface IOffensiveModule
 {
-    public void ApplyBuff(StatClass statClass);
-    public void RemoveBuff(StatClass statClass);
+    public void Fire(bool firstProjectile, Quaternion currentRotation, Vector3 currentModulePosition, Transform[] projectilePositions);
 }

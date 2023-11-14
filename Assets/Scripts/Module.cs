@@ -45,6 +45,8 @@ public class Module : MonoBehaviour
         {
             case ModuleClass.Offense:
                 TimeTickSystemDataHandler.OnTickFaster += TimeTickSystemDataHandler_OnTick;
+
+                _offensiveStrategy = new CanonModuleScript(_playerStatClass,_data); 
                 break;
             case ModuleClass.Defense:
                 break;
@@ -72,22 +74,8 @@ public class Module : MonoBehaviour
         {
             for (int i = 0; i < _playerStatClass.GetStatValue(StatType.NbProjectile); i++)
             {
-                Fire(i == 0);
+                _offensiveStrategy.Fire(i == 0,this.transform.rotation,this.transform.position,_firePoints);
             }
-        }
-    }
-
-    private void Fire(bool firstProjectile)
-    {
-        //Instantiate projectile prefab from module prefab
-        foreach (Transform t in _firePoints)
-        {
-            Vector3 position = firstProjectile ? t.position : t.position + UtilsClass.GetRandomDir() * Random.Range(0.1f, 0.6f);
-
-            var projectile = Instantiate(_data.ProjectilePrefab, position, this.transform.rotation).GetComponent<ProjectileScript>();
-            float projectileDamage = _playerStatClass.GetStatValue(StatType.Damage);
-            projectile.Launch((t.position - this.transform.position).normalized, 6.0f, projectileDamage);
-
         }
     }
 
@@ -125,5 +113,10 @@ public class Module : MonoBehaviour
                 _playerStatClass.MultiplyPercentStat(statApplied.Type, statApplied.BaseValue);
                 break;
         }
+    }
+
+    private void SetOffensiveStrategy(IOffensiveModule offensiveStrategy)
+    {
+        _offensiveStrategy = offensiveStrategy;
     }
 }
