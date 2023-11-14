@@ -11,3 +11,15 @@ public interface IDamageSource
 {
     Transform Transform { get; }
 }
+
+public interface IObstacle : IHittable
+{
+
+}
+
+
+public interface IBuff
+{
+    public void ApplyBuff(StatClass statClass);
+    public void RemoveBuff(StatClass statClass);
+}

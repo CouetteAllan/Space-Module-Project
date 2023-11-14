@@ -31,6 +31,12 @@ public class SingleStat
         _type = type;
         _statClass = statClass;
     }
+    public SingleStat(float value, StatType type)
+    {
+        _baseValue = value;
+        _value = _baseValue;
+        _type = type;
+    }
 
 
 

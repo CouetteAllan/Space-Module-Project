@@ -7,8 +7,8 @@ public class BuffDatas : ScriptableObject
 {
     public SingleStat Stat;
 
-    public SingleStat GetStat(StatClass statClass)
+    public SingleStat GetStat()
     {
-        return new SingleStat (Stat.BaseValue, Stat.Type, statClass);
+        return new SingleStat (Stat.BaseValue, Stat.Type);
     }
 }
