@@ -46,7 +46,8 @@ public class Module : MonoBehaviour
             case ModuleClass.Offense:
                 TimeTickSystemDataHandler.OnTickFaster += TimeTickSystemDataHandler_OnTick;
 
-                _offensiveStrategy = new CanonModuleScript(_playerStatClass,_data); 
+                //_offensiveStrategy = new CanonModuleScript(_playerStatClass,_data); 
+                _offensiveStrategy = new LaserModuleScript(_playerStatClass,_data,this.transform); 
                 break;
             case ModuleClass.Defense:
                 break;
@@ -118,5 +119,16 @@ public class Module : MonoBehaviour
     private void SetOffensiveStrategy(IOffensiveModule offensiveStrategy)
     {
         _offensiveStrategy = offensiveStrategy;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        foreach (var t in _firePoints)
+        {
+            Gizmos.DrawLine(t.position + Vector3.left, t.position + Vector3.up * 3 + Vector3.left);
+            Gizmos.DrawLine(t.position + Vector3.right, t.position + Vector3.up * 3 + Vector3.right);
+            Gizmos.DrawLine(t.position + Vector3.up * 3 + Vector3.left, t.position + Vector3.up * 3 + Vector3.right);
+        }
+        
     }
 }
