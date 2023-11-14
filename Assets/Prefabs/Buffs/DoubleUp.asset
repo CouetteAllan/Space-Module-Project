@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9c9090e343c9504fbc8cdbb26e6530c, type: 3}
-  m_Name: DamageUp
+  m_Name: DoubleUp
   m_EditorClassIdentifier: 
   Stat:
-    _name: Damage Up
-    _baseValue: 0.2
-    _type: 1
+    _name: DoubleUp
+    _baseValue: 0.35
+    _type: 3
   Type: 2

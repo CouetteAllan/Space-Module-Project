@@ -6,6 +6,14 @@ using UnityEngine;
 public class BuffDatas : ScriptableObject
 {
     public SingleStat Stat;
+    public enum BuffType
+    {
+        Add,
+        Multiply,
+        PercentMultiply
+    }
+
+    public BuffType Type;
 
     public SingleStat GetStat()
     {

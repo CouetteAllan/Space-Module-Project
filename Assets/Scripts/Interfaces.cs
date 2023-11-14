@@ -18,7 +18,7 @@ public interface IObstacle : IHittable
 }
 
 
-public interface IBuff
+public interface IOffensiveModule
 {
     public void ApplyBuff(StatClass statClass);
     public void RemoveBuff(StatClass statClass);

@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public enum StatType
@@ -46,7 +43,7 @@ public class SingleStat
     public void SetValue(float value)
     {
         if (value < 0)
-            throw new System.ArgumentException("value less than 0");
+            throw new ArgumentException("value less than 0");
 
         _value = value;
     }
@@ -60,7 +57,8 @@ public class SingleStat
     public void MultiplyValue(float value)
     {
         _value *= value;
-    }public void MultiplyPercentValue(float percent)
+    }
+    public void MultiplyPercentValue(float percent)
     {
         float newValue = _baseValue * percent;
         _value += newValue;

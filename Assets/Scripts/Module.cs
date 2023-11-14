@@ -12,7 +12,8 @@ public class Module : MonoBehaviour
     {
         Offense,
         Defense,
-        Buff,
+        StatBuff,
+        Other,
         Placement
     }
 
@@ -20,7 +21,8 @@ public class Module : MonoBehaviour
     private ModuleDatas _data;
     private AttachPointScript _attachPoint;
     private StatClass _playerStatClass;
-    private IBuff _buffStrategy;
+    private IOffensiveModule _offensiveStrategy;
+
 
     public static Module CreateMod(Vector2 position, ModuleDatas datas, Transform parentTransform)
     {
@@ -46,28 +48,10 @@ public class Module : MonoBehaviour
                 break;
             case ModuleClass.Defense:
                 break;
-            case ModuleClass.Buff:
-                StatType buffType = datas.BuffDatas.GetStat().Type;
-                switch (buffType)
-                {
-                    case StatType.Health:
-                        break;
-                    case StatType.Damage:
-                        SetBuffStrategy(new DamageUpBuff(datas.BuffDatas));
-                        break;
-                    case StatType.Resist:
-                        break;
-                    case StatType.ReloadSpeed:
-                        break;
-                    case StatType.NbProjectile:
-                        break;
-                    case StatType.Weight:
-                        break;
-                    case StatType.MaxWeight:
-                        break;
-                }
+            case ModuleClass.StatBuff:
 
-                _buffStrategy.ApplyBuff(_playerStatClass);
+                ApplyBuff(datas.BuffDatas);
+
                 break;
             case ModuleClass.Placement:
                 var healthScript = this.gameObject.AddComponent<HealthScript>();
@@ -101,7 +85,8 @@ public class Module : MonoBehaviour
             Vector3 position = firstProjectile ? t.position : t.position + UtilsClass.GetRandomDir() * Random.Range(0.1f, 0.6f);
 
             var projectile = Instantiate(_data.ProjectilePrefab, position, this.transform.rotation).GetComponent<ProjectileScript>();
-            projectile.Launch((t.position - this.transform.position).normalized, 6.0f, _playerStatClass.GetStatValue(StatType.Damage));
+            float projectileDamage = _playerStatClass.GetStatValue(StatType.Damage);
+            projectile.Launch((t.position - this.transform.position).normalized, 6.0f, projectileDamage);
 
         }
     }
@@ -120,8 +105,21 @@ public class Module : MonoBehaviour
         return i;
     }
 
-    private void SetBuffStrategy(IBuff buff)
+    private void ApplyBuff(BuffDatas datas)
     {
-        _buffStrategy = buff;
+        SingleStat statApplied = datas.GetStat();
+        switch (datas.Type)
+        {
+            case BuffDatas.BuffType.Add:
+                _playerStatClass.ChangeStat(statApplied.Type, statApplied.BaseValue);
+
+                break;
+            case BuffDatas.BuffType.Multiply:
+                _playerStatClass.MultiplyStat(statApplied.Type, statApplied.BaseValue);
+                break;
+            case BuffDatas.BuffType.PercentMultiply:
+                _playerStatClass.MultiplyPercentStat(statApplied.Type, statApplied.BaseValue);
+                break;
+        }
     }
 }
