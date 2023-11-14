@@ -14,7 +14,6 @@ public class BaseStatDatas : ScriptableObject
         {
             SingleStat newStat = new SingleStat(stat.BaseValue, stat.Type, statClass);
             statDictionary.Add(stat.Type, newStat);
-            Debug.Log(newStat.ToString());
         }
 
         return statDictionary;

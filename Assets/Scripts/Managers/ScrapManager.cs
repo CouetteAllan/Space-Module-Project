@@ -23,6 +23,7 @@ public class ScrapManager : MonoBehaviour
     {
         _numberOfScrap += value;
         this.UpdateScrap(_numberOfScrap);
+
     }
 
     private void OnEnemyDeath(EnemyScript.EnemyStat enemyStat)

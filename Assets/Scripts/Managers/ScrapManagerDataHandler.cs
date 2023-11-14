@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public static class ScrapManagerDataHandler 
+public static class ScrapManagerDataHandler
 {
     public static event Action<int> OnPickUpScrap;
     public static event Action<int> OnUpdateScrap;

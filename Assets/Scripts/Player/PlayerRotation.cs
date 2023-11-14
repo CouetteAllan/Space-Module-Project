@@ -19,7 +19,7 @@ public class PlayerRotation : MonoBehaviour
     private void Awake()
     {
         _playerController = this.GetComponent<PlayerController>();
-        _rigidbody = this.GetComponent<Rigidbody2D>();
+        _rigidbody = this.transform.GetComponent<Rigidbody2D>();
 
         _inputActions = _playerController.InputActions;
         _inputActions.Player.Rotate.performed += Rotate_performed;
@@ -47,6 +47,10 @@ public class PlayerRotation : MonoBehaviour
 
     private void PerformRotation()
     {
+        if (_rigidbody.centerOfMass != Vector2.zero)
+        {
+            _rigidbody.centerOfMass = Vector2.zero;
+        }
         _rigidbody.MoveRotation(_rigidbody.rotation + _rotationRate *_rotDir * Time.fixedDeltaTime);
     }
     

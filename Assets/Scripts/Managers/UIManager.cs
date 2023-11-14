@@ -6,6 +6,8 @@ public class UIManager : Singleton<UIManager>
 {
 
     [SerializeField] private GameObject _moduleShop;
+    [SerializeField] private GameObject _scrapShop;
+    [SerializeField] private GameObject _openScrapShopTxT;
     [SerializeField] private UI_XPScript _xpScript;
     private ModuleImageScript[] _moduleImageScripts;
 
@@ -13,6 +15,8 @@ public class UIManager : Singleton<UIManager>
     {
         GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
         _moduleImageScripts = _moduleShop.GetComponentsInChildren<ModuleImageScript>();
+        _openScrapShopTxT.SetActive(true);
+        _scrapShop.SetActive(false);
     }
 
     private void GameManager_OnGameStateChanged(GameState newState)
@@ -53,6 +57,12 @@ public class UIManager : Singleton<UIManager>
         _moduleShop.SetActive(false);
         UpdateXpBar(GameManager.Instance.CurrentXP);
         UpdateLevel(GameManager.Instance.CurrentLevel);
+    }
+
+    public void OpenScrapShop(bool open)
+    {
+        _scrapShop.SetActive(open);
+        _openScrapShopTxT.SetActive(!open);
     }
 
     private void OnDisable()

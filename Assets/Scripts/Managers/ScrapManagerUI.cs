@@ -15,11 +15,13 @@ public class ScrapManagerUI : MonoBehaviour
     {
         ScrapManagerDataHandler.OnUpdateScrap += OnUpdateScrapUI;
         _scrapText.text = "0";
+
     }
 
     private void OnUpdateScrapUI(int updatedValue)
     {
         _scrapText.text = updatedValue.ToString();
+        Debug.Log("ssdfghknxsfgmlsfdgmlhsgdfqg");
 
     }
 
@@ -27,5 +29,10 @@ public class ScrapManagerUI : MonoBehaviour
     {
         ScrapManagerDataHandler.OnUpdateScrap -= OnUpdateScrapUI;
 
+    }
+
+    private void OnEnable()
+    {
+        ScrapManagerDataHandler.OnUpdateScrap += OnUpdateScrapUI;
     }
 }

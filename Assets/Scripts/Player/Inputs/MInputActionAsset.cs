@@ -55,6 +55,15 @@ namespace Rayqdr.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""OpenScrapShop"",
+                    ""type"": ""Button"",
+                    ""id"": ""dfbec6e6-0c22-42fc-89a6-dc74106f8a52"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -266,6 +275,17 @@ namespace Rayqdr.Input
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e2ee0a2-b8db-418f-a47c-e617b899fc4d"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""OpenScrapShop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -854,6 +874,7 @@ namespace Rayqdr.Input
             m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
             m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+            m_Player_OpenScrapShop = m_Player.FindAction("OpenScrapShop", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -930,6 +951,7 @@ namespace Rayqdr.Input
         private readonly InputAction m_Player_Rotate;
         private readonly InputAction m_Player_Fire;
         private readonly InputAction m_Player_Move;
+        private readonly InputAction m_Player_OpenScrapShop;
         public struct PlayerActions
         {
             private @MInputActionAsset m_Wrapper;
@@ -937,6 +959,7 @@ namespace Rayqdr.Input
             public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
             public InputAction @Fire => m_Wrapper.m_Player_Fire;
             public InputAction @Move => m_Wrapper.m_Player_Move;
+            public InputAction @OpenScrapShop => m_Wrapper.m_Player_OpenScrapShop;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -955,6 +978,9 @@ namespace Rayqdr.Input
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @OpenScrapShop.started += instance.OnOpenScrapShop;
+                @OpenScrapShop.performed += instance.OnOpenScrapShop;
+                @OpenScrapShop.canceled += instance.OnOpenScrapShop;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -968,6 +994,9 @@ namespace Rayqdr.Input
                 @Move.started -= instance.OnMove;
                 @Move.performed -= instance.OnMove;
                 @Move.canceled -= instance.OnMove;
+                @OpenScrapShop.started -= instance.OnOpenScrapShop;
+                @OpenScrapShop.performed -= instance.OnOpenScrapShop;
+                @OpenScrapShop.canceled -= instance.OnOpenScrapShop;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1153,6 +1182,7 @@ namespace Rayqdr.Input
             void OnRotate(InputAction.CallbackContext context);
             void OnFire(InputAction.CallbackContext context);
             void OnMove(InputAction.CallbackContext context);
+            void OnOpenScrapShop(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

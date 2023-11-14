@@ -11,7 +11,6 @@ public class PlayerModule : MonoBehaviour
     public void PlaceModule(Module newMod)
     {
         _modules.Add(newMod);
-        Debug.Log("MODULE PLACED");
     }
 
     public void RemoveModule(Module mod)

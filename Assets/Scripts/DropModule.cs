@@ -14,7 +14,7 @@ public class DropModule : MonoBehaviour, IDropHandler
 
     private void OnEnable()
     {
-        _playerModule = transform.parent.transform.parent.GetComponent<PlayerModule>();
+        _playerModule = transform.parent.transform.parent.transform.parent.GetComponent<PlayerModule>();
         if (_playerModule == null)
             _playerModule = GameManager.Instance.PlayerController.GetPlayerModule();
 

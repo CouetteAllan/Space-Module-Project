@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1275344283403877315}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Graph
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2389122990003074953}
   - component: {fileID: 2803640760541758460}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Base (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8542093911115038720}
   - component: {fileID: 9153596174707383760}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Base (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +213,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5498217596848494381}
   - component: {fileID: 2229796111171354385}
-  m_Layer: 0
+  - component: {fileID: 3505373497884942540}
+  m_Layer: 7
   m_Name: Module_4Slots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,6 +253,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f41c8d4d143bf2479a8c0bd87a4f819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _firePoints: []
+--- !u!61 &3505373497884942540
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5653764616274984447}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 1.9854436}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 4.012764}
+  m_EdgeRadius: 0
 --- !u!1 &6756055349999245066
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,7 +290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4983700222225835466}
   - component: {fileID: 5469375271361670373}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4478916257902362076}
   - component: {fileID: 3864015631829786415}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Base (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

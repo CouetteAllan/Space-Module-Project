@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 617583067756683544}
   - component: {fileID: 4192622361563255542}
   m_Layer: 0
-  m_Name: Module_DoubleUp
+  m_Name: Module_FireUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

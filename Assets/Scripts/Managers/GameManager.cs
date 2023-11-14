@@ -72,7 +72,6 @@ public class GameManager : Singleton<GameManager>
             LevelUp();
             UIManager.Instance.UpdateLevel(CurrentLevel);
         }
-        Debug.Log($"Xp granted:{CurrentXP}, Current LvL: {CurrentLevel} ");
     }
 
     private void LevelUp()

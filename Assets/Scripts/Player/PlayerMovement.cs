@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _playerController = this.GetComponent<PlayerController>();
-        _rigidbody = this.GetComponent<Rigidbody2D>();
+        _rigidbody = this.transform.GetComponent<Rigidbody2D>();
 
         _inputActions = _playerController.InputActions;
         _inputActions.Player.Move.started += Move_started;

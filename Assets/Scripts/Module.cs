@@ -97,6 +97,10 @@ public class Module : MonoBehaviour
         TimeTickSystemDataHandler.OnTick -= TimeTickSystemDataHandler_OnTick;
 
     }
+    private void OnDestroy()
+    {
+        TimeTickSystemDataHandler.OnTick -= TimeTickSystemDataHandler_OnTick;
+    }
 
     private int GetTickNeeded()
     {

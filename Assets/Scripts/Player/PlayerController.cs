@@ -19,8 +19,8 @@ public class PlayerController : MonoBehaviour
     private MInputActionAsset _inputActions;
     private PlayerRotation _rotation;
     private PlayerModule _playerModule;
-    
 
+    private bool _scrapShopOpen = false;
 
     private void Awake()
     {
@@ -42,10 +42,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Fire_performed(InputAction.CallbackContext obj)
-    {
-        OnFire?.Invoke();
-    }
 
 
     private void SetUpInputAction()
@@ -54,13 +50,18 @@ public class PlayerController : MonoBehaviour
             return;
 
         _inputActions = new MInputActionAsset();
-        _inputActions.Player.Fire.performed += Fire_performed;
+        _inputActions.Player.OpenScrapShop.performed += OpenScrapShop_performed;
         _inputActions.Enable();
+    }
+
+    private void OpenScrapShop_performed(InputAction.CallbackContext context)
+    {
+        _scrapShopOpen = !_scrapShopOpen;
+        UIManager.Instance.OpenScrapShop(_scrapShopOpen);
     }
 
     private void OnDisable()
     {
-        _inputActions.Player.Fire.performed -= Fire_performed;
         _inputActions = null;
     }
 
