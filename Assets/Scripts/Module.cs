@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
+using System;
 
 public class Module : MonoBehaviour
 {
-
+    public event Action OnModuleFire;
     [SerializeField] private Transform[] _firePoints;
+    [SerializeField] private PlayParticle _playParticle;
 
     public enum ModuleClass
     {
@@ -62,6 +64,8 @@ public class Module : MonoBehaviour
                 break;
         }
 
+        _playParticle?.SetUpPlayParticle(this);
+
     }
 
     private void RemoveModule()
@@ -76,6 +80,7 @@ public class Module : MonoBehaviour
             for (int i = 0; i < _playerStatClass.GetStatValue(StatType.NbProjectile); i++)
             {
                 _offensiveStrategy.Fire(i == 0,this.transform.rotation,this.transform.position,_firePoints);
+                OnModuleFire?.Invoke();
             }
         }
     }
