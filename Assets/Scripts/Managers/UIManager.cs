@@ -63,6 +63,10 @@ public class UIManager : Singleton<UIManager>
     {
         _scrapShop.SetActive(open);
         _openScrapShopTxT.SetActive(!open);
+        if (open)
+            Time.timeScale = 0.5f;
+        else
+            Time.timeScale = 1.0f;
     }
 
     private void OnDisable()

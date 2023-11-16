@@ -3,9 +3,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class HoverTipsModule : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class HoverTipsModule : MonoBehaviour//, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private RectTransform _toolTipTransform;
+    /*[SerializeField] private RectTransform _toolTipTransform;
     [SerializeField] private TextMeshProUGUI _textToolTip;
     private ModuleDatas _moduleDatas;
     private ModuleDatas Datas
@@ -33,6 +33,6 @@ public class HoverTipsModule : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         //Disable Tooltip
         _toolTipTransform.gameObject.SetActive(false);
-    }
+    }*/
 
 }
