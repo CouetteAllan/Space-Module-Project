@@ -8,9 +8,10 @@ public class PlayerModule : MonoBehaviour
     public static List<GameObject> AttachPoints = new List<GameObject>();
     private List<Module> _modules = new List<Module>();
 
-    public void PlaceModule(Module newMod)
+    public Module PlaceModule(Module newMod)
     {
         _modules.Add(newMod);
+        return newMod;
     }
 
     public void RemoveModule(Module mod)

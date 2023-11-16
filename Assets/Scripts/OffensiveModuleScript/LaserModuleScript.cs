@@ -20,7 +20,7 @@ public class LaserModuleScript : BaseOffensiveScript ,IOffensiveModule, IDamageS
             Vector3 position = firstProjectile ? t.position : t.position + UtilsClass.GetRandomDir() * Random.Range(0.1f, 0.6f);
 
             //Instantiate a physic cast in a straight line.
-            var laser = Physics2D.BoxCastAll(position, Vector2.one, 0, t.up, 11.0f);
+            var laser = Physics2D.BoxCastAll(position, Vector2.one * 1.15f, 0, t.up, 16.0f);
             foreach(var l in laser) 
             {
                 if (l.transform.gameObject.TryGetComponent<IHittable>(out IHittable enemy))

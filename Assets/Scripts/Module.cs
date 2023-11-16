@@ -98,8 +98,9 @@ public class Module : MonoBehaviour
 
     private int GetTickNeeded()
     {
-        float n = (20 * _data.OffensiveModuleDatas.AttackSpeedMultiplier) / _playerStatClass.GetStatValue(StatType.ReloadSpeed);
-        int i = Mathf.Clamp(Mathf.CeilToInt(n), 1, 20);
+        float maxTick = 20 * _data.OffensiveModuleDatas.AttackSpeedMultiplier;
+        float n = maxTick / _playerStatClass.GetStatValue(StatType.ReloadSpeed);
+        int i = Mathf.Clamp(Mathf.CeilToInt(n), 1, Mathf.CeilToInt(maxTick));
         return i;
     }
 
@@ -125,14 +126,18 @@ public class Module : MonoBehaviour
     {
         _offensiveStrategy = offensiveStrategy;
     }
+    public ModuleClass GetModuleClass()
+    {
+        return _moduleClass;
+    }
 
     private void OnDrawGizmosSelected()
     {
         foreach (var t in _firePoints)
         {
-            Gizmos.DrawLine(t.position + (-t.right), t.position + t.up * 11 + (-t.right));
-            Gizmos.DrawLine(t.position + t.right, t.position + t.up * 11 + t.right);
-            Gizmos.DrawLine(t.position + t.up * 11 + (-t.right), t.position + t.up * 11 + t.right);
+            Gizmos.DrawLine(t.position + (-t.right), t.position + t.up * 16 + (-t.right));
+            Gizmos.DrawLine(t.position + t.right, t.position + t.up * 16 + t.right);
+            Gizmos.DrawLine(t.position + t.up * 16 + (-t.right), t.position + t.up * 16 + t.right);
         }
         
     }

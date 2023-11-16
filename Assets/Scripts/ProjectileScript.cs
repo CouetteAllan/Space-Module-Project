@@ -7,13 +7,12 @@ public class ProjectileScript : MonoBehaviour,IDamageSource
     public Transform Transform => this.transform;
 
     private float _damage;
-    private int _baseDamage = 10;
 
-    public void Launch(Vector2 dir, float speed, float damageMult = 1)
+    public void Launch(Vector2 dir, float speed, float damage)
     {
         this.GetComponent<Rigidbody2D>().velocity = dir * speed;
         Invoke("Die", 2.0f);
-        _damage = _baseDamage * damageMult;
+        _damage = damage;
     }
 
     private void Die()

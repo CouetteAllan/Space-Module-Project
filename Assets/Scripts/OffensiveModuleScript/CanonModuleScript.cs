@@ -14,8 +14,8 @@ public class CanonModuleScript : BaseOffensiveScript,IOffensiveModule
             Vector3 position = firstProjectile ? t.position : t.position + UtilsClass.GetRandomDir() * Random.Range(0.1f, 0.6f);
 
             var projectile = Object.Instantiate(_datas.ProjectilePrefab, position, currentModuleRotation).GetComponent<ProjectileScript>();
-            float projectileDamage = _statClass.GetStatValue(StatType.Damage);
-            projectile.Launch((t.position - currentModulePosition).normalized, 6.0f, projectileDamage);
+            float projectileDamage = _statClass.GetStatValue(StatType.Damage) * _baseDamage;
+            projectile.Launch((t.position - currentModulePosition).normalized, 10.0f, projectileDamage);
 
         }
     }

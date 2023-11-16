@@ -23,11 +23,12 @@ public class DropModule : MonoBehaviour, IDropHandler
     {   
         if(eventData.pointerDrag != null)
         {
-            _playerModule.PlaceModule(Module.CreateMod(PlayerModule.GetNearestModule(), eventData.pointerDrag.GetComponent<ModuleImageScript>().GetModuleDatas(), _transformParent));
+            var modulePlaced = _playerModule.PlaceModule(Module.CreateMod(PlayerModule.GetNearestModule(), eventData.pointerDrag.GetComponent<ModuleImageScript>().GetModuleDatas(), _transformParent));
             //Destroy(eventData.pointerDrag );
             eventData.pointerDrag.GetComponent<ModuleImageScript>().ResetPos();
             OnDropModule?.Invoke(_attachPointScript);
-            GameManager.Instance.CloseShop();
+            if(modulePlaced.GetModuleClass() != Module.ModuleClass.Placement)
+                GameManager.Instance.CloseShop();
         }
     }
 }
