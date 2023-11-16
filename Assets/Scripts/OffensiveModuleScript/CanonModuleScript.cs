@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CanonModuleScript : BaseOffensiveScript,IOffensiveModule
 {
-    public CanonModuleScript(StatClass statClass, ModuleDatas datas) : base(statClass, datas) { }
+    public CanonModuleScript(StatClass statClass, ModuleDatas datas,float baseDamage) : base(statClass, datas, baseDamage) { }
 
     public void Fire(bool firstProjectile, Quaternion currentModuleRotation, Vector3 currentModulePosition, Transform[] projectilePositions)
     {

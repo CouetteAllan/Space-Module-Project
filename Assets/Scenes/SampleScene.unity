@@ -963,7 +963,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 74.288666, y: -130.02197}
+  m_AnchoredPosition: {x: 74.288574, y: -130.02197}
   m_SizeDelta: {x: 148.5774, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &116637067
@@ -17678,6 +17678,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3439121397852914587, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
+      propertyPath: m_Mass
+      value: 8500
+      objectReference: {fileID: 0}
     - target: {fileID: 3458775440946969532, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
       propertyPath: m_Name
       value: PlayerShip

@@ -21,7 +21,6 @@ public class ScrapManagerUI : MonoBehaviour
     private void OnUpdateScrapUI(int updatedValue)
     {
         _scrapText.text = updatedValue.ToString();
-        Debug.Log("ssdfghknxsfgmlsfdgmlhsgdfqg");
 
     }
 

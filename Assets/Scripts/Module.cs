@@ -47,7 +47,7 @@ public class Module : MonoBehaviour
                 TimeTickSystemDataHandler.OnTickFaster += TimeTickSystemDataHandler_OnTick;
 
                 //_offensiveStrategy = new CanonModuleScript(_playerStatClass,_data); 
-                _offensiveStrategy = new LaserModuleScript(_playerStatClass,_data,this.transform); 
+                _offensiveStrategy = new LaserModuleScript(_playerStatClass,_data, baseDamage: 3.0f,this.transform); 
                 break;
             case ModuleClass.Defense:
                 break;
@@ -125,9 +125,10 @@ public class Module : MonoBehaviour
     {
         foreach (var t in _firePoints)
         {
-            Gizmos.DrawLine(t.position + Vector3.left, t.position + Vector3.up * 3 + Vector3.left);
-            Gizmos.DrawLine(t.position + Vector3.right, t.position + Vector3.up * 3 + Vector3.right);
-            Gizmos.DrawLine(t.position + Vector3.up * 3 + Vector3.left, t.position + Vector3.up * 3 + Vector3.right);
+            Gizmos.DrawLine(t.position + (-t.right), t.position + t.up * 9 + (-t.right));
+            Gizmos.DrawLine(t.position + t.right, t.position + t.up * 9 + t.right);
+            Gizmos.DrawLine(t.position + t.up * 9 + (-t.right), t.position + t.up * 9 + t.right);
+            Gizmos.color = Color.yellow;
         }
         
     }
