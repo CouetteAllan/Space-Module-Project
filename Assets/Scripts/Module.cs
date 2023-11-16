@@ -47,7 +47,7 @@ public class Module : MonoBehaviour
                 TimeTickSystemDataHandler.OnTickFaster += TimeTickSystemDataHandler_OnTick;
 
                 //_offensiveStrategy = new CanonModuleScript(_playerStatClass,_data); 
-                _offensiveStrategy = new LaserModuleScript(_playerStatClass,_data, baseDamage: 3.0f,this.transform); 
+                _offensiveStrategy = _data.OffensiveModuleDatas.GetOffensiveStrategy(_playerStatClass, _data, this.transform); 
                 break;
             case ModuleClass.Defense:
                 break;
@@ -93,7 +93,7 @@ public class Module : MonoBehaviour
 
     private int GetTickNeeded()
     {
-        float n = 20 / _playerStatClass.GetStatValue(StatType.ReloadSpeed);
+        float n = (20 * _data.OffensiveModuleDatas.AttackSpeedMultiplier) / _playerStatClass.GetStatValue(StatType.ReloadSpeed);
         int i = Mathf.Clamp(Mathf.CeilToInt(n), 1, 20);
         return i;
     }
@@ -125,10 +125,9 @@ public class Module : MonoBehaviour
     {
         foreach (var t in _firePoints)
         {
-            Gizmos.DrawLine(t.position + (-t.right), t.position + t.up * 9 + (-t.right));
-            Gizmos.DrawLine(t.position + t.right, t.position + t.up * 9 + t.right);
-            Gizmos.DrawLine(t.position + t.up * 9 + (-t.right), t.position + t.up * 9 + t.right);
-            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(t.position + (-t.right), t.position + t.up * 11 + (-t.right));
+            Gizmos.DrawLine(t.position + t.right, t.position + t.up * 11 + t.right);
+            Gizmos.DrawLine(t.position + t.up * 11 + (-t.right), t.position + t.up * 11 + t.right);
         }
         
     }

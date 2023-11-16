@@ -17025,6 +17025,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 588b0bfdf14f4d24aa1574af531769b7, type: 2}
   - {fileID: 11400000, guid: 8f6d73b3600a0b9428f9aa7863fe8492, type: 2}
   - {fileID: 11400000, guid: bb47daf3f6f3f1b4dadaa6ef54f04e0c, type: 2}
+  - {fileID: 11400000, guid: fab3b1fbc04880043ba3787a7835ef0e, type: 2}
 --- !u!1 &2081356637
 GameObject:
   m_ObjectHideFlags: 0
@@ -17678,25 +17679,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3439121397852914587, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
-      propertyPath: m_Mass
-      value: 8500
-      objectReference: {fileID: 0}
     - target: {fileID: 3458775440946969532, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
       propertyPath: m_Name
       value: PlayerShip
-      objectReference: {fileID: 0}
-    - target: {fileID: 3538872126722302761, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
-      propertyPath: m_Mass
-      value: 80000
-      objectReference: {fileID: 0}
-    - target: {fileID: 3538872126722302761, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
-      propertyPath: m_Constraints
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3538872126722302761, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
-      propertyPath: m_UseAutoMass
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6015113380204956982, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
       propertyPath: m_RootOrder
