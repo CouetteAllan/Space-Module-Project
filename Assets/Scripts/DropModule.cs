@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 public class DropModule : MonoBehaviour, IDropHandler
 {
     public static event Action<AttachPointScript> OnDropModule;
+    public static event Action<Module> OnModuleAttached;
 
 
     [SerializeField] private Transform _transformParent;
@@ -23,10 +24,17 @@ public class DropModule : MonoBehaviour, IDropHandler
     {   
         if(eventData.pointerDrag != null)
         {
-            var modulePlaced = _playerModule.PlaceModule(Module.CreateMod(PlayerModule.GetNearestModule(), eventData.pointerDrag.GetComponent<ModuleImageScript>().GetModuleDatas(), _transformParent));
-            //Destroy(eventData.pointerDrag );
-            eventData.pointerDrag.GetComponent<ModuleImageScript>().ResetPos();
+            ModuleImageScript moduleDragged = eventData.pointerDrag.GetComponent<ModuleImageScript>();
+            var modulePlaced = _playerModule.PlaceModule(
+                Module.CreateMod(
+                    PlayerModule.GetNearestPlacement(),
+                    moduleDragged.GetModuleDatas(),
+                    _transformParent)
+                );
+
+            moduleDragged.ResetPos();
             OnDropModule?.Invoke(_attachPointScript);
+            OnModuleAttached?.Invoke(modulePlaced);
             if(modulePlaced.GetModuleClass() != Module.ModuleClass.Placement)
                 GameManager.Instance.CloseShop();
         }

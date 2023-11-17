@@ -27,7 +27,7 @@ public class PlayerModule : MonoBehaviour
         return mousPos;
     }
 
-    public static Vector2 GetNearestModule()
+    public static Vector2 GetNearestPlacement()
     {
         var nearestPos = Vector2.zero;
         float minDist = float.MaxValue;
