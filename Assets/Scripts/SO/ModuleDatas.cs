@@ -10,6 +10,14 @@ public class ModuleDatas : ScriptableObject
     public Module.ModuleClass ModuleClass = Module.ModuleClass.Offense;
     public Sprite ModuleSprite = null;
     public GameObject ModulePrefab = null;
+    public enum WeightType
+    {
+        None = 0,
+        Light = 10,
+        Medium = 20,
+        Heavy = 40,
+    }
+    public WeightType Weight = WeightType.None;
 
     [Space]
     [Header("Offensive")]

@@ -135,9 +135,10 @@ public class Module : MonoBehaviour
     {
         foreach (var t in _firePoints)
         {
-            Gizmos.DrawLine(t.position + (-t.right), t.position + t.up * 16 + (-t.right));
-            Gizmos.DrawLine(t.position + t.right, t.position + t.up * 16 + t.right);
-            Gizmos.DrawLine(t.position + t.up * 16 + (-t.right), t.position + t.up * 16 + t.right);
+            float hitboxWidth = 1.5f;
+            Gizmos.DrawLine(t.position + (-t.right * hitboxWidth), t.position + t.up * 16 + (-t.right * hitboxWidth));
+            Gizmos.DrawLine(t.position + t.right * hitboxWidth, t.position + t.up * 16 + t.right * hitboxWidth);
+            Gizmos.DrawLine(t.position + t.up * 16 + (-t.right * hitboxWidth), t.position + t.up * 16 + t.right * hitboxWidth);
         }
         
     }

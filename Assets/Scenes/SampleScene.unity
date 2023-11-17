@@ -17684,16 +17684,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 113123468733420772, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
-      propertyPath: _decelerationCurve.m_Curve.Array.data[1].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 113123468733420772, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
-      propertyPath: _decelerationCurve.m_Curve.Array.data[1].inSlope
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 113123468733420772, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
-      propertyPath: _decelerationCurve.m_Curve.Array.data[1].outSlope
-      value: -1
+      propertyPath: _speed
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3458775440946969532, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
       propertyPath: m_Name
