@@ -17683,6 +17683,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 819454134233559118, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
+      propertyPath: _rotationRate
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 3458775440946969532, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
       propertyPath: m_Name
       value: PlayerShip
