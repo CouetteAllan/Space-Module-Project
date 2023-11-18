@@ -30,6 +30,15 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         ChangeGameState(GameState.BeforeGameStart);
+        DropModule.OnModuleAttached += DropModule_OnModuleAttached;
+    }
+
+    private void DropModule_OnModuleAttached(Module mod)
+    {
+        if(mod.GetModuleClass() == Module.ModuleClass.Placement)
+        {
+            _virtualCamera.m_Lens.OrthographicSize += 1.0f;
+        }
     }
 
     public void ChangeGameState(GameState newState)
@@ -77,7 +86,6 @@ public class GameManager : Singleton<GameManager>
     private void LevelUp()
     {
         CurrentLevel++;
-        _virtualCamera.m_Lens.OrthographicSize += 0.2f;
         OnLevelUp?.Invoke(CurrentLevel);
 
         CurrentXP -= NextTresholdLevelUp;

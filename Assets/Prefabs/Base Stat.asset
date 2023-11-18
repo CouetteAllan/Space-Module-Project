@@ -32,5 +32,5 @@ MonoBehaviour:
     _baseValue: 0
     _type: 5
   - _name: Max Weight
-    _baseValue: 100
+    _baseValue: 250
     _type: 6

@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class AttachPointScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+
 
     private bool _isActive = true;
+    public bool IsActive { get { return _isActive; } }
     private SpriteRenderer _spriteRenderer;
 
     private void Awake()
@@ -44,7 +45,7 @@ public class AttachPointScript : MonoBehaviour
 
     private void DropModule_OnDropModule(AttachPointScript attachPoint)
     {
-        if(attachPoint == this)
+        if(attachPoint == this && _isActive == true)
         {
             _isActive = false;
         }
@@ -55,13 +56,14 @@ public class AttachPointScript : MonoBehaviour
     {
         _isActive = true;
     }
+    /*
 
     private void OnDisable()
     {
         ModuleImageScript.OnStartDragModule -= ModuleImageScript_OnStartDragModule;
         ModuleImageScript.OnEndDragModule -= ModuleImageScript_OnStartDragModule;
         DropModule.OnDropModule -= DropModule_OnDropModule;
-    }
+    }*/
 
     private void OnDestroy()
     {

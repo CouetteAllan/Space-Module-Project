@@ -15,14 +15,14 @@ public class DropModule : MonoBehaviour, IDropHandler
 
     private void OnEnable()
     {
-        _playerModule = transform.parent.transform.parent.transform.parent.GetComponent<PlayerModule>();
+        _playerModule = transform.parent.transform.parent.transform.parent.GetComponent<PlayerModule>(); //don't pay attention pls
         if (_playerModule == null)
             _playerModule = GameManager.Instance.PlayerController.GetPlayerModule();
 
     }
     public void OnDrop(PointerEventData eventData)
     {   
-        if(eventData.pointerDrag != null)
+        if(eventData.pointerDrag != null && _attachPointScript.IsActive)
         {
             ModuleImageScript moduleDragged = eventData.pointerDrag.GetComponent<ModuleImageScript>();
             var modulePlaced = _playerModule.PlaceModule(

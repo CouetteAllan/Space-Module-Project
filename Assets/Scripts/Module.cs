@@ -28,7 +28,6 @@ public class Module : MonoBehaviour
 
     public static Module CreateMod(Vector2 position, ModuleDatas datas, Transform parentTransform)
     {
-        GameObject go = new GameObject();
         Module module = Instantiate(datas.ModulePrefab.GetComponent<Module>(), position, parentTransform.rotation, parentTransform);
         module.SetUpModule(datas, parentTransform.GetComponent<AttachPointScript>());
         return module;
@@ -90,12 +89,12 @@ public class Module : MonoBehaviour
 
     private void OnDisable()
     {
-        TimeTickSystemDataHandler.OnTick -= TimeTickSystemDataHandler_OnTick;
+        TimeTickSystemDataHandler.OnTickFaster -= TimeTickSystemDataHandler_OnTick;
 
     }
     private void OnDestroy()
     {
-        TimeTickSystemDataHandler.OnTick -= TimeTickSystemDataHandler_OnTick;
+        TimeTickSystemDataHandler.OnTickFaster -= TimeTickSystemDataHandler_OnTick;
     }
 
     private int GetTickNeeded()

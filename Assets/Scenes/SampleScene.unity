@@ -4148,7 +4148,7 @@ Camera:
   far clip plane: 20
   field of view: 34
   orthographic: 1
-  orthographic size: 13
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -12634,7 +12634,7 @@ MonoBehaviour:
   m_Follow: {fileID: 366237360}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 13
+    OrthographicSize: 15
     NearClipPlane: 0.3
     FarClipPlane: 20
     Dutch: 0
@@ -17683,13 +17683,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 819454134233559118, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
-      propertyPath: _rotationRate
-      value: 60
+    - target: {fileID: 2665665360584888137, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
+      propertyPath: m_Name
+      value: AttachPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 3263077475035182365, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
+      propertyPath: m_Name
+      value: AttachPoint
       objectReference: {fileID: 0}
     - target: {fileID: 3458775440946969532, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
       propertyPath: m_Name
       value: PlayerShip
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566484274798368734, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
+      propertyPath: m_Name
+      value: AttachPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062916561474019097, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
+      propertyPath: m_Name
+      value: AttachPoint
       objectReference: {fileID: 0}
     - target: {fileID: 6015113380204956982, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
       propertyPath: m_RootOrder
@@ -17734,6 +17746,22 @@ PrefabInstance:
     - target: {fileID: 6015113380204956982, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277238423756875887, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
+      propertyPath: m_Name
+      value: AttachPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 7924401956147143609, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
+      propertyPath: m_Name
+      value: AttachPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 8624962189426617920, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
+      propertyPath: m_Name
+      value: AttachPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 9099355366808266978, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
+      propertyPath: m_Name
+      value: AttachPoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
