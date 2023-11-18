@@ -32,6 +32,14 @@ public class Module : MonoBehaviour
         module.SetUpModule(datas, parentTransform.GetComponent<AttachPointScript>());
         return module;
     }
+    
+    public static Transform CreateModPreview(Vector2 position, ModuleDatas datas, Transform parentTransform)
+    {
+        Transform module = Instantiate(datas.ModulePrefab.transform.Find("Graph"), position + (Vector2)parentTransform.up * 0.5f, Quaternion.LookRotation(- parentTransform.forward, parentTransform.right) , parentTransform);
+        return module;
+    }
+
+    
 
     private void SetUpModule(ModuleDatas datas, AttachPointScript attachPointScript)
     {
@@ -67,6 +75,15 @@ public class Module : MonoBehaviour
 
         _playerStatClass.ChangeStat(StatType.Weight, (float)_data.Weight);
 
+    }
+
+    private void SetUpModulePreview(ModuleDatas datas, AttachPointScript attachPointScript)
+    {
+        this.gameObject.name = datas.ModuleName;
+        _data = datas;
+        _moduleClass = datas.ModuleClass;
+        _attachPoint = attachPointScript;
+        _playerStatClass = StatSystem.Instance.PlayerStat;
     }
 
     private void RemoveModule()

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayParticle : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _particleSystem;
-    private Module _module;
+    private Module _module = null;
     public void SetUpPlayParticle(Module mod)
     {
         _module = mod;
@@ -20,6 +20,7 @@ public class PlayParticle : MonoBehaviour
 
     private void OnDisable()
     {
-        _module.OnModuleFire -= Mod_OnModuleFire;
+        if(_module != null)
+            _module.OnModuleFire -= Mod_OnModuleFire;
     }
 }
