@@ -6,7 +6,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerRotation : MonoBehaviour
 {
-    [SerializeField] private float _rotationRate = 190.0f; //180 degré par seconde
+    [SerializeField] private float _minRotationRate = 55.0f;
+    [SerializeField] private float _maxRotationRate = 190.0f;
+    private float _rotationRate = 190.0f;
+
 
     private PlayerController _playerController;
     private MInputActionAsset _inputActions;
@@ -18,6 +21,8 @@ public class PlayerRotation : MonoBehaviour
 
     private void Awake()
     {
+        _rotationRate = _maxRotationRate;
+
         _playerController = this.GetComponent<PlayerController>();
         _rigidbody = this.transform.GetComponent<Rigidbody2D>();
 
@@ -67,10 +72,8 @@ public class PlayerRotation : MonoBehaviour
         float currentMaxWeight = StatSystem.Instance.PlayerStat.GetStatValue(StatType.MaxWeight);
         float currentWeight = StatSystem.Instance.PlayerStat.GetStatValue(StatType.Weight);
 
-        float maxRotationRate = 190.0f;
-        float minRotationRate = 60.0f;
-
-        _rotationRate = Mathf.Lerp(maxRotationRate, minRotationRate, currentWeight / currentMaxWeight);
+        var weightRatio = Mathf.Clamp(currentWeight / currentMaxWeight, 0.0f, 1.0f);   
+        _rotationRate = Mathf.Lerp(_maxRotationRate, _minRotationRate, currentWeight / currentMaxWeight);
     }
     
 }

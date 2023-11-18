@@ -66,6 +66,8 @@ public class Module : MonoBehaviour
 
         _playParticle?.SetUpPlayParticle(this);
 
+        _playerStatClass.ChangeStat(StatType.Weight, (float)_data.Weight);
+
     }
 
     private void RemoveModule()
