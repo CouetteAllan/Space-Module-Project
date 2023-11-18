@@ -73,7 +73,7 @@ public class PlayerRotation : MonoBehaviour
         float currentWeight = StatSystem.Instance.PlayerStat.GetStatValue(StatType.Weight);
 
         var weightRatio = Mathf.Clamp(currentWeight / currentMaxWeight, 0.0f, 1.0f);   
-        _rotationRate = Mathf.Lerp(_maxRotationRate, _minRotationRate, currentWeight / currentMaxWeight);
+        _rotationRate = Mathf.Lerp(_maxRotationRate, _minRotationRate, weightRatio);
     }
     
 }

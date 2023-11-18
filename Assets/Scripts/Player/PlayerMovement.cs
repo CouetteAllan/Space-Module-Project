@@ -7,10 +7,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float _speed = 3.0f;
+
+    [SerializeField] private float _maxSpeed = 12.0f;
+    [SerializeField] private float _minSpeed = 6.0f;
     [SerializeField] private AnimationCurve _accelerationCurve;
     [SerializeField] private AnimationCurve _decelerationCurve;
+
     private AnimationCurve _selectedCurve;
+    private float _speed = 12.0f;
 
     private PlayerController _playerController;
     private Rigidbody2D _rigidbody;
@@ -36,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        _speed = _maxSpeed;
+
         _playerController = this.GetComponent<PlayerController>();
         _rigidbody = this.transform.GetComponent<Rigidbody2D>();
 
@@ -44,6 +50,13 @@ public class PlayerMovement : MonoBehaviour
         _inputActions.Player.Move.performed += Move_performed;
         _inputActions.Player.Move.canceled += Move_canceled;
         _selectedCurve = _decelerationCurve;
+
+        DropModule.OnModuleAttached += DropModule_OnModuleAttached;
+    }
+
+    private void DropModule_OnModuleAttached(Module mod)
+    {
+        CalculateSpeedRate();
     }
 
     private void Move_started(InputAction.CallbackContext obj)
@@ -86,5 +99,15 @@ public class PlayerMovement : MonoBehaviour
             _rigidbody.velocity = new Vector2(targetMovement.x * _selectedCurve.Evaluate(_timerCurve) * _speed, targetMovement.y * _selectedCurve.Evaluate(_timerCurve) * _speed);
         else
             _rigidbody.velocity = new Vector2(_lastInput.x * _selectedCurve.Evaluate(_timerCurve) * _speed, _lastInput.y * _selectedCurve.Evaluate(_timerCurve) * _speed);
+    }
+
+    private void CalculateSpeedRate()
+    {
+        //call this calculation when any module is placed
+        float currentMaxWeight = StatSystem.Instance.PlayerStat.GetStatValue(StatType.MaxWeight);
+        float currentWeight = StatSystem.Instance.PlayerStat.GetStatValue(StatType.Weight);
+
+        var weightRatio = Mathf.Clamp(currentWeight / currentMaxWeight, 0.0f, 1.0f);
+        _speed = Mathf.Lerp(_maxSpeed, _minSpeed, weightRatio);
     }
 }

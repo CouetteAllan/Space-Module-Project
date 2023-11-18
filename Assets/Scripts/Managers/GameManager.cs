@@ -81,7 +81,7 @@ public class GameManager : Singleton<GameManager>
         OnLevelUp?.Invoke(CurrentLevel);
 
         CurrentXP -= NextTresholdLevelUp;
-        NextTresholdLevelUp += 10;
+        NextTresholdLevelUp += 20;
         ChangeGameState(GameState.ShopState);
     }
 

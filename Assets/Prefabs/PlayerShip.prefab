@@ -364,7 +364,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d7cadbe21ff3a643a3c4186e3a87953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationRate: 190
+  _minRotationRate: 45
+  _maxRotationRate: 190
 --- !u!114 &113123468733420772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,7 +378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e490b6d80423c3241a73d73dcd84b219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 12
+  _maxSpeed: 12
+  _minSpeed: 6
   _accelerationCurve:
     serializedVersion: 2
     m_Curve:
