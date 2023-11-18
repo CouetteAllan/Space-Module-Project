@@ -254,6 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firePoints: []
+  _playParticle: {fileID: 0}
 --- !u!61 &3505373497884942540
 BoxCollider2D:
   m_ObjectHideFlags: 0

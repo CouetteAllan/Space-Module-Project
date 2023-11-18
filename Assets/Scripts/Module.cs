@@ -35,7 +35,7 @@ public class Module : MonoBehaviour
     
     public static Transform CreateModPreview(Vector2 position, ModuleDatas datas, Transform parentTransform)
     {
-        Transform module = Instantiate(datas.ModulePrefab.transform.Find("Graph"), position + (Vector2)parentTransform.up * 0.5f, Quaternion.LookRotation(- parentTransform.forward, parentTransform.right) , parentTransform);
+        Transform module = Instantiate(datas.ModulePrefab.transform.Find("Graph"), position + (Vector2)parentTransform.up * 0.5f, parentTransform.rotation , parentTransform);
         return module;
     }
 
