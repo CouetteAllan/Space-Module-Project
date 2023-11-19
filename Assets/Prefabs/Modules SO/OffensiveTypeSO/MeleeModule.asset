@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89150d2f8cfb26541b83fa36721d0c3c, type: 3}
   m_Name: MeleeModule
   m_EditorClassIdentifier: 
-  ModuleName: ChainSaw
+  ModuleName: Chainsaw (Melee Module)
   ModuleClass: 0
   ModuleSprite: {fileID: 21300000, guid: 0394c1b6ae0e1ee449927992ca3d2473, type: 3}
   ModulePrefab: {fileID: 1310436615563555467, guid: ac574f9e6ea9ffa49a3a0bf7a9c30ccd, type: 3}
