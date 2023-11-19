@@ -24,7 +24,16 @@ public class DropModule : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPo
     {   
         if(eventData.pointerDrag != null && _attachPointScript.IsActive)
         {
+            
             ModuleImageScript moduleDragged = eventData.pointerDrag.GetComponent<ModuleImageScript>();
+            if(moduleDragged.GetModuleDatas().ModuleClass == Module.ModuleClass.Placement)
+            {
+                if (!(bool)ScrapManagerDataHandler.SellScrap(moduleDragged.GetModuleDatas().ScrapCost))
+                {
+                    Destroy(GraphPreview?.gameObject);
+                    return;
+                }
+            }
             var modulePlaced = _playerModule.PlaceModule(
                 Module.CreateMod(
                     PlayerModule.GetNearestPlacementFromMouse(),
@@ -62,9 +71,9 @@ public class DropModule : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPo
     public void OnPointerExit(PointerEventData eventData)
     {
         //Enlever preview
-        if (eventData.pointerDrag != null)
+        if (eventData.pointerDrag != null && GraphPreview != null)
         {
-            Destroy(GraphPreview?.gameObject);
+            Destroy(GraphPreview.gameObject);
         }
     }
 }

@@ -18,6 +18,7 @@ public class ModuleDatas : ScriptableObject
         Heavy = 40,
     }
     public WeightType Weight = WeightType.None;
+    public int ScrapCost = 0;
 
     [Space]
     [Header("Offensive")]

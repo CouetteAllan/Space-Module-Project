@@ -17,6 +17,7 @@ public class ScrapManager : MonoBehaviour
         //Listen to event whenever an enemy dies so we can have a chance to spawn scrap
         EnemyScript.OnDeath += OnEnemyDeath;
         ScrapManagerDataHandler.OnPickUpScrap += OnPickUpScrap;
+        ScrapManagerDataHandler.OnSellScrap += SellScrapMetal;
     }
 
     private void OnPickUpScrap(int value)
@@ -37,18 +38,19 @@ public class ScrapManager : MonoBehaviour
 
         
 
-    public void SellScrapMetal(int scrapSold)
+    public bool SellScrapMetal(int scrapSold)
     {
         if(scrapSold > _numberOfScrap)
         {
             UtilsClass.CreateWorldTextPopup("Don't have enough Scrap", UtilsClass.GetMouseWorldPosition());
-            return;
+            return false;
         }
 
         _numberOfScrap -= scrapSold;
-        this.SellScrap(scrapSold);
         this.UpdateScrap(_numberOfScrap);
+        return true;
     }
+
 
     private ScrapMetal SpawnScrapMetal(Vector2 pos) => Instantiate(_scrapTransform, pos, Quaternion.identity).GetComponent<ScrapMetal>();
 
