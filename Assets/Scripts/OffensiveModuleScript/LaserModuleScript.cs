@@ -13,8 +13,9 @@ public class LaserModuleScript : BaseOffensiveScript ,IOffensiveModule, IDamageS
 
     public Transform Transform => _moduleTransform;
 
-    public void Fire(bool firstProjectile, Quaternion currentModuleRotation, Vector3 currentModulePosition, Transform[] projectilePositions)
+    public void Fire(bool firstProjectile, Quaternion currentModuleRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success)
     {
+        success = true;
         foreach (Transform t in projectilePositions)
         {
             Vector3 position = firstProjectile ? t.position : t.position + UtilsClass.GetRandomDir() * Random.Range(0.1f, 0.6f);
@@ -29,7 +30,6 @@ public class LaserModuleScript : BaseOffensiveScript ,IOffensiveModule, IDamageS
                     enemy.TryHit(this, (int)(_statClass.GetStatValue(StatType.Damage) * _baseDamage));
 
             }
-
 
         }
     }

@@ -8,7 +8,6 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
-    public static event Action OnFire;
     public MInputActionAsset InputActions {
         get
         {

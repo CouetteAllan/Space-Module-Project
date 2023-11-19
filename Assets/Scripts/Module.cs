@@ -97,8 +97,10 @@ public class Module : MonoBehaviour
         {
             for (int i = 0; i < _playerStatClass.GetStatValue(StatType.NbProjectile); i++)
             {
-                _offensiveStrategy.Fire(i == 0,this.transform.rotation,this.transform.position,_firePoints);
-                OnModuleFire?.Invoke();
+                _offensiveStrategy.Fire(i == 0,this.transform.rotation,this.transform.position,_firePoints, out bool success);
+                if (success)
+                    OnModuleFire?.Invoke();
+
             }
         }
     }
@@ -153,10 +155,14 @@ public class Module : MonoBehaviour
     {
         foreach (var t in _firePoints)
         {
+            Gizmos.color = Color.yellow;
             float hitboxWidth = 1.5f;
             Gizmos.DrawLine(t.position + (-t.right * hitboxWidth), t.position + t.up * 16 + (-t.right * hitboxWidth));
             Gizmos.DrawLine(t.position + t.right * hitboxWidth, t.position + t.up * 16 + t.right * hitboxWidth);
             Gizmos.DrawLine(t.position + t.up * 16 + (-t.right * hitboxWidth), t.position + t.up * 16 + t.right * hitboxWidth);
+
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(t.position, 1.5f);
         }
         
     }

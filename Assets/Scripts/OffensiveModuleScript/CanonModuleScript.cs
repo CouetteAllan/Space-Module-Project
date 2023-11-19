@@ -7,8 +7,9 @@ public class CanonModuleScript : BaseOffensiveScript,IOffensiveModule
 {
     public CanonModuleScript(StatClass statClass, ModuleDatas datas,float baseDamage) : base(statClass, datas, baseDamage) { }
 
-    public void Fire(bool firstProjectile, Quaternion currentModuleRotation, Vector3 currentModulePosition, Transform[] projectilePositions)
+    public void Fire(bool firstProjectile, Quaternion currentModuleRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success)
     {
+        success = true;
         foreach (Transform t in projectilePositions)
         {
             Vector3 position = firstProjectile ? t.position : t.position + UtilsClass.GetRandomDir() * Random.Range(0.1f, 0.6f);

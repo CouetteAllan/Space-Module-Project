@@ -20,5 +20,5 @@ public interface IObstacle : IHittable
 
 public interface IOffensiveModule
 {
-    public void Fire(bool firstProjectile, Quaternion currentRotation, Vector3 currentModulePosition, Transform[] projectilePositions);
+    public void Fire(bool firstProjectile, Quaternion currentRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success);
 }

@@ -2661,6 +2661,7 @@ GameObject:
   - component: {fileID: 326747015}
   - component: {fileID: 326747016}
   - component: {fileID: 326747017}
+  - component: {fileID: 326747018}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2738,6 +2739,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scrapTransform: {fileID: 388440602637989478, guid: c8ba7bcab3c94094b8531054b2972419, type: 3}
   _scrapManagerUI: {fileID: 39735547}
+--- !u!114 &326747018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326747012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 466061f547cdf504597a40e93164a3a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isPersistant: 0
 --- !u!1 &352828621
 GameObject:
   m_ObjectHideFlags: 0
@@ -10783,7 +10797,7 @@ PrefabInstance:
     - target: {fileID: 3316655932920586862, guid: 1244555cb12e7eb42b351b2f5d2a6511, type: 3}
       propertyPath: _moduleDatas
       value: 
-      objectReference: {fileID: 11400000, guid: fd31109291390eb4eb92859d671cab93, type: 2}
+      objectReference: {fileID: 11400000, guid: 21b26fe3bc0cf714c810484cb4e9177a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1244555cb12e7eb42b351b2f5d2a6511, type: 3}
 --- !u!224 &1318562838 stripped
@@ -17030,6 +17044,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8f6d73b3600a0b9428f9aa7863fe8492, type: 2}
   - {fileID: 11400000, guid: bb47daf3f6f3f1b4dadaa6ef54f04e0c, type: 2}
   - {fileID: 11400000, guid: fab3b1fbc04880043ba3787a7835ef0e, type: 2}
+  - {fileID: 11400000, guid: 21b26fe3bc0cf714c810484cb4e9177a, type: 2}
 --- !u!1 &2081356637
 GameObject:
   m_ObjectHideFlags: 0
