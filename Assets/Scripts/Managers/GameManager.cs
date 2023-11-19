@@ -59,12 +59,13 @@ public class GameManager : Singleton<GameManager>
                 break;
             case GameState.InGame:
                 Time.timeScale = 1.0f;
+                Time.fixedDeltaTime = Time.timeScale * 0.01f;
                 break;
             case GameState.GameOver:
                 Time.timeScale = 0.2f;
                 break;
             case GameState.ShopState:
-                Time.timeScale = 0.0f;
+                StartCoroutine(SlowMoCoroutine());
                 OpenShop();
                 break;
         }
@@ -95,6 +96,7 @@ public class GameManager : Singleton<GameManager>
 
     public void OpenShop()
     {
+
         UIManager.Instance.OpenShop();
     }
 
@@ -117,6 +119,21 @@ public class GameManager : Singleton<GameManager>
         {
             GrantXP(5);
         }
+    }
+
+    IEnumerator SlowMoCoroutine()
+    {
+        Time.timeScale = 0.8f;
+        Time.fixedDeltaTime = Time.timeScale * 0.01f;
+        yield return new WaitForSecondsRealtime(0.3f);
+        Time.timeScale = 0.5f;
+        Time.fixedDeltaTime = Time.timeScale * 0.01f;
+        yield return new WaitForSecondsRealtime(0.2f);
+        Time.timeScale = 0.2f;
+        Time.fixedDeltaTime = Time.timeScale * 0.01f;
+        yield return new WaitForSecondsRealtime(0.2f);
+        Time.timeScale = 0.0f;
+        yield break;
     }
 
 }
