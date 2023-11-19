@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public static event Action OnStartDragModule;
     public static event Action OnEndDragModule;
@@ -77,5 +77,15 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         _moduleDatas = datas;
         _image.sprite = _moduleDatas.ModuleSprite;
 
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        TooltipScript.ShowTooltip_Static(_moduleDatas.ModuleName);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        TooltipScript.HideTooltip_Static();
     }
 }

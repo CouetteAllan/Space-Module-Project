@@ -7,10 +7,15 @@ namespace Tools
     public static class Utils
     {
         //Return random vector 2 dir in a given radius
-        public static Vector2 GetRandomDir(Vector2 position, float radius)
+        public static Camera Camera
         {
-            return Vector2.zero;
+            get {
+                if (_cam == null)
+                    _cam = Camera.main;
+                return _cam;
+            }
         }
+        private static Camera _cam = null;
 
         /// <summary>
         /// Return true if a random number is under the parameter
