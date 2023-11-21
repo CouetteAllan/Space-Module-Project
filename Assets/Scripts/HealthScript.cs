@@ -5,17 +5,22 @@ using UnityEngine.UI;
 
 public class HealthScript : MonoBehaviour
 {
+    [SerializeField] private RectTransform _healthBar;
+    [SerializeField] private Image _fillImage;
     public event Action<int> OnChangeHealth;
 
     public int Health => _health;
     public bool IsAlive => _health > 0;
 
     private bool _isInvincible;
-    private int _health = 10;
+    private int _health = 15;
     private int _maxHealth;
     private AttachPointScript _attachPointScript;
-    private Image _fillImage;
-    private RectTransform _healthBar;
+
+    private void Awake()
+    {
+        _maxHealth = 15;
+    }
 
     public void ChangeHealth(int value)
     {
@@ -36,7 +41,7 @@ public class HealthScript : MonoBehaviour
         if (!IsAlive)
         {
             Debug.Log(this.gameObject.name + " has no health");
-            _attachPointScript.EnableAttachPoint();
+            _attachPointScript?.EnableAttachPoint();
             Destroy(this.gameObject);
         }
     }

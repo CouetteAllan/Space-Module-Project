@@ -26,7 +26,7 @@ public class EnemyScript : MonoBehaviour, IHittable
     private bool _gotHit = false;
     private int _health;
 
-    private float _damageTimer = 0.8f;
+    private float _damageTimer = 0.6f;
     private float _timer = 0.0f;
     private bool _canDealDamage = true;
 
@@ -58,6 +58,8 @@ public class EnemyScript : MonoBehaviour, IHittable
 
     private void Update()
     {
+        if (_playerController == null)
+            return;
         Vector2 dir = (Vector2)_playerController.transform.position - this._rigidbody.position;
         this._rigidbody.velocity = dir.normalized * speed;
 

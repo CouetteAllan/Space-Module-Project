@@ -39,15 +39,6 @@ namespace Rayqdr.Input
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Fire"",
-                    ""type"": ""Button"",
-                    ""id"": ""ad578800-4814-4b96-a92a-fd3a6275fbc5"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Move"",
                     ""type"": ""Value"",
                     ""id"": ""443106f8-62bd-4ac6-bdc9-bc079ee4d574"",
@@ -67,61 +58,6 @@ namespace Rayqdr.Input
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""143bb1cd-cc10-4eca-a2f0-a3664166fe91"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""05f6913d-c316-48b2-a6bb-e225f14c7960"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""886e731e-7071-4ae4-95c0-e61739dad6fd"",
-                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Touch"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ee3d0cd2-254e-47a7-a8cb-bc94d9658c54"",
-                    ""path"": ""<Joystick>/trigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8255d333-5683-4943-a58a-ccb207ff1dce"",
-                    ""path"": ""<XRController>/{PrimaryAction}"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XR"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": ""ZQSD"",
                     ""id"": ""501d69b4-a290-408d-ba31-bd2ec0c3ab97"",
@@ -246,7 +182,7 @@ namespace Rayqdr.Input
                 {
                     ""name"": ""Left/Right Arrows"",
                     ""id"": ""e884d0f2-2630-4d38-b9be-df61be6a6db8"",
-                    ""path"": ""1DAxis"",
+                    ""path"": ""1DAxis(whichSideWins=1)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -872,7 +808,6 @@ namespace Rayqdr.Input
             // Player
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
-            m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_OpenScrapShop = m_Player.FindAction("OpenScrapShop", throwIfNotFound: true);
             // UI
@@ -949,7 +884,6 @@ namespace Rayqdr.Input
         private readonly InputActionMap m_Player;
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
         private readonly InputAction m_Player_Rotate;
-        private readonly InputAction m_Player_Fire;
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_OpenScrapShop;
         public struct PlayerActions
@@ -957,7 +891,6 @@ namespace Rayqdr.Input
             private @MInputActionAsset m_Wrapper;
             public PlayerActions(@MInputActionAsset wrapper) { m_Wrapper = wrapper; }
             public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
-            public InputAction @Fire => m_Wrapper.m_Player_Fire;
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @OpenScrapShop => m_Wrapper.m_Player_OpenScrapShop;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -972,9 +905,6 @@ namespace Rayqdr.Input
                 @Rotate.started += instance.OnRotate;
                 @Rotate.performed += instance.OnRotate;
                 @Rotate.canceled += instance.OnRotate;
-                @Fire.started += instance.OnFire;
-                @Fire.performed += instance.OnFire;
-                @Fire.canceled += instance.OnFire;
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
@@ -988,9 +918,6 @@ namespace Rayqdr.Input
                 @Rotate.started -= instance.OnRotate;
                 @Rotate.performed -= instance.OnRotate;
                 @Rotate.canceled -= instance.OnRotate;
-                @Fire.started -= instance.OnFire;
-                @Fire.performed -= instance.OnFire;
-                @Fire.canceled -= instance.OnFire;
                 @Move.started -= instance.OnMove;
                 @Move.performed -= instance.OnMove;
                 @Move.canceled -= instance.OnMove;
@@ -1180,7 +1107,6 @@ namespace Rayqdr.Input
         public interface IPlayerActions
         {
             void OnRotate(InputAction.CallbackContext context);
-            void OnFire(InputAction.CallbackContext context);
             void OnMove(InputAction.CallbackContext context);
             void OnOpenScrapShop(InputAction.CallbackContext context);
         }

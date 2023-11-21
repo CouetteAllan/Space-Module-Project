@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 3790520211288651901}
   - component: {fileID: 6591707029607160354}
   - component: {fileID: 4784337720738714471}
+  - component: {fileID: 7355626786301400365}
   m_Layer: 5
   m_Name: HealthCanvas
   m_TagString: Untagged
@@ -197,7 +198,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &4784337720738714471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +216,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7355626786301400365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4122335146198415426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df8e784c2ffd1c41aa1e9f361a3cf96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rect: {fileID: 4203365333002799833}
+  rect1: {fileID: 1941255963650517710}
+  rect2: {fileID: 0}
 --- !u!1 &7441135379686181502
 GameObject:
   m_ObjectHideFlags: 0
