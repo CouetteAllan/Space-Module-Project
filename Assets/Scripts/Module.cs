@@ -27,6 +27,7 @@ public class Module : MonoBehaviour
     private StatClass _playerStatClass;
     private IOffensiveModule _offensiveStrategy;
     private SingleStat _singleStatApplied;
+    private HealthScript _healthScript;
 
     public static Module CreateMod(Vector2 position, ModuleDatas datas, Transform parentTransform)
     {
@@ -68,8 +69,9 @@ public class Module : MonoBehaviour
 
                 break;
             case ModuleClass.Placement:
-                var healthScript = this.gameObject.AddComponent<HealthScript>();
-                healthScript.SetAttachPoint(attachPointScript);
+                _healthScript = this.gameObject.AddComponent<HealthScript>();
+                _healthScript.SetHealthScript(attachPointScript);
+                _healthScript.OnDeath += OnModuleBranchDestroyed;
                 break;
         }
 
@@ -79,14 +81,12 @@ public class Module : MonoBehaviour
 
     }
 
-    private void SetUpModulePreview(ModuleDatas datas, AttachPointScript attachPointScript)
+    private void OnModuleBranchDestroyed()
     {
-        this.gameObject.name = datas.ModuleName;
-        _data = datas;
-        _moduleClass = datas.ModuleClass;
-        _attachPoint = attachPointScript;
-        _playerStatClass = StatSystem.Instance.PlayerStat;
+        Destroy(gameObject);
+        _healthScript.OnDeath -= OnModuleBranchDestroyed;
     }
+
 
     private void RemoveModule()
     {

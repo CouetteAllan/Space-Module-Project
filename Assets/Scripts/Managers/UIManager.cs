@@ -9,6 +9,8 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private GameObject _scrapShop;
     [SerializeField] private GameObject _openScrapShopTxT;
     [SerializeField] private UI_XPScript _xpScript;
+
+    [SerializeField] private RectTransform _gameOverPanel;
     private ModuleImageScript[] _moduleImageScripts;
 
     private void Start()
@@ -31,6 +33,7 @@ public class UIManager : Singleton<UIManager>
                 CloseShop();
                 break;
             case GameState.GameOver:
+                ShowGameOverPanel(true);
                 break;
             case GameState.ShopState:
                 break;
@@ -76,6 +79,15 @@ public class UIManager : Singleton<UIManager>
                 Time.timeScale = 1.0f;
         }
         
+    }
+
+    private void ShowGameOverPanel(bool show)
+    {
+        _gameOverPanel.gameObject.SetActive(show);
+        if (show)
+        {
+            _gameOverPanel.GetComponent<Animator>().SetTrigger("GameOver");
+        }
     }
 
     private void OnDisable()

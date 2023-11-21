@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private MInputActionAsset _inputActions;
     private PlayerRotation _rotation;
     private PlayerModule _playerModule;
+    private HealthScript _healthScript;
 
     private bool _scrapShopOpen = false;
 
@@ -25,9 +26,21 @@ public class PlayerController : MonoBehaviour
     {
         _rotation = GetComponent<PlayerRotation>();
         _playerModule = GetComponent<PlayerModule>();
+        _healthScript = GetComponent<HealthScript>();
         SetUpInputAction();
+
         GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
+        _healthScript.OnDeath += OnDeath;
     }
+
+    private void OnDeath()
+    {
+        //Game Over !
+        GameManager.Instance.ChangeGameState(GameState.GameOver);
+
+        Destroy(gameObject);
+    }
+
     private void Start()
     {
         GameManager.Instance.SetPlayer(this);

@@ -5,9 +5,12 @@ using UnityEngine.UI;
 
 public class HealthScript : MonoBehaviour
 {
+
+
     [SerializeField] private RectTransform _healthBar;
     [SerializeField] private Image _fillImage;
     public event Action<int> OnChangeHealth;
+    public event Action OnDeath;
 
     public int Health => _health;
     public bool IsAlive => _health > 0;
@@ -19,7 +22,7 @@ public class HealthScript : MonoBehaviour
 
     private void Awake()
     {
-        _maxHealth = 15;
+        _maxHealth = _health;
     }
 
     public void ChangeHealth(int value)
@@ -31,7 +34,6 @@ public class HealthScript : MonoBehaviour
 
         _health += value;
         OnChangeHealth?.Invoke(value);
-        Debug.Log(this.gameObject.name + " has " +_health +" health");
 
         if(!_healthBar.gameObject.activeSelf)
             _healthBar.gameObject.SetActive(true);
@@ -40,9 +42,9 @@ public class HealthScript : MonoBehaviour
 
         if (!IsAlive)
         {
-            Debug.Log(this.gameObject.name + " has no health");
             _attachPointScript?.EnableAttachPoint();
-            Destroy(this.gameObject);
+            OnDeath?.Invoke();
+            //Destroy(this.gameObject);
         }
     }
 
@@ -54,11 +56,11 @@ public class HealthScript : MonoBehaviour
     IEnumerator InvincibilityTimerCoroutine()
     {
         _isInvincible = true;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.25f);
         _isInvincible = false;
     }
 
-    public void SetAttachPoint(AttachPointScript attachPointScript)
+    public void SetHealthScript(AttachPointScript attachPointScript)
     {
         this._attachPointScript = attachPointScript;
         _healthBar = this.transform.Find("HealthCanvas/HealthBar").GetComponent<RectTransform>();

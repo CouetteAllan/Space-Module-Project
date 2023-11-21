@@ -27,6 +27,8 @@ public class GameManager : Singleton<GameManager>
     public uint NextTresholdLevelUp { get; private set; } = 10;
     public PlayerController PlayerController { get; private set; }
 
+    private bool _blockXp = false;
+
     private void Start()
     {
         ChangeGameState(GameState.BeforeGameStart);
@@ -63,6 +65,8 @@ public class GameManager : Singleton<GameManager>
                 break;
             case GameState.GameOver:
                 Time.timeScale = 0.2f;
+                Time.fixedDeltaTime = Time.timeScale * 0.01f;
+                //faire des trucs de game over
                 break;
             case GameState.ShopState:
                 StartCoroutine(SlowMoCoroutine());
@@ -75,6 +79,8 @@ public class GameManager : Singleton<GameManager>
 
     public void GrantXP(uint xp)
     {
+        if (_blockXp)
+            return;
         CurrentXP += xp;
         UIManager.Instance.UpdateXpBar(CurrentXP);
         if(CurrentXP >= NextTresholdLevelUp)
@@ -118,6 +124,11 @@ public class GameManager : Singleton<GameManager>
         if(Keyboard.current.cKey.wasPressedThisFrame)
         {
             GrantXP(5);
+        }
+        
+        if(Keyboard.current.lKey.wasPressedThisFrame)
+        {
+            _blockXp = !_blockXp;
         }
     }
 

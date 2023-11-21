@@ -8,6 +8,7 @@ public class MeleeModuleScript : BaseOffensiveScript, IOffensiveModule, IDamageS
     private Transform _moduleTransform;
     private Coroutine _attackCoroutine;
     private Transform _attackpointTransform;
+    private int _attackPerSecond = 6;
     private bool _isActive = false;
 
     public MeleeModuleScript(StatClass statClass, ModuleDatas datas, float baseDamage, Transform moduleTransform) : base(statClass, datas, baseDamage)
@@ -40,7 +41,7 @@ public class MeleeModuleScript : BaseOffensiveScript, IOffensiveModule, IDamageS
         while (true)
         {
             DealDamageToEnemy(attackPosition.position);
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(1.0f / _attackPerSecond);
         }
     }
 
@@ -49,9 +50,9 @@ public class MeleeModuleScript : BaseOffensiveScript, IOffensiveModule, IDamageS
         var enemies = Physics2D.OverlapCircleAll(attackPosition, 2.5f);
         foreach (var enemy in enemies)
         {
-            if(enemy.TryGetComponent<IHittable>(out IHittable hittable))
+            if(enemy.TryGetComponent(out IHittable hittable))
             {
-                hittable.TryHit(this, (int)((_baseDamage/5) * _statClass.GetStatValue(StatType.Damage)));
+                hittable.TryHit(this, (int)((_baseDamage/ _attackPerSecond) * _statClass.GetStatValue(StatType.Damage)));
             }
         }
     }
