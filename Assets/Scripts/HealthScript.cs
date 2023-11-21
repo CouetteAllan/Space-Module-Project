@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthScript : MonoBehaviour
 {
@@ -11,7 +12,10 @@ public class HealthScript : MonoBehaviour
 
     private bool _isInvincible;
     private int _health = 10;
+    private int _maxHealth;
     private AttachPointScript _attachPointScript;
+    private Image _fillImage;
+    private RectTransform _healthBar;
 
     public void ChangeHealth(int value)
     {
@@ -23,6 +27,11 @@ public class HealthScript : MonoBehaviour
         _health += value;
         OnChangeHealth?.Invoke(value);
         Debug.Log(this.gameObject.name + " has " +_health +" health");
+
+        if(!_healthBar.gameObject.activeSelf)
+            _healthBar.gameObject.SetActive(true);
+
+        _fillImage.fillAmount = (float)_health / (float)_maxHealth;
 
         if (!IsAlive)
         {
@@ -47,5 +56,8 @@ public class HealthScript : MonoBehaviour
     public void SetAttachPoint(AttachPointScript attachPointScript)
     {
         this._attachPointScript = attachPointScript;
+        _healthBar = this.transform.Find("HealthCanvas/HealthBar").GetComponent<RectTransform>();
+        _fillImage = this.transform.Find("HealthCanvas/HealthBar/Background/Fill").GetComponent<Image>();
+        _maxHealth = _health;
     }
 }

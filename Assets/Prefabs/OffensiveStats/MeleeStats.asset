@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21181e504dc18343a4cffc92a4817bc, type: 3}
   m_Name: MeleeStats
   m_EditorClassIdentifier: 
-  BaseModuleDamage: 25
+  BaseModuleDamage: 18
   AttackSpeedMultiplier: 0.5
   Type: 4

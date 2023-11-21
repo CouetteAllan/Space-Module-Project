@@ -15,7 +15,7 @@ public class EnemyScript : MonoBehaviour, IHittable
 
     public static event Action<EnemyStat> OnDeath;
 
-    [SerializeField] private float speed = 2.0f;
+    [SerializeField] private float speed = 3.0f;
     [SerializeField] private GameObject _particleEffect;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     private Color _baseColor;
@@ -26,6 +26,10 @@ public class EnemyScript : MonoBehaviour, IHittable
     private bool _gotHit = false;
     private int _health;
 
+    private float _damageTimer = 0.8f;
+    private float _timer = 0.0f;
+    private bool _canDealDamage = true;
+
     private void Start()
     {
         SetUpEnemy();
@@ -35,11 +39,12 @@ public class EnemyScript : MonoBehaviour, IHittable
 
     public void SetUpEnemy()
     {
-        this._rigidbody = GetComponent<Rigidbody2D>();
         GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
+        _rigidbody = GetComponent<Rigidbody2D>();
         _playerController = GameManager.Instance.PlayerController;
+
         Vector2 dir = (Vector2)_playerController.transform.position - this._rigidbody.position;
-        this._rigidbody.velocity = dir.normalized * speed;
+        _rigidbody.velocity = dir.normalized * speed;
         _health = (int)GameManager.Instance.CurrentLevel * _baseHealth;
     }
 
@@ -56,6 +61,13 @@ public class EnemyScript : MonoBehaviour, IHittable
         Vector2 dir = (Vector2)_playerController.transform.position - this._rigidbody.position;
         this._rigidbody.velocity = dir.normalized * speed;
 
+        _timer += Time.deltaTime;
+        if(_timer >= _damageTimer && _canDealDamage == false)
+        {
+            _timer = 0.0f;
+            _canDealDamage = true;
+        }
+
     }
 
     public void TryHit(IDamageSource source, int damage)
@@ -64,7 +76,7 @@ public class EnemyScript : MonoBehaviour, IHittable
         if (_gotHit)
             return;
         _gotHit = true;
-        _rigidbody.AddForce( (this._rigidbody.position - (Vector2)source.Transform.position) * 10.0f, ForceMode2D.Impulse);
+        _rigidbody.AddForce( (this._rigidbody.position - (Vector2)source.Transform.position) * 30.0f, ForceMode2D.Impulse);
         StartCoroutine(ChangeColorCoroutine());
         ChangeHealth(-damage);
     }
@@ -97,16 +109,20 @@ public class EnemyScript : MonoBehaviour, IHittable
     {
         _spriteRenderer.color = Color.white;
 
-        yield return new WaitForSeconds(0.09f);
+        yield return new WaitForSeconds(0.12f);
 
         _spriteRenderer.color = _baseColor;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
+        if (!_canDealDamage)
+            return;
+
         if(collision.collider.TryGetComponent<HealthScript>(out HealthScript healthScript))
         {
             healthScript.ChangeHealth(-1);
+            _canDealDamage = false;
         }
     }
 }

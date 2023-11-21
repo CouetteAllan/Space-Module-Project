@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ed5b361d5083d4c9814993ad3711fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.5
+  speed: 3.5
   _particleEffect: {fileID: 8236154021372747174, guid: c4cc3816a3111854aa437a477d9dd020, type: 3}
   _spriteRenderer: {fileID: 5775464608704659255}
 --- !u!50 &7494505253679343219
@@ -170,7 +170,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.88
+  m_Radius: 1
 --- !u!1 &4194165846738219476
 GameObject:
   m_ObjectHideFlags: 0
