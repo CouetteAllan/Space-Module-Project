@@ -6,17 +6,16 @@ using UnityEngine.InputSystem;
 public class PlayerModule : MonoBehaviour
 {
     public static List<GameObject> AttachPoints = new List<GameObject>();
-    private List<Module> _modules = new List<Module>();
+    private static List<Module> _modules = new List<Module>();
 
     public Module PlaceModule(Module newMod)
     {
         _modules.Add(newMod);
+        foreach (var module in _modules)
+        {
+            Debug.Log(module);
+        }
         return newMod;
-    }
-
-    public void RemoveModule(Module mod)
-    {
-        _modules.Remove(mod);
     }
 
 
@@ -48,4 +47,12 @@ public class PlayerModule : MonoBehaviour
         return nearestPos;
     }
 
+    public static List<Module> GetModules()
+    {
+        return _modules;
+    }
+
+    public static void RemoveModule(Module mod) {
+        _modules.Remove(mod);
+    }
 }

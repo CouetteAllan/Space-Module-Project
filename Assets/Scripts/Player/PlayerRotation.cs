@@ -1,4 +1,5 @@
 using Rayqdr.Input;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,6 +32,13 @@ public class PlayerRotation : MonoBehaviour
         _inputActions.Player.Rotate.canceled += Rotate_canceled;
 
         DropModule.OnModuleAttached += DropModule_OnModuleAttached;
+        Module.OnModuleDestroyed += Module_OnModuleDestroyed;
+
+    }
+
+    private void Module_OnModuleDestroyed()
+    {
+        CalculateRotationRate();
     }
 
     private void DropModule_OnModuleAttached(Module mod)

@@ -6,9 +6,11 @@ using System;
 
 public class Module : MonoBehaviour
 {
-    public event Action OnModuleFire;
+    public static event Action OnModuleDestroyed;
+
     [SerializeField] private Transform[] _firePoints;
     [SerializeField] private PlayParticle _playParticle;
+    public event Action OnModuleFire;
 
     public enum ModuleClass
     {
@@ -24,7 +26,7 @@ public class Module : MonoBehaviour
     private AttachPointScript _attachPoint;
     private StatClass _playerStatClass;
     private IOffensiveModule _offensiveStrategy;
-
+    private SingleStat _singleStatApplied;
 
     public static Module CreateMod(Vector2 position, ModuleDatas datas, Transform parentTransform)
     {
@@ -88,7 +90,24 @@ public class Module : MonoBehaviour
 
     private void RemoveModule()
     {
-
+        switch (this._moduleClass)
+        {
+            case ModuleClass.Offense:
+                break;
+            case ModuleClass.Defense:
+                break;
+            case ModuleClass.StatBuff:
+                //remove the buff
+                RemoveBuff();
+                break;
+            case ModuleClass.Placement:
+                //Zoom in the camera
+                GameManager.Instance.ZoomIn();
+                break;
+        }
+        _playerStatClass.ChangeStat(StatType.Weight, -(int)_data.Weight);
+        OnModuleDestroyed?.Invoke();
+        PlayerModule.RemoveModule(this);
     }
 
     private void TimeTickSystemDataHandler_OnTick(uint tick)
@@ -114,6 +133,7 @@ public class Module : MonoBehaviour
     private void OnDestroy()
     {
         TimeTickSystemDataHandler.OnTickFaster -= TimeTickSystemDataHandler_OnTick;
+        this.RemoveModule();
     }
 
     private int GetTickNeeded()
@@ -140,6 +160,20 @@ public class Module : MonoBehaviour
                 _playerStatClass.MultiplyPercentStat(statApplied.Type, statApplied.BaseValue);
                 break;
         }
+        _singleStatApplied = statApplied;
+    }
+
+    private void RemoveBuff()
+    {
+        switch(_data.BuffDatas.Type)
+        {
+            case BuffDatas.BuffType.PercentMultiply:
+                _playerStatClass.RemovePercentStat(_singleStatApplied.Type, _singleStatApplied.BaseValue);
+                break;
+            default:
+                _playerStatClass.ChangeStat(_singleStatApplied.Type, -_singleStatApplied.BaseValue);
+                break;
+        }
     }
 
     private void SetOffensiveStrategy(IOffensiveModule offensiveStrategy)
@@ -157,9 +191,9 @@ public class Module : MonoBehaviour
         {
             Gizmos.color = Color.yellow;
             float hitboxWidth = 1.5f;
-            Gizmos.DrawLine(t.position + (-t.right * hitboxWidth), t.position + t.up * 16 + (-t.right * hitboxWidth));
-            Gizmos.DrawLine(t.position + t.right * hitboxWidth, t.position + t.up * 16 + t.right * hitboxWidth);
-            Gizmos.DrawLine(t.position + t.up * 16 + (-t.right * hitboxWidth), t.position + t.up * 16 + t.right * hitboxWidth);
+            Gizmos.DrawLine(t.position + (-t.right * hitboxWidth), t.position + t.up * 18 + (-t.right * hitboxWidth));
+            Gizmos.DrawLine(t.position + t.right * hitboxWidth, t.position + t.up * 18 + t.right * hitboxWidth);
+            Gizmos.DrawLine(t.position + t.up * 18 + (-t.right * hitboxWidth), t.position + t.up * 18 + t.right * hitboxWidth);
 
             Gizmos.color = Color.cyan;
             Gizmos.DrawWireSphere(t.position, 1.5f);

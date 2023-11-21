@@ -22,7 +22,7 @@ public class LaserModuleScript : BaseOffensiveScript ,IOffensiveModule, IDamageS
 
             //Instantiate a physic cast in a straight line.
             float hitboxWidth = 3.5f;
-            float hitBoxLength = 15f;
+            float hitBoxLength = 17f;
             var laser = Physics2D.BoxCastAll(position, Vector2.one * hitboxWidth, 0, t.up, hitBoxLength);
             foreach(var l in laser) 
             {

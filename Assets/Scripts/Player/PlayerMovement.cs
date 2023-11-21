@@ -52,6 +52,12 @@ public class PlayerMovement : MonoBehaviour
         _selectedCurve = _decelerationCurve;
 
         DropModule.OnModuleAttached += DropModule_OnModuleAttached;
+        Module.OnModuleDestroyed += Module_OnModuleDestroyed;
+    }
+
+    private void Module_OnModuleDestroyed()
+    {
+        CalculateSpeedRate();
     }
 
     private void DropModule_OnModuleAttached(Module mod)

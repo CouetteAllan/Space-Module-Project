@@ -20,6 +20,7 @@ public class SingleStat
     [SerializeField] private StatType _type;
     private float _value;
     private StatClass _statClass;
+    private float _percentBuffValue;
 
     public SingleStat(float value, StatType type, StatClass statClass)
     {
@@ -62,6 +63,14 @@ public class SingleStat
     {
         float newValue = _baseValue * percent;
         _value += newValue;
+        _percentBuffValue += percent;
+    }
+
+    public void RemovePercentBuff(float percent)
+    {
+        _percentBuffValue -= percent;
+        float newValue = _baseValue * percent;
+        _value -= newValue;
     }
 
     public static SingleStat operator +(SingleStat a, SingleStat b){

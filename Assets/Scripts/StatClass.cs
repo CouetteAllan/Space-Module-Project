@@ -46,6 +46,14 @@ public class StatClass
         }
     }
 
+    public void RemovePercentStat(StatType statType, float percent)
+    {
+        if (_statDictionary.TryGetValue(statType, out SingleStat stat))
+        {
+            stat.RemovePercentBuff(percent);
+        }
+    }
+
     public float GetStatValue(StatType type)
     {
         if(_statDictionary.TryGetValue(type, out SingleStat stat))

@@ -121,6 +121,11 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public void ZoomIn()
+    {
+        _virtualCamera.m_Lens.OrthographicSize -= 1.0f;
+    }
+
     IEnumerator SlowMoCoroutine()
     {
         Time.timeScale = 0.8f;
