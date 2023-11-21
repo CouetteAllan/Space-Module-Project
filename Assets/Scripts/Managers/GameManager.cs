@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -21,7 +22,7 @@ public class GameManager : Singleton<GameManager>
 
     public static event Action<GameState> OnGameStateChanged;
     public static event Action<uint> OnLevelUp;
-    public GameState CurrentState { get; private set; }
+    public GameState CurrentState { get; private set; } = GameState.GameOver;
     public uint CurrentLevel { get; private set; } = 1;
     public uint CurrentXP { get; private set; } = 0;
     public uint NextTresholdLevelUp { get; private set; } = 10;
@@ -31,7 +32,10 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        ChangeGameState(GameState.BeforeGameStart);
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+            ChangeGameState(GameState.MainMenu);
+        else
+            ChangeGameState(GameState.BeforeGameStart);
         DropModule.OnModuleAttached += DropModule_OnModuleAttached;
     }
 
@@ -54,10 +58,14 @@ public class GameManager : Singleton<GameManager>
             case GameState.MainMenu:
                 Time.timeScale = 1.0f;
                 break;
+            case GameState.BeforeGameStart:
+                if (_virtualCamera == null)
+                    _virtualCamera = GameObject.FindGameObjectWithTag("Camera").GetComponent<CinemachineVirtualCamera>();
+                break;
             case GameState.StartGame:
                 Time.timeScale = 1.0f;
-
                 OpenShop();
+                
                 break;
             case GameState.InGame:
                 Time.timeScale = 1.0f;

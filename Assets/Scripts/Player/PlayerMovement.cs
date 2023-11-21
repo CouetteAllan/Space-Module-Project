@@ -57,6 +57,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Module_OnModuleDestroyed()
     {
+        if (StatSystem.Instance == null)
+            return;
         CalculateSpeedRate();
     }
 
