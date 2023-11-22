@@ -31,7 +31,7 @@ public class PlayerRotation : MonoBehaviour
         _inputActions.Player.Rotate.performed += Rotate_performed;
         _inputActions.Player.Rotate.canceled += Rotate_canceled;
 
-        DropModule.OnModuleAttached += DropModule_OnModuleAttached;
+        DropModuleOnCanvas.OnModuleAttached += DropModule_OnModuleAttached;
         Module.OnModuleDestroyed += Module_OnModuleDestroyed;
 
     }

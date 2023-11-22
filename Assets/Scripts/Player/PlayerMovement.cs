@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
         _inputActions.Player.Move.canceled += Move_canceled;
         _selectedCurve = _decelerationCurve;
 
-        DropModule.OnModuleAttached += DropModule_OnModuleAttached;
+        DropModuleOnCanvas.OnModuleAttached += DropModule_OnModuleAttached;
         Module.OnModuleDestroyed += Module_OnModuleDestroyed;
     }
 

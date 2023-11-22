@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DropModule : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
+public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public static event Action<AttachPointScript> OnDropModule;
     public static event Action<Module> OnModuleAttached;
@@ -12,6 +12,7 @@ public class DropModule : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPo
     [SerializeField] private Transform _transformParent;
     [SerializeField] private AttachPointScript _attachPointScript;
     private PlayerModule _playerModule;
+
     
 
     private void OnEnable()
@@ -30,6 +31,7 @@ public class DropModule : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPo
         else if(eventData.pointerDrag != null && UIManager._toggleReplaceModule)
         {
             //Delete previous module
+
             //Create the new module
             PlaceModule(eventData);
 
@@ -47,10 +49,6 @@ public class DropModule : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPo
                 PlayerModule.GetNearestPlacementFromMouse(),
                 moduleDragged.GetModuleDatas(),
                 _transformParent);
-                
-
-
-
         }
     }
 

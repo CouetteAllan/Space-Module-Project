@@ -36,7 +36,7 @@ public class GameManager : Singleton<GameManager>
             ChangeGameState(GameState.MainMenu);
         else
             ChangeGameState(GameState.BeforeGameStart);
-        DropModule.OnModuleAttached += DropModule_OnModuleAttached;
+        DropModuleOnCanvas.OnModuleAttached += DropModule_OnModuleAttached;
     }
 
     private void DropModule_OnModuleAttached(Module mod)

@@ -40,7 +40,7 @@ public class AttachPointScript : MonoBehaviour
         PlayerModule.AttachPoints.Add(this.gameObject);
         ModuleImageScript.OnStartDragModule += ModuleImageScript_OnStartDragModule;
         ModuleImageScript.OnEndDragModule += ModuleImageScript_OnEndDragModule;
-        DropModule.OnDropModule += DropModule_OnDropModule;
+        DropModuleOnCanvas.OnDropModule += DropModule_OnDropModule;
     }
 
     private void DropModule_OnDropModule(AttachPointScript attachPoint)
@@ -69,6 +69,6 @@ public class AttachPointScript : MonoBehaviour
     {
         ModuleImageScript.OnStartDragModule -= ModuleImageScript_OnStartDragModule;
         ModuleImageScript.OnEndDragModule -= ModuleImageScript_OnStartDragModule;
-        DropModule.OnDropModule -= DropModule_OnDropModule;
+        DropModuleOnCanvas.OnDropModule -= DropModule_OnDropModule;
     }
 }
