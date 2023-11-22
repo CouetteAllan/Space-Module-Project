@@ -111,6 +111,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void CalculateSpeedRate()
     {
+        if (StatSystem.Instance == null)
+            return;
         //call this calculation when any module is placed
         float currentMaxWeight = StatSystem.Instance.PlayerStat.GetStatValue(StatType.MaxWeight);
         float currentWeight = StatSystem.Instance.PlayerStat.GetStatValue(StatType.Weight);

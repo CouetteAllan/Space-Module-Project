@@ -18834,6 +18834,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerShip
       objectReference: {fileID: 0}
+    - target: {fileID: 3530851192489223796, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
+      propertyPath: _explosionParticles
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4566484274798368734, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
       propertyPath: m_Name
       value: AttachPoint

@@ -77,6 +77,8 @@ public class PlayerRotation : MonoBehaviour
     private void CalculateRotationRate()
     {
         //call this calculation when any module is placed
+        if (StatSystem.Instance == null)
+            return;
         float currentMaxWeight = StatSystem.Instance.PlayerStat.GetStatValue(StatType.MaxWeight);
         float currentWeight = StatSystem.Instance.PlayerStat.GetStatValue(StatType.Weight);
 

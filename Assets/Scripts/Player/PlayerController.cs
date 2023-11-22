@@ -8,6 +8,8 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private GameObject _explosionParticles;
+
     public MInputActionAsset InputActions {
         get
         {
@@ -38,6 +40,8 @@ public class PlayerController : MonoBehaviour
         //Game Over !
         GameManager.Instance.ChangeGameState(GameState.GameOver);
 
+        //Spawn Particles
+        Instantiate(_explosionParticles,this.transform.position,Quaternion.identity);
         Destroy(gameObject);
     }
 
