@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : Singleton<UIManager>
 {
+    public static bool _toggleReplaceModule = false;
+    public static event Action<bool> OnToggleReplaceModule;
 
     [SerializeField] private GameObject _moduleShop;
     [SerializeField] private GameObject _scrapShop;
@@ -114,5 +117,11 @@ public class UIManager : Singleton<UIManager>
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void SetReplaceModule()
+    {
+        _toggleReplaceModule = !_toggleReplaceModule;
+        OnToggleReplaceModule?.Invoke(_toggleReplaceModule);
     }
 }

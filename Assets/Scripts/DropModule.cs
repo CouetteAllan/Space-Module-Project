@@ -24,29 +24,15 @@ public class DropModule : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPo
     {   
         if(eventData.pointerDrag != null && _attachPointScript.IsActive)
         {
+            PlaceModule(eventData);
             
-            ModuleImageScript moduleDragged = eventData.pointerDrag.GetComponent<ModuleImageScript>();
-            if(moduleDragged.GetModuleDatas().ModuleClass == Module.ModuleClass.Placement)
-            {
-                if (!(bool)ScrapManagerDataHandler.SellScrap(moduleDragged.GetModuleDatas().ScrapCost))
-                {
-                    Destroy(GraphPreview?.gameObject);
-                    return;
-                }
-            }
-            var modulePlaced = _playerModule.PlaceModule(
-                Module.CreateMod(
-                    PlayerModule.GetNearestPlacementFromMouse(),
-                    moduleDragged.GetModuleDatas(),
-                    _transformParent)
-                );
+        }
+        else if(eventData.pointerDrag != null && UIManager._toggleReplaceModule)
+        {
+            //Delete previous module
+            //Create the new module
+            PlaceModule(eventData);
 
-            moduleDragged.ResetPos();
-            OnDropModule?.Invoke(_attachPointScript);
-            OnModuleAttached?.Invoke(modulePlaced);
-            if(modulePlaced.GetModuleClass() != Module.ModuleClass.Placement)
-                GameManager.Instance.CloseShop();
-            Destroy(GraphPreview?.gameObject);
         }
     }
 
@@ -75,5 +61,31 @@ public class DropModule : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPo
         {
             Destroy(GraphPreview.gameObject);
         }
+    }
+
+    private void PlaceModule(PointerEventData eventData)
+    {
+        ModuleImageScript moduleDragged = eventData.pointerDrag.GetComponent<ModuleImageScript>();
+        if (moduleDragged.GetModuleDatas().ModuleClass == Module.ModuleClass.Placement)
+        {
+            if (!(bool)ScrapManagerDataHandler.SellScrap(moduleDragged.GetModuleDatas().ScrapCost))
+            {
+                Destroy(GraphPreview?.gameObject);
+                return;
+            }
+        }
+        var modulePlaced = _playerModule.PlaceModule(
+            Module.CreateMod(
+                PlayerModule.GetNearestPlacementFromMouse(),
+                moduleDragged.GetModuleDatas(),
+                _transformParent)
+            );
+
+        moduleDragged.ResetPos();
+        OnDropModule?.Invoke(_attachPointScript);
+        OnModuleAttached?.Invoke(modulePlaced);
+        if (modulePlaced.GetModuleClass() != Module.ModuleClass.Placement)
+            GameManager.Instance.CloseShop();
+        Destroy(GraphPreview?.gameObject);
     }
 }
