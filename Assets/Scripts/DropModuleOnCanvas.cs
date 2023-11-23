@@ -12,7 +12,7 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
     [SerializeField] private Transform _transformParent;
     [SerializeField] private AttachPointScript _attachPointScript;
     private PlayerModule _playerModule;
-
+    private Module _currentModule;
     
 
     private void OnEnable()
@@ -31,7 +31,7 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
         else if(eventData.pointerDrag != null && UIManager._toggleReplaceModule)
         {
             //Delete previous module
-
+            Destroy(_currentModule.gameObject);
             //Create the new module
             PlaceModule(eventData);
 
@@ -84,6 +84,7 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
         OnModuleAttached?.Invoke(modulePlaced);
         if (modulePlaced.GetModuleClass() != Module.ModuleClass.Placement)
             GameManager.Instance.CloseShop();
+        _currentModule = modulePlaced;
         Destroy(GraphPreview?.gameObject);
     }
 }
