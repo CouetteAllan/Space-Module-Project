@@ -36,7 +36,7 @@ public class PlayerRotation : MonoBehaviour
 
     }
 
-    private void Module_OnModuleDestroyed()
+    private void Module_OnModuleDestroyed(Module mod)
     {
         CalculateRotationRate();
     }

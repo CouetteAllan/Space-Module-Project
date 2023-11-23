@@ -10,6 +10,7 @@ public interface IHittable
 public interface IDamageSource
 {
     Transform Transform { get; }
+    float RecoilMultiplier { get; }
 }
 
 public interface IObstacle : IHittable

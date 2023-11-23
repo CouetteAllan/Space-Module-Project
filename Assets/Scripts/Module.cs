@@ -6,7 +6,7 @@ using System;
 
 public class Module : MonoBehaviour
 {
-    public static event Action OnModuleDestroyed;
+    public static event Action<Module> OnModuleDestroyed;
 
     [SerializeField] private Transform[] _firePoints;
     [SerializeField] private PlayParticle _playParticle;
@@ -106,7 +106,7 @@ public class Module : MonoBehaviour
                 break;
         }
         _playerStatClass.ChangeStat(StatType.Weight, -(int)_data.Weight);
-        OnModuleDestroyed?.Invoke();
+        OnModuleDestroyed?.Invoke(this);
         PlayerModule.RemoveModule(this);
     }
 

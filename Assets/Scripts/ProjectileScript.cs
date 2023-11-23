@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileScript : MonoBehaviour,IDamageSource
+public class ProjectileScript : MonoBehaviour, IDamageSource
 {
     public Transform Transform => this.transform;
+
+    public float RecoilMultiplier => 1.2f;
 
     private float _damage;
 

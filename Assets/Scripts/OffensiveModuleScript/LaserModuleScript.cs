@@ -13,6 +13,8 @@ public class LaserModuleScript : BaseOffensiveScript ,IOffensiveModule, IDamageS
 
     public Transform Transform => _moduleTransform;
 
+    public float RecoilMultiplier => 2.0f;
+
     public void Fire(bool firstProjectile, Quaternion currentModuleRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success)
     {
         success = true;

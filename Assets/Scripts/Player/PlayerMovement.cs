@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         Module.OnModuleDestroyed += Module_OnModuleDestroyed;
     }
 
-    private void Module_OnModuleDestroyed()
+    private void Module_OnModuleDestroyed(Module mod)
     {
         if (StatSystem.Instance == null)
             return;

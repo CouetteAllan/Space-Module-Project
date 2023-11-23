@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Stat:
     _name: Damage Up
-    _baseValue: 0.2
+    _baseValue: 0.3
     _type: 1
   Type: 2

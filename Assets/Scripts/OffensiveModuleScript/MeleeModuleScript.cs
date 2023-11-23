@@ -18,6 +18,8 @@ public class MeleeModuleScript : BaseOffensiveScript, IOffensiveModule, IDamageS
 
     public Transform Transform => _moduleTransform;
 
+    public float RecoilMultiplier => .4f;
+
     public void Fire(bool firstProjectile, Quaternion currentModuleRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success)
     {
         if (!_isActive)
@@ -42,6 +44,8 @@ public class MeleeModuleScript : BaseOffensiveScript, IOffensiveModule, IDamageS
             yield break;
         while (true)
         {
+            if (attackPosition == null)
+                yield break;
             DealDamageToEnemy(attackPosition.position);
             yield return new WaitForSeconds(1.0f / _attackPerSecond);
         }
