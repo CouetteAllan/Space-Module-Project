@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BasicEnemySpawner : MonoBehaviour
 {
-    public GameObject EnemyPrefab;
+    [SerializeField] private EnemyDatas _enemyDatas;
     private int _tickNeed;
 
     private void Awake()
@@ -38,8 +38,7 @@ public class BasicEnemySpawner : MonoBehaviour
     {
         if(tick % _tickNeed == 0)
         {
-            var enemy = Instantiate(EnemyPrefab,this.transform.position,Quaternion.identity);
-            enemy.GetComponent<EnemyScript>().SetUpEnemy();
+            EnemyManagerDataHandler.SpawnEnemy(this.transform.position,_enemyDatas);
         }
     }
 

@@ -38,6 +38,8 @@ public class MeleeModuleScript : BaseOffensiveScript, IOffensiveModule, IDamageS
 
     private IEnumerator Attack(Transform attackPosition)
     {
+        if (attackPosition == null)
+            yield break;
         while (true)
         {
             DealDamageToEnemy(attackPosition.position);

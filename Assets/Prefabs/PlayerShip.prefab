@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8436482280655244bccc96da121fbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyPrefab: {fileID: 3491881793978933763, guid: c398afb6bcaa8f747ad5d53927229fd5, type: 3}
+  _enemyDatas: {fileID: 11400000, guid: 0a0d8abe50d9ee84590b55fdfa646d89, type: 2}
 --- !u!1 &1040035127
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8436482280655244bccc96da121fbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyPrefab: {fileID: 3491881793978933763, guid: c398afb6bcaa8f747ad5d53927229fd5, type: 3}
+  _enemyDatas: {fileID: 11400000, guid: 0a0d8abe50d9ee84590b55fdfa646d89, type: 2}
 --- !u!1 &1336171586
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8436482280655244bccc96da121fbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyPrefab: {fileID: 3491881793978933763, guid: c398afb6bcaa8f747ad5d53927229fd5, type: 3}
+  _enemyDatas: {fileID: 11400000, guid: 0a0d8abe50d9ee84590b55fdfa646d89, type: 2}
 --- !u!1 &1960154124
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8436482280655244bccc96da121fbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyPrefab: {fileID: 3491881793978933763, guid: c398afb6bcaa8f747ad5d53927229fd5, type: 3}
+  _enemyDatas: {fileID: 11400000, guid: 0a0d8abe50d9ee84590b55fdfa646d89, type: 2}
 --- !u!1 &263915766648773579
 GameObject:
   m_ObjectHideFlags: 0

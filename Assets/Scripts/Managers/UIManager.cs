@@ -111,6 +111,7 @@ public class UIManager : Singleton<UIManager>
 
     public void Replay()
     {
+        GameManager.Instance.ChangeGameState(GameState.StartGame);
         SceneManager.LoadScene(1);
     }
 

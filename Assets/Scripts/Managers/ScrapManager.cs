@@ -27,12 +27,12 @@ public class ScrapManager : MonoBehaviour
 
     }
 
-    private void OnEnemyDeath(EnemyScript.EnemyStat enemyStat)
+    private void OnEnemyDeath(object sender, EnemyScript.EnemyStatsOnDeath enemyStats)
     {
         if (Utils.RollChance(chance: .4f)) //40% chances to drop scrap metal
         {
-            var newScrap = SpawnScrapMetal(enemyStat.finalPos);
-            newScrap.value = enemyStat.tier;
+            var newScrap = SpawnScrapMetal(enemyStats.finalPos);
+            newScrap.value = enemyStats.tier;
         }
     }
 

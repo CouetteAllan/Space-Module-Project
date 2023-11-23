@@ -5,63 +5,63 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour, IHittable
 {
-    public struct EnemyStat
+
+    public static event EventHandler<EnemyStatsOnDeath> OnDeath;
+    public class EnemyStatsOnDeath : EventArgs
     {
-        //Data we need to know when an enemy dies (tier, level, timer ?)
+        public EnemyScript enemyRef;
         public int level;
         public int tier;
         public Vector2 finalPos;
     }
 
-    public static event Action<EnemyStat> OnDeath;
-
-    [SerializeField] private float speed = 3.0f;
     [SerializeField] private GameObject _particleEffect;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     private Color _baseColor;
     private Rigidbody2D _rigidbody;
     private PlayerController _playerController;
 
-    private int _baseHealth = 1;
     private bool _gotHit = false;
-    private int _health;
+    private float _currentHealth;
 
     private float _damageTimer = 0.6f;
     private float _timer = 0.0f;
     private bool _canDealDamage = true;
 
-    private void Start()
+    private EnemyDatas _datas;
+
+    public static EnemyScript CreateEnemy(Vector2 position, EnemyDatas datas)
     {
-        SetUpEnemy();
-        _baseColor = _spriteRenderer.color;
+        EnemyScript newEnemy = Instantiate(datas.EnemyPrefab, position, Quaternion.identity).GetComponent<EnemyScript>();
+        newEnemy.SetUpEnemy(datas);
+        return newEnemy;
     }
 
 
-    public void SetUpEnemy()
+    public void SetUpEnemy(EnemyDatas datas)
     {
-        GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
+        _datas = datas;
+        _baseColor = _spriteRenderer.color;
+
         _rigidbody = GetComponent<Rigidbody2D>();
         _playerController = GameManager.Instance.PlayerController;
 
         Vector2 dir = (Vector2)_playerController.transform.position - this._rigidbody.position;
-        _rigidbody.velocity = dir.normalized * speed;
-        _health = (int)GameManager.Instance.CurrentLevel * _baseHealth;
+        _rigidbody.velocity = dir.normalized * _datas.BaseSpeed;
+        _currentHealth = GameManager.Instance.CurrentLevel * _datas.BaseHealth;
     }
 
-    private void GameManager_OnGameStateChanged(GameState newState)
-    {
-        if(newState == GameState.StartGame)
-        {
-            
-        }
-    }
 
     private void Update()
     {
         if (_playerController == null)
             return;
-        Vector2 dir = (Vector2)_playerController.transform.position - this._rigidbody.position;
-        this._rigidbody.velocity = dir.normalized * speed;
+        if (!_gotHit)
+        {
+            Vector2 dir = (Vector2)_playerController.transform.position - this._rigidbody.position;
+            this._rigidbody.velocity = dir.normalized * _datas.BaseSpeed;
+        }
+        
 
         _timer += Time.deltaTime;
         if(_timer >= _damageTimer && _canDealDamage == false)
@@ -78,17 +78,16 @@ public class EnemyScript : MonoBehaviour, IHittable
         if (_gotHit)
             return;
         _gotHit = true;
-        _rigidbody.AddForce( (this._rigidbody.position - (Vector2)source.Transform.position) * 30.0f, ForceMode2D.Impulse);
+        _rigidbody.AddForce( (this._rigidbody.position - (Vector2)source.Transform.position) * 10.0f, ForceMode2D.Impulse);
         StartCoroutine(ChangeColorCoroutine());
         ChangeHealth(-damage);
     }
 
     private void ChangeHealth(int healthChange)
     {
-        _health += healthChange;
-        if (_health <= 0)
+        _currentHealth += healthChange;
+        if (_currentHealth <= 0)
             Die();
-        _gotHit = false;
 
     }
 
@@ -98,7 +97,8 @@ public class EnemyScript : MonoBehaviour, IHittable
         GameManager.Instance.GrantXP(5);
         Instantiate(_particleEffect,this.transform.position,Quaternion.identity);
         _gotHit = false;
-        OnDeath?.Invoke(new EnemyStat {
+        OnDeath?.Invoke(this,new EnemyStatsOnDeath {
+            enemyRef = this,
             level = (int)GameManager.Instance.CurrentLevel ,
             tier = 1,
             finalPos = this.transform.position,
@@ -114,6 +114,7 @@ public class EnemyScript : MonoBehaviour, IHittable
         yield return new WaitForSeconds(0.12f);
 
         _spriteRenderer.color = _baseColor;
+        _gotHit = false;
     }
 
     private void OnCollisionStay2D(Collision2D collision)

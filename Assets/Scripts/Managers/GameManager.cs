@@ -58,12 +58,15 @@ public class GameManager : Singleton<GameManager>
             case GameState.MainMenu:
                 Time.timeScale = 1.0f;
                 break;
+
             case GameState.BeforeGameStart:
                 if (_virtualCamera == null)
                     _virtualCamera = GameObject.FindGameObjectWithTag("Camera").GetComponent<CinemachineVirtualCamera>();
                 break;
+
             case GameState.StartGame:
                 Time.timeScale = 1.0f;
+                InitGame();
                 OpenShop();
                 
                 break;
@@ -106,6 +109,14 @@ public class GameManager : Singleton<GameManager>
         CurrentXP -= NextTresholdLevelUp;
         NextTresholdLevelUp += 20;
         ChangeGameState(GameState.ShopState);
+    }
+
+    private void InitGame()
+    {
+        CurrentXP = 0;
+        CurrentLevel = 1;
+        NextTresholdLevelUp = 10;
+        _blockXp = false;
     }
 
     public void OpenShop()
