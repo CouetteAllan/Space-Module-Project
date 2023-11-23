@@ -38,6 +38,7 @@ public class BasicEnemySpawner : MonoBehaviour
     {
         if(tick % _tickNeed == 0)
         {
+            _enemyDatas = EnemyManagerDataHandler.GetEnemyDatas();
             EnemyManagerDataHandler.SpawnEnemy(this.transform.position,_enemyDatas);
         }
     }

@@ -4,12 +4,23 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    [SerializeField] private EnemyDatas[] _enemyDatas;
     private List<EnemyScript> _enemyScripts = new List<EnemyScript>();
 
     private void Awake()
     {
         EnemyManagerDataHandler.OnSpawnEnemy += OnSpawnEnemy;
+        EnemyManagerDataHandler.OnGetEnemyDatas += OnGetEnemyDatas;
         EnemyScript.OnDeath += EnemyScript_OnDeath;
+    }
+
+    private EnemyDatas OnGetEnemyDatas()
+    {
+        //Pick datas depending on the current level;
+        if (GameManager.Instance.CurrentLevel <= 12)
+            return _enemyDatas[0];
+        else
+            return _enemyDatas[1];
     }
 
     private void EnemyScript_OnDeath(object enemy, EnemyScript.EnemyStatsOnDeath e)
@@ -27,6 +38,7 @@ public class EnemyManager : MonoBehaviour
     private void OnDisable()
     {
         EnemyManagerDataHandler.OnSpawnEnemy -= OnSpawnEnemy;
+        EnemyManagerDataHandler.OnGetEnemyDatas -= OnGetEnemyDatas;
         EnemyScript.OnDeath -= EnemyScript_OnDeath;
     }
 }
