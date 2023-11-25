@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeModuleScript : BaseOffensiveScript, IOffensiveModule, IDamageSource
+public class MeleeModuleScript : BaseOffensiveScript, IDamageSource
 {
     private Transform _moduleTransform;
     private Coroutine _attackCoroutine;
@@ -20,7 +20,7 @@ public class MeleeModuleScript : BaseOffensiveScript, IOffensiveModule, IDamageS
 
     public float RecoilMultiplier => .4f;
 
-    public void Fire(bool firstProjectile, Quaternion currentModuleRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success)
+    public override void Fire(bool firstProjectile, Quaternion currentModuleRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success)
     {
         if (!_isActive)
         {

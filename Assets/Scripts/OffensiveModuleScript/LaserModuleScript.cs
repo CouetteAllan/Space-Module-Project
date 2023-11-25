@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
-public class LaserModuleScript : BaseOffensiveScript ,IOffensiveModule, IDamageSource
+public class LaserModuleScript : BaseOffensiveScript , IDamageSource
 {
     private Transform _moduleTransform;
     public LaserModuleScript(StatClass statClass, ModuleDatas datas, float baseDamage , Transform moduleTransform) : base(statClass, datas, baseDamage)
@@ -15,7 +15,7 @@ public class LaserModuleScript : BaseOffensiveScript ,IOffensiveModule, IDamageS
 
     public float RecoilMultiplier => 2.0f;
 
-    public void Fire(bool firstProjectile, Quaternion currentModuleRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success)
+    public override void Fire(bool firstProjectile, Quaternion currentModuleRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success)
     {
         success = true;
         foreach (Transform t in projectilePositions)

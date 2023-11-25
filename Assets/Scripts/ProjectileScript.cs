@@ -1,9 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class ProjectileScript : MonoBehaviour, IDamageSource
 {
+
+    public enum ProjectileType
+    {
+        Bullet,
+        Rocket,
+        Drone
+    }
+    [SerializeField] private ProjectileType _type;
+    [SerializeField] private ParticleSystem _deathParticles;
+
     public Transform Transform => this.transform;
 
     public float RecoilMultiplier => 1.2f;
@@ -13,12 +24,30 @@ public class ProjectileScript : MonoBehaviour, IDamageSource
     public void Launch(Vector2 dir, float speed, float damage)
     {
         this.GetComponent<Rigidbody2D>().velocity = dir * speed;
-        Invoke("Die", 2.0f);
+        if (_type == ProjectileType.Bullet)
+            Invoke("Die", 2.0f);
+        else
+            Invoke("Blow", 1.0f);
         _damage = damage;
     }
 
     private void Die()
     {
+        Destroy(gameObject);
+    }
+
+    private void Blow()
+    {
+        var colls = Physics2D.OverlapCircleAll(this.transform.position, 6.0f);
+        foreach (var coll in colls)
+        {
+            if(coll.TryGetComponent(out IHittable hittable))
+            {
+                hittable.TryHit(this, (int)_damage);
+            }
+        }
+        //Play particles
+        FXManager.Instance.PlayEffect("rocketBlow", this.transform.position);
         Destroy(gameObject);
     }
 

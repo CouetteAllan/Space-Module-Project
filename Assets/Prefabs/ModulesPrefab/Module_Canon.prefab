@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3809434211711391451}
   - component: {fileID: 1200164400913979322}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,9 +94,9 @@ GameObject:
   m_Component:
   - component: {fileID: 617583067756683544}
   - component: {fileID: 4192622361563255542}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Module_Canon
-  m_TagString: Untagged
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,7 +143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6351055753369974415}
   - component: {fileID: 9108136998178212601}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Triangle (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4624017768600969681}
   - component: {fileID: 2959375977330832264}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Triangle (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -310,7 +310,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1454231968367027684}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -341,7 +341,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6122243922405841358}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Graph
   m_TagString: Untagged
   m_Icon: {fileID: 0}
