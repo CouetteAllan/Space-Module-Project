@@ -6,7 +6,7 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private EnemyDatas[] _enemyDatas;
     [SerializeField] private BasicEnemySpawner[] _spawns; //Change this later
-    private List<EnemyScript> _enemyScripts = new List<EnemyScript>();
+    private List<EnemyScript> _enemiesList = new List<EnemyScript>();
 
     private void Awake()
     {
@@ -42,13 +42,13 @@ public class EnemyManager : MonoBehaviour
 
     private void EnemyScript_OnDeath(object enemy, EnemyScript.EnemyStatsOnDeath e)
     {
-        _enemyScripts.Remove(e.enemyRef);
+        _enemiesList.Remove(e.enemyRef);
     }
 
     private EnemyScript OnSpawnEnemy(Vector2 pos, EnemyDatas datas)
     {
         var newEnemy = EnemyScript.CreateEnemy(pos, datas);
-        _enemyScripts.Add(newEnemy);
+        _enemiesList.Add(newEnemy);
         return newEnemy;
     }
 
