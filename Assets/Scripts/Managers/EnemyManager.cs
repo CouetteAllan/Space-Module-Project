@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private EnemyDatas[] _enemyDatas;
+    [SerializeField] private BasicEnemySpawner[] _spawns; //Change this later
     private List<EnemyScript> _enemyScripts = new List<EnemyScript>();
 
     private void Awake()
@@ -12,12 +13,28 @@ public class EnemyManager : MonoBehaviour
         EnemyManagerDataHandler.OnSpawnEnemy += OnSpawnEnemy;
         EnemyManagerDataHandler.OnGetEnemyDatas += OnGetEnemyDatas;
         EnemyScript.OnDeath += EnemyScript_OnDeath;
+
+        ChronoManagerDataHandler.OnTimeElapsed += OnTimeElapsed;
+    }
+
+    private void OnTimeElapsed(float elapsedTime)
+    {
+        //Spawn elite enemy, wave etc...
+        foreach (var spawner in _spawns)
+        {
+            OnSpawnEnemy(spawner.transform.position, _enemyDatas[0]);
+            OnSpawnEnemy(spawner.transform.position, _enemyDatas[0]);
+            OnSpawnEnemy(spawner.transform.position, _enemyDatas[0]);
+
+        }
+
+        OnSpawnEnemy(_spawns[0].transform.position, _enemyDatas[2]);
     }
 
     private EnemyDatas OnGetEnemyDatas()
     {
         //Pick datas depending on the current level;
-        if (GameManager.Instance.CurrentLevel <= 12)
+        if (GameManager.Instance.CurrentLevel < 12)
             return _enemyDatas[0];
         else
             return _enemyDatas[1];

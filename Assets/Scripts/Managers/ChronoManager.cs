@@ -8,6 +8,7 @@ public class ChronoManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _timerText;
     private float _elapsedTime;
     private bool _didStart = false;
+    private bool _didFireEvent = false;
     private void Start()
     {
         _elapsedTime = 0.0f;
@@ -28,5 +29,11 @@ public class ChronoManager : MonoBehaviour
         int seconds = Mathf.FloorToInt(_elapsedTime % 60);
 
         _timerText.text = string.Format("{0:00}: {1:00}",minutes,seconds);
+
+        if (_elapsedTime > 90.0f && !_didFireEvent)
+        {
+            this.TimeElapsed(_elapsedTime);
+            _didFireEvent = true;
+        }
     }
 }

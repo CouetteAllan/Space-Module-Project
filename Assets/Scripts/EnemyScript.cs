@@ -13,6 +13,8 @@ public class EnemyScript : MonoBehaviour, IHittable
         public int level;
         public int tier;
         public Vector2 finalPos;
+        public int xpGranted;
+        public int scrapGranted;
     }
 
     [SerializeField] private GameObject _particleEffect;
@@ -94,15 +96,18 @@ public class EnemyScript : MonoBehaviour, IHittable
     private void Die()
     {
         StopAllCoroutines();
-        GameManager.Instance.GrantXP(5);
+        GameManager.Instance.GrantXP((uint)_datas.XPGranted);
         Instantiate(_particleEffect,this.transform.position,Quaternion.identity);
         _gotHit = false;
-        OnDeath?.Invoke(this,new EnemyStatsOnDeath {
+        OnDeath?.Invoke(this, new EnemyStatsOnDeath
+        {
             enemyRef = this,
-            level = (int)GameManager.Instance.CurrentLevel ,
+            level = (int)GameManager.Instance.CurrentLevel,
             tier = 1,
             finalPos = this.transform.position,
-        });
+            xpGranted = _datas.XPGranted,
+            scrapGranted = _datas.ScrapMetalGranted,
+        }) ;
         Destroy(this.gameObject);
         return;
     }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d98edb1720a72bd4f819380acaaf2963, type: 3}
+  m_Name: EnemyElite
+  m_EditorClassIdentifier: 
+  Tier: 3
+  BaseHealth: 10
+  BaseDamage: 4
+  BaseSpeed: 3
+  EnemyPrefab: {fileID: 3491881793978933763, guid: 157e39da7e7816d41a4173605154cae1, type: 3}
+  XPGranted: 80
+  ScrapMetalGranted: 6
