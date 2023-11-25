@@ -17,5 +17,5 @@ MonoBehaviour:
   BaseDamage: 2
   BaseSpeed: 6
   EnemyPrefab: {fileID: 3491881793978933763, guid: 157e39da7e7816d41a4173605154cae1, type: 3}
-  XPGranted: 20
+  XPGranted: 10
   ScrapMetalGranted: 2
