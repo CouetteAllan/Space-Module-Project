@@ -15,19 +15,30 @@ public class ProjectileScript : MonoBehaviour, IDamageSource
     [SerializeField] private ProjectileType _type;
     [SerializeField] private ParticleSystem _deathParticles;
 
+    private Rigidbody2D _rigidbody;
+
     public Transform Transform => this.transform;
 
     public float RecoilMultiplier => 1.2f;
 
     private float _damage;
 
-    public void Launch(Vector2 dir, float speed, float damage)
+    public void Launch(Vector2 dir, float speed, float damage, Transform modTransform = null)
     {
-        this.GetComponent<Rigidbody2D>().velocity = dir * speed;
-        if (_type == ProjectileType.Bullet)
-            Invoke("Die", 2.0f);
-        else
-            Invoke("Blow", 1.0f);
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _rigidbody.velocity = dir * speed;
+        switch (_type)
+        {
+            case ProjectileType.Bullet:
+                Invoke("Die", 2.0f);
+                break;
+            case ProjectileType.Rocket:
+                Invoke("Blow", 1.0f);
+                break;
+            case ProjectileType.Drone:
+                //Drone revolve around the module
+                break;
+        }
         _damage = damage;
     }
 
@@ -48,6 +59,35 @@ public class ProjectileScript : MonoBehaviour, IDamageSource
         }
         //Play particles
         FXManager.Instance.PlayEffect("rocketBlow", this.transform.position);
+        Destroy(gameObject);
+    }
+
+    private void RevolveAroundModule(Transform modTransform)
+    {
+        StartCoroutine(RevolveCoroutine(modTransform));
+    }
+
+    IEnumerator RevolveCoroutine(Transform modTransform)
+    {
+        Vector3 offset = modTransform.position + modTransform.forward * 3.0f;
+
+        while ((this.transform.position - offset).sqrMagnitude > 0.5f)
+        {
+            _rigidbody.AddForce((offset - transform.position) * 2.0f,ForceMode2D.Impulse);
+            yield return null;
+        }
+
+        //Revolve 
+
+        float time = Time.time;
+        float timeRevolve = 5.0f;
+
+        while (Time.time < time + timeRevolve)
+        {
+            transform.RotateAround(modTransform.position, new Vector3(0, 0, 1), 40.0f * Time.deltaTime);
+            yield return null;
+        }
+
         Destroy(gameObject);
     }
 
