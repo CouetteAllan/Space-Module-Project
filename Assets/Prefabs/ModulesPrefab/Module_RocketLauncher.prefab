@@ -133,6 +133,7 @@ MonoBehaviour:
   _firePoints:
   - {fileID: 1454231968367027684}
   _playParticle: {fileID: 7762098382606909599}
+  _audioClipName: RocketLaunch
 --- !u!1 &1598318517570763948
 GameObject:
   m_ObjectHideFlags: 0

@@ -95,7 +95,7 @@ MonoBehaviour:
   - name: Bullet
     clip: {fileID: 8300000, guid: 6c7c5888724c2174d80f60f7515c8641, type: 3}
     output: {fileID: 5676675339829177356, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
-    volume: 0.76
+    volume: 0.712
     pitch: 0
     loop: 0
     playOnAwake: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   - name: Laser
     clip: {fileID: 8300000, guid: 4f0edf4a1c93ab546a6818e7ef3b0fab, type: 3}
     output: {fileID: 5676675339829177356, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
-    volume: 0.673
+    volume: 0.785
     pitch: 0
     loop: 0
     playOnAwake: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
   - name: Reload
     clip: {fileID: 8300000, guid: 680c269ce7242a142a96d033bcd1bcc8, type: 3}
     output: {fileID: 5676675339829177356, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
-    volume: 0.673
+    volume: 0.697
     pitch: 0
     loop: 0
     playOnAwake: 0
@@ -119,7 +119,7 @@ MonoBehaviour:
   - name: Rocket
     clip: {fileID: 8300000, guid: b6810fe14f0ebe844ad8cfff920be11f, type: 3}
     output: {fileID: 5676675339829177356, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
-    volume: 0.609
+    volume: 0.625
     pitch: 0
     loop: 0
     playOnAwake: 0
@@ -127,7 +127,15 @@ MonoBehaviour:
   - name: ShipExplosion
     clip: {fileID: 8300000, guid: 6572e5ad38dc2cd4dbfbc09a9704fd15, type: 3}
     output: {fileID: 5676675339829177356, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
-    volume: 0.465
+    volume: 0.449
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: RocketLaunch
+    clip: {fileID: 8300000, guid: 6a73e31dd4539b643a4e2b97bba62d7a, type: 3}
+    output: {fileID: 5676675339829177356, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
+    volume: 0.617
     pitch: 0
     loop: 0
     playOnAwake: 0
