@@ -24,6 +24,7 @@ public class EnemyScript : MonoBehaviour, IHittable
     private PlayerController _playerController;
 
     private bool _gotHit = false;
+    private bool _hasHit = false;
     private float _currentHealth;
 
     private float _damageTimer = 0.6f;
@@ -58,10 +59,16 @@ public class EnemyScript : MonoBehaviour, IHittable
     {
         if (_playerController == null)
             return;
-        if (!_gotHit)
+
+        if (!_gotHit || !_hasHit)
         {
             Vector2 dir = (Vector2)_playerController.transform.position - this._rigidbody.position;
             this._rigidbody.velocity = dir.normalized * _datas.BaseSpeed;
+        }
+        else
+        {
+            Vector2 dir = (Vector2)_playerController.transform.position - this._rigidbody.position;
+            this._rigidbody.velocity = -dir.normalized * _datas.BaseSpeed * 0.2f;
         }
         
 
@@ -70,6 +77,7 @@ public class EnemyScript : MonoBehaviour, IHittable
         {
             _timer = 0.0f;
             _canDealDamage = true;
+            
         }
 
     }
@@ -109,7 +117,6 @@ public class EnemyScript : MonoBehaviour, IHittable
             scrapGranted = _datas.ScrapMetalGranted,
         }) ;
         Destroy(this.gameObject);
-        return;
     }
 
     private IEnumerator ChangeColorCoroutine()
@@ -129,7 +136,7 @@ public class EnemyScript : MonoBehaviour, IHittable
 
         if(collision.collider.TryGetComponent<HealthScript>(out HealthScript healthScript))
         {
-            healthScript.ChangeHealth(-1);
+            healthScript.ChangeHealth((int)_datas.BaseDamage);
             _canDealDamage = false;
         }
     }

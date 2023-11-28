@@ -37,6 +37,7 @@ public class ProjectileScript : MonoBehaviour, IDamageSource
                 break;
             case ProjectileType.Drone:
                 //Drone revolve around the module
+                RevolveAroundModule(modTransform);
                 break;
         }
         _damage = damage;

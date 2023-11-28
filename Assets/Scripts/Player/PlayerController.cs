@@ -9,6 +9,7 @@ using System;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GameObject _explosionParticles;
+    [SerializeField] private SpriteRenderer _graph;
 
     public MInputActionAsset InputActions {
         get
@@ -32,7 +33,15 @@ public class PlayerController : MonoBehaviour
         SetUpInputAction();
 
         GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
+        _healthScript.OnChangeHealth += OnChangeHealth;
         _healthScript.OnDeath += OnDeath;
+    }
+
+    private void OnChangeHealth(int health)
+    {
+        //Do hitFeedback
+
+        StartCoroutine(ChangeHealthCoroutine());
     }
 
     private void OnDeath()
@@ -89,6 +98,19 @@ public class PlayerController : MonoBehaviour
     public void GatherScrapMetal(int value)
     {
         ScrapManagerDataHandler.PickUpScrap(value);
+    }
+
+    private IEnumerator ChangeHealthCoroutine()
+    {
+        //Turn red
+        var startColor = _graph.color;
+        var newColor = new Color(212.0f / 255.0f, 149.0f/255.0f, 149.0f/255.0f, 255.0f/255.0f);
+        _graph.color = newColor;
+
+        yield return new WaitForSeconds(0.25f);
+
+        //Turn normal
+        _graph.color = startColor;
     }
 }
 

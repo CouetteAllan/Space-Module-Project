@@ -28,7 +28,7 @@ public class OffensiveModuleDatas : ScriptableObject
             case OffensiveType.Laser:
                 return new LaserModuleScript(statClass, datas, BaseModuleDamage, moduleTransform);
             case OffensiveType.Drone:
-                return new CanonModuleScript(statClass, datas, BaseModuleDamage);
+                return new DroneModuleScript(statClass, datas, BaseModuleDamage, moduleTransform);
             case OffensiveType.Breath:
                 return new CanonModuleScript(statClass, datas, BaseModuleDamage);
             case OffensiveType.Melee:
