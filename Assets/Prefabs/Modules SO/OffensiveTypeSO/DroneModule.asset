@@ -15,7 +15,7 @@ MonoBehaviour:
   ModuleName: Drone Module
   ModuleDescription: Fire a Drone that will revolves around this module
   ModuleClass: 0
-  ModuleSprite: {fileID: 21300000, guid: 8004118ba4145a74e823fedaa37acf3a, type: 3}
+  ModuleSprite: {fileID: 21300000, guid: fd4862f320183124d94334abe46049cb, type: 3}
   ModulePrefab: {fileID: 1310436615563555467, guid: ea78de508ab0d7b42baac6cee203438c, type: 3}
   Weight: 20
   ScrapCost: 0
