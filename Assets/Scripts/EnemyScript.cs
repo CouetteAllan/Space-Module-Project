@@ -60,7 +60,7 @@ public class EnemyScript : MonoBehaviour, IHittable
         if (_playerController == null)
             return;
 
-        if (!_gotHit || !_hasHit)
+        if (!_gotHit && !_hasHit)
         {
             Vector2 dir = (Vector2)_playerController.transform.position - this._rigidbody.position;
             this._rigidbody.velocity = dir.normalized * _datas.BaseSpeed;
@@ -68,16 +68,16 @@ public class EnemyScript : MonoBehaviour, IHittable
         else
         {
             Vector2 dir = (Vector2)_playerController.transform.position - this._rigidbody.position;
-            this._rigidbody.velocity = -dir.normalized * _datas.BaseSpeed * 0.2f;
+            _rigidbody.AddForce(-dir.normalized * 2.0f);
         }
-        
+
 
         _timer += Time.deltaTime;
         if(_timer >= _damageTimer && _canDealDamage == false)
         {
             _timer = 0.0f;
             _canDealDamage = true;
-            
+            _hasHit = false;
         }
 
     }
@@ -136,8 +136,9 @@ public class EnemyScript : MonoBehaviour, IHittable
 
         if(collision.collider.TryGetComponent<HealthScript>(out HealthScript healthScript))
         {
-            healthScript.ChangeHealth((int)_datas.BaseDamage);
+            healthScript.ChangeHealth(-(int)_datas.BaseDamage);
             _canDealDamage = false;
+            _hasHit = true;
         }
     }
 }

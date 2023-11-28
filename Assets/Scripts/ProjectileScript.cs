@@ -26,14 +26,17 @@ public class ProjectileScript : MonoBehaviour, IDamageSource
     public void Launch(Vector2 dir, float speed, float damage, Transform modTransform = null)
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _rigidbody.velocity = dir * speed;
         switch (_type)
         {
             case ProjectileType.Bullet:
                 Invoke("Die", 2.0f);
+                _rigidbody.velocity = dir * speed;
+
                 break;
             case ProjectileType.Rocket:
                 Invoke("Blow", 1.0f);
+                _rigidbody.velocity = dir * speed;
+
                 break;
             case ProjectileType.Drone:
                 //Drone revolve around the module
@@ -70,22 +73,23 @@ public class ProjectileScript : MonoBehaviour, IDamageSource
 
     IEnumerator RevolveCoroutine(Transform modTransform)
     {
-        Vector3 offset = modTransform.position + modTransform.forward * 3.0f;
-
-        while ((this.transform.position - offset).sqrMagnitude > 0.5f)
+        Vector3 offset = modTransform.position + modTransform.up * 6.0f;
+        Vector2 dir = transform.position - offset;
+        while (Vector2.Distance(offset,this.transform.position) > 0.1f)
         {
-            _rigidbody.AddForce((offset - transform.position) * 2.0f,ForceMode2D.Impulse);
+            _rigidbody.velocity = -dir.normalized * 8.0f;
+            offset = modTransform.position + modTransform.up * 6.0f;
             yield return null;
         }
 
         //Revolve 
 
         float time = Time.time;
-        float timeRevolve = 5.0f;
+        float timeRevolve = 60.0f;
 
         while (Time.time < time + timeRevolve)
         {
-            transform.RotateAround(modTransform.position, new Vector3(0, 0, 1), 40.0f * Time.deltaTime);
+            transform.RotateAround(modTransform.position, Vector3.forward, 270.0f * Time.deltaTime);
             yield return null;
         }
 

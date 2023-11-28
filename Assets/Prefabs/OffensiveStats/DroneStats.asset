@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21181e504dc18343a4cffc92a4817bc, type: 3}
   m_Name: DroneStats
   m_EditorClassIdentifier: 
-  BaseModuleDamage: 1
-  AttackSpeedMultiplier: 1
-  Type: 0
+  BaseModuleDamage: 10
+  AttackSpeedMultiplier: 5
+  Type: 2

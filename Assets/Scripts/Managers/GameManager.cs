@@ -43,7 +43,7 @@ public class GameManager : Singleton<GameManager>
     {
         if(mod.GetModuleClass() == Module.ModuleClass.Placement)
         {
-            _virtualCamera.m_Lens.OrthographicSize += 1.0f;
+            _virtualCamera.m_Lens.OrthographicSize += 1.5f;
         }
     }
 
@@ -153,7 +153,7 @@ public class GameManager : Singleton<GameManager>
 
     public void ZoomIn()
     {
-        _virtualCamera.m_Lens.OrthographicSize -= 1.0f;
+        _virtualCamera.m_Lens.OrthographicSize -= 1.5f;
     }
 
     IEnumerator SlowMoCoroutine()
