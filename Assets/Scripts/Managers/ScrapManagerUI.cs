@@ -23,7 +23,7 @@ public class ScrapManagerUI : MonoBehaviour
 
     private void OnUpdateScrapUI(int updatedValue)
     {
-        _scrapText.text = updatedValue.ToString();
+        _scrapText.text = $"Fe: {updatedValue}";
         if (_animCoroutine != null)
         {
             StopCoroutine(_animCoroutine);

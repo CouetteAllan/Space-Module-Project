@@ -1493,7 +1493,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 100
-    m_Top: 0
+    m_Top: 150
     m_Bottom: 0
   m_ChildAlignment: 5
   m_Spacing: 0
@@ -15508,8 +15508,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 472, y: -128.94408}
-  m_SizeDelta: {x: 343.6105, y: 97.8441}
+  m_AnchoredPosition: {x: 255.24353, y: -220}
+  m_SizeDelta: {x: 501.4141, y: 136.6339}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1736377162
 GameObject:
@@ -18559,10 +18559,10 @@ RectTransform:
   m_Father: {fileID: 1724479170}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2034978475
 MonoBehaviour:
@@ -18584,7 +18584,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00000
+  m_text: 'Fe: 000'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
