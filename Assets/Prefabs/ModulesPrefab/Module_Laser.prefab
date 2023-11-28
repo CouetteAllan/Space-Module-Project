@@ -4968,6 +4968,7 @@ MonoBehaviour:
   _firePoints:
   - {fileID: 1454231968367027684}
   _playParticle: {fileID: 6443879941599415352}
+  _audioClipName: Laser
 --- !u!1 &3561613618764636199
 GameObject:
   m_ObjectHideFlags: 0

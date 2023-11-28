@@ -133,6 +133,7 @@ MonoBehaviour:
   _firePoints:
   - {fileID: 1454231968367027684}
   _playParticle: {fileID: 0}
+  _audioClipName: Bullet
 --- !u!1 &2496546263082471522
 GameObject:
   m_ObjectHideFlags: 0

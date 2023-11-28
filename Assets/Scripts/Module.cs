@@ -10,6 +10,7 @@ public class Module : MonoBehaviour
 
     [SerializeField] private Transform[] _firePoints;
     [SerializeField] private PlayParticle _playParticle;
+    [SerializeField] private string _audioClipName = null;
     public event Action OnModuleFire;
 
     public enum ModuleClass
@@ -118,7 +119,11 @@ public class Module : MonoBehaviour
             {
                 _offensiveStrategy.Fire(i == 0,this.transform.rotation,this.transform.position,_firePoints, out bool success);
                 if (success)
+                {
                     OnModuleFire?.Invoke();
+                    if(_audioClipName != null)
+                        SoundManager.Instance.Play(_audioClipName);
+                }
 
             }
         }

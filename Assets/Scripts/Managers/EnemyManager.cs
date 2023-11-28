@@ -45,6 +45,7 @@ public class EnemyManager : MonoBehaviour
     private void EnemyScript_OnDeath(object enemy, EnemyScript.EnemyStatsOnDeath e)
     {
         _enemiesList.Remove(e.enemyRef);
+        SoundManager.Instance.Play("ShipExplosion");
     }
 
     private EnemyScript OnSpawnEnemy(Vector2 pos, EnemyDatas datas)

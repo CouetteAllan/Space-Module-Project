@@ -80,10 +80,15 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
             );
 
         moduleDragged.ResetPos();
+
         OnDropModule?.Invoke(_attachPointScript);
         OnModuleAttached?.Invoke(modulePlaced);
+
+        SoundManager.Instance.Play("Reload");
+
         if (modulePlaced.GetModuleClass() != Module.ModuleClass.Placement)
             GameManager.Instance.CloseShop();
+
         _currentModule = modulePlaced;
         Destroy(GraphPreview?.gameObject);
     }

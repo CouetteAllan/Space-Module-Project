@@ -23,6 +23,7 @@ public class FXManager : Singleton<FXManager>
         {
             case "rocketBlow":
                 Instantiate(_blowFX,pos,Quaternion.identity);
+                SoundManager.Instance.Play("Rocket");
                 break;
         }
     }

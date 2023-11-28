@@ -55,6 +55,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6763667844869402624}
+  - component: {fileID: 4841857055427218926}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -77,6 +78,81 @@ Transform:
   m_Father: {fileID: 3706678761116079342}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4841857055427218926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5611231144111178066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0591f3c48be30a1479c9f9ae6de41666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isPersistant: 0
+  soundsEffects:
+  - name: Bullet
+    clip: {fileID: 8300000, guid: 6c7c5888724c2174d80f60f7515c8641, type: 3}
+    output: {fileID: 5676675339829177356, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
+    volume: 0.76
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Laser
+    clip: {fileID: 8300000, guid: 4f0edf4a1c93ab546a6818e7ef3b0fab, type: 3}
+    output: {fileID: 5676675339829177356, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
+    volume: 0.673
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Reload
+    clip: {fileID: 8300000, guid: 680c269ce7242a142a96d033bcd1bcc8, type: 3}
+    output: {fileID: 5676675339829177356, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
+    volume: 0.673
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Rocket
+    clip: {fileID: 8300000, guid: b6810fe14f0ebe844ad8cfff920be11f, type: 3}
+    output: {fileID: 5676675339829177356, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
+    volume: 0.609
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: ShipExplosion
+    clip: {fileID: 8300000, guid: 6572e5ad38dc2cd4dbfbc09a9704fd15, type: 3}
+    output: {fileID: 5676675339829177356, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
+    volume: 0.465
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  musics:
+  - name: Perturbator
+    clip: {fileID: 8300000, guid: 2c30b6f82d3dd3048ac579153b664cde, type: 3}
+    output: {fileID: 4471798669282559186, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
+    volume: 0.653
+    pitch: 0
+    loop: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Space Pirates
+    clip: {fileID: 8300000, guid: 7def331cfad81ca4f8c34ed19fc1909c, type: 3}
+    output: {fileID: 4471798669282559186, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
+    volume: 0.434
+    pitch: 0
+    loop: 1
+    playOnAwake: 1
+    source: {fileID: 0}
+  audioMix: {fileID: 24100000, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
+  masterVolume: 1
+  musicVolume: 0.8
+  sfxVolume: 0.7
 --- !u!1 &8315282462585482897
 GameObject:
   m_ObjectHideFlags: 0
