@@ -12,6 +12,7 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private GameObject _moduleShop;
     [SerializeField] private GameObject _scrapShop;
     [SerializeField] private GameObject _openScrapShopTxT;
+    [SerializeField] private GameObject _scrapTxt;
     [SerializeField] private UI_XPScript _xpScript;
 
     [SerializeField] private RectTransform _gameOverPanel;
@@ -69,12 +70,13 @@ public class UIManager : Singleton<UIManager>
     public void OpenScrapShop(bool open)
     {
         _scrapShop.SetActive(open);
+        _scrapTxt.SetActive(open);
         _openScrapShopTxT.SetActive(!open);
         if(GameManager.Instance.CurrentState != GameState.ShopState)
         {
             if (open)
             {
-                Time.timeScale = 0.15f;
+                Time.timeScale = 0.07f;
                 Time.fixedDeltaTime = Time.timeScale * 0.01f;
 
             }

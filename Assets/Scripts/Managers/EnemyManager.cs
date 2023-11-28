@@ -6,6 +6,8 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private EnemyDatas[] _enemyDatas;
     [SerializeField] private BasicEnemySpawner[] _spawns; //Change this later
+    [Space]
+    [SerializeField] private int _enemyLimit = 15;
     private List<EnemyScript> _enemiesList = new List<EnemyScript>();
 
     private void Awake()
@@ -47,6 +49,8 @@ public class EnemyManager : MonoBehaviour
 
     private EnemyScript OnSpawnEnemy(Vector2 pos, EnemyDatas datas)
     {
+        if (_enemiesList.Count > _enemyLimit)
+            return null;
         var newEnemy = EnemyScript.CreateEnemy(pos, datas);
         _enemiesList.Add(newEnemy);
         return newEnemy;

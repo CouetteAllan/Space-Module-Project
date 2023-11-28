@@ -142,7 +142,7 @@ public class GameManager : Singleton<GameManager>
     {
         if(Keyboard.current.cKey.wasPressedThisFrame)
         {
-            GrantXP(5);
+            GrantXP(20);
         }
         
         if(Keyboard.current.lKey.wasPressedThisFrame)

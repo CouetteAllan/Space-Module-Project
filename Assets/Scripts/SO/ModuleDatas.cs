@@ -7,6 +7,7 @@ public class ModuleDatas : ScriptableObject
 {
     [Header("General Module Settings")]
     public string ModuleName = "New Module Name";
+    public string ModuleDescription = "New Module description";
     public Module.ModuleClass ModuleClass = Module.ModuleClass.Offense;
     public Sprite ModuleSprite = null;
     public GameObject ModulePrefab = null;

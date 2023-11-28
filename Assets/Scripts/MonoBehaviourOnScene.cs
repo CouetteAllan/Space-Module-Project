@@ -10,4 +10,5 @@ public class MonoBehaviourOnScene : Singleton<MonoBehaviourOnScene>
     {
         OnUpdate?.Invoke();
     }
+
 }

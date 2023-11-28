@@ -74,23 +74,23 @@ public class ProjectileScript : MonoBehaviour, IDamageSource
 
     IEnumerator RevolveCoroutine(Transform modTransform)
     {
-        Vector3 offset = modTransform.position + (modTransform.up * 8.0f);
+        Vector3 offset = modTransform.position + (modTransform.up * 6.0f);
         while (Vector2.Distance(offset,this.transform.position) > 0.05f)
         {
             Vector2 dir = transform.position - offset;
             transform.position += (Vector3)(-dir.normalized) * 20.0f * Time.deltaTime;
-            offset = modTransform.position + modTransform.up * 8.0f;
+            offset = modTransform.position + modTransform.up * 6.0f;
             yield return null;
         }
 
         //Revolve 
 
         float time = Time.time;
-        float timeRevolve = 10.0f;
+        float timeRevolve = 7.0f;
 
         while (Time.time < time + timeRevolve)
         {
-            transform.parent.Rotate(Vector3.forward * 180.0f* Time.deltaTime);
+            transform.parent.Rotate(Vector3.forward * 100.0f* Time.deltaTime);
             
             yield return null;
         }

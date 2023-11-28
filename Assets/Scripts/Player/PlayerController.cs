@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.SetPlayer(this);
+        _healthScript.SetMaxHealth((int)StatSystem.Instance.PlayerStat.GetStatValue(StatType.Health));
     }
 
     private void GameManager_OnGameStateChanged(GameState newState)
@@ -64,6 +65,7 @@ public class PlayerController : MonoBehaviour
         if(newState == GameState.StartGame)
         {
             GameManager.Instance.SetPlayer(this);
+            _healthScript.SetMaxHealth((int)StatSystem.Instance.PlayerStat.GetStatValue(StatType.Health));
         }
     }
 
@@ -87,7 +89,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable()
     {
+        _inputActions.Player.OpenScrapShop.performed -= OpenScrapShop_performed;
         _inputActions = null;
+        GameManager.OnGameStateChanged -= GameManager_OnGameStateChanged;
+        _healthScript.OnChangeHealth -= OnChangeHealth;
+        _healthScript.OnDeath -= OnDeath;
     }
 
     public PlayerModule GetPlayerModule()

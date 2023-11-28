@@ -1,12 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 
 public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -14,6 +10,7 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
     public static event Action OnEndDragModule;
 
     [SerializeField] private ModuleDatas _moduleDatas;
+    [SerializeField] private TextMeshProUGUI _description;
     private RectTransform _rectTransform;
     private CanvasGroup _canvasGroup;
     private Image _image;
@@ -30,6 +27,7 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         _image = GetComponent<Image>();
         _startLocalPosition = _rectTransform.localPosition;
         _image.sprite = _moduleDatas.ModuleSprite;
+        _description.text = _moduleDatas.ModuleName;
 
     }
 
@@ -76,7 +74,7 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
     {
         _moduleDatas = datas;
         _image.sprite = _moduleDatas.ModuleSprite;
-
+        _description.text = _moduleDatas.ModuleName;
     }
 
     public void OnPointerEnter(PointerEventData eventData)

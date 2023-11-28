@@ -16,13 +16,19 @@ public class HealthScript : MonoBehaviour
     public bool IsAlive => _health > 0;
 
     private bool _isInvincible;
-    private int _health = 15;
-    private int _maxHealth;
+    private int _health;
+    private int _maxHealth = 20;
     private AttachPointScript _attachPointScript;
 
     private void Awake()
     {
-        _maxHealth = _health;
+        _health = _maxHealth;
+    }
+
+    public void SetMaxHealth(int maxHealth)
+    {
+        _maxHealth = maxHealth;
+        _health = maxHealth;
     }
 
     public void ChangeHealth(int value)

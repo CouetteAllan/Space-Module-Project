@@ -11,10 +11,6 @@ public class PlayerModule : MonoBehaviour
     public Module PlaceModule(Module newMod)
     {
         _modules.Add(newMod);
-        foreach (var module in _modules)
-        {
-            Debug.Log(module);
-        }
         return newMod;
     }
 
