@@ -14,6 +14,7 @@ public class ProjectileScript : MonoBehaviour, IDamageSource
     }
     [SerializeField] private ProjectileType _type;
     [SerializeField] private ParticleSystem _deathParticles;
+    
 
     private Rigidbody2D _rigidbody;
 
@@ -26,6 +27,7 @@ public class ProjectileScript : MonoBehaviour, IDamageSource
     public void Launch(Vector2 dir, float speed, float damage, Transform modTransform = null)
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _damage = damage;
         switch (_type)
         {
             case ProjectileType.Bullet:
@@ -43,7 +45,6 @@ public class ProjectileScript : MonoBehaviour, IDamageSource
                 RevolveAroundModule(modTransform);
                 break;
         }
-        _damage = damage;
     }
 
     private void Die()
@@ -73,23 +74,24 @@ public class ProjectileScript : MonoBehaviour, IDamageSource
 
     IEnumerator RevolveCoroutine(Transform modTransform)
     {
-        Vector3 offset = modTransform.position + modTransform.up * 6.0f;
-        Vector2 dir = transform.position - offset;
-        while (Vector2.Distance(offset,this.transform.position) > 0.1f)
+        Vector3 offset = modTransform.position + (modTransform.up * 8.0f);
+        while (Vector2.Distance(offset,this.transform.position) > 0.05f)
         {
-            _rigidbody.velocity = -dir.normalized * 8.0f;
-            offset = modTransform.position + modTransform.up * 6.0f;
+            Vector2 dir = transform.position - offset;
+            transform.position += (Vector3)(-dir.normalized) * 20.0f * Time.deltaTime;
+            offset = modTransform.position + modTransform.up * 8.0f;
             yield return null;
         }
 
         //Revolve 
 
         float time = Time.time;
-        float timeRevolve = 60.0f;
+        float timeRevolve = 10.0f;
 
         while (Time.time < time + timeRevolve)
         {
-            transform.RotateAround(modTransform.position, Vector3.forward, 270.0f * Time.deltaTime);
+            transform.parent.Rotate(Vector3.forward * 180.0f* Time.deltaTime);
+            
             yield return null;
         }
 
@@ -102,6 +104,16 @@ public class ProjectileScript : MonoBehaviour, IDamageSource
         {
             objectHit.TryHit(this,(int)_damage);
             Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (_type != ProjectileType.Drone)
+            return;
+        if (collision.gameObject.TryGetComponent<IHittable>(out IHittable objectHit))
+        {
+            objectHit.TryHit(this, (int)_damage);
         }
     }
 
