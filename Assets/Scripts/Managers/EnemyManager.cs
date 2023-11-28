@@ -21,6 +21,8 @@ public class EnemyManager : MonoBehaviour
 
     private void OnTimeElapsed(float elapsedTime)
     {
+        OnSpawnEnemy(_spawns[0].transform.position, _enemyDatas[2]);
+        Debug.Log("Did spawn elite enemy");
         //Spawn elite enemy, wave etc...
         foreach (var spawner in _spawns)
         {
@@ -30,7 +32,6 @@ public class EnemyManager : MonoBehaviour
 
         }
 
-        OnSpawnEnemy(_spawns[0].transform.position, _enemyDatas[2]);
     }
 
     private EnemyDatas OnGetEnemyDatas()

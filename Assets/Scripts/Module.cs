@@ -103,7 +103,7 @@ public class Module : MonoBehaviour
                 break;
             case ModuleClass.Placement:
                 //Zoom in the camera
-                GameManager.Instance.ZoomIn();
+                CameraHandle.ZoomIn();
                 break;
         }
         _playerStatClass.ChangeStat(StatType.Weight, -(int)_data.Weight);

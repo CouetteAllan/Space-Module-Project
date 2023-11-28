@@ -18,7 +18,6 @@ public enum GameState
 
 public class GameManager : Singleton<GameManager>
 {
-    [SerializeField] private CinemachineVirtualCamera _virtualCamera;
 
     public static event Action<GameState> OnGameStateChanged;
     public static event Action<uint> OnLevelUp;
@@ -36,16 +35,8 @@ public class GameManager : Singleton<GameManager>
             ChangeGameState(GameState.MainMenu);
         else
             ChangeGameState(GameState.BeforeGameStart);
-        DropModuleOnCanvas.OnModuleAttached += DropModule_OnModuleAttached;
     }
 
-    private void DropModule_OnModuleAttached(Module mod)
-    {
-        if(mod.GetModuleClass() == Module.ModuleClass.Placement)
-        {
-            _virtualCamera.m_Lens.OrthographicSize += 1.5f;
-        }
-    }
 
     public void ChangeGameState(GameState newState)
     {
@@ -60,8 +51,8 @@ public class GameManager : Singleton<GameManager>
                 break;
 
             case GameState.BeforeGameStart:
-                if (_virtualCamera == null)
-                    _virtualCamera = GameObject.FindGameObjectWithTag("Camera").GetComponent<CinemachineVirtualCamera>();
+                /*if (_virtualCamera == null)
+                    _virtualCamera = GameObject.FindGameObjectWithTag("Camera").GetComponent<CinemachineVirtualCamera>();*/
                 break;
 
             case GameState.StartGame:
@@ -150,11 +141,11 @@ public class GameManager : Singleton<GameManager>
             _blockXp = !_blockXp;
         }
     }
-
+/*
     public void ZoomIn()
     {
         _virtualCamera.m_Lens.OrthographicSize -= 1.5f;
-    }
+    }*/
 
     IEnumerator SlowMoCoroutine()
     {
