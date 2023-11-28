@@ -27,7 +27,7 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         _image = GetComponent<Image>();
         _startLocalPosition = _rectTransform.localPosition;
         _image.sprite = _moduleDatas.ModuleSprite;
-        _description.text = _moduleDatas.ModuleName;
+        _description.text = _moduleDatas.ModuleDescription;
 
     }
 
@@ -74,7 +74,7 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
     {
         _moduleDatas = datas;
         _image.sprite = _moduleDatas.ModuleSprite;
-        _description.text = _moduleDatas.ModuleName;
+        _description.text = _moduleDatas.ModuleDescription;
     }
 
     public void OnPointerEnter(PointerEventData eventData)

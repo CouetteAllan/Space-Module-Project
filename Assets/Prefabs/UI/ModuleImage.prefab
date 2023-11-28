@@ -93,7 +93,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.25
+  m_fontSize: 42.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -298,7 +298,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -223.93176, y: 2.9999}
-  m_SizeDelta: {x: 60.5881, y: -44.8337}
+  m_SizeDelta: {x: 194.5788, y: 27.5937}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &314888215275418710
 CanvasRenderer:
