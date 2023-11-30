@@ -14,7 +14,7 @@ public class PlayParticle : MonoBehaviour
 
     private void Mod_OnModuleFire()
     {
-        _particleSystem.Stop();
+        /*_particleSystem.Stop();*/
         _particleSystem.Play();
     }
 

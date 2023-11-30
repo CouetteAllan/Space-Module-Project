@@ -84,12 +84,13 @@ public class Module : MonoBehaviour
 
     private void OnModuleBranchDestroyed()
     {
+        RemoveModule();
         Destroy(gameObject);
         _healthScript.OnDeath -= OnModuleBranchDestroyed;
     }
 
 
-    private void RemoveModule()
+    public void RemoveModule()
     {
         switch (this._moduleClass)
         {
@@ -138,7 +139,6 @@ public class Module : MonoBehaviour
     private void OnDestroy()
     {
         TimeTickSystemDataHandler.OnTickFaster -= TimeTickSystemDataHandler_OnTick;
-        this.RemoveModule();
     }
 
     private int GetTickNeeded()

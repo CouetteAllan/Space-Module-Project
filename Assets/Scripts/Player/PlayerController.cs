@@ -83,8 +83,6 @@ public class PlayerController : MonoBehaviour
 
     private void OpenScrapShop_performed(InputAction.CallbackContext context)
     {
-        if (GameManager.Instance.CurrentState != GameState.ShopState)
-            return;
         _scrapShopOpen = !_scrapShopOpen;
         UIManager.Instance.OpenScrapShop(_scrapShopOpen);
     }

@@ -31,6 +31,7 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
         else if(eventData.pointerDrag != null && UIManager._toggleReplaceModule)
         {
             //Delete previous module
+            _currentModule.RemoveModule();
             Destroy(_currentModule.gameObject);
             //Create the new module
             PlaceModule(eventData);
@@ -64,14 +65,12 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
     private void PlaceModule(PointerEventData eventData)
     {
         ModuleImageScript moduleDragged = eventData.pointerDrag.GetComponent<ModuleImageScript>();
-        if (moduleDragged.GetModuleDatas().ModuleClass == Module.ModuleClass.Placement)
+        if (!(bool)ScrapManagerDataHandler.SellScrap(moduleDragged.GetModuleDatas().ScrapCost))
         {
-            if (!(bool)ScrapManagerDataHandler.SellScrap(moduleDragged.GetModuleDatas().ScrapCost))
-            {
-                Destroy(GraphPreview?.gameObject);
-                return;
-            }
+            Destroy(GraphPreview?.gameObject);
+            return;
         }
+
         var modulePlaced = _playerModule.PlaceModule(
             Module.CreateMod(
                 PlayerModule.GetNearestPlacementFromMouse(),
@@ -86,10 +85,11 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
 
         SoundManager.Instance.Play("Reload");
 
-        if (modulePlaced.GetModuleClass() != Module.ModuleClass.Placement)
+        if (modulePlaced.GetModuleClass() != Module.ModuleClass.Placement && modulePlaced.GetModuleClass() != Module.ModuleClass.StatBuff)
             GameManager.Instance.CloseShop();
 
         _currentModule = modulePlaced;
-        Destroy(GraphPreview?.gameObject);
+        if(GraphPreview?.gameObject != null)
+            Destroy(GraphPreview?.gameObject);
     }
 }

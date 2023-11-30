@@ -6,7 +6,6 @@ using UnityEngine;
 public class DroneModuleScript : BaseOffensiveScript
 {
     private Transform _moduleTransform;
-    private bool _doOnce = false;
 
     public DroneModuleScript(StatClass statClass, ModuleDatas datas, float baseDamage, Transform moduleTransform) : base(statClass, datas, baseDamage)
     {
@@ -16,8 +15,6 @@ public class DroneModuleScript : BaseOffensiveScript
     public override void Fire(bool firstProjectile, Quaternion currentRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success)
     {
         success = true;
-        /*if (_doOnce)
-            return;*/
         foreach (Transform t in projectilePositions)
         {
             Vector3 position = firstProjectile ? t.position : t.position + UtilsClass.GetRandomDir() * Random.Range(0.1f, 0.6f);
@@ -25,8 +22,6 @@ public class DroneModuleScript : BaseOffensiveScript
             var projectile = Object.Instantiate(_datas.ProjectilePrefab, position, currentRotation, _moduleTransform).GetComponentInChildren<ProjectileScript>();
             float projectileDamage = _statClass.GetStatValue(StatType.Damage) * _baseDamage;
             projectile.Launch((t.position - currentModulePosition).normalized, 10.0f, projectileDamage,t);
-            _doOnce = true;
-
         }
     }
 }

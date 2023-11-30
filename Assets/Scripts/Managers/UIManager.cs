@@ -9,16 +9,22 @@ public class UIManager : Singleton<UIManager>
 {
     public static bool _toggleReplaceModule = false;
     public static event Action<bool> OnToggleReplaceModule;
-
+    [Header("Module Shop")]
     [SerializeField] private GameObject _moduleShop;
+
+    [Header("Scrap Shop")]
     [SerializeField] private GameObject _scrapShop;
     [SerializeField] private GameObject _openScrapShopTxT;
     [SerializeField] private GameObject _scrapTxt;
+    [SerializeField] private GameObject[] _scrapTab;
+ 
+    [Space]
     [SerializeField] private UI_XPScript _xpScript;
 
     [SerializeField] private RectTransform _gameOverPanel;
     private ModuleImageScript[] _moduleImageScripts;
 
+    private int _scrapIndex = 0;
     private void Start()
     {
         GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
@@ -61,7 +67,7 @@ public class UIManager : Singleton<UIManager>
         }
         _moduleShop.SetActive(true);
         _openScrapShopTxT.SetActive(true);
-
+        OpenScrapShop(true);
     }
 
     public void CloseShop()
@@ -71,14 +77,15 @@ public class UIManager : Singleton<UIManager>
         UpdateXpBar(GameManager.Instance.CurrentXP);
         UpdateLevel(GameManager.Instance.CurrentLevel);
         _openScrapShopTxT.SetActive(false);
-        OpenScrapShop(false, fullClosed: true);
+        OpenScrapShop(false);
     }
 
-    public void OpenScrapShop(bool open, bool fullClosed = false)
+    public void OpenScrapShop(bool open)
     {
         _scrapShop.SetActive(open);
+        _scrapTab[_scrapIndex].SetActive(open);
         _scrapTxt.SetActive(open);
-        _openScrapShopTxT.SetActive(fullClosed ? false : !open);
+        _openScrapShopTxT.SetActive(!open);
         if(GameManager.Instance.CurrentState != GameState.ShopState)
         {
             if (open)
@@ -92,6 +99,21 @@ public class UIManager : Singleton<UIManager>
                 Time.timeScale = 1.0f;
         }
         
+    }
+
+    public void ChangeScrapTab(bool positive)
+    {
+        _scrapTab[_scrapIndex].SetActive(false);
+        _scrapIndex = positive ? ++_scrapIndex : --_scrapIndex;
+        if(_scrapIndex > _scrapTab.Length - 1)
+        {
+            _scrapIndex = 0;
+        }
+        else if(_scrapIndex < 0)
+        {
+            _scrapIndex = _scrapTab.Length - 1;
+        }
+        _scrapTab[_scrapIndex].SetActive(true);
     }
 
     private void ShowGameOverPanel(bool show)
@@ -134,4 +156,6 @@ public class UIManager : Singleton<UIManager>
         _toggleReplaceModule = !_toggleReplaceModule;
         OnToggleReplaceModule?.Invoke(_toggleReplaceModule);
     }
+
+    public bool IsScrapShopOpen() => _scrapShop.activeSelf;
 }
