@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class UIManager : Singleton<UIManager>
@@ -24,6 +25,8 @@ public class UIManager : Singleton<UIManager>
         _moduleImageScripts = _moduleShop.GetComponentsInChildren<ModuleImageScript>();
         _openScrapShopTxT.SetActive(true);
         _scrapShop.SetActive(false);
+        _openScrapShopTxT.SetActive(false);
+
     }
 
     private void GameManager_OnGameStateChanged(GameState newState)
@@ -57,6 +60,8 @@ public class UIManager : Singleton<UIManager>
 
         }
         _moduleShop.SetActive(true);
+        _openScrapShopTxT.SetActive(true);
+
     }
 
     public void CloseShop()
@@ -65,13 +70,15 @@ public class UIManager : Singleton<UIManager>
         _moduleShop.SetActive(false);
         UpdateXpBar(GameManager.Instance.CurrentXP);
         UpdateLevel(GameManager.Instance.CurrentLevel);
+        _openScrapShopTxT.SetActive(false);
+        OpenScrapShop(false, fullClosed: true);
     }
 
-    public void OpenScrapShop(bool open)
+    public void OpenScrapShop(bool open, bool fullClosed = false)
     {
         _scrapShop.SetActive(open);
         _scrapTxt.SetActive(open);
-        _openScrapShopTxT.SetActive(!open);
+        _openScrapShopTxT.SetActive(fullClosed ? false : !open);
         if(GameManager.Instance.CurrentState != GameState.ShopState)
         {
             if (open)
