@@ -19,6 +19,7 @@ MonoBehaviour:
   ModulePrefab: {fileID: 5653764616274984447, guid: 03ce0699e1050f14db59d268e56b406b, type: 3}
   Weight: 0
   ScrapCost: 10
+  Health: 30
   ProjectilePrefab: {fileID: 0}
   OffensiveModuleDatas: {fileID: 0}
   BuffDatas: {fileID: 0}

@@ -71,7 +71,7 @@ public class Module : MonoBehaviour
                 break;
             case ModuleClass.Placement:
                 _healthScript = this.gameObject.AddComponent<HealthScript>();
-                _healthScript.SetHealthScript(attachPointScript);
+                _healthScript.SetHealthScript(attachPointScript, _data.Health);
                 _healthScript.OnDeath += OnModuleBranchDestroyed;
                 break;
         }

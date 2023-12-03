@@ -9,6 +9,7 @@ public class HealthScript : MonoBehaviour
 
     [SerializeField] private RectTransform _healthBar;
     [SerializeField] private Image _fillImage;
+    [SerializeField] private int _maxHealth = 20;
     public event Action<int> OnChangeHealth;
     public event Action OnDeath;
 
@@ -17,7 +18,6 @@ public class HealthScript : MonoBehaviour
 
     private bool _isInvincible;
     private int _health;
-    private int _maxHealth = 20;
     private AttachPointScript _attachPointScript;
 
     private void Awake()
@@ -66,11 +66,12 @@ public class HealthScript : MonoBehaviour
         _isInvincible = false;
     }
 
-    public void SetHealthScript(AttachPointScript attachPointScript)
+    public void SetHealthScript(AttachPointScript attachPointScript, int maxHealth)
     {
         this._attachPointScript = attachPointScript;
         _healthBar = this.transform.Find("HealthCanvas/HealthBar").GetComponent<RectTransform>();
         _fillImage = this.transform.Find("HealthCanvas/HealthBar/Background/Fill").GetComponent<Image>();
-        _maxHealth = _health;
+        _maxHealth = maxHealth;
+        _health = maxHealth;
     }
 }

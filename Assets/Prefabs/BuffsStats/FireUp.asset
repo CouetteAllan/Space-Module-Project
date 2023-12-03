@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Stat:
     _name: FireUp
-    _baseValue: 0.15
+    _baseValue: 0.2
     _type: 3
   Type: 2

@@ -36,6 +36,15 @@ public class PlayerController : MonoBehaviour
         GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
         _healthScript.OnChangeHealth += OnChangeHealth;
         _healthScript.OnDeath += OnDeath;
+        Module.OnModuleDestroyed += Module_OnModuleDestroyed;
+    }
+
+    private void Module_OnModuleDestroyed(Module mod)
+    {
+        if (mod.GetModuleClass() != Module.ModuleClass.Placement)
+            return;
+
+        _healthScript.ChangeHealth(10);
     }
 
     private void OnChangeHealth(int health)
