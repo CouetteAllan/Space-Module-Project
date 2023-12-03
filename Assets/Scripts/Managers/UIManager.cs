@@ -2,8 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -17,6 +17,10 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private GameObject _openScrapShopTxT;
     [SerializeField] private GameObject _scrapTxt;
     [SerializeField] private GameObject[] _scrapTab;
+    [SerializeField] private Image[] _dots;
+
+    [Header("PauseMenu")]
+    [SerializeField] private GameObject _pauseGO;
  
     [Space]
     [SerializeField] private UI_XPScript _xpScript;
@@ -42,14 +46,21 @@ public class UIManager : Singleton<UIManager>
             case GameState.MainMenu:
                 break;
             case GameState.StartGame:
+                SetPause(false);
+
                 break;
             case GameState.InGame:
                 CloseShop();
+                SetPause(false);
+
                 break;
             case GameState.GameOver:
                 ShowGameOverPanel(true);
                 break;
             case GameState.ShopState:
+                break;
+            case GameState.Pause:
+                SetPause(true);
                 break;
         }
     }
@@ -104,6 +115,7 @@ public class UIManager : Singleton<UIManager>
     public void ChangeScrapTab(bool positive)
     {
         _scrapTab[_scrapIndex].SetActive(false);
+        _dots[_scrapIndex].color = Color.gray;
         _scrapIndex = positive ? ++_scrapIndex : --_scrapIndex;
         if(_scrapIndex > _scrapTab.Length - 1)
         {
@@ -114,6 +126,7 @@ public class UIManager : Singleton<UIManager>
             _scrapIndex = _scrapTab.Length - 1;
         }
         _scrapTab[_scrapIndex].SetActive(true);
+        _dots[_scrapIndex].color = Color.white;
     }
 
     private void ShowGameOverPanel(bool show)
@@ -146,6 +159,11 @@ public class UIManager : Singleton<UIManager>
         SceneManager.LoadScene(1);
     }
 
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     public void Quit()
     {
         Application.Quit();
@@ -156,6 +174,19 @@ public class UIManager : Singleton<UIManager>
         _toggleReplaceModule = !_toggleReplaceModule;
         OnToggleReplaceModule?.Invoke(_toggleReplaceModule);
     }
+
+    private void SetPause(bool active)
+    {
+        _pauseGO.SetActive(active);
+        if (active)
+            _pauseGO.GetComponent<Animator>()?.SetTrigger("Pause");
+    }
+
+    public void Resume()
+    {
+        GameManager.Instance.ChangeGameState(GameState.InGame);
+    }
+
 
     public bool IsScrapShopOpen() => _scrapShop.activeSelf;
 }

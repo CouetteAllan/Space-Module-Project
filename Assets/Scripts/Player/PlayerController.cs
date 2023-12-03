@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private HealthScript _healthScript;
 
     private bool _scrapShopOpen = false;
+    private bool _pauseMenuOpen = false;
 
     private void Awake()
     {
@@ -78,7 +79,15 @@ public class PlayerController : MonoBehaviour
 
         _inputActions = new MInputActionAsset();
         _inputActions.Player.OpenScrapShop.performed += OpenScrapShop_performed;
+        _inputActions.Player.OpenPauseMenu.performed += OpenPauseMenu_performed;
         _inputActions.Enable();
+    }
+
+    private void OpenPauseMenu_performed(InputAction.CallbackContext context)
+    {
+        _pauseMenuOpen = !_pauseMenuOpen;
+        GameState newState = _pauseMenuOpen ? GameState.Pause : GameState.InGame;
+        GameManager.Instance.ChangeGameState(newState);
     }
 
     private void OpenScrapShop_performed(InputAction.CallbackContext context)

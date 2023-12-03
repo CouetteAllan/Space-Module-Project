@@ -55,6 +55,15 @@ namespace Rayqdr.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenPauseMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""3f591ce7-71c7-482c-92e5-e5477d1b33d7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -220,6 +229,17 @@ namespace Rayqdr.Input
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""OpenScrapShop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3677aeea-5e13-4b1d-a58f-261bec45b082"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""OpenPauseMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -810,6 +830,7 @@ namespace Rayqdr.Input
             m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_OpenScrapShop = m_Player.FindAction("OpenScrapShop", throwIfNotFound: true);
+            m_Player_OpenPauseMenu = m_Player.FindAction("OpenPauseMenu", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -886,6 +907,7 @@ namespace Rayqdr.Input
         private readonly InputAction m_Player_Rotate;
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_OpenScrapShop;
+        private readonly InputAction m_Player_OpenPauseMenu;
         public struct PlayerActions
         {
             private @MInputActionAsset m_Wrapper;
@@ -893,6 +915,7 @@ namespace Rayqdr.Input
             public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @OpenScrapShop => m_Wrapper.m_Player_OpenScrapShop;
+            public InputAction @OpenPauseMenu => m_Wrapper.m_Player_OpenPauseMenu;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -911,6 +934,9 @@ namespace Rayqdr.Input
                 @OpenScrapShop.started += instance.OnOpenScrapShop;
                 @OpenScrapShop.performed += instance.OnOpenScrapShop;
                 @OpenScrapShop.canceled += instance.OnOpenScrapShop;
+                @OpenPauseMenu.started += instance.OnOpenPauseMenu;
+                @OpenPauseMenu.performed += instance.OnOpenPauseMenu;
+                @OpenPauseMenu.canceled += instance.OnOpenPauseMenu;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -924,6 +950,9 @@ namespace Rayqdr.Input
                 @OpenScrapShop.started -= instance.OnOpenScrapShop;
                 @OpenScrapShop.performed -= instance.OnOpenScrapShop;
                 @OpenScrapShop.canceled -= instance.OnOpenScrapShop;
+                @OpenPauseMenu.started -= instance.OnOpenPauseMenu;
+                @OpenPauseMenu.performed -= instance.OnOpenPauseMenu;
+                @OpenPauseMenu.canceled -= instance.OnOpenPauseMenu;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1109,6 +1138,7 @@ namespace Rayqdr.Input
             void OnRotate(InputAction.CallbackContext context);
             void OnMove(InputAction.CallbackContext context);
             void OnOpenScrapShop(InputAction.CallbackContext context);
+            void OnOpenPauseMenu(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

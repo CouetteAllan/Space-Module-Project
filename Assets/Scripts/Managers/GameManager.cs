@@ -13,7 +13,8 @@ public enum GameState
     StartGame,
     InGame,
     GameOver,
-    ShopState
+    ShopState,
+    Pause
 }
 
 public class GameManager : Singleton<GameManager>
@@ -73,6 +74,9 @@ public class GameManager : Singleton<GameManager>
             case GameState.ShopState:
                 StartCoroutine(SlowMoCoroutine());
                 OpenShop();
+                break;
+            case GameState.Pause:
+                StartCoroutine(SlowMoCoroutine());
                 break;
         }
         OnGameStateChanged?.Invoke(newState);
