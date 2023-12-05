@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         if (mod.GetModuleClass() != Module.ModuleClass.Placement)
             return;
 
-        _healthScript.ChangeHealth(10);
+        _healthScript.ChangeHealth(-30);
     }
 
     private void OnChangeHealth(int health)
