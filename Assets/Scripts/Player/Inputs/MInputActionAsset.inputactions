@@ -198,6 +198,39 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "Mouse Axis",
+                    "id": "d1818952-a1fa-4909-80a4-78755f4bbb9d",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "776c2a50-0178-4a44-8fbc-d7efa74654b0",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "a8d8447a-daab-4988-b9c8-ac84b5d7ce4e",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "0e2ee0a2-b8db-418f-a47c-e617b899fc4d",
                     "path": "<Keyboard>/tab",

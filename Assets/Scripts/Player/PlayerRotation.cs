@@ -53,11 +53,11 @@ public class PlayerRotation : MonoBehaviour
 
     private void Rotate_performed(InputAction.CallbackContext context)
     {
-        if (UIManager.Instance.IsScrapShopOpen())
+        /*if (UIManager.Instance.IsScrapShopOpen())
         {
             UIManager.Instance.ChangeScrapTab(_inputActions.Player.Rotate.ReadValue<float>() > 0);
         }
-        else
+        else*/ if (GameManager.Instance.CurrentState == GameState.InGame)
         {
             _rotDir = -_inputActions.Player.Rotate.ReadValue<float>();
             _isRotating = true;

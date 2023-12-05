@@ -102,11 +102,10 @@ public class UIManager : Singleton<UIManager>
         {
             if (open)
             {
-                Time.timeScale = 0.07f;
+                Time.timeScale = 0.06f;
                 Time.fixedDeltaTime = Time.timeScale * 0.01f;
 
             }
-            
             else
                 Time.timeScale = 1.0f;
         }

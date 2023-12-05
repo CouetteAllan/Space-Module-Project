@@ -54,7 +54,8 @@ public class ScrapManagerUI : MonoBehaviour
         _scrapText.fontSize = _baseFontSize;
 
         yield return new WaitForSecondsRealtime(1.0f);
-        _scrapText.transform.parent.gameObject.SetActive(false);
+        if(!UIManager.Instance.IsScrapShopOpen())
+            _scrapText.transform.parent.gameObject.SetActive(false);
 
     }
 }
