@@ -25,7 +25,7 @@ public class GameManager : Singleton<GameManager>
     public GameState CurrentState { get; private set; } = GameState.GameOver;
     public uint CurrentLevel { get; private set; } = 1;
     public uint CurrentXP { get; private set; } = 0;
-    public uint NextTresholdLevelUp { get; private set; } = 10;
+    public uint NextTresholdLevelUp { get; private set; } = 35;
     public PlayerController PlayerController { get; private set; }
 
     private bool _blockXp = false;
@@ -72,11 +72,11 @@ public class GameManager : Singleton<GameManager>
                 //faire des trucs de game over
                 break;
             case GameState.ShopState:
-                StartCoroutine(SlowMoCoroutine());
+                StartCoroutine(SlowMoCoroutine(false));
                 OpenShop();
                 break;
             case GameState.Pause:
-                StartCoroutine(SlowMoCoroutine());
+                StartCoroutine(SlowMoCoroutine(false));
                 break;
         }
         OnGameStateChanged?.Invoke(newState);
@@ -102,7 +102,7 @@ public class GameManager : Singleton<GameManager>
         OnLevelUp?.Invoke(CurrentLevel);
 
         CurrentXP -= NextTresholdLevelUp;
-        NextTresholdLevelUp += 20;
+        NextTresholdLevelUp += 30;
         ChangeGameState(GameState.ShopState);
     }
 
@@ -110,13 +110,12 @@ public class GameManager : Singleton<GameManager>
     {
         CurrentXP = 0;
         CurrentLevel = 1;
-        NextTresholdLevelUp = 10;
+        NextTresholdLevelUp = 40;
         _blockXp = false;
     }
 
     public void OpenShop()
     {
-
         UIManager.Instance.OpenShop();
     }
 
@@ -126,6 +125,7 @@ public class GameManager : Singleton<GameManager>
         //jouer son
         //close UI
         UIManager.Instance.CloseShop();
+        SlowMoCoroutine(true);
     }
 
     public void SetPlayer(PlayerController player)
@@ -151,19 +151,37 @@ public class GameManager : Singleton<GameManager>
         _virtualCamera.m_Lens.OrthographicSize -= 1.5f;
     }*/
 
-    IEnumerator SlowMoCoroutine()
+    IEnumerator SlowMoCoroutine(bool reverse)
     {
-        Time.timeScale = 0.8f;
-        Time.fixedDeltaTime = Time.timeScale * 0.01f;
-        yield return new WaitForSecondsRealtime(0.3f);
-        Time.timeScale = 0.5f;
-        Time.fixedDeltaTime = Time.timeScale * 0.01f;
-        yield return new WaitForSecondsRealtime(0.2f);
-        Time.timeScale = 0.2f;
-        Time.fixedDeltaTime = Time.timeScale * 0.01f;
-        yield return new WaitForSecondsRealtime(0.2f);
-        Time.timeScale = 0.0f;
-        yield break;
+        if (!reverse)
+        {
+            Time.timeScale = 0.8f;
+            Time.fixedDeltaTime = Time.timeScale * 0.01f;
+            yield return new WaitForSecondsRealtime(0.3f);
+            Time.timeScale = 0.5f;
+            Time.fixedDeltaTime = Time.timeScale * 0.01f;
+            yield return new WaitForSecondsRealtime(0.2f);
+            Time.timeScale = 0.2f;
+            Time.fixedDeltaTime = Time.timeScale * 0.01f;
+            yield return new WaitForSecondsRealtime(0.2f);
+            Time.timeScale = 0.0f;
+            yield break;
+        }
+        else
+        {
+            Time.timeScale = 0.1f;
+            Time.fixedDeltaTime = Time.timeScale * 0.01f;
+            yield return new WaitForSecondsRealtime(0.5f);
+            Time.timeScale = 0.2f;
+            Time.fixedDeltaTime = Time.timeScale * 0.01f;
+            yield return new WaitForSecondsRealtime(0.5f);
+            Time.timeScale = 0.4f;
+            Time.fixedDeltaTime = Time.timeScale * 0.01f;
+            yield return new WaitForSecondsRealtime(0.8f);
+            Time.timeScale = 1f;
+            yield break;
+        }
+        
     }
 
 }

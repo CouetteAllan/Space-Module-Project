@@ -9,7 +9,7 @@ public class BasicEnemySpawner : MonoBehaviour
 
     private void Awake()
     {
-        _tickNeed = 12;
+        _tickNeed = 15;
         TimeTickSystemDataHandler.OnTick += TimeTickSystemDataHandler_OnTick;
         GameManager.OnLevelUp += GameManager_OnLevelUp;
         
@@ -19,13 +19,13 @@ public class BasicEnemySpawner : MonoBehaviour
     {
         switch (level)
         {
-            case 8:
+            case 6:
                 _tickNeed = 10;
                 return;
             case 12:
                 _tickNeed = 8;
                 return;
-            case 18:
+            case 16:
                 _tickNeed = 6;
                 return;
             case 24:

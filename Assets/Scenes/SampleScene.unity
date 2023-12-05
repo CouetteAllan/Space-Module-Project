@@ -7724,7 +7724,7 @@ MonoBehaviour:
   - {fileID: 516687576}
   - {fileID: 130838721}
   - {fileID: 689986945}
-  _enemyLimit: 20
+  _enemyLimit: 30
 --- !u!1 &715758215
 GameObject:
   m_ObjectHideFlags: 0
