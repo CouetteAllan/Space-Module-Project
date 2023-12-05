@@ -125,7 +125,7 @@ public class GameManager : Singleton<GameManager>
         //jouer son
         //close UI
         UIManager.Instance.CloseShop();
-        SlowMoCoroutine(true);
+        StartCoroutine(SlowMoCoroutine(true));
     }
 
     public void SetPlayer(PlayerController player)
@@ -171,13 +171,13 @@ public class GameManager : Singleton<GameManager>
         {
             Time.timeScale = 0.1f;
             Time.fixedDeltaTime = Time.timeScale * 0.01f;
-            yield return new WaitForSecondsRealtime(0.5f);
+            yield return new WaitForSecondsRealtime(0.2f);
             Time.timeScale = 0.2f;
             Time.fixedDeltaTime = Time.timeScale * 0.01f;
-            yield return new WaitForSecondsRealtime(0.5f);
-            Time.timeScale = 0.4f;
+            yield return new WaitForSecondsRealtime(0.2f);
+            Time.timeScale = 0.6f;
             Time.fixedDeltaTime = Time.timeScale * 0.01f;
-            yield return new WaitForSecondsRealtime(0.8f);
+            yield return new WaitForSecondsRealtime(0.4f);
             Time.timeScale = 1f;
             yield break;
         }

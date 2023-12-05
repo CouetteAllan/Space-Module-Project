@@ -9,7 +9,7 @@ public class ScrapManager : MonoBehaviour
     [SerializeField] private Transform _scrapTransform;
     [SerializeField] private ScrapManagerUI _scrapManagerUI;
 
-    [SerializeField] private int _numberOfScrap = 200;
+    [SerializeField] private int _numberOfScrap = 0;
     public int NumberOfScrap {  get { return _numberOfScrap; } }
 
     private void Awake()
@@ -18,7 +18,13 @@ public class ScrapManager : MonoBehaviour
         EnemyScript.OnDeath += OnEnemyDeath;
         ScrapManagerDataHandler.OnPickUpScrap += OnPickUpScrap;
         ScrapManagerDataHandler.OnSellScrap += SellScrapMetal;
+        ScrapManagerDataHandler.OnAbleToBuyScrap += AbleToBuyScrap;
         this.UpdateScrap(_numberOfScrap);
+    }
+
+    private bool AbleToBuyScrap()
+    {
+        return _numberOfScrap >= 5;
     }
 
     private void OnPickUpScrap(int value)

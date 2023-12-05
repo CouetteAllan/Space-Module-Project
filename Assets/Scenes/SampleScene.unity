@@ -8236,7 +8236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scrapTransform: {fileID: 388440602637989478, guid: c8ba7bcab3c94094b8531054b2972419, type: 3}
-  _scrapManagerUI: {fileID: 0}
+  _scrapManagerUI: {fileID: 541234869}
   _numberOfScrap: 0
 --- !u!114 &786017310
 MonoBehaviour:

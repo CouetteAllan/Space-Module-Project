@@ -78,7 +78,8 @@ public class UIManager : Singleton<UIManager>
         }
         _moduleShop.SetActive(true);
         _openScrapShopTxT.SetActive(true);
-        OpenScrapShop(true);
+        if((bool)ScrapManagerDataHandler.AbleToBuyScrap())
+            OpenScrapShop(true);
     }
 
     public void CloseShop()
@@ -87,7 +88,7 @@ public class UIManager : Singleton<UIManager>
         _moduleShop.SetActive(false);
         UpdateXpBar(GameManager.Instance.CurrentXP);
         UpdateLevel(GameManager.Instance.CurrentLevel);
-        _openScrapShopTxT.SetActive(false);
+        _openScrapShopTxT.SetActive(true);
         OpenScrapShop(false);
     }
 
