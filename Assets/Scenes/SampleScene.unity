@@ -77925,6 +77925,9 @@ MonoBehaviour:
   _isPersistant: 0
   _explosionFX: {fileID: 3082702454076153850, guid: 6805eb83fde93e5448f0bcc573dea09d, type: 3}
   _blowFX: {fileID: 5524511428484013597, guid: 86d62861ae32b7e4cba25953f4e0f37a, type: 3}
+  _baseProfile: {fileID: 11400000, guid: 788bfaa09ffe85c4a8cedb744fe3a87a, type: 2}
+  _replaceModuleProfile: {fileID: 11400000, guid: dd5aade6e143d0d4cb9530cdc6cc79bb, type: 2}
+  _volumeSettings: {fileID: 1584451412}
 --- !u!4 &1456647849
 Transform:
   m_ObjectHideFlags: 0
@@ -84355,7 +84358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_FocusTracksTarget: 0
-  m_FocusTracking: 0
+  m_FocusTracking: 2
   m_FocusTarget: {fileID: 0}
   m_FocusOffset: 0
   m_Profile: {fileID: 11400000, guid: 788bfaa09ffe85c4a8cedb744fe3a87a, type: 2}
@@ -84878,7 +84881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buttonText: {fileID: 1152263451}
-  _button: {fileID: 1590558484}
+  _button: {fileID: 1590558485}
 --- !u!114 &1590558484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84900,12 +84903,12 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.31007475, g: 0.7760132, b: 0.9811321, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
+    m_ColorMultiplier: 1.83
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
@@ -84948,7 +84951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.28924885, g: 0.9433962, b: 0.85152155, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -110716,6 +110719,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 21b26fe3bc0cf714c810484cb4e9177a, type: 2}
   - {fileID: 11400000, guid: f3f039913279ef2449d3037d27ff9c7c, type: 2}
   - {fileID: 11400000, guid: fab3b1fbc04880043ba3787a7835ef0e, type: 2}
+  - {fileID: 11400000, guid: c178d58bb89f13b4c854ec8bb989fcee, type: 2}
+  - {fileID: 11400000, guid: c178d58bb89f13b4c854ec8bb989fcee, type: 2}
+  - {fileID: 11400000, guid: c178d58bb89f13b4c854ec8bb989fcee, type: 2}
 --- !u!1 &2084061183
 GameObject:
   m_ObjectHideFlags: 0

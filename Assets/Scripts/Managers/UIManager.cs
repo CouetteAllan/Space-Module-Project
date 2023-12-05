@@ -90,6 +90,8 @@ public class UIManager : Singleton<UIManager>
         UpdateLevel(GameManager.Instance.CurrentLevel);
         _openScrapShopTxT.SetActive(true);
         OpenScrapShop(false);
+        //_toggleReplaceModule = true;
+        //SetReplaceModule();
     }
 
     public void OpenScrapShop(bool open)
