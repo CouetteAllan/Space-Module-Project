@@ -25,7 +25,7 @@ public class GameManager : Singleton<GameManager>
     public GameState CurrentState { get; private set; } = GameState.GameOver;
     public uint CurrentLevel { get; private set; } = 1;
     public uint CurrentXP { get; private set; } = 0;
-    public uint NextTresholdLevelUp { get; private set; } = 35;
+    public uint NextTresholdLevelUp { get; private set; } = 45;
     public PlayerController PlayerController { get; private set; }
 
     private bool _blockXp = false;
@@ -110,7 +110,7 @@ public class GameManager : Singleton<GameManager>
     {
         CurrentXP = 0;
         CurrentLevel = 1;
-        NextTresholdLevelUp = 40;
+        NextTresholdLevelUp = 45;
         _blockXp = false;
     }
 

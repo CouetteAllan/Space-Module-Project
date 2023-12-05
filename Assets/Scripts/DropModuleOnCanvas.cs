@@ -30,11 +30,11 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
         }
         else if(eventData.pointerDrag != null && UIManager._toggleReplaceModule)
         {
-            //Delete previous module
-            _currentModule.RemoveModule();
-            Destroy(_currentModule.gameObject);
-            //Create the new module
-            PlaceModule(eventData);
+            if (PlaceModule(eventData))
+            {
+                _currentModule.RemoveModule();
+                Destroy(_currentModule.gameObject);
+            }
 
         }
     }
@@ -47,7 +47,7 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
             ModuleImageScript moduleDragged = eventData.pointerDrag.GetComponent<ModuleImageScript>();
 
             GraphPreview = Module.CreateModPreview(
-                PlayerModule.GetNearestPlacementFromMouse(),
+                _transformParent.position,
                 moduleDragged.GetModuleDatas(),
                 _transformParent);
         }
@@ -62,18 +62,19 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
         }
     }
 
-    private void PlaceModule(PointerEventData eventData)
+    private bool PlaceModule(PointerEventData eventData)
     {
         ModuleImageScript moduleDragged = eventData.pointerDrag.GetComponent<ModuleImageScript>();
+        //See if we have enough scrap to place some modules
         if (!(bool)ScrapManagerDataHandler.SellScrap(moduleDragged.GetModuleDatas().ScrapCost))
         {
             Destroy(GraphPreview?.gameObject);
-            return;
+            return false;
         }
 
         var modulePlaced = _playerModule.PlaceModule(
             Module.CreateMod(
-                PlayerModule.GetNearestPlacementFromMouse(),
+                _transformParent.position,
                 moduleDragged.GetModuleDatas(),
                 _transformParent)
             );
@@ -91,5 +92,6 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
         _currentModule = modulePlaced;
         if(GraphPreview?.gameObject != null)
             Destroy(GraphPreview?.gameObject);
+        return true;
     }
 }

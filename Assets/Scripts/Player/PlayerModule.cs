@@ -22,27 +22,7 @@ public class PlayerModule : MonoBehaviour
         return mousPos;
     }
 
-    public static Vector2 GetNearestPlacementFromMouse()
-    {
-        var nearestPos = Vector2.zero;
-        float minDist = float.MaxValue;
-        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = 0; 
-        foreach (var attach in AttachPoints)
-        {
-            if(attach == null) continue;
-            Vector3 directionToTarget = attach.gameObject.transform.position - mousePos;
-            float dSqrToTarget = directionToTarget.sqrMagnitude;
-            if (dSqrToTarget < minDist)
-            {
-                minDist = dSqrToTarget;
-                nearestPos = attach.gameObject.transform.position;
-            }
-        }
-
-        return nearestPos;
-    }
-
+   
     public static List<Module> GetModules()
     {
         return _modules;
