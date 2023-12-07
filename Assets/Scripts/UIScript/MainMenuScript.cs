@@ -5,6 +5,8 @@ public class MainMenuScript : MonoBehaviour
 {
     public void ChangeScene(int scene)
     {
+        if (scene == 1)
+            GameManager.Instance.ChangeGameState(GameState.BeforeGameStart);
         SceneManager.LoadScene(scene);
     }
 }

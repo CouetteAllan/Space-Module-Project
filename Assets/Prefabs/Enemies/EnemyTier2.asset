@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: EnemyTier2
   m_EditorClassIdentifier: 
   Tier: 2
+  Type: 0
   BaseHealth: 2
   BaseDamage: 2
-  BaseSpeed: 6
+  BaseSpeed: 7
   EnemyPrefab: {fileID: 3491881793978933763, guid: 157e39da7e7816d41a4173605154cae1, type: 3}
-  XPGranted: 10
-  ScrapMetalGranted: 2
+  ProjectilePrefab: {fileID: 0}
+  XPGranted: 15
+  ScrapMetalGranted: 3
