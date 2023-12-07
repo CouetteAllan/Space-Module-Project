@@ -28,6 +28,8 @@ public class GameManager : Singleton<GameManager>
     public uint NextTresholdLevelUp { get; private set; } = 45;
     public PlayerController PlayerController { get; private set; }
 
+    public bool HasShownTutoOnce { get; set; } = false;
+
     private bool _blockXp = false;
 
     private void Start()
