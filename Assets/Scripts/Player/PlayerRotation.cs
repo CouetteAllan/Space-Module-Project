@@ -57,7 +57,7 @@ public class PlayerRotation : MonoBehaviour
         {
             UIManager.Instance.ChangeScrapTab(_inputActions.Player.Rotate.ReadValue<float>() > 0);
         }
-        else*/ if (GameManager.Instance.CurrentState == GameState.InGame)
+        else*/ if (GameManager.Instance.CurrentState == GameState.InGame && !UIManager.Instance.IsScrapShopOpen())
         {
             _rotDir = -_inputActions.Player.Rotate.ReadValue<float>();
             _isRotating = true;

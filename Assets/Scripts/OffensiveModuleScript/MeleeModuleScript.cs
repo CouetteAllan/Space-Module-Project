@@ -60,6 +60,8 @@ public class MeleeModuleScript : BaseOffensiveScript, IDamageSource
             {
                 hittable.TryHit(this, (int)((_baseDamage/ _attackPerSecond) * _statClass.GetStatValue(StatType.Damage)));
             }
+
+
         }
     }
 }

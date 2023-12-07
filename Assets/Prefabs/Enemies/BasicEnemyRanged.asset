@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tier: 1
   Type: 1
-  BaseHealth: 1
+  BaseHealth: 3
   BaseDamage: 1
   BaseSpeed: 6
   EnemyPrefab: {fileID: 3491881793978933763, guid: 1fc77a06de8dd7444bf88f4a2659e015, type: 3}
-  ProjectilePrefab: {fileID: 1360880420624199866, guid: 952a492df03feca4b822f7854d2e2f8c, type: 3}
+  ProjectilePrefab: {fileID: 6528379717689772317, guid: c8ab508b088cecb42bda0726495bc238, type: 3}
   XPGranted: 10
   ScrapMetalGranted: 2

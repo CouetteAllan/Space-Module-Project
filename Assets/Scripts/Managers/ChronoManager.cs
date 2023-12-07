@@ -7,11 +7,14 @@ public class ChronoManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _timerText;
     private float _elapsedTime;
+    private float _timerAnotherEvent = 0.0f;
     private bool _didStart = false;
     private bool _didFireEvent = false;
     private void Start()
     {
         _elapsedTime = 0.0f;
+        _timerAnotherEvent = 0.0f;
+
         GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
     }
 
@@ -35,5 +38,17 @@ public class ChronoManager : MonoBehaviour
             this.TimeElapsed(_elapsedTime);
             _didFireEvent = true;
         }
+
+        if (_didFireEvent)
+        {
+            _timerAnotherEvent += Time.deltaTime;
+            if (_timerAnotherEvent > 40.0f)
+            {
+                _didFireEvent = false;
+                _timerAnotherEvent = 0.0f;
+            }
+
+        }
+
     }
 }

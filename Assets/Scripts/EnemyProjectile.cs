@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class EnemyProjectile : MonoBehaviour, IDamageSource
+public class EnemyProjectile : MonoBehaviour, IDamageSource, IHittable
 {
 
     private Rigidbody2D _rigidbody;
@@ -43,4 +43,8 @@ public class EnemyProjectile : MonoBehaviour, IDamageSource
         }
     }
 
+    public void TryHit(IDamageSource source, int damage)
+    {
+        Destroy(gameObject);
+    }
 }

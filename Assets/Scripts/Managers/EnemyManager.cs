@@ -21,14 +21,16 @@ public class EnemyManager : MonoBehaviour
 
     private void OnTimeElapsed(float elapsedTime)
     {
-        OnSpawnEnemy(_spawns[0].transform.position, _enemyDatas[2]);
+        OnSpawnEnemy(_spawns[0].transform.position, _enemyDatas[3]);
         Debug.Log("Did spawn elite enemy");
         //Spawn elite enemy, wave etc...
         foreach (var spawner in _spawns)
         {
-            OnSpawnEnemy(spawner.transform.position, _enemyDatas[0]);
-            OnSpawnEnemy(spawner.transform.position, _enemyDatas[0]);
-            OnSpawnEnemy(spawner.transform.position, _enemyDatas[0]);
+            OnSpawnEnemy(spawner.transform.position, _enemyDatas[1]);
+            OnSpawnEnemy(spawner.transform.position, _enemyDatas[1]);
+            OnSpawnEnemy(spawner.transform.position, _enemyDatas[1]);
+            OnSpawnEnemy(spawner.transform.position, _enemyDatas[1]);
+            OnSpawnEnemy(spawner.transform.position, _enemyDatas[1]);
 
         }
 
@@ -40,7 +42,7 @@ public class EnemyManager : MonoBehaviour
         if (GameManager.Instance.CurrentLevel < 12)
             return _enemyDatas[0];
         else
-            return _enemyDatas[1];
+            return _enemyDatas[2];
     }
 
     private void EnemyScript_OnDeath(object enemy, EnemyScript.EnemyStatsOnDeath e)
