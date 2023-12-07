@@ -23,3 +23,9 @@ public interface IOffensiveModule
 {
     public void Fire(bool firstProjectile, Quaternion currentRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success);
 }
+
+public interface IEnemyBehaviour
+{
+    public void DoMovement(PlayerController player, bool isStopped = false);
+    public void DoAttack(PlayerController player);
+}

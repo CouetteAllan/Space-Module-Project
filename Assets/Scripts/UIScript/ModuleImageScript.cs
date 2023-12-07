@@ -11,6 +11,7 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     [SerializeField] private ModuleDatas _moduleDatas;
     [SerializeField] private TextMeshProUGUI _description;
+    [SerializeField] private GameObject _highlight;
     private RectTransform _rectTransform;
     private CanvasGroup _canvasGroup;
     private Image _image;
@@ -80,10 +81,13 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
     public void OnPointerEnter(PointerEventData eventData)
     {
         TooltipScript.ShowTooltip_Static(_moduleDatas.ModuleName);
+        _highlight.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         TooltipScript.HideTooltip_Static();
+        _highlight.SetActive(false);
+
     }
 }
