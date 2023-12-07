@@ -72,7 +72,7 @@ namespace Rayqdr.Input
                     ""id"": ""501d69b4-a290-408d-ba31-bd2ec0c3ab97"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""NormalizeVector2"",
                     ""groups"": """",
                     ""action"": ""Move"",
                     ""isComposite"": true,
