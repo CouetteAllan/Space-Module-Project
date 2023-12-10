@@ -18,6 +18,10 @@ public interface IObstacle : IHittable
 
 }
 
+public interface IGatherScrap
+{
+    public void GatherScrapMetal(int value);
+}
 
 public interface IOffensiveModule
 {

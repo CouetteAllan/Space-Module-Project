@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using System;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IGatherScrap
 {
     [SerializeField] private GameObject _explosionParticles;
     [SerializeField] private SpriteRenderer _graph;

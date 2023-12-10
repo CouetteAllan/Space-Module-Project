@@ -4,7 +4,7 @@ using UnityEngine;
 using CodeMonkey.Utils;
 using System;
 
-public class Module : MonoBehaviour
+public class Module : MonoBehaviour, IGatherScrap
 {
     public static event Action<Module> OnModuleDestroyed;
 
@@ -204,5 +204,10 @@ public class Module : MonoBehaviour
             Gizmos.DrawWireSphere(t.position, 1.5f);
         }
         
+    }
+
+    public void GatherScrapMetal(int value)
+    {
+        ScrapManagerDataHandler.PickUpScrap(value);
     }
 }

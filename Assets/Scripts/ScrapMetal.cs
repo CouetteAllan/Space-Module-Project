@@ -8,12 +8,14 @@ public class ScrapMetal : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.TryGetComponent<PlayerController>(out PlayerController player))
+        if(collision.TryGetComponent(out IGatherScrap player))
         {
             player.GatherScrapMetal(_value);
             Destroy(this.gameObject);
         }
     }
+
+    
 
     public void SetScrapValue(int value)
     {
