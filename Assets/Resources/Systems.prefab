@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isPersistant: 0
-  _virtualCamera: {fileID: 0}
 --- !u!1 &5611231144111178066
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,6 +135,14 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 6a73e31dd4539b643a4e2b97bba62d7a, type: 3}
     output: {fileID: 5676675339829177356, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
     volume: 0.617
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Cancel
+    clip: {fileID: 8300000, guid: fd7d48497e7b3034fb24942d26ce1e5f, type: 3}
+    output: {fileID: 5676675339829177356, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
+    volume: 0.585
     pitch: 0
     loop: 0
     playOnAwake: 0

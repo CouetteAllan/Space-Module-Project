@@ -11,6 +11,7 @@ public class UIManager : Singleton<UIManager>
     public static event Action<bool> OnToggleReplaceModule;
     [Header("Module Shop")]
     [SerializeField] private GameObject _moduleShop;
+    [SerializeField] private GameObject _skipButton;
 
     [Header("Scrap Shop")]
     [SerializeField] private GameObject _scrapShop;
@@ -36,6 +37,7 @@ public class UIManager : Singleton<UIManager>
         _openScrapShopTxT.SetActive(true);
         _scrapShop.SetActive(false);
         _openScrapShopTxT.SetActive(false);
+        _skipButton.SetActive(false);
 
     }
 
@@ -68,14 +70,18 @@ public class UIManager : Singleton<UIManager>
     public void OpenShop()
     {
 
-        if(GameManager.Instance.CurrentLevel != 1)
+        if (GameManager.Instance.CurrentLevel != 1)
         {
-            foreach (var moduleImage in  _moduleImageScripts)
+            foreach (var moduleImage in _moduleImageScripts)
             {
                 moduleImage.SetModuleDatas(ModuleManager.Instance.GetRandomModuleData());
             }
+            _skipButton.SetActive(true);
 
         }
+        else
+            _skipButton.SetActive(false);
+
         _moduleShop.SetActive(true);
         _openScrapShopTxT.SetActive(true);
         if((bool)ScrapManagerDataHandler.AbleToBuyScrap())
@@ -189,6 +195,11 @@ public class UIManager : Singleton<UIManager>
         GameManager.Instance.ChangeGameState(GameState.InGame);
     }
 
+    public void SkipLevelUp()
+    {
+        ScrapManagerDataHandler.PickUpScrap(20);
+        GameManager.Instance.CloseShop();
+    }
 
     public bool IsScrapShopOpen() => _scrapShop.activeSelf;
 }

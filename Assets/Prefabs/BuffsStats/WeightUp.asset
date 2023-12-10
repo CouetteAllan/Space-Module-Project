@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Stat:
     _name: Weight
-    _baseValue: 50
+    _baseValue: 100
     _type: 6
   Type: 0

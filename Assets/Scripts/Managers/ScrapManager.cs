@@ -39,7 +39,7 @@ public class ScrapManager : MonoBehaviour
         if (Utils.RollChance(chance: .4f)) //40% chances to drop scrap metal
         {
             var newScrap = SpawnScrapMetal(enemyStats.finalPos);
-            newScrap.value = enemyStats.tier;
+            newScrap.SetScrapValue(enemyStats.scrapGranted);
         }
     }
 

@@ -32,8 +32,8 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
         {
             if (PlaceModule(eventData))
             {
-                _currentModule.RemoveModule();
-                Destroy(_currentModule.gameObject);
+                /*_currentModule.RemoveModule();
+                Destroy(_currentModule.gameObject);*/
             }
 
         }
@@ -69,6 +69,7 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
         if (!(bool)ScrapManagerDataHandler.SellScrap(moduleDragged.GetModuleDatas().ScrapCost))
         {
             Destroy(GraphPreview?.gameObject);
+            SoundManager.Instance.Play("Cancel");
             return false;
         }
 
@@ -89,6 +90,7 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
         if (modulePlaced.GetModuleClass() != Module.ModuleClass.Placement && modulePlaced.GetModuleClass() != Module.ModuleClass.StatBuff)
             GameManager.Instance.CloseShop();
 
+        //Modify this to enable fusion
         _currentModule = modulePlaced;
         if(GraphPreview?.gameObject != null)
             Destroy(GraphPreview?.gameObject);
