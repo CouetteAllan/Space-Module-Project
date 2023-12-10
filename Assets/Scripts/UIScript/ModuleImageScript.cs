@@ -20,6 +20,9 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
     private Vector3 _startPosition;
     private Vector3 _startLocalPosition;
 
+    private int _lastRegisterScrap = 0;
+    private float _currentAlpha = 1.0f;
+
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
@@ -35,7 +38,16 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
     private void Start()
     {
         _startPosition = _rectTransform.anchoredPosition;
+        ScrapManagerDataHandler.OnUpdateScrap += OnUpdateScrap;
 
+    }
+
+    private void OnUpdateScrap(int scrapLeft)
+    {
+        //Grey image if can purchase
+        _lastRegisterScrap = scrapLeft;
+        _canvasGroup.alpha = CanPurchase() ? 1.0f : 0.5f;
+        _currentAlpha = _canvasGroup.alpha;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -60,7 +72,7 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
     public void ResetPos()
     {
         _canvasGroup.blocksRaycasts = true;
-        _canvasGroup.alpha = 1.0f;
+        _canvasGroup.alpha = _currentAlpha;
         _rectTransform.anchoredPosition = _startPosition;
         _rectTransform.pivot = new Vector2(0.5f, 0.5f);
         _layoutElement.ignoreLayout = false;
@@ -88,6 +100,17 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
     {
         TooltipScript.HideTooltip_Static();
         _highlight.SetActive(false);
+
+    }
+
+    private bool CanPurchase()
+    {
+        return _lastRegisterScrap >= _moduleDatas.ScrapCost;
+    }
+
+    private void OnDestroy()
+    {
+        ScrapManagerDataHandler.OnUpdateScrap -= OnUpdateScrap;
 
     }
 }
