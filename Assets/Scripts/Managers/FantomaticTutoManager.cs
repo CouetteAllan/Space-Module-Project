@@ -8,12 +8,13 @@ public class FantomaticTutoManager : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.OnGameStateChanged += OnGameStateChanged;
+        FantomaticTutoManagerDataHandler.OnShowTuto += OnShowTuto;
+
     }
 
-    private void OnGameStateChanged(GameState newState)
+    private void OnShowTuto(bool showTuto)
     {
-        if(newState == GameState.BeforeGameStart && !GameManager.Instance.HasShownTutoOnce)
+        if (!GameManager.Instance.HasShownTutoOnce)
         {
             GameManager.Instance.HasShownTutoOnce = true;
             //Show anim of tuto
@@ -21,10 +22,17 @@ public class FantomaticTutoManager : MonoBehaviour
         }
     }
 
+
     IEnumerator TutoCoroutine()
     {
         _tutoAnim.SetTrigger("Fantom");
         yield return new WaitUntil(() => GameManager.Instance.CurrentState == GameState.InGame);
         Destroy(_tutoAnim.gameObject);
+    }
+
+    private void OnDisable()
+    {
+        FantomaticTutoManagerDataHandler.OnShowTuto -= OnShowTuto;
+
     }
 }

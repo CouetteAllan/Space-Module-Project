@@ -38,8 +38,15 @@ public class GameManager : Singleton<GameManager>
             ChangeGameState(GameState.MainMenu);
         else
             ChangeGameState(GameState.BeforeGameStart);
+
+        SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
     }
 
+    private void SceneManager_activeSceneChanged(Scene arg0, Scene arg1)
+    {
+        if (arg1.buildIndex == 1)
+            ChangeGameState(GameState.StartGame);
+    }
 
     public void ChangeGameState(GameState newState)
     {
@@ -54,12 +61,12 @@ public class GameManager : Singleton<GameManager>
                 break;
 
             case GameState.BeforeGameStart:
-                /*if (_virtualCamera == null)
-                    _virtualCamera = GameObject.FindGameObjectWithTag("Camera").GetComponent<CinemachineVirtualCamera>();*/
+                //FantomaticTutoManagerDataHandler.ShowTuto(true);
                 break;
 
             case GameState.StartGame:
                 Time.timeScale = 1.0f;
+                FantomaticTutoManagerDataHandler.ShowTuto(true);
                 InitGame();
                 OpenShop();
                 
@@ -147,11 +154,6 @@ public class GameManager : Singleton<GameManager>
             _blockXp = !_blockXp;
         }
     }
-/*
-    public void ZoomIn()
-    {
-        _virtualCamera.m_Lens.OrthographicSize -= 1.5f;
-    }*/
 
     IEnumerator SlowMoCoroutine(bool reverse)
     {

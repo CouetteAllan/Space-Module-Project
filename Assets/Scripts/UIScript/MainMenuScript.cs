@@ -9,4 +9,9 @@ public class MainMenuScript : MonoBehaviour
             GameManager.Instance.ChangeGameState(GameState.BeforeGameStart);
         SceneManager.LoadScene(scene);
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
