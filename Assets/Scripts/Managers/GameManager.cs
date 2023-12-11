@@ -37,7 +37,7 @@ public class GameManager : Singleton<GameManager>
         if (SceneManager.GetActiveScene().name == "MainMenu")
             ChangeGameState(GameState.MainMenu);
         else
-            ChangeGameState(GameState.BeforeGameStart);
+            ChangeGameState(GameState.StartGame);
 
         SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
     }
