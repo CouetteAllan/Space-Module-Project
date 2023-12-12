@@ -22,6 +22,11 @@ public class ScrapManager : MonoBehaviour
         this.UpdateScrap(_numberOfScrap);
     }
 
+    private void Start()
+    {
+        this.UpdateScrap(_numberOfScrap);
+    }
+
     private bool AbleToBuyScrap()
     {
         return _numberOfScrap >= 5;
@@ -38,8 +43,11 @@ public class ScrapManager : MonoBehaviour
     {
         if (Utils.RollChance(chance: .4f)) //40% chances to drop scrap metal
         {
-            var newScrap = SpawnScrapMetal(enemyStats.finalPos);
-            newScrap.SetScrapValue(enemyStats.scrapGranted);
+            for (int i = 0; i < enemyStats.scrapGranted; i++)
+            {
+                var newScrap = SpawnScrapMetal(enemyStats.finalPos + (Vector2)UtilsClass.GetRandomDir() * 0.5f);
+                newScrap.SetScrapValue(1); //to change
+            }
         }
     }
 

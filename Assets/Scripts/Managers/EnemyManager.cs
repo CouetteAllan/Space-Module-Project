@@ -65,5 +65,8 @@ public class EnemyManager : MonoBehaviour
         EnemyManagerDataHandler.OnSpawnEnemy -= OnSpawnEnemy;
         EnemyManagerDataHandler.OnGetEnemyDatas -= OnGetEnemyDatas;
         EnemyScript.OnDeath -= EnemyScript_OnDeath;
+
+        ChronoManagerDataHandler.OnTimeElapsed -= OnTimeElapsed;
+
     }
 }

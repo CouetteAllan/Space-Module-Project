@@ -35,7 +35,12 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         _startLocalPosition = _rectTransform.localPosition;
         _image.sprite = _moduleDatas.ModuleSprite;
         _description.text = _moduleDatas.ModuleDescription;
+        UIManager.OnCloseScrapShop += OnCloseScrapShop;
+    }
 
+    private void OnCloseScrapShop()
+    {
+        ResetPos();
     }
 
     private void Start()
@@ -120,6 +125,7 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
     private void OnDestroy()
     {
         ScrapManagerDataHandler.OnUpdateScrap -= OnUpdateScrap;
+        UIManager.OnCloseScrapShop -= OnCloseScrapShop;
 
     }
 }

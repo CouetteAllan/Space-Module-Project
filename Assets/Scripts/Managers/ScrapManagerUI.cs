@@ -17,7 +17,7 @@ public class ScrapManagerUI : MonoBehaviour
         ScrapManagerDataHandler.OnUpdateScrap += OnUpdateScrapUI;
         _scrapText.text = "Fe: 0";
         _baseFontSize = _scrapText.fontSize;
-
+        
     }
 
     private void OnUpdateScrapUI(int updatedValue)

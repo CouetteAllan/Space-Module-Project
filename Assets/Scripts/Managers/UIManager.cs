@@ -9,6 +9,8 @@ public class UIManager : Singleton<UIManager>
 {
     public static bool _toggleReplaceModule = false;
     public static event Action<bool> OnToggleReplaceModule;
+    public static event Action OnCloseScrapShop;
+
     [Header("Module Shop")]
     [SerializeField] private GameObject _moduleShop;
     [SerializeField] private GameObject _skipButton;
@@ -115,7 +117,10 @@ public class UIManager : Singleton<UIManager>
 
             }
             else
+            {
                 Time.timeScale = 1.0f;
+                OnCloseScrapShop?.Invoke();
+            }
         }
         
     }

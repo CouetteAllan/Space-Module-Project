@@ -40,7 +40,7 @@ public class Module : MonoBehaviour, IGatherScrap
             }
             else
             {
-                currentReloadSpeedMultplier /= 1.8f;
+                currentReloadSpeedMultplier /= 1.4f;
                 currentProjectileNumber += 1;
             }
         }

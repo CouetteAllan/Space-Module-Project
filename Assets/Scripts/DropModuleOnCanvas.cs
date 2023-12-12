@@ -35,10 +35,10 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
         }
         else if(moduleDragged.GetModuleDatas().OffensiveModuleDatas.Type == _currentModule.OffensiveType)
         {
-            //fuse module
+            //lvl up module
             moduleDragged.ResetPos();
 
-            SoundManager.Instance.Play("Reload");
+            SoundManager.Instance.Play("Reload"); //instead play lvl up module
 
             _currentModule.LevelUpModule();
             if (_currentModule.GetModuleClass() != Module.ModuleClass.Placement && _currentModule.GetModuleClass() != Module.ModuleClass.StatBuff)
@@ -67,6 +67,9 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
                 moduleDragged.GetModuleDatas(),
                 _transformParent);
         }
+
+        if (_currentModule == null)
+            return;
 
         if (moduleDragged.GetModuleDatas().OffensiveModuleDatas.Type == _currentModule?.OffensiveType)
         {
