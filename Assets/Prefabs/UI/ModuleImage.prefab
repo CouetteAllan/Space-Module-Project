@@ -231,6 +231,7 @@ MonoBehaviour:
   _moduleDatas: {fileID: 11400000, guid: fd31109291390eb4eb92859d671cab93, type: 2}
   _description: {fileID: 2674026077201768263}
   _highlight: {fileID: 5789227521466993062}
+  _textObject: {fileID: 3597789792232521370}
 --- !u!225 &3316655932920586863
 CanvasGroup:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -12,6 +13,7 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
     [SerializeField] private ModuleDatas _moduleDatas;
     [SerializeField] private TextMeshProUGUI _description;
     [SerializeField] private GameObject _highlight;
+    [SerializeField] private GameObject _textObject;
     private RectTransform _rectTransform;
     private CanvasGroup _canvasGroup;
     private Image _image;
@@ -19,6 +21,7 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     private Vector3 _startPosition;
     private Vector3 _startLocalPosition;
+    private Vector3 _startLocalScale;
 
     private int _lastRegisterScrap = 0;
     private float _currentAlpha = 1.0f;
@@ -38,6 +41,7 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
     private void Start()
     {
         _startPosition = _rectTransform.anchoredPosition;
+        _startLocalScale = _rectTransform.localScale;
         ScrapManagerDataHandler.OnUpdateScrap += OnUpdateScrap;
 
     }
@@ -53,9 +57,12 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
     public void OnBeginDrag(PointerEventData eventData)
     {
         _canvasGroup.blocksRaycasts = false;
-        _canvasGroup.alpha = 0.3f;
+        _textObject.SetActive(false);
+        this._rectTransform.localScale /= 2;
+        _canvasGroup.alpha = 0.7f;
         OnStartDragModule?.Invoke();
         _layoutElement.ignoreLayout = true;
+        _rectTransform.position = eventData.position;
     }
 
     public void OnDrag(PointerEventData pointerData)
@@ -76,6 +83,8 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         _rectTransform.anchoredPosition = _startPosition;
         _rectTransform.pivot = new Vector2(0.5f, 0.5f);
         _layoutElement.ignoreLayout = false;
+        _rectTransform.localScale = _startLocalScale;
+        _textObject.SetActive(true);
     }
 
     public ModuleDatas GetModuleDatas()
