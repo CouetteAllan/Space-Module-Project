@@ -117,6 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _transformParent: {fileID: 6608745954989356425}
   _attachPointScript: {fileID: 2886424993461846436}
+  _preview: {fileID: 1379488332478424156, guid: 6408283ebd8f8a043ae248ea5c1eca28, type: 3}
 --- !u!222 &2164173892284214811
 CanvasRenderer:
   m_ObjectHideFlags: 0

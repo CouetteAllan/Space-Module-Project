@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RocketModuleScript : BaseOffensiveScript
 {
-    public RocketModuleScript(StatClass statClass, ModuleDatas datas, float baseDamage) : base(statClass, datas, baseDamage)
+    public RocketModuleScript(StatClass statClass, ModuleDatas datas, Module.CurrentModuleStats currentModuleStats) : base(statClass, datas, currentModuleStats)
     {
     }
 
@@ -17,7 +17,7 @@ public class RocketModuleScript : BaseOffensiveScript
             Vector3 position = firstProjectile ? t.position : t.position + UtilsClass.GetRandomDir() * Random.Range(0.1f, 0.6f);
 
             var projectile = Object.Instantiate(_datas.ProjectilePrefab, position, currentRotation).GetComponent<ProjectileScript>();
-            float projectileDamage = _statClass.GetStatValue(StatType.Damage) * _baseDamage;
+            float projectileDamage = _statClass.GetStatValue(StatType.Damage) * _currentModuleStats.currentDamage;
             projectile.Launch((t.position - currentModulePosition).normalized, 3.0f, projectileDamage);
 
         }

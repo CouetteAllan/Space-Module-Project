@@ -11,6 +11,7 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
 
     [SerializeField] private Transform _transformParent;
     [SerializeField] private AttachPointScript _attachPointScript;
+    [SerializeField] private PreviewLvlUp _preview;
     private PlayerModule _playerModule;
     private Module _currentModule;
     
@@ -22,19 +23,30 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
             _playerModule = GameManager.Instance.PlayerController.GetPlayerModule();
     }
     public void OnDrop(PointerEventData eventData)
-    {   
-        if(eventData.pointerDrag != null && _attachPointScript.IsActive)
+    {
+        if (eventData.pointerDrag == null)
+            return;
+
+        ModuleImageScript moduleDragged = eventData.pointerDrag.GetComponent<ModuleImageScript>();
+
+        if (_attachPointScript.IsActive)
         {
-            PlaceModule(eventData);
-            
+            PlaceModule(moduleDragged);
         }
-        else if(eventData.pointerDrag != null && UIManager._toggleReplaceModule)
+        else if(moduleDragged.GetModuleDatas().OffensiveModuleDatas.Type == _currentModule.OffensiveType)
         {
-            if (PlaceModule(eventData))
-            {
-                /*_currentModule.RemoveModule();
-                Destroy(_currentModule.gameObject);*/
-            }
+            //fuse module
+            moduleDragged.ResetPos();
+
+            SoundManager.Instance.Play("Reload");
+
+            _currentModule.LevelUpModule();
+            if (_currentModule.GetModuleClass() != Module.ModuleClass.Placement && _currentModule.GetModuleClass() != Module.ModuleClass.StatBuff)
+                GameManager.Instance.CloseShop();
+            if (GraphPreview?.gameObject != null)
+                Destroy(GraphPreview?.gameObject);
+
+            OnDropModule?.Invoke(_attachPointScript);
 
         }
     }
@@ -42,14 +54,26 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
     public void OnPointerEnter(PointerEventData eventData)
     {
         //Afficher preview du prefab
-        if (eventData.pointerDrag != null && _attachPointScript.IsActive)
+        if (eventData.pointerDrag == null)
+            return;
+
+        ModuleImageScript moduleDragged = eventData.pointerDrag.GetComponent<ModuleImageScript>();
+
+        if (_attachPointScript.IsActive)
         {
-            ModuleImageScript moduleDragged = eventData.pointerDrag.GetComponent<ModuleImageScript>();
 
             GraphPreview = Module.CreateModPreview(
                 _transformParent.position,
                 moduleDragged.GetModuleDatas(),
                 _transformParent);
+        }
+
+        if (moduleDragged.GetModuleDatas().OffensiveModuleDatas.Type == _currentModule?.OffensiveType)
+        {
+            //Show if we can fuse modules
+            var currentPreview = PreviewLvlUp.InstantiateTextObject(_currentModule.transform.position + _currentModule.transform.up, _preview);
+            GraphPreview = currentPreview.transform;
+            currentPreview.SetText("Lvl " + _currentModule.CurrentLevel);
         }
     }
 
@@ -62,9 +86,8 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
         }
     }
 
-    private bool PlaceModule(PointerEventData eventData)
+    private bool PlaceModule(ModuleImageScript moduleDragged)
     {
-        ModuleImageScript moduleDragged = eventData.pointerDrag.GetComponent<ModuleImageScript>();
         //See if we have enough scrap to place some modules
         if (!(bool)ScrapManagerDataHandler.SellScrap(moduleDragged.GetModuleDatas().ScrapCost))
         {
@@ -90,7 +113,6 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
         if (modulePlaced.GetModuleClass() != Module.ModuleClass.Placement && modulePlaced.GetModuleClass() != Module.ModuleClass.StatBuff)
             GameManager.Instance.CloseShop();
 
-        //Modify this to enable fusion
         _currentModule = modulePlaced;
         if(GraphPreview?.gameObject != null)
             Destroy(GraphPreview?.gameObject);

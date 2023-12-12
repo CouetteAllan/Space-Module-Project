@@ -10,6 +10,7 @@ public class FXManager : Singleton<FXManager>
 {
     [SerializeField] private GameObject _explosionFX;
     [SerializeField] private GameObject _blowFX;
+    [SerializeField] private GameObject _lvlUpFX;
     [SerializeField] private VolumeProfile _baseProfile;
     [SerializeField] private VolumeProfile _replaceModuleProfile;
     [SerializeField] private CinemachineVolumeSettings _volumeSettings;
@@ -30,13 +31,16 @@ public class FXManager : Singleton<FXManager>
         Instantiate(_explosionFX,mod.transform.position,Quaternion.identity);
     }
 
-    public void PlayEffect(string effect, Vector2 pos)
+    public void PlayEffect(string effect, Vector2 pos, Quaternion rotation, Transform transformParent = null)
     {
         switch(effect)
         {
             case "rocketBlow":
                 Instantiate(_blowFX,pos,Quaternion.identity);
                 SoundManager.Instance.Play("Rocket");
+                break;
+            case "lvlup":
+                Instantiate(_lvlUpFX, pos, rotation,transformParent);
                 break;
         }
     }

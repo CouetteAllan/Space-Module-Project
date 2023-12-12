@@ -7,7 +7,7 @@ public class DroneModuleScript : BaseOffensiveScript
 {
     private Transform _moduleTransform;
 
-    public DroneModuleScript(StatClass statClass, ModuleDatas datas, float baseDamage, Transform moduleTransform) : base(statClass, datas, baseDamage)
+    public DroneModuleScript(StatClass statClass, ModuleDatas datas, Module.CurrentModuleStats currentModuleStats, Transform moduleTransform) : base(statClass, datas, currentModuleStats)
     {
         _moduleTransform = moduleTransform;
     }
@@ -20,7 +20,7 @@ public class DroneModuleScript : BaseOffensiveScript
             Vector3 position = firstProjectile ? t.position : t.position + UtilsClass.GetRandomDir() * Random.Range(0.1f, 0.6f);
 
             var projectile = Object.Instantiate(_datas.ProjectilePrefab, position, currentRotation, _moduleTransform).GetComponentInChildren<ProjectileScript>();
-            float projectileDamage = _statClass.GetStatValue(StatType.Damage) * _baseDamage;
+            float projectileDamage = _statClass.GetStatValue(StatType.Damage) * _currentModuleStats.currentDamage;
             projectile.Launch((t.position - currentModulePosition).normalized, 10.0f, projectileDamage,t);
         }
     }

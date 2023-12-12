@@ -63,7 +63,7 @@ public class ProjectileScript : MonoBehaviour, IDamageSource
             }
         }
         //Play particles
-        FXManager.Instance.PlayEffect("rocketBlow", this.transform.position);
+        FXManager.Instance.PlayEffect("rocketBlow", this.transform.position,Quaternion.identity);
         Destroy(gameObject);
     }
 

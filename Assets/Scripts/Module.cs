@@ -7,6 +7,7 @@ using System;
 public class Module : MonoBehaviour, IGatherScrap
 {
     public static event Action<Module> OnModuleDestroyed;
+    public static event Action<Module> OnModuleLevelUp;
 
     [SerializeField] private Transform[] _firePoints;
     [SerializeField] private PlayParticle _playParticle;
@@ -22,6 +23,31 @@ public class Module : MonoBehaviour, IGatherScrap
         Placement
     }
 
+    public class CurrentModuleStats
+    {
+        public float currentReloadSpeedMultplier;
+        public float currentDamage;
+        public float currentProjectileNumber;
+        public float currentWeight;
+
+        public void IncreaseStats(int currentLevel)
+        {
+            if(currentLevel < 4)
+            {
+                currentReloadSpeedMultplier /= 1.2f;
+                currentDamage += 3;
+                
+            }
+            else
+            {
+                currentReloadSpeedMultplier /= 1.8f;
+                currentProjectileNumber += 1;
+            }
+        }
+    }
+
+    private CurrentModuleStats _currentModuleStats = default;
+
     private ModuleClass _moduleClass;
     private ModuleDatas _data;
     private AttachPointScript _attachPoint;
@@ -29,6 +55,12 @@ public class Module : MonoBehaviour, IGatherScrap
     private IOffensiveModule _offensiveStrategy;
     private SingleStat _singleStatApplied;
     private HealthScript _healthScript;
+
+    private OffensiveModuleDatas.OffensiveType _offensiveType = OffensiveModuleDatas.OffensiveType.None;
+    public OffensiveModuleDatas.OffensiveType OffensiveType => _offensiveType;
+
+    private int _currentLevel = 1;
+    public int CurrentLevel => _currentLevel;
 
     public static Module CreateMod(Vector2 position, ModuleDatas datas, Transform parentTransform)
     {
@@ -54,13 +86,22 @@ public class Module : MonoBehaviour, IGatherScrap
         _playerStatClass = StatSystem.Instance.PlayerStat;
 
 
+        
+        _currentLevel = 1;
         switch (_moduleClass)
         {
             case ModuleClass.Offense:
                 TimeTickSystemDataHandler.OnTickFaster += TimeTickSystemDataHandler_OnTick;
+                _currentModuleStats = new CurrentModuleStats
+                {
+                    currentDamage = _data.OffensiveModuleDatas.BaseModuleDamage,
+                    currentReloadSpeedMultplier = _data.OffensiveModuleDatas.AttackSpeedMultiplier,
+                    currentWeight = (int)_data.Weight,
+                };
 
-                //_offensiveStrategy = new CanonModuleScript(_playerStatClass,_data); 
-                _offensiveStrategy = _data.OffensiveModuleDatas.GetOffensiveStrategy(_playerStatClass, _data, this.transform); 
+                _offensiveStrategy = _data.OffensiveModuleDatas.GetOffensiveStrategy(_playerStatClass, _data, this.transform,_currentModuleStats);
+                _offensiveType = _data.OffensiveModuleDatas.Type;
+                
                 break;
             case ModuleClass.Defense:
                 break;
@@ -87,6 +128,14 @@ public class Module : MonoBehaviour, IGatherScrap
         RemoveModule();
         Destroy(gameObject);
         _healthScript.OnDeath -= OnModuleBranchDestroyed;
+    }
+
+    public void LevelUpModule()
+    {
+        OnModuleLevelUp?.Invoke(this);
+        _currentLevel++;
+        FXManager.Instance.PlayEffect("lvlup",this.transform.position,this.transform.rotation, this.transform);
+        _currentModuleStats.IncreaseStats(_currentLevel);
     }
 
 
@@ -143,7 +192,7 @@ public class Module : MonoBehaviour, IGatherScrap
 
     private int GetTickNeeded()
     {
-        float maxTick = 20 * _data.OffensiveModuleDatas.AttackSpeedMultiplier;
+        float maxTick = 20 * _currentModuleStats.currentReloadSpeedMultplier;
         float n = maxTick / _playerStatClass.GetStatValue(StatType.ReloadSpeed);
         int i = Mathf.Clamp(Mathf.CeilToInt(n), 1, Mathf.CeilToInt(maxTick));
         return i;

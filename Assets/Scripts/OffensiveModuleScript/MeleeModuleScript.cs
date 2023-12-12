@@ -11,7 +11,7 @@ public class MeleeModuleScript : BaseOffensiveScript, IDamageSource
     private int _attackPerSecond = 6;
     private bool _isActive = false;
 
-    public MeleeModuleScript(StatClass statClass, ModuleDatas datas, float baseDamage, Transform moduleTransform) : base(statClass, datas, baseDamage)
+    public MeleeModuleScript(StatClass statClass, ModuleDatas datas, Module.CurrentModuleStats currentModuleStats, Transform moduleTransform) : base(statClass, datas, currentModuleStats)
     {
         _moduleTransform = moduleTransform;
     }
@@ -58,7 +58,7 @@ public class MeleeModuleScript : BaseOffensiveScript, IDamageSource
         {
             if(enemy.TryGetComponent(out IHittable hittable))
             {
-                hittable.TryHit(this, (int)((_baseDamage/ _attackPerSecond) * _statClass.GetStatValue(StatType.Damage)));
+                hittable.TryHit(this, (int)((_currentModuleStats.currentDamage / _attackPerSecond) * _statClass.GetStatValue(StatType.Damage)));
             }
 
 

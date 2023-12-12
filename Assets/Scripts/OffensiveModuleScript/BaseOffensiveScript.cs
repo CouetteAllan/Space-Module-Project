@@ -6,14 +6,14 @@ public abstract class BaseOffensiveScript: IOffensiveModule
 {
     protected StatClass _statClass;
     protected ModuleDatas _datas;
-    protected float _baseDamage;
+    protected Module.CurrentModuleStats _currentModuleStats;
 
 
-    public BaseOffensiveScript(StatClass statClass, ModuleDatas datas, float baseDamage)
+    public BaseOffensiveScript(StatClass statClass, ModuleDatas datas, Module.CurrentModuleStats currentModuleStats)
     {
         _statClass = statClass;
         _datas = datas;
-        _baseDamage = baseDamage;
+        _currentModuleStats = currentModuleStats;
     }
 
     public abstract void Fire(bool firstProjectile, Quaternion currentRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success);

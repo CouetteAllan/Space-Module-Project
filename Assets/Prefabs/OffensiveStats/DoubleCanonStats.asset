@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BaseModuleDamage: 10
   AttackSpeedMultiplier: 1
-  Type: 0
+  Type: 1
