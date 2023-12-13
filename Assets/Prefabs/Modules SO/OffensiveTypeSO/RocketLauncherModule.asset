@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: RocketLauncherModule
   m_EditorClassIdentifier: 
   ModuleName: Rocket Launcher
-  ModuleDescription: Fire a single rocket that deals massive damage in an area
+  ModuleDescription: 'Fire a single rocket that deals massive damage in an area <color=red>
+    weight: 8t </color>'
   ModuleClass: 0
   ModuleSprite: {fileID: 21300000, guid: 4d6da13e7b6604845bf5bb06bcfcc028, type: 3}
   ModulePrefab: {fileID: 1310436615563555467, guid: 5702cd3ce720d36489fd5ead3a0b9087, type: 3}
   Weight: 40
   ScrapCost: 0
+  Health: 20
   ProjectilePrefab: {fileID: 332420518921955079, guid: a33c7f7dd3d1a14449d218ee5eafbea2, type: 3}
   OffensiveModuleDatas: {fileID: 11400000, guid: 5aa2902f9180c5d4283a028a218654c2, type: 2}
   BuffDatas: {fileID: 0}

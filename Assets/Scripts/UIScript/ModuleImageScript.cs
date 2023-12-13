@@ -89,7 +89,8 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         _rectTransform.pivot = new Vector2(0.5f, 0.5f);
         _layoutElement.ignoreLayout = false;
         _rectTransform.localScale = _startLocalScale;
-        _textObject.SetActive(true);
+        if(_textObject != null)
+            _textObject.SetActive(true);
     }
 
     public ModuleDatas GetModuleDatas()

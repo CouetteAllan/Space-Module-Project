@@ -58,6 +58,7 @@ public class GameManager : Singleton<GameManager>
         {
             case GameState.MainMenu:
                 Time.timeScale = 1.0f;
+                Cursor.visible = true;
                 break;
 
             case GameState.BeforeGameStart:
@@ -74,11 +75,13 @@ public class GameManager : Singleton<GameManager>
             case GameState.InGame:
                 Time.timeScale = 1.0f;
                 Time.fixedDeltaTime = Time.timeScale * 0.01f;
+                Cursor.visible = false;
                 break;
             case GameState.GameOver:
                 Time.timeScale = 0.2f;
                 Time.fixedDeltaTime = Time.timeScale * 0.01f;
                 //faire des trucs de game over
+                Cursor.visible = true;
                 break;
             case GameState.ShopState:
                 StartCoroutine(SlowMoCoroutine(false));
@@ -86,6 +89,7 @@ public class GameManager : Singleton<GameManager>
                 break;
             case GameState.Pause:
                 StartCoroutine(SlowMoCoroutine(false));
+                Cursor.visible = true;
                 break;
         }
         OnGameStateChanged?.Invoke(newState);
@@ -126,6 +130,7 @@ public class GameManager : Singleton<GameManager>
     public void OpenShop()
     {
         UIManager.Instance.OpenShop();
+        Cursor.visible = true;
     }
 
     public void CloseShop()
