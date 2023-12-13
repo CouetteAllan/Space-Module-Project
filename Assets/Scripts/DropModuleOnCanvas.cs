@@ -105,7 +105,8 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
     private bool PlaceModule(ModuleImageScript moduleDragged)
     {
         //See if we have enough scrap to place some modules
-        if (!(bool)ScrapManagerDataHandler.SellScrap(moduleDragged.GetModuleDatas().ScrapCost))
+        StatType statGranted = moduleDragged.GetModuleDatas().BuffDatas != null ? moduleDragged.GetModuleDatas().BuffDatas.GetStat().Type : StatType.Weight;
+        if (!(bool)ScrapManagerDataHandler.SellScrap(moduleDragged.GetCurrentModuleCost(), statGranted))
         {
             Destroy(GraphPreview?.gameObject);
             SoundManager.Instance.Play("Cancel");

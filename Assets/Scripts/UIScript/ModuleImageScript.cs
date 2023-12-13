@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
+using System.Text;
 
 public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -26,6 +27,8 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
     private int _lastRegisterScrap = 0;
     private float _currentAlpha = 1.0f;
 
+    private int _currentPrice = 0;
+
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
@@ -35,7 +38,28 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         _startLocalPosition = _rectTransform.localPosition;
         _image.sprite = _moduleDatas.ModuleSprite;
         _description.text = _moduleDatas.ModuleDescription;
+        _currentPrice = _moduleDatas.ScrapCost;
         UIManager.OnCloseScrapShop += OnCloseScrapShop;
+        if(_moduleDatas.OffensiveModuleDatas == null)
+            ScrapManagerDataHandler.OnSellScrapSuccess += OnSellScrapSuccess;
+    }
+
+    private void OnSellScrapSuccess(StatType buffTypeSold,int nbSold)
+    {
+        if (_moduleDatas.BuffDatas == null)
+            return;
+
+        if (buffTypeSold != _moduleDatas.BuffDatas.GetStat().Type)
+            return;
+
+        _currentPrice += nbSold;
+        //update specific module text
+        string newDesc = _moduleDatas.ModuleDescription;
+        int index = newDesc.IndexOf("Cost");
+        newDesc = newDesc.Remove(index);
+        newDesc = newDesc.Insert(index, $"<color=orange>Cost: {_currentPrice} Fe) </color>");
+        _description.text = newDesc;
+        Debug.Log(newDesc);
     }
 
     private void OnCloseScrapShop()
@@ -98,6 +122,11 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         return _moduleDatas;
     }
 
+    public int GetCurrentModuleCost()
+    {
+        return _currentPrice;
+    }
+
     public void SetModuleDatas(ModuleDatas datas)
     {
         _moduleDatas = datas;
@@ -120,7 +149,7 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     private bool CanPurchase()
     {
-        return _lastRegisterScrap >= _moduleDatas.ScrapCost;
+        return _lastRegisterScrap >= _currentPrice;
     }
 
     private void OnDestroy()

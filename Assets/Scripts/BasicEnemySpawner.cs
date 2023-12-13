@@ -31,7 +31,7 @@ public class BasicEnemySpawner : MonoBehaviour
             case 16:
                 _tickNeed = 6;
                 return;
-            case 24:
+            case 20:
                 _tickNeed = 4;
                 return;
         }
@@ -42,7 +42,7 @@ public class BasicEnemySpawner : MonoBehaviour
         if(tick % _tickNeed == 0)
         {
             _enemyDatas = EnemyManagerDataHandler.GetEnemyDatas();
-            EnemyManagerDataHandler.SpawnEnemy(this.transform.position,_enemyDatas);
+            var newEnemy = EnemyManagerDataHandler.SpawnEnemy(this.transform.position,_enemyDatas);
         }
     }
 

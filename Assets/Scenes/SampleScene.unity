@@ -38185,7 +38185,7 @@ MonoBehaviour:
   - {fileID: 516687576}
   - {fileID: 130838721}
   - {fileID: 689986945}
-  _enemyLimit: 40
+  _enemyLimit: 50
 --- !u!1 &709640201
 GameObject:
   m_ObjectHideFlags: 0
