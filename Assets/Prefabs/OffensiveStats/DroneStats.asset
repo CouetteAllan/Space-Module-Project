@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: DroneStats
   m_EditorClassIdentifier: 
   BaseModuleDamage: 8
-  AttackSpeedMultiplier: 5
+  AttackSpeedMultiplier: 4
   Type: 3

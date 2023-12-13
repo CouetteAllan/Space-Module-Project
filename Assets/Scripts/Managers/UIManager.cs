@@ -142,6 +142,19 @@ public class UIManager : Singleton<UIManager>
         _dots[_scrapIndex].color = Color.white;
     }
 
+    public void ChangeScrapTab(int tab)
+    {
+        if (tab == _scrapIndex)
+            return;
+
+        _scrapTab[_scrapIndex].SetActive(false);
+        _dots[_scrapIndex].color = Color.gray;
+
+        _scrapIndex = tab;
+        _scrapTab[_scrapIndex].SetActive(true);
+        _dots[_scrapIndex].color = Color.white;
+    }
+
     private void ShowGameOverPanel(bool show)
     {
         _gameOverPanel.gameObject.SetActive(show);
