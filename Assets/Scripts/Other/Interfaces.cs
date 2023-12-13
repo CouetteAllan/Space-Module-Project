@@ -23,7 +23,7 @@ public interface IGatherScrap
     public void GatherScrapMetal(int value);
 }
 
-public interface IOffensiveModule
+public interface IStrategyModule
 {
     public void Fire(bool firstProjectile, Quaternion currentRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success);
 }

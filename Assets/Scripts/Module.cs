@@ -19,7 +19,7 @@ public class Module : MonoBehaviour, IGatherScrap
         Offense,
         Defense,
         StatBuff,
-        Other,
+        Heal,
         Placement
     }
 
@@ -42,6 +42,7 @@ public class Module : MonoBehaviour, IGatherScrap
             {
                 currentReloadSpeedMultplier /= 1.4f;
                 currentProjectileNumber += 1;
+                currentWeight += 10;
             }
         }
     }
@@ -52,7 +53,7 @@ public class Module : MonoBehaviour, IGatherScrap
     private ModuleDatas _data;
     private AttachPointScript _attachPoint;
     private StatClass _playerStatClass;
-    private IOffensiveModule _offensiveStrategy;
+    private IStrategyModule _moduleStrategy;
     private SingleStat _singleStatApplied;
     private HealthScript _healthScript;
 
@@ -61,6 +62,8 @@ public class Module : MonoBehaviour, IGatherScrap
 
     private int _currentLevel = 1;
     public int CurrentLevel => _currentLevel;
+    private int _maxLevel = 5;
+    public int MaxLevel => _maxLevel;
 
     public static Module CreateMod(Vector2 position, ModuleDatas datas, Transform parentTransform)
     {
@@ -99,16 +102,22 @@ public class Module : MonoBehaviour, IGatherScrap
                     currentWeight = (int)_data.Weight,
                 };
 
-                _offensiveStrategy = _data.OffensiveModuleDatas.GetOffensiveStrategy(_playerStatClass, _data, this.transform,_currentModuleStats);
+                _moduleStrategy = _data.OffensiveModuleDatas.GetOffensiveStrategy(_playerStatClass, _data, this.transform,_currentModuleStats);
                 _offensiveType = _data.OffensiveModuleDatas.Type;
                 
                 break;
-            case ModuleClass.Defense:
+            case ModuleClass.Heal:
+                TimeTickSystemDataHandler.OnTickFaster += TimeTickSystemDataHandler_OnTick;
+                _currentModuleStats = new CurrentModuleStats
+                {
+                    currentReloadSpeedMultplier = _data.SecondaryModuleDatas.TickMultiplier,
+                    currentWeight = (int)_data.Weight,
+                };
+
+                _moduleStrategy = _data.SecondaryModuleDatas.GetStrategyModule(GameManager.Instance.PlayerController);
                 break;
             case ModuleClass.StatBuff:
-
                 ApplyBuff(datas.BuffDatas);
-
                 break;
             case ModuleClass.Placement:
                 _healthScript = this.gameObject.AddComponent<HealthScript>();
@@ -130,14 +139,25 @@ public class Module : MonoBehaviour, IGatherScrap
         _healthScript.OnDeath -= OnModuleBranchDestroyed;
     }
 
-    public void LevelUpModule()
+    public bool LevelUpModule()
     {
+        if (CurrentLevel >= _maxLevel)
+            return false;
+        
         OnModuleLevelUp?.Invoke(this);
         _currentLevel++;
         FXManager.Instance.PlayEffect("lvlup",this.transform.position,this.transform.rotation, this.transform);
         _currentModuleStats.IncreaseStats(_currentLevel);
+        if(_currentLevel >= _maxLevel)
+            ReachMaxLevel();
+        return true;
     }
 
+    private void ReachMaxLevel()
+    {
+        //Change Color + Add feedback or change graph
+
+    }
 
     public void RemoveModule()
     {
@@ -165,17 +185,19 @@ public class Module : MonoBehaviour, IGatherScrap
     {
         if (tick % GetTickNeeded() == 0)
         {
-            for (int i = 0; i < _playerStatClass.GetStatValue(StatType.NbProjectile); i++)
-            {
-                _offensiveStrategy.Fire(i == 0,this.transform.rotation,this.transform.position,_firePoints, out bool success);
-                if (success)
+                for (int i = 0; i < _playerStatClass.GetStatValue(StatType.NbProjectile); i++)
                 {
-                    OnModuleFire?.Invoke();
-                    if(_audioClipName != null)
-                        SoundManager.Instance.Play(_audioClipName);
-                }
+                    _moduleStrategy.Fire(i == 0, this.transform.rotation, this.transform.position, _firePoints, out bool success);
+                    if (success)
+                    {
+                        OnModuleFire?.Invoke();
+                        if (_audioClipName != null)
+                            SoundManager.Instance.Play(_audioClipName);
+                    }
 
-            }
+                }
+            
+            
         }
     }
 
@@ -230,9 +252,9 @@ public class Module : MonoBehaviour, IGatherScrap
         }
     }
 
-    private void SetOffensiveStrategy(IOffensiveModule offensiveStrategy)
+    private void SetOffensiveStrategy(IStrategyModule offensiveStrategy)
     {
-        _offensiveStrategy = offensiveStrategy;
+        _moduleStrategy = offensiveStrategy;
     }
     public ModuleClass GetModuleClass()
     {

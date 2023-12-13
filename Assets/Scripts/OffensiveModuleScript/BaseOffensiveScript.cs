@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseOffensiveScript: IOffensiveModule
+public abstract class BaseOffensiveScript: IStrategyModule
 {
     protected StatClass _statClass;
     protected ModuleDatas _datas;

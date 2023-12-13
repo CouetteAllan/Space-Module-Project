@@ -38,9 +38,15 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
             //lvl up module
             moduleDragged.ResetPos();
 
-            SoundManager.Instance.Play("Reload"); //instead play lvl up module
 
-            _currentModule.LevelUpModule();
+            if (!_currentModule.LevelUpModule())
+            {
+                if (GraphPreview?.gameObject != null)
+                    Destroy(GraphPreview?.gameObject);
+                return;
+            }
+
+            SoundManager.Instance.Play("Reload"); //instead play lvl up module
             if (_currentModule.GetModuleClass() != Module.ModuleClass.Placement && _currentModule.GetModuleClass() != Module.ModuleClass.StatBuff)
                 GameManager.Instance.CloseShop();
             if (GraphPreview?.gameObject != null)
@@ -76,7 +82,10 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
             //Show if we can fuse modules
             var currentPreview = PreviewLvlUp.InstantiateTextObject(_currentModule.transform.position + _currentModule.transform.up, _preview);
             GraphPreview = currentPreview.transform;
-            currentPreview.SetText("Lvl " + _currentModule.CurrentLevel);
+            if(_currentModule.CurrentLevel >= _currentModule.MaxLevel)
+                currentPreview.SetText("Lvl MAX");
+            else
+                currentPreview.SetText("Lvl " + _currentModule.CurrentLevel);
         }
     }
 

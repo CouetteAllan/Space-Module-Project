@@ -50,8 +50,8 @@ public class PlayerController : MonoBehaviour, IGatherScrap
     private void OnChangeHealth(int health)
     {
         //Do hitFeedback
-
-        StartCoroutine(ChangeHealthCoroutine());
+        if(health < 0)
+            StartCoroutine(ChangeHealthCoroutine());
     }
 
     private void OnDeath()
@@ -118,6 +118,8 @@ public class PlayerController : MonoBehaviour, IGatherScrap
     {
         return _playerModule;
     }
+
+    public HealthScript GetHealthScript() { return _healthScript;}
 
     public void GatherScrapMetal(int value)
     {

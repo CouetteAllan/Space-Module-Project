@@ -147,6 +147,14 @@ MonoBehaviour:
     loop: 0
     playOnAwake: 0
     source: {fileID: 0}
+  - name: Heal
+    clip: {fileID: 8300000, guid: c295443f0f7229f4783545229ef2e74a, type: 3}
+    output: {fileID: 5676675339829177356, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
+    volume: 0.611
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
   musics:
   - name: Perturbator
     clip: {fileID: 8300000, guid: 2c30b6f82d3dd3048ac579153b664cde, type: 3}

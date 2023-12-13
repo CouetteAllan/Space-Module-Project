@@ -20,7 +20,7 @@ public class OffensiveModuleDatas : ScriptableObject
     public float AttackSpeedMultiplier = 1.0f;
     public OffensiveType Type = OffensiveType.Canon;
 
-    public IOffensiveModule GetOffensiveStrategy(StatClass statClass, ModuleDatas datas, Transform moduleTransform, Module.CurrentModuleStats currentModuleStats)
+    public IStrategyModule GetOffensiveStrategy(StatClass statClass, ModuleDatas datas, Transform moduleTransform, Module.CurrentModuleStats currentModuleStats)
     {
         switch (Type)
         {

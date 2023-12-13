@@ -30,4 +30,8 @@ public class ModuleDatas : ScriptableObject
     [Space]
     [Header("Buff")]
     public BuffDatas BuffDatas = null;
+
+    [Space]
+    [Header("Other")]
+    public SecondaryModuleDatas SecondaryModuleDatas = null;
 }
