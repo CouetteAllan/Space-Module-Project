@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HealingModule
   m_EditorClassIdentifier: 
   ModuleName: Healing Module
-  ModuleDescription: 'Heal your ship overtime <color=orange> (Cost: 10 Fe) </color>'
+  ModuleDescription: 'Heal your ship overtime <color=orange> (Cost: 20 Fe) </color>'
   ModuleClass: 3
   ModuleSprite: {fileID: 21300000, guid: d4da5e7c9fe281d478d352e52cf70433, type: 3}
   ModulePrefab: {fileID: 1310436615563555467, guid: c881931c5dc444b49bbd4426f0c468a6, type: 3}

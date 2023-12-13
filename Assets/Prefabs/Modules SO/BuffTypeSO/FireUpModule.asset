@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ModuleName: Fire Up
   ModuleDescription: 'Boost the reload speed of all modules <color=orange> (Cost:
-    5 Fe)</color>'
+    10 Fe)</color>'
   ModuleClass: 2
   ModuleSprite: {fileID: 21300000, guid: 25f02095b484f2d4d878c06ba28a3fbe, type: 3}
   ModulePrefab: {fileID: 1310436615563555467, guid: f3f9289dfb7de95458d65ccebf5efdda, type: 3}

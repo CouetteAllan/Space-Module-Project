@@ -32,7 +32,7 @@ public class Module : MonoBehaviour, IGatherScrap
 
         public void IncreaseStats(int currentLevel)
         {
-            if(currentLevel < 4)
+            if(currentLevel < 3)
             {
                 currentReloadSpeedMultplier /= 1.2f;
                 currentDamage += 3;
@@ -47,7 +47,8 @@ public class Module : MonoBehaviour, IGatherScrap
         }
     }
 
-    private CurrentModuleStats _currentModuleStats = default;
+    #region Fields
+    private CurrentModuleStats _currentModuleStats = null;
 
     private ModuleClass _moduleClass;
     private ModuleDatas _data;
@@ -64,6 +65,7 @@ public class Module : MonoBehaviour, IGatherScrap
     public int CurrentLevel => _currentLevel;
     private int _maxLevel = 5;
     public int MaxLevel => _maxLevel;
+    #endregion
 
     public static Module CreateMod(Vector2 position, ModuleDatas datas, Transform parentTransform)
     {
@@ -89,8 +91,8 @@ public class Module : MonoBehaviour, IGatherScrap
         _playerStatClass = StatSystem.Instance.PlayerStat;
 
 
-        
         _currentLevel = 1;
+
         switch (_moduleClass)
         {
             case ModuleClass.Offense:
@@ -212,6 +214,8 @@ public class Module : MonoBehaviour, IGatherScrap
         TimeTickSystemDataHandler.OnTickFaster -= TimeTickSystemDataHandler_OnTick;
     }
 
+    #region HelperFunctions
+
     private int GetTickNeeded()
     {
         float maxTick = 20 * _currentModuleStats.currentReloadSpeedMultplier;
@@ -281,4 +285,5 @@ public class Module : MonoBehaviour, IGatherScrap
     {
         ScrapManagerDataHandler.PickUpScrap(value);
     }
+    #endregion
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DamageUpModule
   m_EditorClassIdentifier: 
   ModuleName: Damage Up
-  ModuleDescription: 'Boost all of your damages <color=orange> (Cost: 5 Fe)</color>'
+  ModuleDescription: 'Boost all of your damages <color=orange> (Cost: 10 Fe)</color>'
   ModuleClass: 2
   ModuleSprite: {fileID: 21300000, guid: 0596941d1c1439c4e8ba0fdae69b1395, type: 3}
   ModulePrefab: {fileID: 1310436615563555467, guid: 60e35451e1a12c04a893b9494aabf500, type: 3}
