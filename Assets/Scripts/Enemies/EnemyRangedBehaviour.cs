@@ -37,7 +37,7 @@ public class EnemyRangedBehaviour : IEnemyBehaviour
             _rigidbody.AddForce(-dir.normalized * 10.0f);
         }
 
-        var colliders = Physics2D.OverlapCircleAll(_rigidbody.position, 12.0f);
+        var colliders = Physics2D.OverlapCircleAll(_rigidbody.position, 16.5f);
         foreach (var collider in colliders)
         {
             _hasReachedTargetRanged = false;
@@ -56,13 +56,13 @@ public class EnemyRangedBehaviour : IEnemyBehaviour
     {
         Shoot(dir);
         _canShoot = false;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.0f);
         _canShoot = true;
     }
 
     private void Shoot(Vector2 dir)
     {
         EnemyProjectile projectile = Object.Instantiate(_projectile, _rigidbody.position + dir.normalized, Quaternion.identity);
-        projectile.Launch(dir.normalized, 5.0f, _damages);
+        projectile.Launch(dir.normalized, 6.0f, _damages);
     }
 }
