@@ -123,6 +123,7 @@ public class UIManager : Singleton<UIManager>
             }
         }
         
+        Cursor.visible = open;
     }
 
     public void ChangeScrapTab(bool positive)

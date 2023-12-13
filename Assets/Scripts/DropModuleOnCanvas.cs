@@ -55,6 +55,10 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
             OnDropModule?.Invoke(_attachPointScript);
 
         }
+        else if (UIManager._toggleReplaceModule)
+        {
+            PlaceModule(moduleDragged);
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)

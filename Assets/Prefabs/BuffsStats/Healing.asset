@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc29a91fd1fa3414288c85b1a41c7f77, type: 3}
   m_Name: Healing
   m_EditorClassIdentifier: 
-  ModuleValue: 3
+  ModuleValue: 2
   TickMultiplier: 8
   ModuleType: 1
