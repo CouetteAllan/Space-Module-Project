@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SimpleLaserModule
   m_EditorClassIdentifier: 
   ModuleName: Simple Laser
-  ModuleDescription: 'Fires a single laser beam in a straight line <color=red> weight:
-    4t </color>'
+  ModuleDescription: 'Fires a single laser beam in a straight line  \n<color=#a52a2aff>
+    weight: 4t </color>'
   ModuleClass: 0
   ModuleSprite: {fileID: 21300000, guid: 66a182fdff009d74e8ed6718e6d3ec11, type: 3}
   ModulePrefab: {fileID: 1310436615563555467, guid: d775fdd6231d2de4c86844ac69971f39, type: 3}
@@ -24,3 +24,4 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 0}
   OffensiveModuleDatas: {fileID: 11400000, guid: 923454691563fd143a40f98ecc28bc98, type: 2}
   BuffDatas: {fileID: 0}
+  SecondaryModuleDatas: {fileID: 0}

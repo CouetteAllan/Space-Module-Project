@@ -16,7 +16,7 @@ public class CanonModuleScript : BaseOffensiveScript
 
             var projectile = Object.Instantiate(_datas.ProjectilePrefab, position, currentModuleRotation).GetComponent<ProjectileScript>();
             float projectileDamage = _statClass.GetStatValue(StatType.Damage) * _currentModuleStats.currentDamage;
-            projectile.Launch((t.position - currentModulePosition).normalized, 10.0f, projectileDamage);
+            projectile.Launch((t.position - currentModulePosition).normalized, 12.0f, projectileDamage);
 
         }
     }

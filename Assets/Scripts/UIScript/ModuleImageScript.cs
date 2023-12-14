@@ -37,7 +37,7 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         _image = GetComponent<Image>();
         _startLocalPosition = _rectTransform.localPosition;
         _image.sprite = _moduleDatas.ModuleSprite;
-        _description.text = _moduleDatas.ModuleDescription;
+        _description.text = _moduleDatas.ModuleDescription.Replace("\\n", "\n");
         _currentPrice = _moduleDatas.ScrapCost;
         UIManager.OnCloseScrapShop += OnCloseScrapShop;
         if(_moduleDatas.OffensiveModuleDatas == null)
@@ -131,7 +131,7 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
     {
         _moduleDatas = datas;
         _image.sprite = _moduleDatas.ModuleSprite;
-        _description.text = _moduleDatas.ModuleDescription;
+        _description.text = _moduleDatas.ModuleDescription.Replace("\\n", "\n");
     }
 
     public void OnPointerEnter(PointerEventData eventData)

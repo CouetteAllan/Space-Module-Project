@@ -19,6 +19,7 @@ public class OffensiveModuleDatas : ScriptableObject
     public float BaseModuleDamage = 1.0f;
     public float AttackSpeedMultiplier = 1.0f;
     public OffensiveType Type = OffensiveType.Canon;
+    public GameObject[] LevelUpGraph;
 
     public IStrategyModule GetOffensiveStrategy(StatClass statClass, ModuleDatas datas, Transform moduleTransform, Module.CurrentModuleStats currentModuleStats)
     {

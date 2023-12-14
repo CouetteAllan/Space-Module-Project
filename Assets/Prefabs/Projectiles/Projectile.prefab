@@ -84,6 +84,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33654b8d67a1c6b44861ca923a4c2424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 0
+  _deathParticles: {fileID: 0}
+  _sprites:
+  - {fileID: 4158321797660781214}
+  - {fileID: 1554764255043646241}
 --- !u!1 &1126138040430249213
 GameObject:
   m_ObjectHideFlags: 0

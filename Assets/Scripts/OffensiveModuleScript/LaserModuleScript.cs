@@ -26,14 +26,28 @@ public class LaserModuleScript : BaseOffensiveScript , IDamageSource
             float hitboxWidth = 3.5f;
             float hitBoxLength = 17f;
             var laser = Physics2D.BoxCastAll(position, Vector2.one * hitboxWidth, 0, t.up, hitBoxLength);
-            foreach(var l in laser) 
+            foreach (var l in laser)
             {
                 if (l.transform.gameObject.TryGetComponent<IHittable>(out IHittable enemy))
                     enemy.TryHit(this, (int)(_statClass.GetStatValue(StatType.Damage) * _currentModuleStats.currentDamage));
-
             }
+            /*if (_currentModuleStats.currentLevel >= 5)
+                MonoBehaviourOnScene.Instance.StartCoroutine(ContinuousLaserCoroutine(hitboxWidth,hitBoxLength));
+            else
+            {
+                
+            }*/
+        }
+    }
+
+    private IEnumerator ContinuousLaserCoroutine(float width, float length)
+    {
+
+        while (true)
+        {
 
         }
+        yield return null;
     }
 
 }

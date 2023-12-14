@@ -78,7 +78,7 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
                 _transformParent);
         }
 
-        if (_currentModule == null)
+        if (_currentModule == null || moduleDragged.GetModuleDatas().OffensiveModuleDatas == null)
             return;
 
         if (moduleDragged.GetModuleDatas().OffensiveModuleDatas.Type == _currentModule?.OffensiveType)

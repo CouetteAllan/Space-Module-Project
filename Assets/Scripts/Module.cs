@@ -29,9 +29,11 @@ public class Module : MonoBehaviour, IGatherScrap
         public float currentDamage;
         public float currentProjectileNumber;
         public float currentWeight;
+        public int currentLevel;
 
         public void IncreaseStats(int currentLevel)
         {
+            this.currentLevel = currentLevel;
             if(currentLevel < 3)
             {
                 currentReloadSpeedMultplier /= 1.2f;
@@ -76,7 +78,7 @@ public class Module : MonoBehaviour, IGatherScrap
     
     public static Transform CreateModPreview(Vector2 position, ModuleDatas datas, Transform parentTransform)
     {
-        Transform module = Instantiate(datas.ModulePrefab.transform.Find("Graph"), position + (Vector2)parentTransform.up * 0.5f, parentTransform.rotation , parentTransform);
+        Transform module = Instantiate(datas.ModulePrefab/*.transform.Find("Graph")*/, position + (Vector2)parentTransform.up * 0.5f, parentTransform.rotation , parentTransform).transform;
         return module;
     }
 
@@ -150,15 +152,29 @@ public class Module : MonoBehaviour, IGatherScrap
         _currentLevel++;
         FXManager.Instance.PlayEffect("lvlup",this.transform.position,this.transform.rotation, this.transform);
         _currentModuleStats.IncreaseStats(_currentLevel);
-        if(_currentLevel >= _maxLevel)
+        if (_currentLevel >= _maxLevel)
             ReachMaxLevel();
+        else if (_currentLevel == 3)
+            ReachMidLevel();
         return true;
     }
 
     private void ReachMaxLevel()
     {
         //Change Color + Add feedback or change graph
-
+        if (_data.OffensiveModuleDatas.LevelUpGraph.Length < 1)
+            return;
+        Destroy(this.transform.GetChild(transform.childCount - 1).gameObject);
+        Instantiate(_data.OffensiveModuleDatas.LevelUpGraph[_data.OffensiveModuleDatas.LevelUpGraph.Length - 1],this.transform);
+    }
+    
+    private void ReachMidLevel()
+    {
+        //Change Color + Add feedback or change graph
+        if (_data.OffensiveModuleDatas.LevelUpGraph.Length < 1)
+            return;
+        Destroy(this.transform.GetChild(0).gameObject);
+        Instantiate(_data.OffensiveModuleDatas.LevelUpGraph[_data.OffensiveModuleDatas.LevelUpGraph.Length - 2],this.transform);
     }
 
     public void RemoveModule()

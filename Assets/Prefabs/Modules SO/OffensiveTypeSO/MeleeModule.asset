@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: MeleeModule
   m_EditorClassIdentifier: 
   ModuleName: 'Chainsaw '
-  ModuleDescription: 'Deal continuous damage around the module <color=red> weight:
-    2t </color>'
+  ModuleDescription: 'Deal continuous damage around the module  \n<color=#a52a2aff>
+    weight: 2t </color>'
   ModuleClass: 0
   ModuleSprite: {fileID: 21300000, guid: 0394c1b6ae0e1ee449927992ca3d2473, type: 3}
   ModulePrefab: {fileID: 1310436615563555467, guid: ac574f9e6ea9ffa49a3a0bf7a9c30ccd, type: 3}
@@ -24,3 +24,4 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 0}
   OffensiveModuleDatas: {fileID: 11400000, guid: 11ad331268e3e8b43bf01f58fb4c0731, type: 2}
   BuffDatas: {fileID: 0}
+  SecondaryModuleDatas: {fileID: 0}

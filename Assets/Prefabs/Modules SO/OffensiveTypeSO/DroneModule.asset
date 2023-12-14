@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DroneModule
   m_EditorClassIdentifier: 
   ModuleName: Drone Module
-  ModuleDescription: 'Fire a Drone that will revolves around this module <color=red>
+  ModuleDescription: 'Fire a Drone that will revolves around this module  \n<color=#a52a2aff>
     weight: 4t </color>'
   ModuleClass: 0
   ModuleSprite: {fileID: 21300000, guid: fd4862f320183124d94334abe46049cb, type: 3}
@@ -24,3 +24,4 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 332420518921955079, guid: 3068bdd5bdf7e564c8f95cbf485ecff8, type: 3}
   OffensiveModuleDatas: {fileID: 11400000, guid: 4288f400e9cf4304c8f9be7ce2873432, type: 2}
   BuffDatas: {fileID: 0}
+  SecondaryModuleDatas: {fileID: 0}

@@ -21,7 +21,7 @@ public class DroneModuleScript : BaseOffensiveScript
 
             var projectile = Object.Instantiate(_datas.ProjectilePrefab, position, currentRotation, _moduleTransform).GetComponentInChildren<ProjectileScript>();
             float projectileDamage = _statClass.GetStatValue(StatType.Damage) * _currentModuleStats.currentDamage;
-            projectile.Launch((t.position - currentModulePosition).normalized, 10.0f, projectileDamage,t);
+            projectile.Launch((t.position - currentModulePosition).normalized, 10.0f, 1.0f,projectileDamage,t);
         }
     }
 }
