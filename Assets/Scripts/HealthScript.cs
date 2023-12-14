@@ -38,7 +38,7 @@ public class HealthScript : MonoBehaviour
         else
             SetInvincibility();
 
-        _health += value;
+        _health = Mathf.Clamp(_health + value,-1, _maxHealth);
         OnChangeHealth?.Invoke(value);
 
         if(!_healthBar.gameObject.activeSelf)

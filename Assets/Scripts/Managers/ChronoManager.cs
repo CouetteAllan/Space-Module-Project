@@ -51,4 +51,9 @@ public class ChronoManager : MonoBehaviour
         }
 
     }
+
+    private void OnDisable()
+    {
+        GameManager.OnGameStateChanged -= GameManager_OnGameStateChanged;
+    }
 }

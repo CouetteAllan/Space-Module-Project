@@ -22,11 +22,9 @@ public class EnemyManager : MonoBehaviour
     private void OnTimeElapsed(float elapsedTime)
     {
         OnSpawnEnemy(_spawns[0].transform.position, _enemyDatas[3]);
-        Debug.Log("Did spawn elite enemy");
         //Spawn elite enemy, wave etc...
         foreach (var spawner in _spawns)
         {
-            OnSpawnEnemy(spawner.transform.position, _enemyDatas[1]);
             OnSpawnEnemy(spawner.transform.position, _enemyDatas[1]);
             OnSpawnEnemy(spawner.transform.position, _enemyDatas[1]);
             OnSpawnEnemy(spawner.transform.position, _enemyDatas[1]);
