@@ -127,7 +127,7 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
 
         SoundManager.Instance.Play("Reload");
 
-        if (modulePlaced.GetModuleClass() != Module.ModuleClass.Placement && modulePlaced.GetModuleClass() != Module.ModuleClass.StatBuff)
+        if (modulePlaced.GetModuleClass() != Module.ModuleClass.Placement && modulePlaced.GetModuleClass() != Module.ModuleClass.StatBuff && modulePlaced.GetModuleClass() != Module.ModuleClass.Heal)
             GameManager.Instance.CloseShop();
 
         _currentModule = modulePlaced;

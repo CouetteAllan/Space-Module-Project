@@ -29,4 +29,9 @@ public class ObstaclesManager : MonoBehaviour
         _obstacleQueue.Enqueue(newObstacle);
 
     }
+
+    private void OnDisable()
+    {
+        ObstaclesManagerDataHandler.OnSpawnObstacle -= OnSpawnObstacle;
+    }
 }

@@ -11466,7 +11466,7 @@ MonoBehaviour:
   m_FocusTracksTarget: 0
   m_FocusTracking: 2
   m_FocusTarget: {fileID: 0}
-  m_FocusOffset: 0
+  m_FocusOffset: 0.83
   m_Profile: {fileID: 11400000, guid: 788bfaa09ffe85c4a8cedb744fe3a87a, type: 2}
 --- !u!1 &1590558481
 GameObject:
