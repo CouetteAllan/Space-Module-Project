@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CodeMonkey.Utils;
 
 public class ObstaclesManager : MonoBehaviour
 {
@@ -12,6 +13,18 @@ public class ObstaclesManager : MonoBehaviour
     private void Awake()
     {
         ObstaclesManagerDataHandler.OnSpawnObstacle += OnSpawnObstacle;
+        TimeTickSystemDataHandler.OnTick += OnTick;
+    }
+
+    private void OnTick(uint currentTick)
+    {
+        if(currentTick % 100 == 0)
+        {
+            Vector2 playerPos = GameManager.Instance.PlayerController.transform.position;
+            float distanceFromPlayer = 16.0f;
+            Vector2 randomPos = playerPos + (Vector2)UtilsClass.GetRandomDir() * distanceFromPlayer;
+            OnSpawnObstacle(randomPos);
+        }
     }
 
     private void OnSpawnObstacle(Vector2 pos)

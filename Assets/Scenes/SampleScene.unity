@@ -5996,6 +5996,7 @@ GameObject:
   - component: {fileID: 786017310}
   - component: {fileID: 786017309}
   - component: {fileID: 786017308}
+  - component: {fileID: 786017313}
   m_Layer: 0
   m_Name: ManagersInGame
   m_TagString: Untagged
@@ -6060,6 +6061,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &786017313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786017307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee223a7292b316458b432302f9b9e30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _obstaclePrefab: {fileID: 6078663968102447833, guid: 854fe6d02c9c2ca409017bdbea7dcabe, type: 3}
+  _maxObstacleOnField: 8
 --- !u!1 &791094746
 GameObject:
   m_ObjectHideFlags: 0
