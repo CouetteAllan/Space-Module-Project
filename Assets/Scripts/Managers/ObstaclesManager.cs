@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
+using System.Linq;
 
 public class ObstaclesManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _obstaclePrefab;
+    [SerializeField] private ObstacleScript _obstaclePrefab;
     [SerializeField] private int _maxObstacleOnField;
     private int _currentNumberObstacle;
-    private Queue<GameObject> _obstacleQueue = new Queue<GameObject>();
+    private List<ObstacleScript> _obstacleList = new List<ObstacleScript>();
 
     private void Awake()
     {
@@ -31,16 +32,24 @@ public class ObstaclesManager : MonoBehaviour
     {
         if (_currentNumberObstacle >= _maxObstacleOnField)
         {
-            if(_obstacleQueue.TryDequeue(out GameObject obstacle))
+            var firstObstacle = _obstacleList.First();
+            if (firstObstacle != null)
             {
-                Destroy(obstacle);
+                Destroy(firstObstacle);
                 _currentNumberObstacle--;
             }
         }
         _currentNumberObstacle++;
-        GameObject newObstacle = Instantiate(_obstaclePrefab, pos, Quaternion.identity);
-        _obstacleQueue.Enqueue(newObstacle);
+        ObstacleScript newObstacle = Instantiate(_obstaclePrefab, pos, Quaternion.identity);
+        _obstacleList.Add(newObstacle);
+        newObstacle.SetUpObstacle(this);
+    }
 
+    public void DestroyObstacle(ObstacleScript obstacle)
+    {
+        _currentNumberObstacle--;
+        _obstacleList.Remove(obstacle);
+        Destroy(obstacle);
     }
 
     private void OnDisable()

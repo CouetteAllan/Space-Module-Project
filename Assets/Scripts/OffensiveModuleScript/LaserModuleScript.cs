@@ -28,8 +28,11 @@ public class LaserModuleScript : BaseOffensiveScript , IDamageSource
             var laser = Physics2D.BoxCastAll(position, Vector2.one * hitboxWidth, 0, t.up, hitBoxLength);
             foreach (var l in laser)
             {
-                if (l.transform.gameObject.TryGetComponent<IHittable>(out IHittable enemy))
-                    enemy.TryHit(this, (int)(_statClass.GetStatValue(StatType.Damage) * _currentModuleStats.currentDamage));
+                if (l.transform.gameObject.TryGetComponent(out IHittable enemy))
+                {
+                    int damageToDeal = (int)(_statClass.GetStatValue(StatType.Damage) * _currentModuleStats.currentDamage);
+                    enemy.TryHit(this, damageToDeal);
+                }
             }
             /*if (_currentModuleStats.currentLevel >= 5)
                 MonoBehaviourOnScene.Instance.StartCoroutine(ContinuousLaserCoroutine(hitboxWidth,hitBoxLength));
@@ -46,8 +49,8 @@ public class LaserModuleScript : BaseOffensiveScript , IDamageSource
         while (true)
         {
 
+            yield return null;
         }
-        yield return null;
     }
 
 }

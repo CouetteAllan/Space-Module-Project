@@ -6,20 +6,33 @@ public class ObstacleScript : MonoBehaviour, IObstacle
 {
     [SerializeField] private Rigidbody2D _rb;
     private ObstaclesManager _manager;
-    private int _health = 3;
+    private int _health = 30;
     
     public void TryHit(IDamageSource source, int damage)
     {
         //Feedback hit
         //Add force ?
-        _rb.AddForce(((Vector2)source.Transform.position - _rb.position) * source.RecoilMultiplier);
-        _health--;
-        if(_health <=0)
-            Destroy(gameObject);
+        Vector2 pushForceDir = _rb.position - (Vector2)source.Transform.position;
+        float recoilForce = source.RecoilMultiplier * 2.0f;
+        _rb.velocity += pushForceDir.normalized * recoilForce;
+        ChangeHealth(-damage);
+    }
+
+
+    private void ChangeHealth(int damage)
+    {
+        _health += damage;
+        if (_health <= 0)
+            DestroyObstacle();
     }
 
     public void SetUpObstacle(ObstaclesManager manager)
     {
         _manager = manager;
+    }
+
+    private void DestroyObstacle()
+    {
+        _manager.DestroyObstacle(this);
     }
 }
