@@ -7,7 +7,7 @@ public class BasicEnemySpawner : MonoBehaviour
     [SerializeField] private EnemyDatas _enemyDatas;
     private int _tickNeed;
 
-    private void Awake()
+    private void OnEnable()
     {
         _tickNeed = 20;
         TimeTickSystemDataHandler.OnTick += TimeTickSystemDataHandler_OnTick;

@@ -25,7 +25,7 @@ public class ObstaclesManager : MonoBehaviour
         if(currentTick % tickNeeded == 0)
         {
             Vector3 playerPos = GameManager.Instance.PlayerController.transform.position;
-            float distanceFromPlayer = 35.0f;
+            float distanceFromPlayer = 28.0f;
             Vector3 randomPos = playerPos + UtilsClass.GetRandomDir() * distanceFromPlayer;
             ObstaclesManagerDataHandler.SpawnObstacles(randomPos);
         }
