@@ -29,7 +29,7 @@ public class ScrapManager : MonoBehaviour
     {
         for (int i = 0; i < scrapGranted; i++)
         {
-            var randomDistance = Random.Range(0.9f, 2.0f);
+            var randomDistance = Random.Range(0.6f, 2.0f);
             var newScrap = SpawnScrapMetal(pos + (Vector2)UtilsClass.GetRandomDir() * randomDistance);
             newScrap.SetScrapValue(1); //to change
         }

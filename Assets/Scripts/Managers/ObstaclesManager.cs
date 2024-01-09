@@ -8,6 +8,7 @@ public class ObstaclesManager : MonoBehaviour
 {
     [SerializeField] private GameObject _obstaclePrefab;
     [SerializeField] private int _maxObstacleOnField;
+    [SerializeField] private int _obstacleHealth;
     private int _currentNumberObstacle;
     private List<ObstacleScript> _obstacleList = new List<ObstacleScript>();
 
@@ -19,7 +20,7 @@ public class ObstaclesManager : MonoBehaviour
 
     private void OnTick(uint currentTick)
     {
-        if(currentTick % 100 == 0)
+        if(currentTick % 80 == 0)
         {
             Vector3 playerPos = GameManager.Instance.PlayerController.transform.position;
             float distanceFromPlayer = 20.0f;
@@ -42,7 +43,8 @@ public class ObstaclesManager : MonoBehaviour
         _currentNumberObstacle++;
         var newObstacle = Instantiate(_obstaclePrefab, pos, Quaternion.identity).GetComponent<ObstacleScript>();
         _obstacleList.Add(newObstacle);
-        newObstacle.SetUpObstacle(this);
+        int obstacleHealth = _obstacleHealth * (int)GameManager.Instance.CurrentLevel;
+        newObstacle.SetUpObstacle(this, obstacleHealth);
     }
 
     public void DestroyObstacle(ObstacleScript obstacle)

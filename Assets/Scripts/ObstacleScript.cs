@@ -6,7 +6,7 @@ public class ObstacleScript : MonoBehaviour, IObstacle
 {
     [SerializeField] private Rigidbody2D _rb;
     private ObstaclesManager _manager;
-    private int _health = 30;
+    private int _health;
     
     public void TryHit(IDamageSource source, int damage)
     {
@@ -26,10 +26,11 @@ public class ObstacleScript : MonoBehaviour, IObstacle
             DestroyObstacle();
     }
 
-    public void SetUpObstacle(ObstaclesManager manager)
+    public void SetUpObstacle(ObstaclesManager manager,int health)
     {
         _manager = manager;
-
+        StartCoroutine(RotationCoroutine());
+        _health = health;
     }
 
     private void DestroyObstacle()
@@ -38,6 +39,16 @@ public class ObstacleScript : MonoBehaviour, IObstacle
         ScrapManagerDataHandler.CreateScrap(this.transform.position, 8);
         //play fx
         FXManager.Instance.PlayEffect("explosion", this.transform.position, Quaternion.identity);
+        StopAllCoroutines();
         Destroy(gameObject);
+    }
+
+    private IEnumerator RotationCoroutine()
+    {
+        while (true)
+        {
+            this.transform.Rotate(0, 0, 20.0f * Time.deltaTime);
+            yield return null;
+        }
     }
 }

@@ -127,19 +127,19 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6078663968102447833}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 19.8
-  m_LinearDrag: 36.05
-  m_AngularDrag: 0.2
+  m_Mass: 20
+  m_LinearDrag: 2
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 3
 --- !u!58 &6728695528647250844
 CircleCollider2D:
   m_ObjectHideFlags: 0

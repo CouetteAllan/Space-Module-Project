@@ -9,6 +9,7 @@ public class EnemyManager : MonoBehaviour
     [Space]
     [SerializeField] private int _enemyLimit = 15;
     private List<EnemyScript> _enemiesList = new List<EnemyScript>();
+    private int _currentTimerLevel = 0;
 
     private void Awake()
     {
@@ -17,6 +18,14 @@ public class EnemyManager : MonoBehaviour
         EnemyScript.OnDeath += EnemyScript_OnDeath;
 
         ChronoManagerDataHandler.OnTimeElapsed += OnTimeElapsed;
+        ChronoManagerDataHandler.OnSendTimeLevel += OnSendTimeLevel;
+        _currentTimerLevel = 0;
+    }
+
+    private void OnSendTimeLevel(int currentTimerLevel)
+    {
+        Debug.Log("current timer level sent is: " + currentTimerLevel);
+        _currentTimerLevel = currentTimerLevel;
     }
 
     private void OnTimeElapsed(float elapsedTime)
@@ -37,7 +46,8 @@ public class EnemyManager : MonoBehaviour
     private EnemyDatas OnGetEnemyDatas()
     {
         //Pick datas depending on the current level;
-        if (GameManager.Instance.CurrentLevel < 12)
+        Debug.Log(_currentTimerLevel);
+        if (_currentTimerLevel < 15)
             return _enemyDatas[0];
         else
             return _enemyDatas[2];
@@ -65,6 +75,7 @@ public class EnemyManager : MonoBehaviour
         EnemyScript.OnDeath -= EnemyScript_OnDeath;
 
         ChronoManagerDataHandler.OnTimeElapsed -= OnTimeElapsed;
+        ChronoManagerDataHandler.OnSendTimeLevel -= OnSendTimeLevel;
 
     }
 }

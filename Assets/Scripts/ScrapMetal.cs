@@ -26,6 +26,8 @@ public class ScrapMetal : MonoBehaviour
         //repel the scrap
         while(Time.time < endTime)
         {
+            if (playerPos == null)
+                break;
             _rigidbody2D.velocity = (startPos - (Vector2)playerPos.position) * 6.0f;
             yield return null;
         }
@@ -33,6 +35,8 @@ public class ScrapMetal : MonoBehaviour
         endTime = Time.time + 0.4f;
         while (Time.time < endTime)
         {
+            if (playerPos == null)
+                break;
             _rigidbody2D.position = Vector2.Lerp(_rigidbody2D.position, playerPos.position,5.0f * Time.deltaTime);
             yield return null;
         }
