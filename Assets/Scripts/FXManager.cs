@@ -42,6 +42,9 @@ public class FXManager : Singleton<FXManager>
             case "lvlup":
                 Instantiate(_lvlUpFX, pos, rotation,transformParent);
                 break;
+            case "explosion":
+                Instantiate(_explosionFX, pos, Quaternion.identity);
+                break;
         }
     }
 

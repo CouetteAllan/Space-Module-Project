@@ -6,7 +6,7 @@ using System.Linq;
 
 public class ObstaclesManager : MonoBehaviour
 {
-    [SerializeField] private ObstacleScript _obstaclePrefab;
+    [SerializeField] private GameObject _obstaclePrefab;
     [SerializeField] private int _maxObstacleOnField;
     private int _currentNumberObstacle;
     private List<ObstacleScript> _obstacleList = new List<ObstacleScript>();
@@ -21,18 +21,18 @@ public class ObstaclesManager : MonoBehaviour
     {
         if(currentTick % 100 == 0)
         {
-            Vector2 playerPos = GameManager.Instance.PlayerController.transform.position;
-            float distanceFromPlayer = 16.0f;
-            Vector2 randomPos = playerPos + (Vector2)UtilsClass.GetRandomDir() * distanceFromPlayer;
-            OnSpawnObstacle(randomPos);
+            Vector3 playerPos = GameManager.Instance.PlayerController.transform.position;
+            float distanceFromPlayer = 20.0f;
+            Vector3 randomPos = playerPos + UtilsClass.GetRandomDir() * distanceFromPlayer;
+            ObstaclesManagerDataHandler.SpawnObstacles(randomPos);
         }
     }
 
-    private void OnSpawnObstacle(Vector2 pos)
+    private void OnSpawnObstacle(Vector3 pos)
     {
         if (_currentNumberObstacle >= _maxObstacleOnField)
         {
-            var firstObstacle = _obstacleList.First();
+            ObstacleScript firstObstacle = _obstacleList.First();
             if (firstObstacle != null)
             {
                 Destroy(firstObstacle);
@@ -40,7 +40,7 @@ public class ObstaclesManager : MonoBehaviour
             }
         }
         _currentNumberObstacle++;
-        ObstacleScript newObstacle = Instantiate(_obstaclePrefab, pos, Quaternion.identity);
+        var newObstacle = Instantiate(_obstaclePrefab, pos, Quaternion.identity).GetComponent<ObstacleScript>();
         _obstacleList.Add(newObstacle);
         newObstacle.SetUpObstacle(this);
     }
@@ -49,11 +49,12 @@ public class ObstaclesManager : MonoBehaviour
     {
         _currentNumberObstacle--;
         _obstacleList.Remove(obstacle);
-        Destroy(obstacle);
     }
 
     private void OnDisable()
     {
         ObstaclesManagerDataHandler.OnSpawnObstacle -= OnSpawnObstacle;
+        TimeTickSystemDataHandler.OnTick -= OnTick;
+
     }
 }

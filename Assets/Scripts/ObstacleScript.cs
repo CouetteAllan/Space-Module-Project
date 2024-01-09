@@ -14,7 +14,7 @@ public class ObstacleScript : MonoBehaviour, IObstacle
         //Add force ?
         Vector2 pushForceDir = _rb.position - (Vector2)source.Transform.position;
         float recoilForce = source.RecoilMultiplier * 2.0f;
-        _rb.velocity += pushForceDir.normalized * recoilForce;
+        _rb.AddForce(pushForceDir * recoilForce);
         ChangeHealth(-damage);
     }
 
@@ -29,10 +29,15 @@ public class ObstacleScript : MonoBehaviour, IObstacle
     public void SetUpObstacle(ObstaclesManager manager)
     {
         _manager = manager;
+
     }
 
     private void DestroyObstacle()
     {
         _manager.DestroyObstacle(this);
+        ScrapManagerDataHandler.CreateScrap(this.transform.position, 8);
+        //play fx
+        FXManager.Instance.PlayEffect("explosion", this.transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }

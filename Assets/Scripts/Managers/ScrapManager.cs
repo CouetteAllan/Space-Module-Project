@@ -18,10 +18,21 @@ public class ScrapManager : MonoBehaviour
     {
         //Listen to event whenever an enemy dies so we can have a chance to spawn scrap
         EnemyScript.OnDeath += OnEnemyDeath;
+        ScrapManagerDataHandler.OnCreateScrap += OnCreateScrap;
         ScrapManagerDataHandler.OnPickUpScrap += OnPickUpScrap;
         ScrapManagerDataHandler.OnSellScrap += SellScrapMetal;
         ScrapManagerDataHandler.OnAbleToBuyScrap += AbleToBuyScrap;
         this.UpdateScrap(_numberOfScrap);
+    }
+
+    private void OnCreateScrap(Vector2 pos,int scrapGranted)
+    {
+        for (int i = 0; i < scrapGranted; i++)
+        {
+            var randomDistance = Random.Range(0.9f, 2.0f);
+            var newScrap = SpawnScrapMetal(pos + (Vector2)UtilsClass.GetRandomDir() * randomDistance);
+            newScrap.SetScrapValue(1); //to change
+        }
     }
 
     private void Start()
@@ -45,11 +56,7 @@ public class ScrapManager : MonoBehaviour
     {
         if (Utils.RollChance(chance: .4f) || enemyStats.tier == 3) //40% chances to drop scrap metal
         {
-            for (int i = 0; i < enemyStats.scrapGranted; i++)
-            {
-                var newScrap = SpawnScrapMetal(enemyStats.finalPos + (Vector2)UtilsClass.GetRandomDir() * 0.6f);
-                newScrap.SetScrapValue(1); //to change
-            }
+            OnCreateScrap(enemyStats.finalPos, enemyStats.scrapGranted);
         }
     }
 
