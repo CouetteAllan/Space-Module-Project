@@ -7,6 +7,7 @@ public class ObstacleScript : MonoBehaviour, IObstacle
     [SerializeField] private Rigidbody2D _rb;
     private ObstaclesManager _manager;
     private int _health;
+    private int _baseHealth = 30;
     
     public void TryHit(IDamageSource source, int damage)
     {
@@ -30,7 +31,7 @@ public class ObstacleScript : MonoBehaviour, IObstacle
     {
         _manager = manager;
         StartCoroutine(RotationCoroutine());
-        _health = health;
+        _health = health + _baseHealth;
     }
 
     private void DestroyObstacle()

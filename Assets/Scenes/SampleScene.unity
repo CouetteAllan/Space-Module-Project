@@ -6075,6 +6075,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _obstaclePrefab: {fileID: 6078663968102447833, guid: 854fe6d02c9c2ca409017bdbea7dcabe, type: 3}
   _maxObstacleOnField: 8
+  _obstacleHealth: 10
 --- !u!1 &791094746
 GameObject:
   m_ObjectHideFlags: 0

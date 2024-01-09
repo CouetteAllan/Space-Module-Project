@@ -9,6 +9,7 @@ public class ObstaclesManager : MonoBehaviour
     [SerializeField] private GameObject _obstaclePrefab;
     [SerializeField] private int _maxObstacleOnField;
     [SerializeField] private int _obstacleHealth;
+    [SerializeField] private bool _debug = false;
     private int _currentNumberObstacle;
     private List<ObstacleScript> _obstacleList = new List<ObstacleScript>();
 
@@ -20,10 +21,11 @@ public class ObstaclesManager : MonoBehaviour
 
     private void OnTick(uint currentTick)
     {
-        if(currentTick % 80 == 0)
+        int tickNeeded = _debug ? 20 : 55;
+        if(currentTick % tickNeeded == 0)
         {
             Vector3 playerPos = GameManager.Instance.PlayerController.transform.position;
-            float distanceFromPlayer = 20.0f;
+            float distanceFromPlayer = 35.0f;
             Vector3 randomPos = playerPos + UtilsClass.GetRandomDir() * distanceFromPlayer;
             ObstaclesManagerDataHandler.SpawnObstacles(randomPos);
         }
@@ -31,14 +33,13 @@ public class ObstaclesManager : MonoBehaviour
 
     private void OnSpawnObstacle(Vector3 pos)
     {
-        if (_currentNumberObstacle >= _maxObstacleOnField)
+        int maxObstacle = _debug ? 2 : _maxObstacleOnField;
+        if (_currentNumberObstacle >= maxObstacle)
         {
-            ObstacleScript firstObstacle = _obstacleList.First();
-            if (firstObstacle != null)
-            {
-                Destroy(firstObstacle);
-                _currentNumberObstacle--;
-            }
+            ObstacleScript farthestObstacle = FindFarthestObstacle();
+            _currentNumberObstacle--;
+            _obstacleList.Remove(farthestObstacle);
+            Destroy(farthestObstacle.gameObject);
         }
         _currentNumberObstacle++;
         var newObstacle = Instantiate(_obstaclePrefab, pos, Quaternion.identity).GetComponent<ObstacleScript>();
@@ -51,6 +52,21 @@ public class ObstaclesManager : MonoBehaviour
     {
         _currentNumberObstacle--;
         _obstacleList.Remove(obstacle);
+    }
+
+    private ObstacleScript FindFarthestObstacle()
+    {
+        ObstacleScript farthestObstacle = _obstacleList[0];
+        Transform player = GameManager.Instance.PlayerController.transform;
+        foreach (var obstacle in _obstacleList)
+        {
+            if(Vector2.SqrMagnitude((Vector2)player.position - (Vector2)obstacle.transform.position) > Vector2.SqrMagnitude((Vector2)player.position - (Vector2)farthestObstacle.transform.position))
+            {
+                farthestObstacle = obstacle;
+            }
+        }
+
+        return farthestObstacle;
     }
 
     private void OnDisable()
