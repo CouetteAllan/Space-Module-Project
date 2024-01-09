@@ -49,5 +49,7 @@ public class BasicEnemySpawner : MonoBehaviour
     private void OnDisable()
     {
         TimeTickSystemDataHandler.OnTick -= TimeTickSystemDataHandler_OnTick;
+        GameManager.OnLevelUp -= GameManager_OnLevelUp;
+
     }
 }
