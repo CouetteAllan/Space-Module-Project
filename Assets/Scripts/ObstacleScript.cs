@@ -5,12 +5,15 @@ using UnityEngine;
 public class ObstacleScript : MonoBehaviour, IObstacle
 {
     [SerializeField] private Rigidbody2D _rb;
+    [SerializeField] private bool _isIndestructible = false;
     private ObstaclesManager _manager;
     private int _health;
     private int _baseHealth = 30;
     
     public void TryHit(IDamageSource source, int damage)
     {
+        if (_isIndestructible)
+            return;
         //Feedback hit
         //Add force ?
         Vector2 pushForceDir = _rb.position - (Vector2)source.Transform.position;
@@ -30,8 +33,8 @@ public class ObstacleScript : MonoBehaviour, IObstacle
     public void SetUpObstacle(ObstaclesManager manager,int health)
     {
         _manager = manager;
-        StartCoroutine(RotationCoroutine());
         _health = health + _baseHealth;
+        StartCoroutine(RotationCoroutine());
     }
 
     private void DestroyObstacle()
@@ -48,7 +51,7 @@ public class ObstacleScript : MonoBehaviour, IObstacle
     {
         while (true)
         {
-            this.transform.Rotate(0, 0, 20.0f * Time.deltaTime);
+            this.transform.Rotate(0, 0, 25.0f * Time.deltaTime);
             yield return null;
         }
     }
