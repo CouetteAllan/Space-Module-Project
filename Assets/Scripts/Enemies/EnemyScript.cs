@@ -71,7 +71,7 @@ public class EnemyScript : MonoBehaviour, IHittable
             _canDealDamage = true;
             _hasHit = false;
         }
-
+        
     }
 
     private void FixedUpdate()
@@ -87,6 +87,8 @@ public class EnemyScript : MonoBehaviour, IHittable
         {
             _enemyBehaviour.DoMovement(_playerController,isStopped: true);
         }
+        transform.right = (Vector2)_playerController.transform.position - this._rigidbody.position;
+
     }
 
     public void TryHit(IDamageSource source, int damage)
