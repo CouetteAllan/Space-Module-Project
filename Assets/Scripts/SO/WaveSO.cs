@@ -1,18 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveSO : MonoBehaviour
+[CreateAssetMenu(fileName = "New wave Setting",menuName = "Wave")]
+public class WaveSO : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float TimeInSeconds;
+    public WaveComponent[] WaveComponents;
+}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+[Serializable]
+public class WaveComponent
+{
+    public EnemyDatas enemy;
+    public int number;
+
 }
