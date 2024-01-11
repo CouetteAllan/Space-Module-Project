@@ -27,9 +27,9 @@ public class TutoManager : MonoBehaviour
     IEnumerator TutoCoroutine()
     {
         _tutoAnim.SetTrigger("Fantom");
-        _quickTutoObject.SetActive(true);
         yield return new WaitUntil(() => GameManager.Instance.CurrentState == GameState.InGame);
         Destroy(_tutoAnim.gameObject);
+        _quickTutoObject.SetActive(true);
         yield return new WaitUntil(() => GameManager.Instance.CurrentLevel >= 2);
         Destroy(_quickTutoObject);
     }

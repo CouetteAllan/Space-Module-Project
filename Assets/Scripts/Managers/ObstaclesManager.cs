@@ -21,11 +21,11 @@ public class ObstaclesManager : MonoBehaviour
 
     private void OnTick(uint currentTick)
     {
-        int tickNeeded = _debug ? 20 : 55;
+        int tickNeeded = _debug ? 20 : 65;
         if(currentTick % tickNeeded == 0)
         {
             Vector3 playerPos = GameManager.Instance.PlayerController.transform.position;
-            float distanceFromPlayer = 28.0f;
+            float distanceFromPlayer = 32.0f;
             Vector3 randomPos = playerPos + UtilsClass.GetRandomDir() * distanceFromPlayer;
             ObstaclesManagerDataHandler.SpawnObstacles(randomPos);
         }

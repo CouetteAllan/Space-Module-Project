@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b81ffadce7a36194b950982482eb847c, type: 3}
   m_Name: FirstWave
   m_EditorClassIdentifier: 
-  TimeinSeconds: 0
-  WaveComponent: []
+  TimeInSeconds: 90
+  WaveComponents:
+  - enemy: {fileID: 11400000, guid: fb236d54b4cdf2a438f79aa1b6938718, type: 2}
+    number: 3
+  - enemy: {fileID: 11400000, guid: 59973cead6a058345ab358ccf68784f4, type: 2}
+    number: 2

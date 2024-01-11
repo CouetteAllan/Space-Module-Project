@@ -57,8 +57,9 @@ public class PlayerController : MonoBehaviour, IGatherScrap
         if(health < 0)
         {
             StartCoroutine(ChangeHealthCoroutine());
-            _circleGraph.color = Color.Lerp(_startColor, _targetColorLowHealth,1.0f - (float)_healthScript.Health / (float)_healthScript.MaxHealth);
         }
+        _circleGraph.color = Color.Lerp(_startColor, _targetColorLowHealth, 1.0f - (float)_healthScript.Health / (float)_healthScript.MaxHealth);
+
     }
 
     private void OnDeath()
