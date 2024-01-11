@@ -52,7 +52,7 @@ public class EnemyScript : MonoBehaviour, IHittable
 
         Vector2 dir = (Vector2)_playerController.transform.position - this._rigidbody.position;
         _rigidbody.velocity = dir.normalized * _datas.BaseSpeed;
-        _currentHealth = GameManager.Instance.CurrentLevel * _datas.BaseHealth;
+        _currentHealth = datas.BaseHealth + GameManager.Instance.CurrentLevel * _datas.HealthMultplier;
 
         _enemyBehaviour = _datas.GetEnemyBehaviour(_rigidbody);
     }

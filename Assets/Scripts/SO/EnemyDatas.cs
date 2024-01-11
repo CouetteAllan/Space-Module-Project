@@ -24,6 +24,7 @@ public class EnemyDatas : ScriptableObject
     public EnemyTier Tier = EnemyTier.Tier1;
     public EnemyType Type = EnemyType.Melee;
     public float BaseHealth;
+    public float HealthMultplier;
     public float BaseDamage;
     public float BaseSpeed;
     public GameObject EnemyPrefab;
