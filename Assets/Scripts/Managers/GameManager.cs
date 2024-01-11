@@ -67,7 +67,7 @@ public class GameManager : Singleton<GameManager>
 
             case GameState.StartGame:
                 Time.timeScale = 1.0f;
-                FantomaticTutoManagerDataHandler.ShowTuto(true);
+                TutoManagerDataHandler.ShowTuto(true);
                 InitGame();
                 OpenShop();
                 

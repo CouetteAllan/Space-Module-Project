@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FantomaticTutoManager : MonoBehaviour
+public class TutoManager : MonoBehaviour
 {
     [SerializeField] private Animator _tutoAnim;
+    [SerializeField] private GameObject _quickTutoObject;
 
     private void Awake()
     {
-        FantomaticTutoManagerDataHandler.OnShowTuto += OnShowTuto;
+        TutoManagerDataHandler.OnShowTuto += OnShowTuto;
 
     }
 
@@ -26,13 +27,16 @@ public class FantomaticTutoManager : MonoBehaviour
     IEnumerator TutoCoroutine()
     {
         _tutoAnim.SetTrigger("Fantom");
+        _quickTutoObject.SetActive(true);
         yield return new WaitUntil(() => GameManager.Instance.CurrentState == GameState.InGame);
         Destroy(_tutoAnim.gameObject);
+        yield return new WaitUntil(() => GameManager.Instance.CurrentLevel >= 2);
+        Destroy(_quickTutoObject);
     }
 
     private void OnDisable()
     {
-        FantomaticTutoManagerDataHandler.OnShowTuto -= OnShowTuto;
+        TutoManagerDataHandler.OnShowTuto -= OnShowTuto;
 
     }
 }
