@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New wave Setting",menuName = "Wave")]
 public class WaveSO : ScriptableObject
 {
+    public Transform WavePositionToSpawn;
     public float TimeInSeconds;
     public WaveComponent[] WaveComponents;
 }
