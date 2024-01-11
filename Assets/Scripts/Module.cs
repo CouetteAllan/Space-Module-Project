@@ -143,7 +143,7 @@ public class Module : MonoBehaviour, IGatherScrap
         _healthScript.OnDeath -= OnModuleBranchDestroyed;
     }
 
-    public bool LevelUpModule()
+    public bool TryLevelUpModule()
     {
         if (CurrentLevel >= _maxLevel)
             return false;

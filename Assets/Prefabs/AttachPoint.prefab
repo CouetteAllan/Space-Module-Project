@@ -61,7 +61,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_TargetDisplay: 0
 --- !u!114 &5717082290323931466
 MonoBehaviour:
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!114 &3379680680244670252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: -0.6, y: 0, z: -0.6, w: -0.5}
+  m_RaycastPadding: {x: -0.55, y: 0, z: -0.55, w: -0.5}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -183,7 +183,7 @@ Transform:
   m_GameObject: {fileID: 4568977185990540154}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 1, y: 1.11, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7093076936261860688}

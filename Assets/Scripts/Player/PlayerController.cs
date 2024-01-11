@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour, IGatherScrap
 {
     [SerializeField] private GameObject _explosionParticles;
     [SerializeField] private SpriteRenderer _graph;
+    [SerializeField] private SpriteRenderer _circleGraph;
+    [SerializeField] private Color _targetColorLowHealth;
 
     public MInputActionAsset InputActions {
         get
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour, IGatherScrap
     private PlayerRotation _rotation;
     private PlayerModule _playerModule;
     private HealthScript _healthScript;
+    private Color _startColor;
 
     private bool _scrapShopOpen = false;
     private bool _pauseMenuOpen = false;
@@ -31,6 +34,7 @@ public class PlayerController : MonoBehaviour, IGatherScrap
         _rotation = GetComponent<PlayerRotation>();
         _playerModule = GetComponent<PlayerModule>();
         _healthScript = GetComponent<HealthScript>();
+        _startColor = _circleGraph.color;
         SetUpInputAction();
 
         GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
@@ -51,7 +55,10 @@ public class PlayerController : MonoBehaviour, IGatherScrap
     {
         //Do hitFeedback
         if(health < 0)
+        {
             StartCoroutine(ChangeHealthCoroutine());
+            _circleGraph.color = Color.Lerp(_startColor, _targetColorLowHealth,1.0f - (float)_healthScript.Health / (float)_healthScript.MaxHealth);
+        }
     }
 
     private void OnDeath()

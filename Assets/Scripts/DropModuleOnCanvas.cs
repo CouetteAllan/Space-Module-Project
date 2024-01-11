@@ -12,13 +12,12 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
     [SerializeField] private Transform _transformParent;
     [SerializeField] private AttachPointScript _attachPointScript;
     [SerializeField] private PreviewLvlUp _preview;
-    private PlayerModule _playerModule;
+    [SerializeField] private PlayerModule _playerModule;
     private Module _currentModule;
     
 
     private void OnEnable()
     {
-        _playerModule = transform.parent.transform.parent.transform.parent.GetComponent<PlayerModule>(); //don't pay attention pls
         if (_playerModule == null)
             _playerModule = GameManager.Instance.PlayerController.GetPlayerModule();
     }
@@ -39,7 +38,7 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
             moduleDragged.ResetPos();
 
 
-            if (!_currentModule.LevelUpModule())
+            if (!_currentModule.TryLevelUpModule())
             {
                 if (GraphPreview?.gameObject != null)
                     Destroy(GraphPreview?.gameObject);
@@ -63,7 +62,7 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        //Afficher preview du prefab
+        //Display preview prefab
         if (eventData.pointerDrag == null)
             return;
 

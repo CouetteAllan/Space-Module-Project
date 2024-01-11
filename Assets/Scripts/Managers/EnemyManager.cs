@@ -46,8 +46,7 @@ public class EnemyManager : MonoBehaviour
     private EnemyDatas OnGetEnemyDatas()
     {
         //Pick datas depending on the current level;
-        Debug.Log(_currentTimerLevel);
-        if (_currentTimerLevel < 15)
+        if (_currentTimerLevel < 18)
             return _enemyDatas[0];
         else
             return _enemyDatas[2];

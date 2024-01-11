@@ -14,6 +14,7 @@ public class HealthScript : MonoBehaviour
     public event Action OnDeath;
 
     public int Health => _health;
+    public int MaxHealth => _maxHealth;
     public bool IsAlive => _health > 0;
 
     private bool _isInvincible;
