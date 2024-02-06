@@ -15050,6 +15050,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wavesDatas:
   - {fileID: 11400000, guid: 8d93e583447bd0a47b5fb5ec0f07d942, type: 2}
+  - {fileID: 11400000, guid: d41f2ef174174434e8f4396fb61a6454, type: 2}
 --- !u!4 &1984262327
 Transform:
   m_ObjectHideFlags: 0

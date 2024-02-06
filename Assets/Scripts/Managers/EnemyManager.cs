@@ -24,7 +24,6 @@ public class EnemyManager : MonoBehaviour
 
     private void OnSendTimeLevel(int currentTimerLevel)
     {
-        Debug.Log("current timer level sent is: " + currentTimerLevel);
         _currentTimerLevel = currentTimerLevel;
     }
 

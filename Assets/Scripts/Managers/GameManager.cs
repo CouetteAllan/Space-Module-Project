@@ -70,6 +70,7 @@ public class GameManager : Singleton<GameManager>
                 TutoManagerDataHandler.ShowTuto(true);
                 InitGame();
                 OpenShop();
+                WaveManagerDataHandler.SetUpWaveManager();
                 
                 break;
             case GameState.InGame:

@@ -12,6 +12,10 @@ public class ChronoManager : MonoBehaviour
     private bool _didStart = false;
     private bool _didFireEvent = false;
     private bool _countDown = true;
+
+    private float _nextWaveTime = 10000.0f;
+    private List<float> _waveTimes;
+    private int _waveIndex = 0;
     private void Start()
     {
         _elapsedTime = 0.0f;
@@ -19,11 +23,21 @@ public class ChronoManager : MonoBehaviour
         _currentTimeLevel = 0;
 
         GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
+        WaveManagerDataHandler.OnSendWaveTimeData += OnSendWaveTimeData;
+    }
+
+    private void OnSendWaveTimeData(List<float> waveTimes)
+    {
+        Debug.Log("penis");
+        _waveTimes = waveTimes;
+        _waveIndex = 0;
+        _nextWaveTime = _waveTimes[_waveIndex];
     }
 
     private void GameManager_OnGameStateChanged(GameState newState)
     {
         _didStart = newState == GameState.InGame;
+
     }
 
     private void Update()
@@ -35,11 +49,13 @@ public class ChronoManager : MonoBehaviour
         int seconds = Mathf.FloorToInt(_elapsedTime % 60);
 
         _timerText.text = string.Format("{0:00}: {1:00}",minutes,seconds);
+
+
         if ((int)_elapsedTime % 10 == 0 && _countDown && _elapsedTime > 1.0f)
         {
             GetCurrentTimeLevel();
             _countDown = false;
-            StartCoroutine(WaitOneSecond());
+            StartCoroutine(WaitOneSecond()); //dirty
         }
 
         if (_elapsedTime > 90.0f && !_didFireEvent)
@@ -59,6 +75,12 @@ public class ChronoManager : MonoBehaviour
 
         }
 
+        if(_elapsedTime >= _nextWaveTime)
+        {
+            this.TriggerWave(_waveIndex);
+            Debug.Log($"wave index is {_waveIndex} at {(int)_elapsedTime} seconds");
+            _nextWaveTime = GetNextWaveTime();
+        }
        
     }
 
@@ -68,9 +90,18 @@ public class ChronoManager : MonoBehaviour
         this.SendTimeLevel(_currentTimeLevel);
     }
 
+    private float GetNextWaveTime()
+    {
+        _waveIndex++;
+        if (_waveIndex > _waveTimes.Count - 1)
+            return 10000.0f;
+        return _waveTimes[_waveIndex];
+    }
+
     private void OnDisable()
     {
         GameManager.OnGameStateChanged -= GameManager_OnGameStateChanged;
+        WaveManagerDataHandler.OnSendWaveTimeData -= OnSendWaveTimeData;
     }
     private IEnumerator WaitOneSecond()
     {
