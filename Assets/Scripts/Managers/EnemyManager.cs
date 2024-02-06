@@ -20,6 +20,13 @@ public class EnemyManager : MonoBehaviour
         ChronoManagerDataHandler.OnTimeElapsed += OnTimeElapsed;
         ChronoManagerDataHandler.OnSendTimeLevel += OnSendTimeLevel;
         _currentTimerLevel = 0;
+
+        EnemyManagerDataHandler.OnSpawnEnemyWave += OnSpawnEnemyWave;
+    }
+
+    private void OnSpawnEnemyWave(EnemyDatas datas, int number)
+    {
+        
     }
 
     private void OnSendTimeLevel(int currentTimerLevel)

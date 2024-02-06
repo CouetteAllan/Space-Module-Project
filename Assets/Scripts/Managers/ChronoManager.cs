@@ -28,7 +28,6 @@ public class ChronoManager : MonoBehaviour
 
     private void OnSendWaveTimeData(List<float> waveTimes)
     {
-        Debug.Log("penis");
         _waveTimes = waveTimes;
         _waveIndex = 0;
         _nextWaveTime = _waveTimes[_waveIndex];

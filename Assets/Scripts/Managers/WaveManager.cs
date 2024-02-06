@@ -25,10 +25,11 @@ public class WaveManager : MonoBehaviour
 
     private void SpawnWave(WaveSO wave)
     {
-        //Spawn each wave at time T
         foreach(WaveComponent waveComp in wave.WaveComponents)
         {
             Debug.Log($"We spawn wave at {wave.TimeInSeconds} with {waveComp.number} enemies of type {waveComp.enemy.Tier}");
+            //Spawn at random location away from the player
+            EnemyManagerDataHandler.SpawnEnemyWave(waveComp.enemy, waveComp.number);
         }
     }
 
