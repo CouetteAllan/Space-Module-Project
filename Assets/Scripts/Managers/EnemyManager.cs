@@ -44,6 +44,8 @@ public class EnemyManager : MonoBehaviour
 
     private void OnTimeElapsed(float elapsedTime)
     {
+        var startLimit = _enemyLimit;
+        _enemyLimit += 3;
         OnSpawnEnemy(_spawns[0].transform.position, _enemyDatas[3]);
         //Spawn elite enemy, wave etc...
         foreach (var spawner in _spawns)
@@ -54,7 +56,7 @@ public class EnemyManager : MonoBehaviour
             OnSpawnEnemy(spawner.transform.position, _enemyDatas[1]);
 
         }
-
+        _enemyLimit = startLimit;
     }
 
     private EnemyDatas OnGetEnemyDatas()

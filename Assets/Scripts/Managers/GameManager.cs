@@ -20,6 +20,8 @@ public enum GameState
 public class GameManager : Singleton<GameManager>
 {
 
+    [SerializeField] private XpDatas _xpDatas;
+
     public static event Action<GameState> OnGameStateChanged;
     public static event Action<uint> OnLevelUp;
     public GameState CurrentState { get; private set; } = GameState.GameOver;
@@ -116,7 +118,7 @@ public class GameManager : Singleton<GameManager>
         OnLevelUp?.Invoke(CurrentLevel);
 
         CurrentXP -= NextTresholdLevelUp;
-        NextTresholdLevelUp += 25;
+        NextTresholdLevelUp = (uint)_xpDatas.XpCurve.Evaluate((float)CurrentLevel);
         ChangeGameState(GameState.ShopState);
     }
 
@@ -124,7 +126,7 @@ public class GameManager : Singleton<GameManager>
     {
         CurrentXP = 0;
         CurrentLevel = 1;
-        NextTresholdLevelUp = 60;
+        NextTresholdLevelUp = (uint)_xpDatas.XpCurve.Evaluate((float)CurrentLevel);
         _blockXp = false;
     }
 

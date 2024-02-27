@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isPersistant: 0
+  _xpDatas: {fileID: 11400000, guid: f0f548d4ddc5a4b4d841a733c512af47, type: 2}
 --- !u!1 &5611231144111178066
 GameObject:
   m_ObjectHideFlags: 0
