@@ -77,7 +77,6 @@ public class ChronoManager : MonoBehaviour
         if(_elapsedTime >= _nextWaveTime)
         {
             this.TriggerWave(_waveIndex);
-            Debug.Log($"wave index is {_waveIndex} at {(int)_elapsedTime} seconds");
             _nextWaveTime = GetNextWaveTime();
         }
        

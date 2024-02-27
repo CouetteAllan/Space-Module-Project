@@ -10,6 +10,8 @@ public class ScrapManager : MonoBehaviour
     [SerializeField] private ScrapManagerUI _scrapManagerUI;
 
     [SerializeField] private int _numberOfScrap = 0;
+
+    [SerializeField] private Transform _scrapParent;
     public int NumberOfScrap {  get { return _numberOfScrap; } }
 
     private Dictionary<StatType, int> _numberOfModulePurchased = new Dictionary<StatType, int>();
@@ -97,7 +99,7 @@ public class ScrapManager : MonoBehaviour
         else
             return 0;
     }
-    private ScrapMetal SpawnScrapMetal(Vector2 pos) => Instantiate(_scrapTransform, pos, Quaternion.identity).GetComponent<ScrapMetal>();
+    private ScrapMetal SpawnScrapMetal(Vector2 pos) => Instantiate(_scrapTransform, pos, Quaternion.identity,_scrapParent).GetComponent<ScrapMetal>();
 
     private void OnDisable()
     {

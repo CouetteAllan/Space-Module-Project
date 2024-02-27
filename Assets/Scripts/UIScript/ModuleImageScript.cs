@@ -59,7 +59,6 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         newDesc = newDesc.Remove(index);
         newDesc = newDesc.Insert(index, $"<color=orange>Cost: {_currentPrice} Fe) </color>");
         _description.text = newDesc;
-        Debug.Log(newDesc);
     }
 
     private void OnCloseScrapShop()

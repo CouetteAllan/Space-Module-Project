@@ -1,3 +1,4 @@
+using CodeMonkey.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,7 +27,14 @@ public class EnemyManager : MonoBehaviour
 
     private void OnSpawnEnemyWave(EnemyDatas datas, int number)
     {
-        
+        var startLimit = _enemyLimit;
+        _enemyLimit += number * 2;
+        for(int i = 0; i < number; i++)
+        {
+            OnSpawnEnemy(_spawns[0].transform.position + UtilsClass.GetRandomDir(), datas);
+
+        }
+        _enemyLimit = startLimit;
     }
 
     private void OnSendTimeLevel(int currentTimerLevel)
@@ -81,6 +89,8 @@ public class EnemyManager : MonoBehaviour
 
         ChronoManagerDataHandler.OnTimeElapsed -= OnTimeElapsed;
         ChronoManagerDataHandler.OnSendTimeLevel -= OnSendTimeLevel;
+        EnemyManagerDataHandler.OnSpawnEnemyWave -= OnSpawnEnemyWave;
+
 
     }
 }

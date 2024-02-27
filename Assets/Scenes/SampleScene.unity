@@ -1748,6 +1748,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 147934073}
   m_CullTransparentMesh: 1
+--- !u!1 &180014840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 180014841}
+  m_Layer: 0
+  m_Name: Props
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &180014841
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180014840}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &180799080
 GameObject:
   m_ObjectHideFlags: 0
@@ -6657,6 +6688,7 @@ MonoBehaviour:
   _scrapTransform: {fileID: 388440602637989478, guid: c8ba7bcab3c94094b8531054b2972419, type: 3}
   _scrapManagerUI: {fileID: 541234869}
   _numberOfScrap: 0
+  _scrapParent: {fileID: 180014841}
 --- !u!114 &786017310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15082,6 +15114,7 @@ MonoBehaviour:
   _wavesDatas:
   - {fileID: 11400000, guid: 8d93e583447bd0a47b5fb5ec0f07d942, type: 2}
   - {fileID: 11400000, guid: d41f2ef174174434e8f4396fb61a6454, type: 2}
+  - {fileID: 11400000, guid: d4be9d919a9b7eb47badf513409f3120, type: 2}
 --- !u!4 &1984262327
 Transform:
   m_ObjectHideFlags: 0
