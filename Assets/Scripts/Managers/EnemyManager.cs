@@ -61,7 +61,7 @@ public class EnemyManager : MonoBehaviour
 
     private EnemyDatas OnGetEnemyDatas()
     {
-        //Pick datas depending on the current level;
+        //Pick datas depending on the current timer level (1 timer level = 10sec);
         if (_currentTimerLevel < 18)
             return _enemyDatas[0];
         else

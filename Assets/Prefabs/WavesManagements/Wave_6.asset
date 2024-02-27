@@ -10,14 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b81ffadce7a36194b950982482eb847c, type: 3}
-  m_Name: Wave_4
+  m_Name: Wave_6
   m_EditorClassIdentifier: 
   OffsetPosFromPlayer: {x: 0, y: 0}
-  TimeInSeconds: 200
+  TimeInSeconds: 320
   WaveComponents:
-  - enemy: {fileID: 11400000, guid: a12f1f856b1e2674e81b4a06047b4130, type: 2}
-    number: 2
   - enemy: {fileID: 11400000, guid: fb236d54b4cdf2a438f79aa1b6938718, type: 2}
-    number: 6
+    number: 8
   - enemy: {fileID: 11400000, guid: 0a0d8abe50d9ee84590b55fdfa646d89, type: 2}
     number: 3

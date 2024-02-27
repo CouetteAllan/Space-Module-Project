@@ -43,6 +43,13 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         if(_moduleDatas.OffensiveModuleDatas == null)
             ScrapManagerDataHandler.OnSellScrapSuccess += OnSellScrapSuccess;
     }
+    private void Start()
+    {
+        _startPosition = _rectTransform.anchoredPosition;
+        _startLocalScale = _rectTransform.localScale;
+        ScrapManagerDataHandler.OnUpdateScrap += OnUpdateScrap;
+        OnUpdateScrap(0);
+    }
 
     private void OnSellScrapSuccess(StatType buffTypeSold,int nbSold)
     {
@@ -66,13 +73,7 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         ResetPos();
     }
 
-    private void Start()
-    {
-        _startPosition = _rectTransform.anchoredPosition;
-        _startLocalScale = _rectTransform.localScale;
-        ScrapManagerDataHandler.OnUpdateScrap += OnUpdateScrap;
-
-    }
+    
 
     private void OnUpdateScrap(int scrapLeft)
     {
@@ -155,6 +156,8 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
     {
         ScrapManagerDataHandler.OnUpdateScrap -= OnUpdateScrap;
         UIManager.OnCloseScrapShop -= OnCloseScrapShop;
+        ScrapManagerDataHandler.OnUpdateScrap -= OnUpdateScrap;
+
 
     }
 }

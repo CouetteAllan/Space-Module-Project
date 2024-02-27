@@ -101,7 +101,7 @@ public class UIManager : Singleton<UIManager>
         //_toggleReplaceModule = true;
         //SetReplaceModule();
     }
-
+    #region ScrapShop
     public void OpenScrapShop(bool open)
     {
         _scrapShop.SetActive(open);
@@ -112,7 +112,7 @@ public class UIManager : Singleton<UIManager>
         {
             if (open)
             {
-                Time.timeScale = 0.06f;
+                Time.timeScale = 0.04f;
                 Time.fixedDeltaTime = Time.timeScale * 0.01f;
 
             }
@@ -126,22 +126,6 @@ public class UIManager : Singleton<UIManager>
         Cursor.visible = open;
     }
 
-    public void ChangeScrapTab(bool positive)
-    {
-        _scrapTab[_scrapIndex].SetActive(false);
-        _dots[_scrapIndex].color = Color.gray;
-        _scrapIndex = positive ? ++_scrapIndex : --_scrapIndex;
-        if(_scrapIndex > _scrapTab.Length - 1)
-        {
-            _scrapIndex = 0;
-        }
-        else if(_scrapIndex < 0)
-        {
-            _scrapIndex = _scrapTab.Length - 1;
-        }
-        _scrapTab[_scrapIndex].SetActive(true);
-        _dots[_scrapIndex].color = Color.white;
-    }
 
     public void ChangeScrapTab(int tab)
     {
@@ -155,7 +139,23 @@ public class UIManager : Singleton<UIManager>
         _scrapTab[_scrapIndex].SetActive(true);
         _dots[_scrapIndex].color = Color.white;
     }
-
+    public void ChangeScrapTab(bool positive)
+    {
+        _scrapTab[_scrapIndex].SetActive(false);
+        _dots[_scrapIndex].color = Color.gray;
+        _scrapIndex = positive ? ++_scrapIndex : --_scrapIndex;
+        if (_scrapIndex > _scrapTab.Length - 1)
+        {
+            _scrapIndex = 0;
+        }
+        else if (_scrapIndex < 0)
+        {
+            _scrapIndex = _scrapTab.Length - 1;
+        }
+        _scrapTab[_scrapIndex].SetActive(true);
+        _dots[_scrapIndex].color = Color.white;
+    }
+    #endregion
     private void ShowGameOverPanel(bool show)
     {
         _gameOverPanel.gameObject.SetActive(show);
@@ -169,17 +169,8 @@ public class UIManager : Singleton<UIManager>
     {
         GameManager.OnGameStateChanged -= GameManager_OnGameStateChanged;
     }
-
-    public void UpdateXpBar(uint currentXP)
-    {
-        _xpScript.UpdateXP(currentXP);
-
-    }
-    public void UpdateLevel(uint level)
-    {
-        _xpScript.RefreshTextLvl(level);
-    }
-
+    
+    #region UIButtonFunctions
     public void Replay()
     {
         GameManager.Instance.ChangeGameState(GameState.StartGame);
@@ -189,17 +180,6 @@ public class UIManager : Singleton<UIManager>
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene(0);
-    }
-
-    public void Quit()
-    {
-        Application.Quit();
-    }
-
-    public void SetReplaceModule()
-    {
-        _toggleReplaceModule = !_toggleReplaceModule;
-        OnToggleReplaceModule?.Invoke(_toggleReplaceModule);
     }
 
     private void SetPause(bool active)
@@ -213,6 +193,27 @@ public class UIManager : Singleton<UIManager>
     {
         GameManager.Instance.ChangeGameState(GameState.InGame);
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+    #endregion
+    public void UpdateXpBar(uint currentXP)
+    {
+        _xpScript.UpdateXP(currentXP);
+
+    }
+    public void UpdateLevel(uint level)
+    {
+        _xpScript.RefreshTextLvl(level);
+    }
+    public void SetReplaceModule()
+    {
+        _toggleReplaceModule = !_toggleReplaceModule;
+        OnToggleReplaceModule?.Invoke(_toggleReplaceModule);
+    }
+
 
     public void SkipLevelUp()
     {

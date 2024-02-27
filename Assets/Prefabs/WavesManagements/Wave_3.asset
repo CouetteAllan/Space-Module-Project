@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wave_3
   m_EditorClassIdentifier: 
   OffsetPosFromPlayer: {x: 0, y: 0}
-  TimeInSeconds: 180
+  TimeInSeconds: 130
   WaveComponents:
   - enemy: {fileID: 11400000, guid: 59973cead6a058345ab358ccf68784f4, type: 2}
     number: 5

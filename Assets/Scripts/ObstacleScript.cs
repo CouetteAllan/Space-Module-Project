@@ -5,10 +5,15 @@ using UnityEngine;
 public class ObstacleScript : MonoBehaviour, IObstacle
 {
     [SerializeField] private Rigidbody2D _rb;
+    [SerializeField] private SpriteRenderer _renderer;
+    [SerializeField] private Color _lowHealthColor;
     [SerializeField] private bool _isIndestructible = false;
+    [SerializeField] private Animator _animator;
     private ObstaclesManager _manager;
     private int _health;
+    private int _maxHealth;
     private int _baseHealth = 30;
+    private Color _startColor;
     
     public void TryHit(IDamageSource source, int damage)
     {
@@ -20,12 +25,14 @@ public class ObstacleScript : MonoBehaviour, IObstacle
         float recoilForce = source.RecoilMultiplier * 2.0f;
         _rb.AddForce(pushForceDir * recoilForce);
         ChangeHealth(-damage);
+        _animator.SetTrigger("Damage");
     }
 
 
     private void ChangeHealth(int damage)
     {
-        _health += damage;
+        _health = Mathf.Clamp(_health + damage, 0, _maxHealth);
+        _renderer.color = Color.Lerp(_lowHealthColor,_startColor, (float)_health/(float)_maxHealth);
         if (_health <= 0)
             DestroyObstacle();
     }
@@ -34,7 +41,9 @@ public class ObstacleScript : MonoBehaviour, IObstacle
     {
         _manager = manager;
         _health = health + _baseHealth;
+        _maxHealth = _health;
         StartCoroutine(RotationCoroutine());
+        _startColor = _renderer.color;
     }
 
     private void DestroyObstacle()
@@ -51,7 +60,7 @@ public class ObstacleScript : MonoBehaviour, IObstacle
     {
         while (true)
         {
-            this.transform.Rotate(0, 0, 25.0f * Time.deltaTime);
+            this.transform.Rotate(0, 0, 30.0f * Time.deltaTime);
             yield return null;
         }
     }

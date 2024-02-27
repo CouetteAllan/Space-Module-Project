@@ -319,7 +319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 39735546}
   m_Layer: 5
-  m_Name: ScrapMetal
+  m_Name: ScrapMetalShop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -349,8 +349,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.92300004}
   m_AnchorMax: {x: 0, y: 0.92300004}
-  m_AnchoredPosition: {x: 267.02356, y: -449.3105}
-  m_SizeDelta: {x: 534.047, y: 904.8969}
+  m_AnchoredPosition: {x: 252.98, y: -449.3105}
+  m_SizeDelta: {x: 505.95, y: 904.8969}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &40205810
 PrefabInstance:
@@ -6267,7 +6267,7 @@ MonoBehaviour:
   - {fileID: 516687576}
   - {fileID: 130838721}
   - {fileID: 689986945}
-  _enemyLimit: 50
+  _enemyLimit: 60
 --- !u!1001 &735881457
 PrefabInstance:
   m_ObjectHideFlags: 0

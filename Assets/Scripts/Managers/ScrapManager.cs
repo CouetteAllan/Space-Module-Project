@@ -24,7 +24,15 @@ public class ScrapManager : MonoBehaviour
         ScrapManagerDataHandler.OnPickUpScrap += OnPickUpScrap;
         ScrapManagerDataHandler.OnSellScrap += SellScrapMetal;
         ScrapManagerDataHandler.OnAbleToBuyScrap += AbleToBuyScrap;
+
+        GameManager.OnGameStateChanged += OnGameStateChanged;
         this.UpdateScrap(_numberOfScrap);
+    }
+
+    private void OnGameStateChanged(GameState newState)
+    {
+        if (newState == GameState.StartGame)
+            this.UpdateScrap(_numberOfScrap);
     }
 
     private void OnCreateScrap(Vector2 pos,int scrapGranted)
