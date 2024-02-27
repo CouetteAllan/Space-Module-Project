@@ -186,7 +186,7 @@ public class UIManager : Singleton<UIManager>
     {
         _pauseGO.SetActive(active);
         if (active)
-            _pauseGO.GetComponent<Animator>()?.SetTrigger("Pause");
+            _pauseGO.GetComponent<Animator>().SetTrigger("Pause");
     }
 
     public void Resume()
