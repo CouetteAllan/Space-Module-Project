@@ -29,9 +29,10 @@ public class EnemyManager : MonoBehaviour
     {
         var startLimit = _enemyLimit;
         _enemyLimit += number * 2;
-        for(int i = 0; i < number; i++)
+        var pos = GameManager.Instance.PlayerController.transform.position + UtilsClass.GetRandomDir() * 35.0f;
+        for (int i = 0; i < number; i++)
         {
-            OnSpawnEnemy(_spawns[0].transform.position + UtilsClass.GetRandomDir(), datas);
+            OnSpawnEnemy( pos + UtilsClass.GetRandomDir() * 1.1f, datas);
 
         }
         _enemyLimit = startLimit;
@@ -62,7 +63,7 @@ public class EnemyManager : MonoBehaviour
     private EnemyDatas OnGetEnemyDatas()
     {
         //Pick datas depending on the current timer level (1 timer level = 10sec);
-        if (_currentTimerLevel < 18)
+        if (_currentTimerLevel < 15 ||(18 < _currentTimerLevel && _currentTimerLevel < 22) )
             return _enemyDatas[0];
         else
             return _enemyDatas[2];

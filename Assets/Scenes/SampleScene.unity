@@ -6688,6 +6688,7 @@ MonoBehaviour:
   _scrapTransform: {fileID: 388440602637989478, guid: c8ba7bcab3c94094b8531054b2972419, type: 3}
   _scrapManagerUI: {fileID: 541234869}
   _numberOfScrap: 0
+  _maxScrapInWorld: 250
   _scrapParent: {fileID: 180014841}
 --- !u!114 &786017310
 MonoBehaviour:

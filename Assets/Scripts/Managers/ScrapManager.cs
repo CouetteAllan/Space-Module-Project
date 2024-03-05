@@ -10,12 +10,12 @@ public class ScrapManager : MonoBehaviour
     [SerializeField] private ScrapManagerUI _scrapManagerUI;
 
     [SerializeField] private int _numberOfScrap = 0;
-
+    [SerializeField] private int _maxScrapInWorld = 200;
     [SerializeField] private Transform _scrapParent;
     public int NumberOfScrap {  get { return _numberOfScrap; } }
 
     private Dictionary<StatType, int> _numberOfModulePurchased = new Dictionary<StatType, int>();
-
+    private Queue<ScrapMetal> _scrapMetals = new Queue<ScrapMetal>();
     private void Awake()
     {
         //Listen to event whenever an enemy dies so we can have a chance to spawn scrap
@@ -39,9 +39,15 @@ public class ScrapManager : MonoBehaviour
     {
         for (int i = 0; i < scrapGranted; i++)
         {
+            if(_scrapMetals.Count > _maxScrapInWorld)
+            {
+                var lastScrap = _scrapMetals.Dequeue();
+                Destroy(lastScrap);
+            }
             var randomDistance = Random.Range(0.6f, 2.0f);
             var newScrap = SpawnScrapMetal(pos + (Vector2)UtilsClass.GetRandomDir() * randomDistance);
             newScrap.SetScrapValue(1); //to change
+            _scrapMetals.Enqueue(newScrap);
         }
     }
 
