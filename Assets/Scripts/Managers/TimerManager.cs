@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ChronoManager : MonoBehaviour
+public class TimerManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _timerText;
+    [SerializeField] private float _maxSeconds = 300.0f; //5min
     private float _elapsedTime;
     private int _currentTimeLevel = 0;
     private float _timerAnotherEvent = 0.0f;
@@ -44,8 +45,8 @@ public class ChronoManager : MonoBehaviour
         if (!_didStart)
             return;
         _elapsedTime += Time.deltaTime;
-        int minutes = Mathf.FloorToInt(_elapsedTime / 60);
-        int seconds = Mathf.FloorToInt(_elapsedTime % 60);
+        int minutes = Mathf.FloorToInt((_maxSeconds - _elapsedTime) / 60);
+        int seconds = Mathf.FloorToInt((_maxSeconds - _elapsedTime)% 60);
 
         _timerText.text = string.Format("{0:00}: {1:00}",minutes,seconds);
 

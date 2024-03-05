@@ -29,9 +29,9 @@ public class EnemyManager : MonoBehaviour
     {
         var startLimit = _enemyLimit;
         _enemyLimit += number * 2;
-        var pos = GameManager.Instance.PlayerController.transform.position + UtilsClass.GetRandomDir() * 35.0f;
         for (int i = 0; i < number; i++)
         {
+            var pos = GameManager.Instance.PlayerController.transform.position + UtilsClass.GetRandomDir() * 30.0f;
             OnSpawnEnemy( pos + UtilsClass.GetRandomDir() * 1.1f, datas);
 
         }
