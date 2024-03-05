@@ -217,7 +217,8 @@ public class UIManager : Singleton<UIManager>
 
     public void SkipLevelUp()
     {
-        ScrapManagerDataHandler.PickUpScrap(20);
+        //ScrapManagerDataHandler.PickUpScrap(20);
+        GameManager.Instance.PlayerController.GetHealthScript().ChangeHealth(20);
         GameManager.Instance.CloseShop();
     }
 

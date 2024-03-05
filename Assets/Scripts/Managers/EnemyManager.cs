@@ -63,10 +63,16 @@ public class EnemyManager : MonoBehaviour
     private EnemyDatas OnGetEnemyDatas()
     {
         //Pick datas depending on the current timer level (1 timer level = 10sec);
-        if (_currentTimerLevel < 15 ||(18 < _currentTimerLevel && _currentTimerLevel < 22) )
+        if (_currentTimerLevel < 15 ||(18 < _currentTimerLevel && _currentTimerLevel < 22))
+        {
+            _enemyLimit = 25;
             return _enemyDatas[0];
+        }
         else
+        {
+            _enemyLimit = 50;
             return _enemyDatas[2];
+        }
     }
 
     private void EnemyScript_OnDeath(object enemy, EnemyScript.EnemyStatsOnDeath e)
