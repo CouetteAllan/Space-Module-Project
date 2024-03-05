@@ -12,6 +12,7 @@ public class ScrapManager : MonoBehaviour
     [SerializeField] private int _numberOfScrap = 0;
     [SerializeField] private int _maxScrapInWorld = 200;
     [SerializeField] private Transform _scrapParent;
+    
     public int NumberOfScrap {  get { return _numberOfScrap; } }
 
     private Dictionary<StatType, int> _numberOfModulePurchased = new Dictionary<StatType, int>();
@@ -58,14 +59,14 @@ public class ScrapManager : MonoBehaviour
 
     private bool AbleToBuyScrap()
     {
-        return _numberOfScrap >= 5;
+        return _numberOfScrap >= 15;
     }
 
     private void OnPickUpScrap(int value)
     {
         _numberOfScrap += value;
         this.UpdateScrap(_numberOfScrap);
-
+        ScrapManagerDataHandler.EnoughScrap(_numberOfScrap >= 15);
     }
 
     private void OnEnemyDeath(object sender, EnemyScript.EnemyStatsOnDeath enemyStats)
@@ -119,5 +120,11 @@ public class ScrapManager : MonoBehaviour
     {
         EnemyScript.OnDeath -= OnEnemyDeath;
         ScrapManagerDataHandler.OnPickUpScrap -= OnPickUpScrap;
+
+        ScrapManagerDataHandler.OnCreateScrap -= OnCreateScrap;
+        ScrapManagerDataHandler.OnSellScrap -= SellScrapMetal;
+        ScrapManagerDataHandler.OnAbleToBuyScrap -= AbleToBuyScrap;
+
+        GameManager.OnGameStateChanged -= OnGameStateChanged;
     }
 }

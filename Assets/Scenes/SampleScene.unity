@@ -324,7 +324,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &39735546
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1256,7 +1256,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &116076044
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1290,7 +1290,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 672549ac395cf7943a1f69dc496a5995, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -4728,6 +4728,7 @@ MonoBehaviour:
   _pauseGO: {fileID: 1299500271}
   _xpScript: {fileID: 1138961019}
   _gameOverPanel: {fileID: 1917476296}
+  _tabAnimator: {fileID: 116076045}
 --- !u!114 &541234869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6708,7 +6709,7 @@ MonoBehaviour:
   _scrapTransform: {fileID: 388440602637989478, guid: c8ba7bcab3c94094b8531054b2972419, type: 3}
   _scrapManagerUI: {fileID: 541234869}
   _numberOfScrap: 0
-  _maxScrapInWorld: 250
+  _maxScrapInWorld: 300
   _scrapParent: {fileID: 180014841}
 --- !u!114 &786017310
 MonoBehaviour:
@@ -12542,7 +12543,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Skip (Gain 20% HP)
+  m_text: Skip (Heal 15% HP)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2fc1bc04a5d428347b1f54e34ec0c849, type: 2}
   m_sharedMaterial: {fileID: 5231563826371334905, guid: 2fc1bc04a5d428347b1f54e34ec0c849, type: 2}
@@ -16422,6 +16423,10 @@ PrefabInstance:
     - target: {fileID: 6758014113951246968, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019275645644614068, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
+      propertyPath: _maxHealth
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}

@@ -102,9 +102,7 @@ public class PlayerController : MonoBehaviour, IGatherScrap
 
     private void OpenPauseMenu_performed(InputAction.CallbackContext context)
     {
-        _pauseMenuOpen = !_pauseMenuOpen;
-        GameState newState = _pauseMenuOpen ? GameState.Pause : GameState.InGame;
-        GameManager.Instance.ChangeGameState(newState);
+        GameManager.Instance.SwitchPauseMode();
     }
 
     private void OpenScrapShop_performed(InputAction.CallbackContext context)

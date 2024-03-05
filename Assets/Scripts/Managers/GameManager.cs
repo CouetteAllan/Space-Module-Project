@@ -33,6 +33,10 @@ public class GameManager : Singleton<GameManager>
     public bool HasShownTutoOnce { get; set; } = false;
 
     private bool _blockXp = false;
+    private GameState _previousState;
+    public GameState PreviousState { get { return _previousState; } }
+
+    private bool _isPause;
 
     private void Start()
     {
@@ -55,6 +59,7 @@ public class GameManager : Singleton<GameManager>
         if (newState == CurrentState)
             return;
 
+        _previousState = CurrentState;
         CurrentState = newState;
         switch (CurrentState)
         {
@@ -79,6 +84,7 @@ public class GameManager : Singleton<GameManager>
                 Time.timeScale = 1.0f;
                 Time.fixedDeltaTime = Time.timeScale * 0.01f;
                 Cursor.visible = false;
+                _isPause = false;
                 break;
             case GameState.GameOver:
                 Time.timeScale = 0.2f;
@@ -93,10 +99,16 @@ public class GameManager : Singleton<GameManager>
             case GameState.Pause:
                 StartCoroutine(SlowMoCoroutine(false));
                 Cursor.visible = true;
+                _isPause = true;
                 break;
         }
         OnGameStateChanged?.Invoke(newState);
         Debug.Log("Game State: " + CurrentState.ToString());
+    }
+
+    public void ResumePreviousState()
+    {
+        ChangeGameState(_previousState);
     }
 
     public void GrantXP(uint xp)
@@ -112,6 +124,14 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public void SwitchPauseMode()
+    {
+        _isPause = !_isPause;
+        if(_isPause)
+            ChangeGameState(GameState.Pause);
+        else
+            ResumePreviousState();
+    }
     private void LevelUp()
     {
         CurrentLevel++;

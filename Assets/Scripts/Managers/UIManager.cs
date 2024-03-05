@@ -29,18 +29,33 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private UI_XPScript _xpScript;
 
     [SerializeField] private RectTransform _gameOverPanel;
+
+    [Space]
+    [SerializeField] private Animator _tabAnimator;
     private ModuleImageScript[] _moduleImageScripts;
 
     private int _scrapIndex = 0;
     private void Start()
     {
         GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
+
+        ScrapManagerDataHandler.OnEnoughScrap += OnEnoughScrap;
         _moduleImageScripts = _moduleShop.GetComponentsInChildren<ModuleImageScript>();
         _openScrapShopTxT.SetActive(true);
         _scrapShop.SetActive(false);
         _openScrapShopTxT.SetActive(false);
         _skipButton.SetActive(false);
 
+    }
+
+    private void OnEnoughScrap(bool enoughScrap)
+    {
+        _tabAnimator.SetBool("CanPurchase", enoughScrap);
+        if (enoughScrap)
+        {
+            _tabAnimator.gameObject.SetActive(true);
+            _tabAnimator.SetTrigger("PurchaseNotif");
+        }
     }
 
     private void GameManager_OnGameStateChanged(GameState newState)
@@ -54,7 +69,7 @@ public class UIManager : Singleton<UIManager>
 
                 break;
             case GameState.InGame:
-                CloseShop();
+                //CloseShop();
                 SetPause(false);
 
                 break;
@@ -62,6 +77,7 @@ public class UIManager : Singleton<UIManager>
                 ShowGameOverPanel(true);
                 break;
             case GameState.ShopState:
+                SetPause(false);
                 break;
             case GameState.Pause:
                 SetPause(true);
@@ -72,7 +88,7 @@ public class UIManager : Singleton<UIManager>
     public void OpenShop()
     {
 
-        if (GameManager.Instance.CurrentLevel != 1)
+        if (GameManager.Instance.CurrentLevel != 1 && GameManager.Instance.PreviousState != GameState.Pause)
         {
             foreach (var moduleImage in _moduleImageScripts)
             {
@@ -191,13 +207,14 @@ public class UIManager : Singleton<UIManager>
 
     public void Resume()
     {
-        GameManager.Instance.ChangeGameState(GameState.InGame);
+        GameManager.Instance.ResumePreviousState();
     }
 
     public void Quit()
     {
         Application.Quit();
     }
+
     #endregion
     public void UpdateXpBar(uint currentXP)
     {
@@ -214,11 +231,10 @@ public class UIManager : Singleton<UIManager>
         OnToggleReplaceModule?.Invoke(_toggleReplaceModule);
     }
 
-
     public void SkipLevelUp()
     {
         //ScrapManagerDataHandler.PickUpScrap(20);
-        GameManager.Instance.PlayerController.GetHealthScript().ChangeHealth(20);
+        GameManager.Instance.PlayerController.GetHealthScript().ChangeHealth(4);
         GameManager.Instance.CloseShop();
     }
 
