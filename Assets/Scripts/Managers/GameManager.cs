@@ -74,7 +74,7 @@ public class GameManager : Singleton<GameManager>
 
             case GameState.StartGame:
                 Time.timeScale = 1.0f;
-                TutoManagerDataHandler.ShowTuto(true);
+                //TutoManagerDataHandler.ShowTuto(true);
                 InitGame();
                 OpenShop();
                 WaveManagerDataHandler.SetUpWaveManager();
