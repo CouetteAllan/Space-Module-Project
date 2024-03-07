@@ -11,7 +11,6 @@ public class EnemyGroupSpawnerScript : MonoBehaviour
     private const int ONE_MINUTE_THIRTY = 9;
     private const int THREE_MINUTES = 18;
     private const int FOUR_MINUTES = 24;
-    private const int SIX_MINUTES = 36;
 
     private List<BasicEnemySpawner> _activeEnemySpawners = new List<BasicEnemySpawner>();
 
@@ -50,10 +49,11 @@ public class EnemyGroupSpawnerScript : MonoBehaviour
                 _activeEnemySpawners.Add(_basicEnemySpawners[6]);
                 _activeEnemySpawners.Last().gameObject.SetActive(true);
                 break;
-            case SIX_MINUTES:
-                _activeEnemySpawners.Add(_basicEnemySpawners[7]);
-                _activeEnemySpawners.Last().gameObject.SetActive(true);
-                break;
         }
+    }
+
+    private void OnDestroy()
+    {
+        ChronoManagerDataHandler.OnSendTimeLevel -= OnSendTimeLevel;
     }
 }

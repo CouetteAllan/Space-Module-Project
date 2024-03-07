@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour, IGatherScrap
     private Color _startColor;
 
     private bool _scrapShopOpen = false;
-    private bool _pauseMenuOpen = false;
 
     private void Awake()
     {
@@ -114,7 +113,9 @@ public class PlayerController : MonoBehaviour, IGatherScrap
     private void OnDisable()
     {
         _inputActions.Player.OpenScrapShop.performed -= OpenScrapShop_performed;
+        _inputActions.Player.OpenPauseMenu.performed -= OpenPauseMenu_performed;
         _inputActions = null;
+
         GameManager.OnGameStateChanged -= GameManager_OnGameStateChanged;
         _healthScript.OnChangeHealth -= OnChangeHealth;
         _healthScript.OnDeath -= OnDeath;

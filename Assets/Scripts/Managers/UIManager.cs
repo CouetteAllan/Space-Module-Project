@@ -40,6 +40,7 @@ public class UIManager : Singleton<UIManager>
         GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
 
         ScrapManagerDataHandler.OnEnoughScrap += OnEnoughScrap;
+
         _moduleImageScripts = _moduleShop.GetComponentsInChildren<ModuleImageScript>();
         _openScrapShopTxT.SetActive(true);
         _scrapShop.SetActive(false);
@@ -50,7 +51,7 @@ public class UIManager : Singleton<UIManager>
 
     private void OnEnoughScrap(bool enoughScrap)
     {
-        _tabAnimator.SetBool("CanPurchase", enoughScrap);
+        _tabAnimator?.SetBool("CanPurchase", enoughScrap);
         if (enoughScrap)
         {
             _tabAnimator.gameObject.SetActive(true);
@@ -184,8 +185,10 @@ public class UIManager : Singleton<UIManager>
     private void OnDisable()
     {
         GameManager.OnGameStateChanged -= GameManager_OnGameStateChanged;
+        ScrapManagerDataHandler.OnEnoughScrap -= OnEnoughScrap;
+
     }
-    
+
     #region UIButtonFunctions
     public void Replay()
     {

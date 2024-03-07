@@ -82,7 +82,7 @@ public class TimerManager : MonoBehaviour
             _nextWaveTime = GetNextWaveTime();
         }
        
-        if(_elapsedTime % 60.0f <= 0.5f)
+        if(_elapsedTime % 60.0f <= 0.1f && _elapsedTime > 1)
         {
             _timerAnimator.SetTrigger("Bounce");
         }
