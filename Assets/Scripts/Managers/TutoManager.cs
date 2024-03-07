@@ -13,8 +13,13 @@ public class TutoManager : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        TutoManagerDataHandler.OnShowTuto += OnShowTuto;
+    }
     public void OnShowTuto(bool showTuto)
     {
+        Debug.Log("oqisg");
         if (!GameManager.Instance.HasShownTutoOnce)
         {
             GameManager.Instance.HasShownTutoOnce = true;
@@ -35,9 +40,8 @@ public class TutoManager : MonoBehaviour
         Destroy(_quickTutoObject);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         TutoManagerDataHandler.OnShowTuto -= OnShowTuto;
-
     }
 }
