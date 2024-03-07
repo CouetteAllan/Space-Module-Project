@@ -19,7 +19,6 @@ public class TutoManager : MonoBehaviour
     }
     public void OnShowTuto(bool showTuto)
     {
-        Debug.Log("oqisg");
         if (!GameManager.Instance.HasShownTutoOnce)
         {
             GameManager.Instance.HasShownTutoOnce = true;

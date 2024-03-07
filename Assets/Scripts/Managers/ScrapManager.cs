@@ -25,9 +25,15 @@ public class ScrapManager : MonoBehaviour
         ScrapManagerDataHandler.OnPickUpScrap += OnPickUpScrap;
         ScrapManagerDataHandler.OnSellScrap += SellScrapMetal;
         ScrapManagerDataHandler.OnAbleToBuyScrap += AbleToBuyScrap;
+        ScrapManagerDataHandler.OnCheckScrap += OnCheckScrap;
 
         GameManager.OnGameStateChanged += OnGameStateChanged;
         this.UpdateScrap(_numberOfScrap);
+    }
+
+    private void OnCheckScrap()
+    {
+        ScrapManagerDataHandler.EnoughScrap(AbleToBuyScrap());
     }
 
     private void OnGameStateChanged(GameState newState)
@@ -66,7 +72,7 @@ public class ScrapManager : MonoBehaviour
     {
         _numberOfScrap += value;
         this.UpdateScrap(_numberOfScrap);
-        ScrapManagerDataHandler.EnoughScrap(_numberOfScrap >= 15);
+        ScrapManagerDataHandler.EnoughScrap(AbleToBuyScrap());
     }
 
     private void OnEnemyDeath(object sender, EnemyScript.EnemyStatsOnDeath enemyStats)
@@ -124,6 +130,8 @@ public class ScrapManager : MonoBehaviour
         ScrapManagerDataHandler.OnCreateScrap -= OnCreateScrap;
         ScrapManagerDataHandler.OnSellScrap -= SellScrapMetal;
         ScrapManagerDataHandler.OnAbleToBuyScrap -= AbleToBuyScrap;
+        ScrapManagerDataHandler.OnCheckScrap -= OnCheckScrap;
+
 
         GameManager.OnGameStateChanged -= OnGameStateChanged;
     }

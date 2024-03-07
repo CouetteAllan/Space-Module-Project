@@ -24,7 +24,7 @@ public class UIManager : Singleton<UIManager>
 
     [Header("PauseMenu")]
     [SerializeField] private GameObject _pauseGO;
- 
+
     [Space]
     [SerializeField] private UI_XPScript _xpScript;
 
@@ -42,7 +42,6 @@ public class UIManager : Singleton<UIManager>
         ScrapManagerDataHandler.OnEnoughScrap += OnEnoughScrap;
 
         _moduleImageScripts = _moduleShop.GetComponentsInChildren<ModuleImageScript>();
-        _openScrapShopTxT.SetActive(true);
         _scrapShop.SetActive(false);
         _openScrapShopTxT.SetActive(false);
         _skipButton.SetActive(false);
@@ -103,7 +102,7 @@ public class UIManager : Singleton<UIManager>
 
         _moduleShop.SetActive(true);
         _openScrapShopTxT.SetActive(true);
-        if((bool)ScrapManagerDataHandler.AbleToBuyScrap())
+        if ((bool)ScrapManagerDataHandler.AbleToBuyScrap())
             OpenScrapShop(true);
     }
 
@@ -113,7 +112,7 @@ public class UIManager : Singleton<UIManager>
         _moduleShop.SetActive(false);
         UpdateXpBar(GameManager.Instance.CurrentXP);
         UpdateLevel(GameManager.Instance.CurrentLevel);
-        _openScrapShopTxT.SetActive(true);
+        _openScrapShopTxT.SetActive(false);
         OpenScrapShop(false);
         //_toggleReplaceModule = true;
         //SetReplaceModule();
@@ -124,12 +123,12 @@ public class UIManager : Singleton<UIManager>
         _scrapShop.SetActive(open);
         _scrapTab[_scrapIndex].SetActive(open);
         _scrapTxt.SetActive(open);
-        _openScrapShopTxT.SetActive(!open);
-        if(GameManager.Instance.CurrentState != GameState.ShopState)
+        _openScrapShopTxT.SetActive(false);
+        if (GameManager.Instance.CurrentState != GameState.ShopState)
         {
             if (open)
             {
-                Time.timeScale = 0.04f;
+                Time.timeScale = 0.0f;
                 Time.fixedDeltaTime = Time.timeScale * 0.01f;
 
             }
@@ -137,9 +136,12 @@ public class UIManager : Singleton<UIManager>
             {
                 Time.timeScale = 1.0f;
                 OnCloseScrapShop?.Invoke();
+                ScrapManagerDataHandler.CheckScrap();
             }
         }
-        
+        if (!open)
+            ScrapManagerDataHandler.CheckScrap();
+
         Cursor.visible = open;
     }
 

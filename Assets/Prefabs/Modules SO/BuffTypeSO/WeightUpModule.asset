@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ModuleName: Weight Up
   ModuleDescription: 'Increased the amount of <color=red>weight</color> you can carry
-    on <color=orange> (Cost: 25 Fe)</color>'
+    on \n <color=orange> (Cost: 25 Fe)</color>'
   ModuleClass: 2
   ModuleSprite: {fileID: 21300000, guid: 00a39bd396dcc134cb865c00a2ee95e0, type: 3}
   ModulePrefab: {fileID: 1310436615563555467, guid: 801608315b4e0ad4a81b29da24de6d95, type: 3}

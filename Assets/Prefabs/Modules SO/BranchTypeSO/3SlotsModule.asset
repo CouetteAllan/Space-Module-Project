@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 3SlotsModule
   m_EditorClassIdentifier: 
   ModuleName: 3 slots Module
-  ModuleDescription: 'Add 3 Slots to the ship <color=orange> (Cost: 30 Fe)</color>'
+  ModuleDescription: 'Add 3 Slots to the ship \n <color=orange> (Cost: 30 Fe)</color>'
   ModuleClass: 4
   ModuleSprite: {fileID: 21300000, guid: 42880866cda777544a9f6d542418ec7c, type: 3}
   ModulePrefab: {fileID: 5653764616274984447, guid: 03ce0699e1050f14db59d268e56b406b, type: 3}

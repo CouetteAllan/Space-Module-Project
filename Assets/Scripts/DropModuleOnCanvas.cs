@@ -130,8 +130,8 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
             GameManager.Instance.CloseShop();
 
         _currentModule = modulePlaced;
-        if(GraphPreview?.gameObject != null)
-            Destroy(GraphPreview?.gameObject);
+        if(GraphPreview != null)
+            Destroy(GraphPreview.gameObject);
         return true;
     }
 }
