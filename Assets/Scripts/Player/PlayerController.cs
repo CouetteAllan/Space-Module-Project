@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rayqdr.Input;
 using UnityEngine.InputSystem;
-using UnityEngine.EventSystems;
-using System;
 
 public class PlayerController : MonoBehaviour, IGatherScrap
 {
@@ -34,7 +32,6 @@ public class PlayerController : MonoBehaviour, IGatherScrap
         _playerModule = GetComponent<PlayerModule>();
         _healthScript = GetComponent<HealthScript>();
         _startColor = _circleGraph.color;
-        SetUpInputAction();
 
         GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
         _healthScript.OnChangeHealth += OnChangeHealth;
@@ -47,7 +44,7 @@ public class PlayerController : MonoBehaviour, IGatherScrap
         if (mod.GetModuleClass() != Module.ModuleClass.Placement)
             return;
 
-        _healthScript.ChangeHealth(-30);
+        _healthScript.ChangeHealth(-10);
     }
 
     private void OnChangeHealth(int health)
@@ -83,6 +80,7 @@ public class PlayerController : MonoBehaviour, IGatherScrap
         {
             GameManager.Instance.SetPlayer(this);
             _healthScript.SetMaxHealth((int)StatSystem.Instance.PlayerStat.GetStatValue(StatType.Health));
+            SetUpInputAction();
         }
     }
 
@@ -114,6 +112,7 @@ public class PlayerController : MonoBehaviour, IGatherScrap
     {
         _inputActions.Player.OpenScrapShop.performed -= OpenScrapShop_performed;
         _inputActions.Player.OpenPauseMenu.performed -= OpenPauseMenu_performed;
+        _inputActions.Disable();
         _inputActions = null;
 
         GameManager.OnGameStateChanged -= GameManager_OnGameStateChanged;
@@ -127,6 +126,11 @@ public class PlayerController : MonoBehaviour, IGatherScrap
     }
 
     public HealthScript GetHealthScript() { return _healthScript;}
+
+    public void HealPlayer(int health)
+    {
+        _healthScript.ChangeHealth((int)((_healthScript.MaxHealth *  health)/100.0f));
+    }
 
     public void GatherScrapMetal(int value)
     {
