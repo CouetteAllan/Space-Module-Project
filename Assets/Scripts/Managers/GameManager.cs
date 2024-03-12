@@ -78,6 +78,7 @@ public class GameManager : Singleton<GameManager>
                 InitGame();
                 OpenShop();
                 WaveManagerDataHandler.SetUpWaveManager();
+                ModuleManager.Instance.SetModuleManager();
                 
                 break;
             case GameState.InGame:

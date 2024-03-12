@@ -36,6 +36,14 @@ public class PlayerRotation : MonoBehaviour
 
     }
 
+    private void OnDisable()
+    {
+        _inputActions.Player.Rotate.performed -= Rotate_performed;
+        _inputActions.Player.Rotate.canceled -= Rotate_canceled;
+
+        DropModuleOnCanvas.OnModuleAttached -= DropModule_OnModuleAttached;
+        Module.OnModuleDestroyed -= Module_OnModuleDestroyed;
+    }
     private void Module_OnModuleDestroyed(Module mod)
     {
         CalculateRotationRate();

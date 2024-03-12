@@ -14,6 +14,7 @@ public class TimerManager : MonoBehaviour
     private bool _didStart = false;
     private bool _didFireEvent = false;
     private bool _countDown = true;
+    private bool _stop = false;
 
     private float _nextWaveTime = 10000.0f;
     private List<float> _waveTimes;
@@ -38,17 +39,30 @@ public class TimerManager : MonoBehaviour
     private void GameManager_OnGameStateChanged(GameState newState)
     {
         _didStart = newState == GameState.InGame;
+        if(newState == GameState.StartGame)
+        {
+            _stop = false;
+        }
 
     }
 
     private void Update()
     {
-        if (!_didStart)
+        if (!_didStart || _stop)
             return;
         _elapsedTime += Time.deltaTime;
+
         int minutes = Mathf.FloorToInt((_maxSeconds - _elapsedTime) / 60);
         int seconds = Mathf.FloorToInt((_maxSeconds - _elapsedTime)% 60);
 
+        if(_elapsedTime >= _maxSeconds)
+        {
+            _didStart = false;
+            _stop = true;
+            _timerText.text = string.Format("{0:00}: {1:00}", 0, 0);
+            this.EndTimer();
+            return;
+        }
         _timerText.text = string.Format("{0:00}: {1:00}",minutes,seconds);
 
 

@@ -7,6 +7,7 @@ public class ScrapMetal : MonoBehaviour
     [SerializeField] private CircleCollider2D _collider;
     private int _value = 1;
     private Rigidbody2D _rigidbody2D;
+    private ScrapManager _scrapManager;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -42,14 +43,16 @@ public class ScrapMetal : MonoBehaviour
         }
 
         player.GatherScrapMetal(_value);
+        _scrapManager.RemoveScrapFromQueue(this);
         Destroy(this.gameObject);
         yield break;
     }
     
 
-    public void SetScrapValue(int value)
+    public void SetScrapMetal(int value,ScrapManager manager)
     {
         this._value = value;
+        _scrapManager = manager;
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 }

@@ -18,7 +18,7 @@ public class EnemyGroupSpawnerScript : MonoBehaviour
 
     private void Awake()
     {
-        ChronoManagerDataHandler.OnSendTimeLevel += OnSendTimeLevel;
+        TimerManagerDataHandler.OnSendTimeLevel += OnSendTimeLevel;
         for(int i = 0; i<=2;  i++)
         {
             _activeEnemySpawners.Add(_basicEnemySpawners[i]);
@@ -54,6 +54,6 @@ public class EnemyGroupSpawnerScript : MonoBehaviour
 
     private void OnDestroy()
     {
-        ChronoManagerDataHandler.OnSendTimeLevel -= OnSendTimeLevel;
+        TimerManagerDataHandler.OnSendTimeLevel -= OnSendTimeLevel;
     }
 }

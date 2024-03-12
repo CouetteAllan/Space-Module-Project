@@ -32,6 +32,7 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
         {
             PlaceModule(moduleDragged);
         }
+
         else if(moduleDragged.GetModuleDatas().OffensiveModuleDatas.Type == _currentModule.OffensiveType)
         {
             //lvl up module
@@ -52,6 +53,8 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
                 Destroy(GraphPreview?.gameObject);
 
             OnDropModule?.Invoke(_attachPointScript);
+            OnModuleAttached?.Invoke(_currentModule);
+
 
         }
         else if (UIManager._toggleReplaceModule)

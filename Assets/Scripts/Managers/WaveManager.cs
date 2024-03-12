@@ -8,7 +8,7 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
-        ChronoManagerDataHandler.OnTriggerWave += OnTriggerWave;
+        TimerManagerDataHandler.OnTriggerWave += OnTriggerWave;
         SetUpWaveManager();
     }
 
@@ -45,7 +45,7 @@ public class WaveManager : MonoBehaviour
 
     private void OnDisable()
     {
-        ChronoManagerDataHandler.OnTriggerWave -= OnTriggerWave;
+        TimerManagerDataHandler.OnTriggerWave -= OnTriggerWave;
 
     }
 }

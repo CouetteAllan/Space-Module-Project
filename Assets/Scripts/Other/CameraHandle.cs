@@ -26,4 +26,10 @@ public class CameraHandle : MonoBehaviour
     {
         _virtualCamera.m_Lens.OrthographicSize -= 1.5f;
     }
+
+    private void OnDisable()
+    {
+        DropModuleOnCanvas.OnModuleAttached -= DropModuleOnCanvas_OnModuleAttached;
+
+    }
 }

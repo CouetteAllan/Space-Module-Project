@@ -53,7 +53,7 @@ public class ScrapManager : MonoBehaviour
             }
             var randomDistance = Random.Range(0.6f, 2.0f);
             var newScrap = SpawnScrapMetal(pos + (Vector2)UtilsClass.GetRandomDir() * randomDistance);
-            newScrap.SetScrapValue(1); //to change
+            newScrap.SetScrapMetal(1,this); //to change
             _scrapMetals.Enqueue(newScrap);
         }
     }
@@ -121,6 +121,10 @@ public class ScrapManager : MonoBehaviour
             return 0;
     }
     private ScrapMetal SpawnScrapMetal(Vector2 pos) => Instantiate(_scrapTransform, pos, Quaternion.identity,_scrapParent).GetComponent<ScrapMetal>();
+    public void RemoveScrapFromQueue(ScrapMetal scrap)
+    {
+        _scrapMetals.Enqueue(scrap);
+    }
 
     private void OnDisable()
     {

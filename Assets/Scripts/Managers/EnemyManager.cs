@@ -18,8 +18,8 @@ public class EnemyManager : MonoBehaviour
         EnemyManagerDataHandler.OnGetEnemyDatas += OnGetEnemyDatas;
         EnemyScript.OnDeath += EnemyScript_OnDeath;
 
-        ChronoManagerDataHandler.OnTimeElapsed += OnTimeElapsed;
-        ChronoManagerDataHandler.OnSendTimeLevel += OnSendTimeLevel;
+        TimerManagerDataHandler.OnTimeElapsed += OnTimeElapsed;
+        TimerManagerDataHandler.OnSendTimeLevel += OnSendTimeLevel;
         _currentTimerLevel = 0;
 
         EnemyManagerDataHandler.OnSpawnEnemyWave += OnSpawnEnemyWave;
@@ -31,8 +31,9 @@ public class EnemyManager : MonoBehaviour
         _enemyLimit += number * 2;
         for (int i = 0; i < number; i++)
         {
-            var pos = GameManager.Instance.PlayerController.transform.position + UtilsClass.GetRandomDir() * 30.0f;
-            OnSpawnEnemy( pos + UtilsClass.GetRandomDir() * 1.1f, datas);
+            float distanceFromPlayer = 28.0f;
+            var pos = GameManager.Instance.PlayerController.transform.position + UtilsClass.GetRandomDir() * distanceFromPlayer;
+            OnSpawnEnemy( pos, datas);
 
         }
         _enemyLimit = startLimit;
@@ -46,7 +47,7 @@ public class EnemyManager : MonoBehaviour
     private void OnTimeElapsed(float elapsedTime)
     {
         var startLimit = _enemyLimit;
-        _enemyLimit += 3;
+        _enemyLimit += 6;
         OnSpawnEnemy(_spawns[0].transform.position, _enemyDatas[3]);
         //Spawn elite enemy, wave etc...
         foreach (var spawner in _spawns)
@@ -96,8 +97,8 @@ public class EnemyManager : MonoBehaviour
         EnemyManagerDataHandler.OnGetEnemyDatas -= OnGetEnemyDatas;
         EnemyScript.OnDeath -= EnemyScript_OnDeath;
 
-        ChronoManagerDataHandler.OnTimeElapsed -= OnTimeElapsed;
-        ChronoManagerDataHandler.OnSendTimeLevel -= OnSendTimeLevel;
+        TimerManagerDataHandler.OnTimeElapsed -= OnTimeElapsed;
+        TimerManagerDataHandler.OnSendTimeLevel -= OnSendTimeLevel;
         EnemyManagerDataHandler.OnSpawnEnemyWave -= OnSpawnEnemyWave;
 
 

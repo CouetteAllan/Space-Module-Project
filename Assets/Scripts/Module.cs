@@ -34,18 +34,10 @@ public class Module : MonoBehaviour, IGatherScrap
         public void IncreaseStats(int currentLevel)
         {
             this.currentLevel = currentLevel;
-            if(currentLevel < 3)
-            {
-                currentReloadSpeedMultplier /= 1.2f;
-                currentDamage += 3;
-                
-            }
-            else
-            {
-                currentReloadSpeedMultplier /= 1.4f;
-                currentProjectileNumber += 1;
-                currentWeight += 10;
-            }
+            currentReloadSpeedMultplier /= 2.5f;
+            currentDamage += 6;
+            currentProjectileNumber += 1;
+
         }
     }
 
@@ -65,7 +57,7 @@ public class Module : MonoBehaviour, IGatherScrap
 
     private int _currentLevel = 1;
     public int CurrentLevel => _currentLevel;
-    private int _maxLevel = 5;
+    private int _maxLevel = 2;
     public int MaxLevel => _maxLevel;
     #endregion
 
@@ -154,8 +146,6 @@ public class Module : MonoBehaviour, IGatherScrap
         _currentModuleStats.IncreaseStats(_currentLevel);
         if (_currentLevel >= _maxLevel)
             ReachMaxLevel();
-        else if (_currentLevel == 3)
-            ReachMidLevel();
         return true;
     }
 
@@ -164,17 +154,8 @@ public class Module : MonoBehaviour, IGatherScrap
         //Change Color + Add feedback or change graph
         if (_data.OffensiveModuleDatas.LevelUpGraph.Length < 1)
             return;
-        Destroy(this.transform.GetChild(transform.childCount - 1).gameObject);
-        Instantiate(_data.OffensiveModuleDatas.LevelUpGraph[_data.OffensiveModuleDatas.LevelUpGraph.Length - 1],this.transform);
-    }
-    
-    private void ReachMidLevel()
-    {
-        //Change Color + Add feedback or change graph
-        if (_data.OffensiveModuleDatas.LevelUpGraph.Length < 1)
-            return;
         Destroy(this.transform.GetChild(0).gameObject);
-        Instantiate(_data.OffensiveModuleDatas.LevelUpGraph[_data.OffensiveModuleDatas.LevelUpGraph.Length - 2],this.transform);
+        Instantiate(_data.OffensiveModuleDatas.LevelUpGraph[_data.OffensiveModuleDatas.LevelUpGraph.Length - 1],this.transform);
     }
 
     public void RemoveModule()
@@ -276,6 +257,12 @@ public class Module : MonoBehaviour, IGatherScrap
     {
         _moduleStrategy = offensiveStrategy;
     }
+
+    public ModuleDatas GetModuleDatas()
+    {
+        return _data;
+    }
+
     public ModuleClass GetModuleClass()
     {
         return _moduleClass;

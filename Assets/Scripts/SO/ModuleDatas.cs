@@ -21,6 +21,7 @@ public class ModuleDatas : ScriptableObject
     public WeightType Weight = WeightType.None;
     public int ScrapCost = 0;
     public int Health = 20;
+    public int PonderationWeight = 12;
 
     [Space]
     [Header("Offensive")]

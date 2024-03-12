@@ -55,6 +55,16 @@ public class PlayerMovement : MonoBehaviour
         Module.OnModuleDestroyed += Module_OnModuleDestroyed;
     }
 
+    private void OnDisable()
+    {
+        _inputActions.Player.Move.started -= Move_started;
+        _inputActions.Player.Move.performed -= Move_performed;
+        _inputActions.Player.Move.canceled -= Move_canceled;
+
+        DropModuleOnCanvas.OnModuleAttached -= DropModule_OnModuleAttached;
+        Module.OnModuleDestroyed -= Module_OnModuleDestroyed;
+    }
+
     private void Module_OnModuleDestroyed(Module mod)
     {
         if (StatSystem.Instance == null)

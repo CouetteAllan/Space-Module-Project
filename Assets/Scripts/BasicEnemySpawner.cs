@@ -12,15 +12,21 @@ public class BasicEnemySpawner : MonoBehaviour
         _tickNeed = 20;
         TimeTickSystemDataHandler.OnTick += TimeTickSystemDataHandler_OnTick;
         GameManager.OnLevelUp += GameManager_OnLevelUp;
-        ChronoManagerDataHandler.OnSendTimeLevel += OnSendTimeLevel;
+        TimerManagerDataHandler.OnSendTimeLevel += OnSendTimeLevel;
+        TimerManagerDataHandler.OnEndTimer += OnEndTimer;
         
+    }
+
+    private void OnEndTimer()
+    {
+        _canSpawn = false;
     }
 
     private void OnSendTimeLevel(int timeLevel)
     {
-        _canSpawn = timeLevel < 28;
+        _canSpawn = timeLevel < 29;
         if(!_canSpawn )
-            ChronoManagerDataHandler.OnSendTimeLevel -= OnSendTimeLevel;
+            TimerManagerDataHandler.OnSendTimeLevel -= OnSendTimeLevel;
     }
 
     private void GameManager_OnLevelUp(uint level)
@@ -55,7 +61,8 @@ public class BasicEnemySpawner : MonoBehaviour
     {
         TimeTickSystemDataHandler.OnTick -= TimeTickSystemDataHandler_OnTick;
         GameManager.OnLevelUp -= GameManager_OnLevelUp;
-        ChronoManagerDataHandler.OnSendTimeLevel -= OnSendTimeLevel;
+        TimerManagerDataHandler.OnSendTimeLevel -= OnSendTimeLevel;
+        TimerManagerDataHandler.OnEndTimer -= OnEndTimer;
 
 
     }

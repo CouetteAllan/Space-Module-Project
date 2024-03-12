@@ -44,6 +44,9 @@ public class HealthScript : MonoBehaviour
 
         if(!_healthBar.gameObject.activeSelf)
             _healthBar.gameObject.SetActive(true);
+        if(_health == _maxHealth)
+            _healthBar.gameObject.SetActive(false);
+
 
         _fillImage.fillAmount = (float)_health / (float)_maxHealth;
 
@@ -51,7 +54,6 @@ public class HealthScript : MonoBehaviour
         {
             _attachPointScript?.EnableAttachPoint();
             OnDeath?.Invoke();
-            //Destroy(this.gameObject);
         }
     }
 
