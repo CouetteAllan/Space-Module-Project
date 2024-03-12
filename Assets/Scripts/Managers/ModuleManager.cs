@@ -41,10 +41,6 @@ public class ModuleManager : Singleton<ModuleManager>
 
     public ModuleDatas GetRandomModuleData()
     {
-        /*int randomIndex = Random.Range(0, _modules.Count);
-        var selectedModule = _modules[randomIndex];
-        _modulesUsed.Add(selectedModule);
-        _modules.RemoveAt(randomIndex);*/
 
         ModuleDatas selectedModule = _modules[0];
         int index = 0;
@@ -66,7 +62,6 @@ public class ModuleManager : Singleton<ModuleManager>
         _modulePonderationWeightUsed.Add(selectedModule, _modulePonderationWeight.GetValueOrDefault(selectedModule));
         _modulePonderationWeight.Remove(selectedModule);
 
-
         return selectedModule;
     }
 
@@ -83,7 +78,7 @@ public class ModuleManager : Singleton<ModuleManager>
         foreach (var weights in _modulePonderationWeight)
         {
             _weightTotal += weights.Value;
-            Debug.Log("weight of module " + weights.Key + " is " + weights.Value);
+            Debug.Log("weight of module " + weights.Key + " is " + weights.Value); 
         }
         Debug.Log("Total Weight for modules after reset: " + _weightTotal);
 

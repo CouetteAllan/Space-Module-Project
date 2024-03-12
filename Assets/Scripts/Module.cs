@@ -34,9 +34,8 @@ public class Module : MonoBehaviour, IGatherScrap
         public void IncreaseStats(int currentLevel)
         {
             this.currentLevel = currentLevel;
-            currentReloadSpeedMultplier /= 2.5f;
-            currentDamage += 6;
-            currentProjectileNumber += 1;
+            currentReloadSpeedMultplier /= 2.0f;
+            currentDamage += 5;
 
         }
     }
@@ -190,7 +189,7 @@ public class Module : MonoBehaviour, IGatherScrap
                     if (success)
                     {
                         OnModuleFire?.Invoke();
-                        if (_audioClipName != null)
+                        if (_audioClipName != string.Empty)
                             SoundManager.Instance.Play(_audioClipName);
                     }
 

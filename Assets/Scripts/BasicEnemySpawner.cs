@@ -9,7 +9,7 @@ public class BasicEnemySpawner : MonoBehaviour
     private bool _canSpawn = true;
     private void OnEnable()
     {
-        _tickNeed = 20;
+        _tickNeed = 18;
         TimeTickSystemDataHandler.OnTick += TimeTickSystemDataHandler_OnTick;
         GameManager.OnLevelUp += GameManager_OnLevelUp;
         TimerManagerDataHandler.OnSendTimeLevel += OnSendTimeLevel;
@@ -39,10 +39,10 @@ public class BasicEnemySpawner : MonoBehaviour
             case 6:
                 _tickNeed = 10;
                 return;
-            case 12:
+            case 10:
                 _tickNeed = 8;
                 return;
-            case 16:
+            case 14:
                 _tickNeed = 4;
                 return;
         }

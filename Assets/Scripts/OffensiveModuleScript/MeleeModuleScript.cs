@@ -53,7 +53,8 @@ public class MeleeModuleScript : BaseOffensiveScript, IDamageSource
 
     private void DealDamageToEnemy(Vector2 attackPosition)
     {
-        var enemies = Physics2D.OverlapCircleAll(attackPosition, 2.5f);
+        float radius = _currentModuleStats.currentLevel > 1 ? 3.3f : 2.5f;
+        var enemies = Physics2D.OverlapCircleAll(attackPosition, radius);
         foreach (var enemy in enemies)
         {
             if(enemy.TryGetComponent(out IHittable hittable))
