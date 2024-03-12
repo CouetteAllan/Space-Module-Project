@@ -15,3 +15,5 @@ MonoBehaviour:
   BaseModuleDamage: 24
   AttackSpeedMultiplier: 0.5
   Type: 5
+  LevelUpGraph:
+  - {fileID: 3843627072314982004, guid: a78d60189aa193e4dae19315b34232d5, type: 3}

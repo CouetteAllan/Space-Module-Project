@@ -20,7 +20,7 @@ MonoBehaviour:
   Weight: 10
   ScrapCost: 0
   Health: 20
-  PonderationWeight: 128
+  PonderationWeight: 256
   ProjectilePrefab: {fileID: 0}
   OffensiveModuleDatas: {fileID: 11400000, guid: 11ad331268e3e8b43bf01f58fb4c0731, type: 2}
   BuffDatas: {fileID: 0}
