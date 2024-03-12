@@ -63,7 +63,7 @@ public class HealthScript : MonoBehaviour
     IEnumerator InvincibilityTimerCoroutine()
     {
         _isInvincible = true;
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.65f);
         _isInvincible = false;
     }
 

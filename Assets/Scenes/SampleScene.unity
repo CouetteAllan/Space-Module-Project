@@ -10597,7 +10597,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1316370728
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11433,6 +11433,7 @@ GameObject:
   - component: {fileID: 1383388998}
   - component: {fileID: 1383388997}
   - component: {fileID: 1383389001}
+  - component: {fileID: 1383389002}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -11533,7 +11534,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: b89a5cbc96a2840439ed43780357cc4e, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 2
   m_InitialTime: 0
@@ -11557,6 +11558,20 @@ PlayableDirector:
   m_ExposedReferences:
     m_References:
     - b9883ffc0bff6484ba0dca7082a86f01: {fileID: 633438016}
+--- !u!114 &1383389002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383388996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60cf72fa90151ef43908b6b928887914, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isPersistant: 0
+  _timeline: {fileID: 1383389001}
 --- !u!1 &1390327454
 GameObject:
   m_ObjectHideFlags: 0
@@ -14159,7 +14174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1770278142
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15967,12 +15982,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isPersistant: 0
   _modules:
-  - {fileID: 11400000, guid: fd31109291390eb4eb92859d671cab93, type: 2}
-  - {fileID: 11400000, guid: 588b0bfdf14f4d24aa1574af531769b7, type: 2}
-  - {fileID: 11400000, guid: 21b26fe3bc0cf714c810484cb4e9177a, type: 2}
   - {fileID: 11400000, guid: f3f039913279ef2449d3037d27ff9c7c, type: 2}
-  - {fileID: 11400000, guid: fab3b1fbc04880043ba3787a7835ef0e, type: 2}
-  - {fileID: 11400000, guid: c178d58bb89f13b4c854ec8bb989fcee, type: 2}
+  - {fileID: 11400000, guid: f3f039913279ef2449d3037d27ff9c7c, type: 2}
+  - {fileID: 11400000, guid: f3f039913279ef2449d3037d27ff9c7c, type: 2}
+  - {fileID: 11400000, guid: f3f039913279ef2449d3037d27ff9c7c, type: 2}
+  - {fileID: 11400000, guid: f3f039913279ef2449d3037d27ff9c7c, type: 2}
+  - {fileID: 11400000, guid: f3f039913279ef2449d3037d27ff9c7c, type: 2}
 --- !u!1001 &2090194209
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16721,6 +16736,10 @@ PrefabInstance:
       propertyPath: _textObject
       value: 
       objectReference: {fileID: 1840893938}
+    - target: {fileID: 3316655932920586862, guid: 1244555cb12e7eb42b351b2f5d2a6511, type: 3}
+      propertyPath: _moduleDatas
+      value: 
+      objectReference: {fileID: 11400000, guid: f3f039913279ef2449d3037d27ff9c7c, type: 2}
     - target: {fileID: 3316655932920586863, guid: 1244555cb12e7eb42b351b2f5d2a6511, type: 3}
       propertyPath: m_IgnoreParentGroups
       value: 0
