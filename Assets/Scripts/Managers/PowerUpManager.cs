@@ -19,7 +19,7 @@ public class PowerUpManager : MonoBehaviour
 
     private void EnemyScript_OnDeath(object sender, EnemyScript.EnemyStatsOnDeath enemyStats)
     {
-        if (Utils.RollChance(chance: .1f)) //10% chances to drop Buff
+        if (Utils.RollChance(chance: .05f)) //5% chances to drop Buff
         {
             OnCreatePowerUp(enemyStats.finalPos);
         }
@@ -47,6 +47,6 @@ public class PowerUpManager : MonoBehaviour
     private void OnDisable()
     {
         PowerUpManagerDataHandler.OnCreatePowerUpAtLocation -= OnCreatePowerUp;
-
+        EnemyScript.OnDeath -= EnemyScript_OnDeath;
     }
 }

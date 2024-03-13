@@ -64,5 +64,13 @@ public class StatClass
             throw new ArgumentException("Stat Type not found");
     }
 
+    public void ShowAllStat()
+    {
+        foreach (var stat in _statDictionary)
+        {
+            Debug.Log($"Stat {stat.Key} has a value of {stat.Value}");
+        }
+    }
+
 
 }

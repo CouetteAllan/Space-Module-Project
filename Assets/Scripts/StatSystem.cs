@@ -7,7 +7,7 @@ public class StatSystem : Singleton<StatSystem>
 {
     [SerializeField] private BaseStatDatas _baseStatDatas;
 
-    private StatClass _playerStat = null;
+    private StatClass _playerStat;
     public StatClass PlayerStat {
         get
         {
@@ -30,6 +30,13 @@ public class StatSystem : Singleton<StatSystem>
         }
     }
 
+    private void Update()
+    {
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            _playerStat.ShowAllStat();
+        }
+    }
 
 
     private void OnDisable()
