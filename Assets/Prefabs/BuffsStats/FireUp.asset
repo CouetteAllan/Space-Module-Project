@@ -16,4 +16,5 @@ MonoBehaviour:
     _name: FireUp
     _baseValue: 0.45
     _type: 3
-  Type: 2
+  TypeBuff: 0
+  GraphPrefab: {fileID: 3290598508236297517, guid: 378080de90e65f44fa31fd9578f76f33, type: 3}

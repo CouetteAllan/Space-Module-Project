@@ -125,6 +125,7 @@ public class EnemyScript : MonoBehaviour, IHittable
             xpGranted = _datas.XPGranted,
             scrapGranted = _datas.ScrapMetalGranted,
         }) ;
+
         Destroy(this.gameObject);
     }
 

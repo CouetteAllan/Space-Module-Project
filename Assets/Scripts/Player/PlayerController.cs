@@ -4,7 +4,7 @@ using UnityEngine;
 using Rayqdr.Input;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour, IGatherScrap
+public class PlayerController : MonoBehaviour, IGatherScrap, IPickUpObject
 {
     [SerializeField] private GameObject _explosionParticles;
     [SerializeField] private SpriteRenderer _graph;
@@ -21,8 +21,10 @@ public class PlayerController : MonoBehaviour, IGatherScrap
     private MInputActionAsset _inputActions;
     private PlayerRotation _rotation;
     private PlayerModule _playerModule;
+    private StatClass _playerStats;
     private HealthScript _healthScript;
     private Color _startColor;
+
 
     private bool _scrapShopOpen = false;
 
@@ -72,6 +74,7 @@ public class PlayerController : MonoBehaviour, IGatherScrap
     {
         GameManager.Instance.SetPlayer(this);
         _healthScript.SetMaxHealth((int)StatSystem.Instance.PlayerStat.GetStatValue(StatType.Health));
+        _playerStats = StatSystem.Instance.PlayerStat;
     }
 
     private void GameManager_OnGameStateChanged(GameState newState)
@@ -148,6 +151,29 @@ public class PlayerController : MonoBehaviour, IGatherScrap
 
         //Turn normal
         _graph.color = startColor;
+    }
+
+    public void PickUpObject(BuffDatas buff)
+    {
+        ApplyBuff(buff);
+    }
+
+    private void ApplyBuff(BuffDatas datas)
+    {
+        SingleStat statApplied = datas.GetStat();
+        switch (datas.TypeBuff)
+        {
+            case BuffDatas.BuffType.Add:
+                _playerStats.ChangeStat(statApplied.Type, statApplied.BaseValue);
+
+                break;
+            case BuffDatas.BuffType.Multiply:
+                _playerStats.MultiplyStat(statApplied.Type, statApplied.BaseValue);
+                break;
+            case BuffDatas.BuffType.PercentMultiply:
+                _playerStats.MultiplyPercentStat(statApplied.Type, statApplied.BaseValue);
+                break;
+        }
     }
 }
 

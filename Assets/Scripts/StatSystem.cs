@@ -7,7 +7,7 @@ public class StatSystem : Singleton<StatSystem>
 {
     [SerializeField] private BaseStatDatas _baseStatDatas;
 
-    private StatClass _playerStat;
+    private StatClass _playerStat = null;
     public StatClass PlayerStat {
         get
         {
@@ -24,22 +24,17 @@ public class StatSystem : Singleton<StatSystem>
 
     private void GameManager_OnGameStateChanged(GameState newState)
     {
-        if(newState == GameState.BeforeGameStart)
+        if(newState == GameState.StartGame)
         {
-            if(_playerStat == null)
-                _playerStat = new StatClass(_baseStatDatas);
-
-            GameManager.Instance.ChangeGameState(GameState.StartGame);
+            _playerStat = new StatClass(_baseStatDatas);
         }
     }
 
 
-    private void Update()
+
+    private void OnDisable()
     {
-        if (Keyboard.current.uKey.wasPressedThisFrame)
-        {
-            //_playerStat.MultiplyPercentStat(StatType.ReloadSpeed, 0.2f);
-            _playerStat.ChangeStat(StatType.NbProjectile, 1);
-        }
+        GameManager.OnGameStateChanged -= GameManager_OnGameStateChanged;
+
     }
 }

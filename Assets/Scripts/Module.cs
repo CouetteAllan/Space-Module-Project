@@ -223,7 +223,7 @@ public class Module : MonoBehaviour, IGatherScrap
     private void ApplyBuff(BuffDatas datas)
     {
         SingleStat statApplied = datas.GetStat();
-        switch (datas.Type)
+        switch (datas.TypeBuff)
         {
             case BuffDatas.BuffType.Add:
                 _playerStatClass.ChangeStat(statApplied.Type, statApplied.BaseValue);
@@ -241,7 +241,7 @@ public class Module : MonoBehaviour, IGatherScrap
 
     private void RemoveBuff()
     {
-        switch(_data.BuffDatas.Type)
+        switch(_data.BuffDatas.TypeBuff)
         {
             case BuffDatas.BuffType.PercentMultiply:
                 _playerStatClass.RemovePercentStat(_singleStatApplied.Type, _singleStatApplied.BaseValue);

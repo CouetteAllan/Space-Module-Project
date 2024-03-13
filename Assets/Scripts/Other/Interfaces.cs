@@ -33,3 +33,8 @@ public interface IEnemyBehaviour
     public void DoMovement(PlayerController player, bool isStopped = false);
     public void DoAttack(PlayerController player);
 }
+
+public interface IPickUpObject
+{
+    public void PickUpObject(BuffDatas buff);
+}

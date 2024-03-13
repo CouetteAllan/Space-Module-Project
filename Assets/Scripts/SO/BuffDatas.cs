@@ -13,10 +13,12 @@ public class BuffDatas : ScriptableObject
         PercentMultiply
     }
 
-    public BuffType Type;
+    public BuffType TypeBuff;
 
     public SingleStat GetStat()
     {
         return new SingleStat (Stat.BaseValue, Stat.Type);
     }
+
+    public GameObject GraphPrefab;
 }

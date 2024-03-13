@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9c9090e343c9504fbc8cdbb26e6530c, type: 3}
-  m_Name: DamageUp
+  m_Name: DamageUpPickable
   m_EditorClassIdentifier: 
   Stat:
     _name: Damage Up
-    _baseValue: 0.4
+    _baseValue: 0.1
     _type: 1
   TypeBuff: 0
   GraphPrefab: {fileID: 6815309892379508342, guid: 2958804f9285ab749b9c10475068b5d8, type: 3}
