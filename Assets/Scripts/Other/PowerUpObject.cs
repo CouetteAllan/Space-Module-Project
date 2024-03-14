@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PowerUpObject : MonoBehaviour
 {
+    [SerializeField] private Collider2D _collider;
+    [SerializeField] private Rigidbody2D _rb;
     private BuffDatas _buffDatas;
     private PowerUpManager _powerUpManager;
 
@@ -11,9 +13,7 @@ public class PowerUpObject : MonoBehaviour
     {
         if(collision.TryGetComponent<IPickUpObject>(out IPickUpObject player))
         {
-            player.PickUpObject(_buffDatas);
-            _powerUpManager.RemoveObjectFromList(this);
-            Destroy(this.gameObject);
+           StartCoroutine(PickUpObjectCoroutine(GameManager.Instance.PlayerController.transform, player));
         }
     }
 
@@ -26,6 +26,40 @@ public class PowerUpObject : MonoBehaviour
 
         //Set up graph 
 
+    }
+
+    private IEnumerator PickUpObjectCoroutine(Transform playerPos, IPickUpObject player)
+    {
+        _collider.enabled = false;
+        Vector2 startPos = _rb.position;
+        float startTime = Time.time;
+        float endTime = startTime + 0.25f;
+
+        //repel the scrap
+        while (Time.time < endTime)
+        {
+            if (playerPos == null)
+                break;
+            _rb.velocity = (startPos - (Vector2)playerPos.position) * 6.0f;
+            yield return null;
+        }
+
+        endTime = Time.time + 0.4f;
+        while (Time.time < endTime)
+        {
+            if (playerPos == null)
+                break;
+            _rb.position = Vector2.Lerp(_rb.position, playerPos.position, 5.0f * Time.deltaTime);
+            yield return null;
+        }
+
+        player.PickUpObject(_buffDatas);
+        string fxName = _buffDatas.Stat.Type == StatType.ReloadSpeed ? "attackSpeed" : "damageUp";
+        string fxValue = _buffDatas.Stat.Type == StatType.ReloadSpeed ? "15%" : "10%";
+        FXManager.Instance.PlayEffect(fxName, playerPos.position, Quaternion.identity, playerPos, fxValue);
+        _powerUpManager.RemoveObjectFromList(this);
+        Destroy(this.gameObject);
+        yield break;
     }
 
 }
