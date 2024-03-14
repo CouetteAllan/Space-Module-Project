@@ -18,17 +18,17 @@ public class AttachPointScript : MonoBehaviour
     }
 
 
-    private void ModuleImageScript_OnEndDragModule()
+    private void ModuleImageScript_OnEndDragModule(ModuleDatas moduleDatas)
     {
-        if(_isActive && _spriteRenderer != null)
+        if(_isActive && _spriteRenderer != null && (moduleDatas.ModuleClass != Module.ModuleClass.StatBuff /*|| moduleDatas.ModuleClass != Module.ModuleClass.Heal*/))
         {
             _spriteRenderer.enabled = false;
         }
     }
 
-    private void ModuleImageScript_OnStartDragModule()
+    private void ModuleImageScript_OnStartDragModule(ModuleDatas moduleDatas)
     {
-        if(_isActive && _spriteRenderer != null)
+        if(_isActive && _spriteRenderer != null && (moduleDatas.ModuleClass != Module.ModuleClass.StatBuff /*|| moduleDatas.ModuleClass != Module.ModuleClass.Heal*/))
         {
             _spriteRenderer.enabled = true;
         }
@@ -56,14 +56,6 @@ public class AttachPointScript : MonoBehaviour
     {
         _isActive = true;
     }
-    /*
-
-    private void OnDisable()
-    {
-        ModuleImageScript.OnStartDragModule -= ModuleImageScript_OnStartDragModule;
-        ModuleImageScript.OnEndDragModule -= ModuleImageScript_OnStartDragModule;
-        DropModule.OnDropModule -= DropModule_OnDropModule;
-    }*/
 
     private void OnDestroy()
     {

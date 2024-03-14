@@ -6341,7 +6341,7 @@ MonoBehaviour:
   - {fileID: 516687576}
   - {fileID: 130838721}
   - {fileID: 689986945}
-  _enemyLimit: 50
+  _enemyLimit: 60
 --- !u!1001 &735881457
 PrefabInstance:
   m_ObjectHideFlags: 0

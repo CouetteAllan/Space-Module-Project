@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Stat:
     _name: Damage Up
-    _baseValue: 0.4
+    _baseValue: 0.5
     _type: 1
   TypeBuff: 0
   GraphPrefab: {fileID: 6815309892379508342, guid: 2958804f9285ab749b9c10475068b5d8, type: 3}

@@ -8,8 +8,8 @@ using System.Text;
 
 public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    public static event Action OnStartDragModule;
-    public static event Action OnEndDragModule;
+    public static event Action<ModuleDatas> OnStartDragModule;
+    public static event Action<ModuleDatas> OnEndDragModule;
 
     [SerializeField] private ModuleDatas _moduleDatas;
     [SerializeField] private TextMeshProUGUI _description;
@@ -89,7 +89,7 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         _textObject.SetActive(false);
         this._rectTransform.localScale /= 2;
         _canvasGroup.alpha = 0.7f;
-        OnStartDragModule?.Invoke();
+        OnStartDragModule?.Invoke(_moduleDatas);
         _layoutElement.ignoreLayout = true;
         _rectTransform.position = eventData.position;
     }
@@ -102,7 +102,7 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
     public void OnEndDrag(PointerEventData eventData)
     {
        ResetPos();
-       OnEndDragModule?.Invoke();
+       OnEndDragModule?.Invoke(_moduleDatas);
     }
 
     public void ResetPos()

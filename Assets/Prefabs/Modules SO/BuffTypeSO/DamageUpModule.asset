@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: DamageUpModule
   m_EditorClassIdentifier: 
   ModuleName: Boost all of your damages by 40%
-  ModuleDescription: 'Damage Up \n <color=orange> (Cost: 20 Fe)</color>'
+  ModuleDescription: 'Damage Up \n <color=orange> (Cost: 40 Fe)</color>'
   ModuleClass: 2
   ModuleSprite: {fileID: 21300000, guid: 0596941d1c1439c4e8ba0fdae69b1395, type: 3}
   ModulePrefab: {fileID: 1310436615563555467, guid: 60e35451e1a12c04a893b9494aabf500, type: 3}
   Weight: 10
-  ScrapCost: 20
+  ScrapCost: 40
   Health: 20
+  PonderationWeight: 12
   ProjectilePrefab: {fileID: 0}
   OffensiveModuleDatas: {fileID: 0}
   BuffDatas: {fileID: 11400000, guid: af692551c0db7cd489da672fef39f54e, type: 2}

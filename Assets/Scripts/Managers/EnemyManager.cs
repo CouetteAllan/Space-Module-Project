@@ -8,7 +8,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private EnemyDatas[] _enemyDatas;
     [SerializeField] private BasicEnemySpawner[] _spawns; //Change this later
     [Space]
-    [SerializeField] private int _enemyLimit = 15;
+    [SerializeField] private int _enemyLimit = 60;
     private List<EnemyScript> _enemiesList = new List<EnemyScript>();
     private int _currentTimerLevel = 0;
 
@@ -64,14 +64,14 @@ public class EnemyManager : MonoBehaviour
     private EnemyDatas OnGetEnemyDatas()
     {
         //Pick datas depending on the current timer level (1 timer level = 10sec);
-        if (_currentTimerLevel < 15 ||(18 < _currentTimerLevel && _currentTimerLevel < 22))
+        if (_currentTimerLevel < 15 ||(18 < _currentTimerLevel && _currentTimerLevel < 23))
         {
             _enemyLimit = 25;
             return _enemyDatas[0];
         }
         else
         {
-            _enemyLimit = 50;
+            _enemyLimit = 60;
             return _enemyDatas[2];
         }
     }

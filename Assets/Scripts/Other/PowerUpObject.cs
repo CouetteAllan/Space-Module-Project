@@ -55,7 +55,7 @@ public class PowerUpObject : MonoBehaviour
 
         player.PickUpObject(_buffDatas);
         string fxName = _buffDatas.Stat.Type == StatType.ReloadSpeed ? "attackSpeed" : "damageUp";
-        string fxValue = _buffDatas.Stat.Type == StatType.ReloadSpeed ? "15%" : "10%";
+        string fxValue = _buffDatas.Stat.Type == StatType.ReloadSpeed ? "10%" : "5%";
         FXManager.Instance.PlayEffect(fxName, playerPos.position, Quaternion.identity, playerPos, fxValue);
         _powerUpManager.RemoveObjectFromList(this);
         Destroy(this.gameObject);
