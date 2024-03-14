@@ -11961,7 +11961,9 @@ MonoBehaviour:
   _baseProfile: {fileID: 11400000, guid: 788bfaa09ffe85c4a8cedb744fe3a87a, type: 2}
   _replaceModuleProfile: {fileID: 11400000, guid: dd5aade6e143d0d4cb9530cdc6cc79bb, type: 2}
   _volumeSettings: {fileID: 1584451412}
-  _pickUpFX: []
+  _pickUpFX:
+  - {fileID: 3376451067461627123, guid: ef8c4649e3bccdb4e9fb9477f87ba8d2, type: 3}
+  - {fileID: 3376451067461627123, guid: b8f5b1eb9bfc3a84aa809a2c5c8324e4, type: 3}
 --- !u!4 &1456647849
 Transform:
   m_ObjectHideFlags: 0

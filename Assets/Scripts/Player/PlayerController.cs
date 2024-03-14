@@ -85,6 +85,13 @@ public class PlayerController : MonoBehaviour, IGatherScrap, IPickUpObject
             _healthScript.SetMaxHealth((int)StatSystem.Instance.PlayerStat.GetStatValue(StatType.Health));
             SetUpInputAction();
         }
+
+        else if(newState == GameState.GameOver)
+        {
+            _inputActions.Player.OpenScrapShop.performed -= OpenScrapShop_performed;
+            _inputActions.Player.OpenPauseMenu.performed -= OpenPauseMenu_performed;
+            _inputActions.Disable();
+        }
     }
 
 
