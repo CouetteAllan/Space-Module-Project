@@ -48,11 +48,11 @@ public class FXManager : Singleton<FXManager>
                 break;
 
             case "attackSpeed":
-                var fxAttackSpeed = Instantiate(_pickUpFX[0],pos, rotation,transformParent);
+                var fxAttackSpeed = Instantiate(_pickUpFX[0],pos, rotation);
                 fxAttackSpeed.PlayFX(value);
                 break;
             case "damageUp":
-                var fxDamage = Instantiate(_pickUpFX[1], pos, rotation, transformParent);
+                var fxDamage = Instantiate(_pickUpFX[1], pos, rotation);
                 fxDamage.PlayFX(value);
                 break;
         }

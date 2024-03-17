@@ -87,7 +87,7 @@ public class UIManager : Singleton<UIManager>
 
     public void OpenShop()
     {
-
+        
         if (GameManager.Instance.CurrentLevel != 1 && GameManager.Instance.PreviousState != GameState.Pause)
         {
             foreach (var moduleImage in _moduleImageScripts)
@@ -131,6 +131,7 @@ public class UIManager : Singleton<UIManager>
                 Time.timeScale = 0.03f;
                 Time.fixedDeltaTime = Time.timeScale * 0.01f;
 
+
             }
             else
             {
@@ -140,8 +141,8 @@ public class UIManager : Singleton<UIManager>
                 ScrapManagerDataHandler.CheckScrap();
             }
         }
-        if (!open)
-            ScrapManagerDataHandler.CheckScrap();
+
+        ScrapManagerDataHandler.CheckScrap();
 
         Cursor.visible = open;
         if (!open && _moduleShop.activeSelf == true)

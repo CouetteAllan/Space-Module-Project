@@ -64,13 +64,13 @@ public class ScrapManager : MonoBehaviour
 
     private bool AbleToBuyScrap()
     {
+        this.UpdateScrap(_numberOfScrap);
         return _numberOfScrap >= 15;
     }
 
     private void OnPickUpScrap(int value)
     {
         _numberOfScrap += value;
-        this.UpdateScrap(_numberOfScrap);
         ScrapManagerDataHandler.EnoughScrap(AbleToBuyScrap());
     }
 
