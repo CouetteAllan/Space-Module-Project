@@ -28,6 +28,9 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
 
         ModuleImageScript moduleDragged = eventData.pointerDrag.GetComponent<ModuleImageScript>();
 
+        if (moduleDragged.GetModuleDatas().ModuleClass == Module.ModuleClass.StatBuff)
+            return;
+
         if (_attachPointScript.IsActive)
         {
             PlaceModule(moduleDragged);
@@ -57,10 +60,6 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
 
 
         }
-        else if (UIManager._toggleReplaceModule)
-        {
-            PlaceModule(moduleDragged);
-        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -70,6 +69,9 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
             return;
 
         ModuleImageScript moduleDragged = eventData.pointerDrag.GetComponent<ModuleImageScript>();
+
+        if (moduleDragged.GetModuleDatas().ModuleClass == Module.ModuleClass.StatBuff)
+            return;
 
         if (_attachPointScript.IsActive)
         {

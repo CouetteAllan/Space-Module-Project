@@ -4433,7 +4433,7 @@ Camera:
   far clip plane: 100
   field of view: 90
   orthographic: 1
-  orthographic size: 21.5
+  orthographic size: 23
   m_Depth: 10
   m_CullingMask:
     serializedVersion: 2
@@ -4457,7 +4457,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000011920929, y: -0.00000059604645, z: -20}
+  m_LocalPosition: {x: 0.0000014305115, y: -0.00000071525574, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12820,7 +12820,7 @@ MonoBehaviour:
   m_Follow: {fileID: 366237360}
   m_Lens:
     FieldOfView: 90
-    OrthographicSize: 21.5
+    OrthographicSize: 23
     NearClipPlane: 5
     FarClipPlane: 100
     Dutch: 0
@@ -12844,7 +12844,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584451406}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000011920929, y: -0.00000059604645, z: -20}
+  m_LocalPosition: {x: 0.0000014305115, y: -0.00000071525574, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16998,10 +16998,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3439121397852914587, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
-      propertyPath: m_AngularDrag
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3458775440946969532, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
       propertyPath: m_Name
       value: PlayerShip
@@ -17049,14 +17045,6 @@ PrefabInstance:
     - target: {fileID: 6015113380204956982, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6758014113951246968, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7019275645644614068, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}
-      propertyPath: _maxHealth
-      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 919817db7cd8aa246bfe7f874c10fc51, type: 3}

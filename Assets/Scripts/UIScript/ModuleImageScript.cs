@@ -59,7 +59,7 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         if (buffTypeSold != _moduleDatas.BuffDatas.GetStat().Type)
             return;
 
-        _currentPrice += nbSold;
+        _currentPrice += nbSold * 4;
         //update specific module text
         string newDesc = _moduleDatas.ModuleDescription;
         int index = newDesc.IndexOf("Cost");
@@ -73,13 +73,11 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         ResetPos();
     }
 
-    
-
     private void OnUpdateScrap(int scrapLeft)
     {
-        //Grey image if can purchase
+        //Grey image if can't purchase
         _lastRegisterScrap = scrapLeft;
-        _canvasGroup.alpha = CanPurchase() ? 1.0f : 0.5f;
+        _canvasGroup.alpha = CanPurchase() ? 1.0f : 0.3f;
         _currentAlpha = _canvasGroup.alpha;
     }
 
@@ -156,7 +154,8 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
     {
         ScrapManagerDataHandler.OnUpdateScrap -= OnUpdateScrap;
         UIManager.OnCloseScrapShop -= OnCloseScrapShop;
-        ScrapManagerDataHandler.OnUpdateScrap -= OnUpdateScrap;
+
+        ScrapManagerDataHandler.OnSellScrapSuccess -= OnSellScrapSuccess;
 
 
     }

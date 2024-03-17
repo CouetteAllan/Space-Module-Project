@@ -144,6 +144,10 @@ public class UIManager : Singleton<UIManager>
             ScrapManagerDataHandler.CheckScrap();
 
         Cursor.visible = open;
+        if (!open && _moduleShop.activeSelf == true)
+        {
+            Cursor.visible = true;
+        }
     }
 
 

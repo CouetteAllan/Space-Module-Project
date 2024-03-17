@@ -78,9 +78,7 @@ public class ModuleManager : Singleton<ModuleManager>
         foreach (var weights in _modulePonderationWeight)
         {
             _weightTotal += weights.Value;
-            Debug.Log("weight of module " + weights.Key + " is " + weights.Value); 
         }
-        Debug.Log("Total Weight for modules after reset: " + _weightTotal);
 
     }
 

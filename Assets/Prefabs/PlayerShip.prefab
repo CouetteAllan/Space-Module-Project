@@ -439,8 +439,10 @@ GameObject:
   - component: {fileID: 2316332938878904368}
   - component: {fileID: 3889005750529172661}
   - component: {fileID: 3067575021218305565}
+  - component: {fileID: 989149109063149566}
+  - component: {fileID: 4971282474018572902}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: CanvasDropBuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -523,10 +525,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 1
+  m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!114 &3067575021218305565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,6 +541,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7823c83033ef834fba59948b94d04d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!222 &989149109063149566
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2591881589871123699}
+  m_CullTransparentMesh: 1
+--- !u!114 &4971282474018572902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2591881589871123699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 2.8, y: 2.8, z: 2.8, w: 2.8}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3458775440946969532
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,7 +749,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 8500
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 2
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -746,7 +786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 7152550976242679449}
   _fillImage: {fileID: 1644953342395885845}
-  _maxHealth: 20
+  _maxHealth: 25
 --- !u!1 &3849152742582778648
 GameObject:
   m_ObjectHideFlags: 0

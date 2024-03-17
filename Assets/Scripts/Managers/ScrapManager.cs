@@ -19,7 +19,6 @@ public class ScrapManager : MonoBehaviour
     private Queue<ScrapMetal> _scrapMetals = new Queue<ScrapMetal>();
     private void Awake()
     {
-        //Listen to event whenever an enemy dies so we can have a chance to spawn scrap
         EnemyScript.OnDeath += OnEnemyDeath;
         ScrapManagerDataHandler.OnCreateScrap += OnCreateScrap;
         ScrapManagerDataHandler.OnPickUpScrap += OnPickUpScrap;
@@ -126,7 +125,7 @@ public class ScrapManager : MonoBehaviour
         _scrapMetals.Enqueue(scrap);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         EnemyScript.OnDeath -= OnEnemyDeath;
         ScrapManagerDataHandler.OnPickUpScrap -= OnPickUpScrap;

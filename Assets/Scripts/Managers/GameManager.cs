@@ -72,6 +72,7 @@ public class GameManager : Singleton<GameManager>
             case GameState.MainMenu:
                 Time.timeScale = 1.0f;
                 Cursor.visible = true;
+                PlayerController = null;
                 break;
 
             case GameState.BeforeGameStart:
@@ -221,6 +222,12 @@ public class GameManager : Singleton<GameManager>
             yield break;
         }
         
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.activeSceneChanged -= SceneManager_activeSceneChanged;
+        TimerManagerDataHandler.OnEndTimer -= OnEndTimer;
     }
 
 }

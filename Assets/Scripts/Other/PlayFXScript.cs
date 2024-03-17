@@ -7,7 +7,7 @@ public class PlayFXScript : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _fxParticle;
     [SerializeField] private Animator _animator;
-    [SerializeField] private TextMeshPro _textMeshPro;
+    [SerializeField] private TextMeshProUGUI _textMeshPro;
 
     public void PlayFX(string valueFX)
     {
