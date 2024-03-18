@@ -19,17 +19,17 @@ public class EnemyScript : MonoBehaviour, IHittable
 
     [SerializeField] private GameObject _particleEffect;
     [SerializeField] private SpriteRenderer _spriteRenderer;
-    private Color _baseColor;
-    private Rigidbody2D _rigidbody;
-    private PlayerController _playerController;
+    protected Color _baseColor;
+    protected Rigidbody2D _rigidbody;
+    protected PlayerController _playerController;
+    
+    protected bool _gotHit = false;
+    protected bool _hasHit = false;
+    protected float _currentHealth;
 
-    private bool _gotHit = false;
-    private bool _hasHit = false;
-    private float _currentHealth;
-
-    private float _damageTimer = 0.6f;
-    private float _timer = 0.0f;
-    private bool _canDealDamage = true;
+    protected float _damageTimer = 0.6f;
+    protected float _timer = 0.0f;
+    protected bool _canDealDamage = true;
 
     private EnemyDatas _datas;
     private IEnemyBehaviour _enemyBehaviour;
@@ -42,7 +42,7 @@ public class EnemyScript : MonoBehaviour, IHittable
     }
 
 
-    public void SetUpEnemy(EnemyDatas datas)
+    public virtual void SetUpEnemy(EnemyDatas datas)
     {
         _datas = datas;
         _baseColor = _spriteRenderer.color;

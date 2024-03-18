@@ -17,7 +17,8 @@ public class EnemyDatas : ScriptableObject
     public enum EnemyType
     {
         Melee,
-        Ranged
+        Ranged,
+        Boss
     }
 
     [Header("Base Stat")]
@@ -44,6 +45,8 @@ public class EnemyDatas : ScriptableObject
                 return new EnemyMeleeBehaviour(BaseSpeed,enemyRB);
             case EnemyType.Ranged:
                 return new EnemyRangedBehaviour(BaseSpeed, enemyRB, ProjectilePrefab, BaseDamage);
+            case EnemyType.Boss:
+                return null;
         }
     }
 
