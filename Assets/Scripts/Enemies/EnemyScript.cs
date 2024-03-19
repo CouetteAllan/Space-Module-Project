@@ -71,7 +71,8 @@ public class EnemyScript : MonoBehaviour, IHittable
             _canDealDamage = true;
             _hasHit = false;
         }
-        
+        Vector3 targetRotation = (Vector2)_playerController.transform.position - this._rigidbody.position;
+        transform.right = Vector3.Slerp(transform.right, targetRotation, Time.deltaTime * 1.1f);
     }
 
     private void FixedUpdate()
@@ -87,7 +88,6 @@ public class EnemyScript : MonoBehaviour, IHittable
         {
             _enemyBehaviour.DoMovement(_playerController,isStopped: true);
         }
-        transform.right = (Vector2)_playerController.transform.position - this._rigidbody.position;
 
     }
 
@@ -102,7 +102,7 @@ public class EnemyScript : MonoBehaviour, IHittable
         ChangeHealth(-damage);
     }
 
-    private void ChangeHealth(int healthChange)
+    protected virtual void ChangeHealth(int healthChange)
     {
         _currentHealth += healthChange;
         if (_currentHealth <= 0)
@@ -120,7 +120,7 @@ public class EnemyScript : MonoBehaviour, IHittable
         {
             enemyRef = this,
             level = (int)GameManager.Instance.CurrentLevel,
-            tier = 1,
+            tier = (int)_datas.Tier,
             finalPos = this.transform.position,
             xpGranted = _datas.XPGranted,
             scrapGranted = _datas.ScrapMetalGranted,

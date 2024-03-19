@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMeleeBehaviour : IEnemyBehaviour
+public class BossBehaviour : IEnemyBehaviour
 {
+
     private float _speed;
     private Rigidbody2D _rigidbody;
-    public EnemyMeleeBehaviour(float speed,Rigidbody2D rb)
+    public BossBehaviour(float speed, Rigidbody2D rb)
     {
         _speed = speed;
         _rigidbody = rb;
     }
+
 
     public void DoAttack(PlayerController player)
     {
@@ -29,6 +31,5 @@ public class EnemyMeleeBehaviour : IEnemyBehaviour
             Vector2 dir = (Vector2)player.transform.position - this._rigidbody.position;
             _rigidbody.AddForce(-dir.normalized * 20.0f);
         }
-        
     }
 }
