@@ -36,7 +36,6 @@ public class ModuleManager : Singleton<ModuleManager>
         {
             _weightTotal += weights;
         }
-        Debug.Log("Start weight for modules: " + _weightTotal);
     }
 
     public ModuleDatas GetRandomModuleData()

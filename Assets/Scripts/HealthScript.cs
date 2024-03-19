@@ -13,12 +13,12 @@ public class HealthScript : MonoBehaviour
     public event Action<int> OnChangeHealth;
     public event Action OnDeath;
 
-    public int Health => _health;
+    public float Health => _health;
     public int MaxHealth => _maxHealth;
     public bool IsAlive => _health > 0;
 
     private bool _isInvincible;
-    private int _health;
+    private float _health;
     private AttachPointScript _attachPointScript;
 
     private void Awake()
@@ -32,15 +32,15 @@ public class HealthScript : MonoBehaviour
         _health = maxHealth;
     }
 
-    public void ChangeHealth(int value)
+    public void ChangeHealth(float value, bool canBeInvincible = true)
     {
-        if (value < 0 && _isInvincible)
+        if (value < 0 && _isInvincible && canBeInvincible)
             return;
         else
             SetInvincibility();
 
-        _health = Mathf.Clamp(_health + value,-1, _maxHealth);
-        OnChangeHealth?.Invoke(value);
+        _health = (int)Mathf.Clamp(_health + value,-1, _maxHealth);
+        OnChangeHealth?.Invoke((int)value);
 
         if(!_healthBar.gameObject.activeSelf)
             _healthBar.gameObject.SetActive(true);

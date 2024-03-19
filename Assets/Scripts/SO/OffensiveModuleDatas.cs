@@ -14,7 +14,8 @@ public class OffensiveModuleDatas : ScriptableObject
         Drone,
         Breath,
         Melee,
-        Rocket
+        Rocket,
+        DoubleCanon
     }
     public float BaseModuleDamage = 1.0f;
     public float AttackSpeedMultiplier = 1.0f;
@@ -26,6 +27,7 @@ public class OffensiveModuleDatas : ScriptableObject
         switch (Type)
         {
             case OffensiveType.Canon:
+            case OffensiveType.DoubleCanon:
                 return new CanonModuleScript(statClass, datas, currentModuleStats);
             case OffensiveType.Laser:
                 return new LaserModuleScript(statClass, datas, currentModuleStats, moduleTransform);

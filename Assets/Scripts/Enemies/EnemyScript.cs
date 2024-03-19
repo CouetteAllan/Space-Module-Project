@@ -31,8 +31,8 @@ public class EnemyScript : MonoBehaviour, IHittable
     protected float _timer = 0.0f;
     protected bool _canDealDamage = true;
 
-    private EnemyDatas _datas;
-    private IEnemyBehaviour _enemyBehaviour;
+    protected EnemyDatas _datas;
+    protected IEnemyBehaviour _enemyBehaviour;
 
     public static EnemyScript CreateEnemy(Vector2 position, EnemyDatas datas)
     {
@@ -58,7 +58,7 @@ public class EnemyScript : MonoBehaviour, IHittable
     }
 
 
-    private void Update()
+    protected virtual void Update()
     {
         if (_playerController == null)
             return;
@@ -75,7 +75,7 @@ public class EnemyScript : MonoBehaviour, IHittable
         transform.right = Vector3.Slerp(transform.right, targetRotation, Time.deltaTime * 1.1f);
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (_playerController == null)
             return;
@@ -102,7 +102,7 @@ public class EnemyScript : MonoBehaviour, IHittable
         ChangeHealth(-damage);
     }
 
-    protected virtual void ChangeHealth(int healthChange)
+    protected virtual void ChangeHealth(float healthChange)
     {
         _currentHealth += healthChange;
         if (_currentHealth <= 0)

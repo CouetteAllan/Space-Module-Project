@@ -49,6 +49,7 @@ public class ScrapManager : MonoBehaviour
             {
                 var lastScrap = _scrapMetals.Dequeue();
                 Destroy(lastScrap);
+                break; 
             }
             var randomDistance = Random.Range(0.6f, 2.0f);
             var newScrap = SpawnScrapMetal(pos + (Vector2)UtilsClass.GetRandomDir() * randomDistance);

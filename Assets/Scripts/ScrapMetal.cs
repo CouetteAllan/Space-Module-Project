@@ -55,4 +55,9 @@ public class ScrapMetal : MonoBehaviour
         _scrapManager = manager;
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
+
+    public void DestroyScrap()
+    {
+        Destroy(this.gameObject);
+    }
 }

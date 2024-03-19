@@ -11049,7 +11049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timerText: {fileID: 1166081425}
-  _maxSeconds: 20
+  _maxSeconds: 5
   _timerAnimator: {fileID: 95342942}
 --- !u!4 &1324283108
 Transform:
