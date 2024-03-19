@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour, IGatherScrap, IPickUpObject
     [SerializeField] private SpriteRenderer _graph;
     [SerializeField] private SpriteRenderer _circleGraph;
     [SerializeField] private Color _targetColorLowHealth;
+    [SerializeField] private Animator _pumpAnimator;
 
     public MInputActionAsset InputActions {
         get
@@ -39,6 +40,24 @@ public class PlayerController : MonoBehaviour, IGatherScrap, IPickUpObject
         _healthScript.OnChangeHealth += OnChangeHealth;
         _healthScript.OnDeath += OnDeath;
         Module.OnModuleDestroyed += Module_OnModuleDestroyed;
+        ModuleImageScript.OnStartDragModule += OnStartDragModule;
+        ModuleImageScript.OnEndDragModule += OnEndDragModule;
+    }
+
+    private void OnEndDragModule(ModuleDatas moduleDatas)
+    {
+        if (moduleDatas.ModuleClass != Module.ModuleClass.StatBuff)
+            return;
+
+        _pumpAnimator.SetBool("IsPumping", false);
+    }
+
+    private void OnStartDragModule(ModuleDatas moduleDatas)
+    {
+        if (moduleDatas.ModuleClass != Module.ModuleClass.StatBuff)
+            return;
+
+        _pumpAnimator.SetBool("IsPumping", true);
     }
 
     private void Module_OnModuleDestroyed(Module mod)

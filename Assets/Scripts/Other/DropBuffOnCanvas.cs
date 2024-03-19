@@ -10,13 +10,12 @@ public class DropBuffOnCanvas : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log(eventData.pointerDrag);
         if (eventData.pointerDrag == null)
             return;
 
         ModuleImageScript moduleDragged = eventData.pointerDrag.GetComponent<ModuleImageScript>();
 
-        if(moduleDragged.GetModuleDatas().ModuleClass == Module.ModuleClass.StatBuff)
+        if (moduleDragged.GetModuleDatas().ModuleClass == Module.ModuleClass.StatBuff)
         {
             if (!PlaceModule(moduleDragged))
                 return;
@@ -41,7 +40,7 @@ public class DropBuffOnCanvas : MonoBehaviour, IDropHandler
 
             Debug.Log("Buff dropped !: " + datas);
             string fxName = datas.Stat.Type == StatType.ReloadSpeed ? "attackSpeed" : "damageUp";
-            float statValue = datas.GetStat().Value * 100.0f;
+            float statValue = datas.GetStat().Type == StatType.Weight ? datas.GetStat().Value : datas.GetStat().Value * 100.0f;
             string fxValue = statValue.ToString("0") + '%';
             Transform playerPos = GameManager.Instance.PlayerController.transform;
             FXManager.Instance.PlayEffect(fxName, playerPos.position, Quaternion.identity, playerPos, fxValue);
