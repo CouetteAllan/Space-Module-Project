@@ -15,6 +15,13 @@ public class CameraHandle : MonoBehaviour
         _virtualCamera = GetComponent<CinemachineVirtualCamera>();
         DropModuleOnCanvas.OnModuleAttached += DropModuleOnCanvas_OnModuleAttached;
         _orthoLens = _virtualCamera.m_Lens.OrthographicSize;
+
+        EnemyManagerDataHandler.OnBossSpawned += OnBossSpawned;
+    }
+
+    private void OnBossSpawned()
+    {
+        _virtualCamera.m_Lens.OrthographicSize = 30.0f;
     }
 
     private void DropModuleOnCanvas_OnModuleAttached(Module mod)

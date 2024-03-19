@@ -147,6 +147,9 @@ public class PlayerController : MonoBehaviour, IGatherScrap, IPickUpObject
         GameManager.OnGameStateChanged -= GameManager_OnGameStateChanged;
         _healthScript.OnChangeHealth -= OnChangeHealth;
         _healthScript.OnDeath -= OnDeath;
+
+        ModuleImageScript.OnStartDragModule -= OnStartDragModule;
+        ModuleImageScript.OnEndDragModule -= OnEndDragModule;
     }
 
     public PlayerModule GetPlayerModule()

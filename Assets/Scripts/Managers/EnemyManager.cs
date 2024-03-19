@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private EnemyDatas[] _enemyDatas;
+    [SerializeField] private BossData _bossData;
     [SerializeField] private BasicEnemySpawner[] _spawns; //Change this later
     [Space]
     [SerializeField] private int _enemyLimit = 60;
@@ -20,9 +21,22 @@ public class EnemyManager : MonoBehaviour
 
         TimerManagerDataHandler.OnTimeElapsed += OnTimeElapsed;
         TimerManagerDataHandler.OnSendTimeLevel += OnSendTimeLevel;
+        TimerManagerDataHandler.OnEndTimer += OnEndTimer;
         _currentTimerLevel = 0;
 
         EnemyManagerDataHandler.OnSpawnEnemyWave += OnSpawnEnemyWave;
+
+    }
+
+    private void OnEndTimer()
+    {
+        //Spawn Boss near Player.
+        float distanceFromPlayer = 25.0f;
+        Vector2 playerPos = GameManager.Instance.PlayerController.transform.position + UtilsClass.GetRandomDir() * distanceFromPlayer;
+        //Set Up Boss
+        OnSpawnEnemy(playerPos, _bossData);
+        //Set Up Camera
+        this.BossSpawned();
     }
 
     private void OnSpawnEnemyWave(EnemyDatas datas, int number)
@@ -91,6 +105,7 @@ public class EnemyManager : MonoBehaviour
         return newEnemy;
     }
 
+
     private void OnDisable()
     {
         EnemyManagerDataHandler.OnSpawnEnemy -= OnSpawnEnemy;
@@ -99,6 +114,8 @@ public class EnemyManager : MonoBehaviour
 
         TimerManagerDataHandler.OnTimeElapsed -= OnTimeElapsed;
         TimerManagerDataHandler.OnSendTimeLevel -= OnSendTimeLevel;
+        TimerManagerDataHandler.OnEndTimer -= OnEndTimer;
+
         EnemyManagerDataHandler.OnSpawnEnemyWave -= OnSpawnEnemyWave;
 
 

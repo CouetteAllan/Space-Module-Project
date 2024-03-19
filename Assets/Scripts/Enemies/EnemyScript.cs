@@ -97,7 +97,7 @@ public class EnemyScript : MonoBehaviour, IHittable
         if (_gotHit)
             return;
         _gotHit = true;
-        _rigidbody.AddForce( (this._rigidbody.position - (Vector2)source.Transform.position) * 10.0f * source.RecoilMultiplier, ForceMode2D.Impulse);
+        _rigidbody.AddForce( (this._rigidbody.position - (Vector2)source.Transform.position).normalized * 10.0f * source.RecoilMultiplier, ForceMode2D.Impulse);
         StartCoroutine(ChangeColorCoroutine());
         ChangeHealth(-damage);
     }

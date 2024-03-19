@@ -34,22 +34,6 @@ public class LaserModuleScript : BaseOffensiveScript , IDamageSource
                     enemy.TryHit(this, damageToDeal);
                 }
             }
-            /*if (_currentModuleStats.currentLevel >= 5)
-                MonoBehaviourOnScene.Instance.StartCoroutine(ContinuousLaserCoroutine(hitboxWidth,hitBoxLength));
-            else
-            {
-                
-            }*/
-        }
-    }
-
-    private IEnumerator ContinuousLaserCoroutine(float width, float length)
-    {
-
-        while (true)
-        {
-
-            yield return null;
         }
     }
 

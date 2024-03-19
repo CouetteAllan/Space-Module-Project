@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0412a8b1359e49b4d9022080308c9d55, type: 3}
+  m_Name: BossDatas
+  m_EditorClassIdentifier: 
+  Tier: 4
+  Type: 2
+  BaseHealth: 400
+  HealthMultplier: 0
+  BaseDamage: 8
+  BaseSpeed: 2
+  EnemyPrefab: {fileID: 3491881793978933763, guid: 08c2a20cbc4524949becf4115c2683be, type: 3}
+  ProjectilePrefab: {fileID: 0}
+  XPGranted: 0
+  ScrapMetalGranted: 0

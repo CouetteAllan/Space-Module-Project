@@ -18,7 +18,7 @@ public class MeleeModuleScript : BaseOffensiveScript, IDamageSource
 
     public Transform Transform => _moduleTransform;
 
-    public float RecoilMultiplier => .4f;
+    public float RecoilMultiplier => 0.6f;
 
     public override void Fire(bool firstProjectile, Quaternion currentModuleRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success)
     {
@@ -51,10 +51,10 @@ public class MeleeModuleScript : BaseOffensiveScript, IDamageSource
         }
     }
 
-    private void DealDamageToEnemy(Vector2 attackPosition)
+    private void DealDamageToEnemy(Vector2 position)
     {
-        float radius = _currentModuleStats.currentLevel > 1 ? 3.3f : 2.5f;
-        var enemies = Physics2D.OverlapCircleAll(attackPosition, radius);
+        float radius = _currentModuleStats.currentLevel > 1 ? 3.6f : 2.5f;
+        var enemies = Physics2D.OverlapCircleAll(position, radius);
         foreach (var enemy in enemies)
         {
             if(enemy.TryGetComponent(out IHittable hittable))

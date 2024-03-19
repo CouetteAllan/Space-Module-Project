@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New enemy",menuName = "Enemy")]
+[CreateAssetMenu(fileName = "New enemy",menuName = "Enemy/Basic")]
 public class EnemyDatas : ScriptableObject
 {
 
@@ -46,7 +46,7 @@ public class EnemyDatas : ScriptableObject
             case EnemyType.Ranged:
                 return new EnemyRangedBehaviour(BaseSpeed, enemyRB, ProjectilePrefab, BaseDamage);
             case EnemyType.Boss:
-                return null;
+                return new EnemyMeleeBehaviour(BaseSpeed, enemyRB); ;
         }
     }
 

@@ -24,7 +24,7 @@ public class BasicEnemySpawner : MonoBehaviour
 
     private void OnSendTimeLevel(int timeLevel)
     {
-        _canSpawn = timeLevel < 29;
+        _canSpawn = timeLevel < 30;
         if(!_canSpawn )
             TimerManagerDataHandler.OnSendTimeLevel -= OnSendTimeLevel;
     }

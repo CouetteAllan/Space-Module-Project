@@ -51,7 +51,7 @@ public class GameManager : Singleton<GameManager>
 
     private void OnEndTimer()
     {
-        ChangeGameState(GameState.GameOver);
+        //ChangeGameState(GameState.GameOver);
     }
 
     private void SceneManager_activeSceneChanged(Scene arg0, Scene arg1)
