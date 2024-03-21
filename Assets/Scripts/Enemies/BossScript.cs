@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class BossScript : EnemyScript
 {
-    public static event Action OnBossDeath;
 
     [SerializeField] private Transform[] _spawnPositions;
     [SerializeField] private HealthScript _healthScript;
     [SerializeField] private EnemyDatas[] _enemyToInstantiate;
+    [SerializeField] private Animator _bossAnimator;
 
     private BossData _bossDatas;
     private float _timeNextAttack;
@@ -103,7 +103,9 @@ public class BossScript : EnemyScript
 
     private IEnumerator AttackCoroutine()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(.5f);
+        _bossAnimator.SetTrigger("Attack");
+        yield return new WaitForSeconds(8f);
         EnterState(BossState.Move);
     }
 

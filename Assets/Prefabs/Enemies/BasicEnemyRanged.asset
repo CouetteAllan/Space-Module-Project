@@ -18,6 +18,7 @@ MonoBehaviour:
   HealthMultplier: 1.5
   BaseDamage: 4
   BaseSpeed: 6
+  TurnRate: 2
   EnemyPrefab: {fileID: 3491881793978933763, guid: 1fc77a06de8dd7444bf88f4a2659e015, type: 3}
   ProjectilePrefab: {fileID: 6528379717689772317, guid: c8ab508b088cecb42bda0726495bc238, type: 3}
   XPGranted: 10

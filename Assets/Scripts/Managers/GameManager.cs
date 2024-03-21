@@ -33,7 +33,6 @@ public class GameManager : Singleton<GameManager>
 
     public bool HasShownTutoOnce { get; set; } = false;
 
-    private bool _blockXp = false;
     private GameState _previousState;
     public GameState PreviousState { get { return _previousState; } }
 
@@ -128,8 +127,6 @@ public class GameManager : Singleton<GameManager>
 
     public void GrantXP(uint xp)
     {
-        if (_blockXp)
-            return;
         CurrentXP += xp;
         UIManager.Instance.UpdateXpBar(CurrentXP);
         if(CurrentXP >= NextTresholdLevelUp)
@@ -162,7 +159,6 @@ public class GameManager : Singleton<GameManager>
         CurrentXP = 0;
         CurrentLevel = 1;
         NextTresholdLevelUp = (uint)_xpDatas.XpCurve.Evaluate((float)CurrentLevel);
-        _blockXp = false;
     }
 
     public void OpenShop()
@@ -190,11 +186,6 @@ public class GameManager : Singleton<GameManager>
         if(Keyboard.current.cKey.wasPressedThisFrame)
         {
             GrantXP(20);
-        }
-        
-        if(Keyboard.current.lKey.wasPressedThisFrame)
-        {
-            _blockXp = !_blockXp;
         }
     }
 
