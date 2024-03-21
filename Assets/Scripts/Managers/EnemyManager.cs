@@ -94,6 +94,8 @@ public class EnemyManager : MonoBehaviour
     {
         _enemiesList.Remove(e.enemyRef);
         SoundManager.Instance.Play("ShipExplosion");
+        if (e.tier == 5)
+            this.BossDeath();
     }
 
     private EnemyScript OnSpawnEnemy(Vector2 pos, EnemyDatas datas)

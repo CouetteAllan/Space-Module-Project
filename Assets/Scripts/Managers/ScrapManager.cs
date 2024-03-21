@@ -48,7 +48,7 @@ public class ScrapManager : MonoBehaviour
             if(_scrapMetals.Count > _maxScrapInWorld)
             {
                 var lastScrap = _scrapMetals.Dequeue();
-                Destroy(lastScrap);
+                Destroy(lastScrap.gameObject);
                 break; 
             }
             var randomDistance = Random.Range(0.6f, 2.0f);

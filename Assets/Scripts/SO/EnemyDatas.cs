@@ -12,6 +12,7 @@ public class EnemyDatas : ScriptableObject
         Tier2 = 2,
         Tier3 = 3,
         Tier4 = 4,
+        Tier5 = 5,
     }
 
     public enum EnemyType
@@ -28,6 +29,8 @@ public class EnemyDatas : ScriptableObject
     public float HealthMultplier;
     public float BaseDamage;
     public float BaseSpeed;
+    [Range(1.0f,2.0f)]
+    public float TurnRate = 1.0f;
     public GameObject EnemyPrefab;
     public EnemyProjectile ProjectilePrefab;
 

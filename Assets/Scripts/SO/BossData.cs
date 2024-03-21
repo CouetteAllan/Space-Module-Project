@@ -9,5 +9,6 @@ public class BossData : EnemyDatas
 
     [Header("Boss Stats")]
     public float TimeNextAttack = 8.0f;
+    public int NbEnemiesToInstantiate = 10;
 
 }

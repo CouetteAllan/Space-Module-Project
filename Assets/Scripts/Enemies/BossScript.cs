@@ -1,10 +1,15 @@
 
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class BossScript : EnemyScript
 {
+    public static event Action OnBossDeath;
+
     [SerializeField] private Transform[] _spawnPositions;
     [SerializeField] private HealthScript _healthScript;
+    [SerializeField] private EnemyDatas[] _enemyToInstantiate;
 
     private BossData _bossDatas;
     private float _timeNextAttack;
@@ -36,13 +41,18 @@ public class BossScript : EnemyScript
     protected override void Update()
     {
         base.Update();
-        _timerAttack -= Time.deltaTime;
-        if( _timerAttack < 0 )
+        if(_currentState == BossState.Move)
         {
-            bool rand = Random.Range(0, 1) == 0;
-            BossState newState = rand ? BossState.Swarm : BossState.Attack;
-            EnterState(newState);
+            _timerAttack -= Time.deltaTime;
+            if (_timerAttack < 0)
+            {
+                bool rand = UnityEngine.Random.Range(0, 2) == 0;
+                BossState newState = rand ? BossState.Swarm : BossState.Attack;
+                EnterState(newState);
+                _timerAttack = _timeNextAttack;
+            }
         }
+        
     }
 
     protected override void FixedUpdate()
@@ -65,11 +75,36 @@ public class BossScript : EnemyScript
             case BossState.Attack:
                 //Stop movement
                 //Do Mega Laser Attack
+                StartCoroutine(AttackCoroutine());
                 break;
             case BossState.Swarm:
                 //Start to open fire and swarm with enemies
+                StartCoroutine(SwarmCoroutine());
                 break;
         }
+        Debug.Log("Boss state is: " + _currentState);
+    }
+
+
+    private IEnumerator SwarmCoroutine()
+    {
+        this._rigidbody.isKinematic = true;
+        //Instantiate over time
+        for (int i = 0; i < _bossDatas.NbEnemiesToInstantiate; i++)
+        {
+            EnemyManagerDataHandler.SpawnEnemy(_spawnPositions[i % 2].position, _enemyToInstantiate[i % 3]);
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        this._rigidbody.isKinematic = false;
+        EnterState(BossState.Move);
+        yield break;
+    }
+
+    private IEnumerator AttackCoroutine()
+    {
+        yield return new WaitForSeconds(2.0f);
+        EnterState(BossState.Move);
     }
 
 }

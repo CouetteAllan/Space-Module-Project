@@ -14,7 +14,8 @@ public enum GameState
     InGame,
     GameOver,
     ShopState,
-    Pause
+    Pause,
+    Victory
 }
 
 public class GameManager : Singleton<GameManager>
@@ -46,12 +47,12 @@ public class GameManager : Singleton<GameManager>
             ChangeGameState(GameState.StartGame);
 
         SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
-        TimerManagerDataHandler.OnEndTimer += OnEndTimer;
+        EnemyManagerDataHandler.OnBossDeath += OnBossDeath;
     }
 
-    private void OnEndTimer()
+    private void OnBossDeath()
     {
-        //ChangeGameState(GameState.GameOver);
+        ChangeGameState(GameState.Victory);
     }
 
     private void SceneManager_activeSceneChanged(Scene arg0, Scene arg1)
@@ -97,7 +98,7 @@ public class GameManager : Singleton<GameManager>
             case GameState.GameOver:
                 Time.timeScale = 0.2f;
                 Time.fixedDeltaTime = Time.timeScale * 0.01f;
-                //faire des trucs de game over
+
                 Cursor.visible = true;
                 break;
             case GameState.ShopState:
@@ -108,6 +109,12 @@ public class GameManager : Singleton<GameManager>
                 StartCoroutine(SlowMoCoroutine(false));
                 Cursor.visible = true;
                 _isPause = true;
+                break;
+            case GameState.Victory:
+                Time.timeScale = 0.2f;
+                Time.fixedDeltaTime = Time.timeScale * 0.01f;
+                
+                Cursor.visible = true;
                 break;
         }
         OnGameStateChanged?.Invoke(newState);
@@ -227,7 +234,7 @@ public class GameManager : Singleton<GameManager>
     private void OnDisable()
     {
         SceneManager.activeSceneChanged -= SceneManager_activeSceneChanged;
-        TimerManagerDataHandler.OnEndTimer -= OnEndTimer;
+        EnemyManagerDataHandler.OnBossDeath -= OnBossDeath;
     }
 
 }

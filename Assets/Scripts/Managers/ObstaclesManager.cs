@@ -13,10 +13,18 @@ public class ObstaclesManager : MonoBehaviour
     private int _currentNumberObstacle;
     private List<ObstacleScript> _obstacleList = new List<ObstacleScript>();
 
+    private bool _canSpawn = true;
+
     private void Awake()
     {
         ObstaclesManagerDataHandler.OnSpawnObstacle += OnSpawnObstacle;
         TimeTickSystemDataHandler.OnTick += OnTick;
+        TimerManagerDataHandler.OnEndTimer += OnEndTimer;
+    }
+
+    private void OnEndTimer()
+    {
+        _canSpawn = false;
     }
 
     private void OnTick(uint currentTick)
@@ -33,6 +41,10 @@ public class ObstaclesManager : MonoBehaviour
 
     private void OnSpawnObstacle(Vector3 pos)
     {
+        if (!_canSpawn)
+            return;
+
+
         int maxObstacle = _debug ? 2 : _maxObstacleOnField;
         if (_currentNumberObstacle >= maxObstacle)
         {
@@ -73,6 +85,7 @@ public class ObstaclesManager : MonoBehaviour
     {
         ObstaclesManagerDataHandler.OnSpawnObstacle -= OnSpawnObstacle;
         TimeTickSystemDataHandler.OnTick -= OnTick;
+        TimerManagerDataHandler.OnEndTimer -= OnEndTimer;
 
     }
 }
