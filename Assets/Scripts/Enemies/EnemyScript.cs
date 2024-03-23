@@ -30,6 +30,7 @@ public class EnemyScript : MonoBehaviour, IHittable
     protected float _damageTimer = 0.6f;
     protected float _timer = 0.0f;
     protected bool _canDealDamage = true;
+    protected bool _canTurn = true;
 
     protected EnemyDatas _datas;
     protected IEnemyBehaviour _enemyBehaviour;
@@ -71,8 +72,12 @@ public class EnemyScript : MonoBehaviour, IHittable
             _canDealDamage = true;
             _hasHit = false;
         }
-        Vector3 targetRotation = (Vector2)_playerController.transform.position - this._rigidbody.position;
-        transform.right = Vector3.Slerp(transform.right, targetRotation, Time.deltaTime * 1.1f);
+        if (_canTurn)
+        {
+            Vector3 targetRotation = (Vector2)_playerController.transform.position - this._rigidbody.position;
+            transform.right = Vector3.Slerp(transform.right, targetRotation, Time.deltaTime * _datas.TurnRate);
+        }
+        
     }
 
     protected virtual void FixedUpdate()

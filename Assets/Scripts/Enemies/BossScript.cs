@@ -40,13 +40,14 @@ public class BossScript : EnemyScript
 
     protected override void Update()
     {
+        _canTurn = _currentState == BossState.Move;
         base.Update();
         if(_currentState == BossState.Move)
         {
             _timerAttack -= Time.deltaTime;
             if (_timerAttack < 0)
             {
-                bool rand = UnityEngine.Random.Range(0, 2) == 0;
+                bool rand = UnityEngine.Random.Range(1, 2) == 0;
                 BossState newState = rand ? BossState.Swarm : BossState.Attack;
                 EnterState(newState);
                 _timerAttack = _timeNextAttack;

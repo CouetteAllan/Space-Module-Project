@@ -31,6 +31,7 @@ public class EnemyDatas : ScriptableObject
     public float BaseSpeed;
     [Range(1.0f,2.0f)]
     public float TurnRate = 1.0f;
+    public float RecoilResistanceb = 1.0f;
     public GameObject EnemyPrefab;
     public EnemyProjectile ProjectilePrefab;
 
