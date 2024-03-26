@@ -44,7 +44,6 @@ public class ScrapMetal : MonoBehaviour
 
         player.GatherScrapMetal(_value);
         _scrapManager.RemoveScrapFromQueue(this);
-        Destroy(this.gameObject);
         yield break;
     }
     

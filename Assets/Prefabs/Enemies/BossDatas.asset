@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tier: 5
   Type: 2
-  BaseHealth: 800
-  HealthMultplier: 30
-  BaseDamage: 25
-  BaseSpeed: 3
+  BaseHealth: 900
+  HealthMultplier: 200
+  BaseDamage: 35
+  BaseSpeed: 4
   TurnRate: 1
   RecoilResistanceb: 1
   EnemyPrefab: {fileID: 3491881793978933763, guid: 08c2a20cbc4524949becf4115c2683be, type: 3}

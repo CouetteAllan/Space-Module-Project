@@ -29,7 +29,7 @@ public class EnemyDatas : ScriptableObject
     public float HealthMultplier;
     public float BaseDamage;
     public float BaseSpeed;
-    [Range(1.0f,2.0f)]
+    [Range(1.0f,3.0f)]
     public float TurnRate = 1.0f;
     public float RecoilResistanceb = 1.0f;
     public GameObject EnemyPrefab;

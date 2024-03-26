@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossScript : EnemyScript
 {
@@ -10,6 +11,10 @@ public class BossScript : EnemyScript
     [SerializeField] private HealthScript _healthScript;
     [SerializeField] private EnemyDatas[] _enemyToInstantiate;
     [SerializeField] private Animator _bossAnimator;
+
+    [Header("Feedbacks")]
+    [SerializeField] private Image _healthBarFill;
+    [SerializeField] private GameObject _shield;
 
     private BossData _bossDatas;
     private float _timeNextAttack;
@@ -72,15 +77,18 @@ public class BossScript : EnemyScript
         switch (newState)
         {
             case BossState.Move:
+                _healthBarFill.color = Color.red;
+                _shield.SetActive(false);
+
                 break;
             case BossState.Attack:
-                //Stop movement
-                //Do Mega Laser Attack
                 StartCoroutine(AttackCoroutine());
                 break;
             case BossState.Swarm:
-                //Start to open fire and swarm with enemies
+                _healthBarFill.color = new Color(205.0f/255.0f, 205.0f/255.0f, 205.0f/255.0f, 150.0f/255.0f);
+                _shield.SetActive(true);
                 StartCoroutine(SwarmCoroutine());
+
                 break;
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
 using Tools;
+using System.Linq;
 
 public class ScrapManager : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class ScrapManager : MonoBehaviour
     public int NumberOfScrap {  get { return _numberOfScrap; } }
 
     private Dictionary<StatType, int> _numberOfModulePurchased = new Dictionary<StatType, int>();
-    private Queue<ScrapMetal> _scrapMetals = new Queue<ScrapMetal>();
+    private List<ScrapMetal> _scrapMetals = new List<ScrapMetal>();
     private void Awake()
     {
         EnemyScript.OnDeath += OnEnemyDeath;
@@ -47,14 +48,14 @@ public class ScrapManager : MonoBehaviour
         {
             if(_scrapMetals.Count > _maxScrapInWorld)
             {
-                var lastScrap = _scrapMetals.Dequeue();
+                var lastScrap = _scrapMetals.First();
+                _scrapMetals.Remove(lastScrap);
                 Destroy(lastScrap.gameObject);
-                break; 
             }
             var randomDistance = Random.Range(0.6f, 2.0f);
             var newScrap = SpawnScrapMetal(pos + (Vector2)UtilsClass.GetRandomDir() * randomDistance);
             newScrap.SetScrapMetal(1,this); //to change
-            _scrapMetals.Enqueue(newScrap);
+            _scrapMetals.Add(newScrap);
         }
     }
 
@@ -123,7 +124,8 @@ public class ScrapManager : MonoBehaviour
     private ScrapMetal SpawnScrapMetal(Vector2 pos) => Instantiate(_scrapTransform, pos, Quaternion.identity,_scrapParent).GetComponent<ScrapMetal>();
     public void RemoveScrapFromQueue(ScrapMetal scrap)
     {
-        _scrapMetals.Enqueue(scrap);
+        _scrapMetals.Remove(scrap);
+        Destroy(scrap.gameObject);
     }
 
     private void OnDestroy()
