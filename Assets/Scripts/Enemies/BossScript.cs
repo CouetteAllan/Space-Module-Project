@@ -40,14 +40,14 @@ public class BossScript : EnemyScript
 
     protected override void Update()
     {
-        _canTurn = _currentState == BossState.Move;
+        _canTurn = _currentState != BossState.Attack;
         base.Update();
         if(_currentState == BossState.Move)
         {
             _timerAttack -= Time.deltaTime;
             if (_timerAttack < 0)
             {
-                bool rand = UnityEngine.Random.Range(1, 2) == 0;
+                bool rand = UnityEngine.Random.Range(0, 2) == 0;
                 BossState newState = rand ? BossState.Swarm : BossState.Attack;
                 EnterState(newState);
                 _timerAttack = _timeNextAttack;
@@ -83,21 +83,23 @@ public class BossScript : EnemyScript
                 StartCoroutine(SwarmCoroutine());
                 break;
         }
-        Debug.Log("Boss state is: " + _currentState);
     }
 
 
     private IEnumerator SwarmCoroutine()
     {
         this._rigidbody.isKinematic = true;
+        this._rigidbody.simulated = false;
         //Instantiate over time
         for (int i = 0; i < _bossDatas.NbEnemiesToInstantiate; i++)
         {
             EnemyManagerDataHandler.SpawnEnemy(_spawnPositions[i % 2].position, _enemyToInstantiate[i % 3]);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.2f);
         }
 
         this._rigidbody.isKinematic = false;
+        this._rigidbody.simulated = true;
+
         EnterState(BossState.Move);
         yield break;
     }
@@ -106,7 +108,7 @@ public class BossScript : EnemyScript
     {
         yield return new WaitForSeconds(.5f);
         _bossAnimator.SetTrigger("Attack");
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(5f);
         EnterState(BossState.Move);
     }
 
