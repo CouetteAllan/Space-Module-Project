@@ -16,10 +16,6 @@ public class Parallax : MonoBehaviour
         lastCamPos = cam.transform.position;
         mat = GetComponentInChildren<MeshRenderer>().material;
 
-        //float ratio = 1.0f * Screen.width / Screen.height;
-        //transform.localScale = new Vector3(ratio * 9.5f, .2f, 5.5f);
-        //mat.SetTextureScale("_MainTex", new Vector2(ratio, -1.0f));
-
     }
 
     // Update is called once per frame
@@ -29,7 +25,6 @@ public class Parallax : MonoBehaviour
         offset -= camDelta * speed * Time.deltaTime;
         mat.SetVector("_Offset", offset);
         lastCamPos = cam.transform.position;
-        Debug.Log(mat.GetVector("_Offset"));
 
     }
 }

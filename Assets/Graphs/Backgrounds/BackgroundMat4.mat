@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BackgroundMat2
+  m_Name: BackgroundMat4
   m_Shader: {fileID: -6465566751694194690, guid: b2e119d69bba541499d700c938c31b21, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords:
@@ -32,7 +32,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 95ca2ec58704cfe41ab09c464e38dd8a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 53801d62ce924c54a815535fec291d9d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -71,7 +71,7 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.7924528, g: 0.74988675, b: 0.16820934, a: 0.31764707}
+    - _Color: {r: 0.8490566, g: 0.8472321, b: 0.68485224, a: 0.5882353}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
