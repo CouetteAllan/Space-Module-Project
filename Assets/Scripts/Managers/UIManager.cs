@@ -34,6 +34,10 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private Animator _tabAnimator;
     private ModuleImageScript[] _moduleImageScripts;
 
+    [Header("Animators")]
+    [SerializeField] private Animator _levelUpAnimatorInShop;
+
+
     private int _scrapIndex = 0;
     private void Start()
     {
@@ -101,6 +105,7 @@ public class UIManager : Singleton<UIManager>
             _skipButton.SetActive(false);
 
         _moduleShop.SetActive(true);
+        _levelUpAnimatorInShop.SetTrigger("LevelUp");
         _openScrapShopTxT.SetActive(true);
         if ((bool)ScrapManagerDataHandler.AbleToBuyScrap())
             OpenScrapShop(true);
@@ -223,6 +228,7 @@ public class UIManager : Singleton<UIManager>
 
     public void Quit()
     {
+        GameManager.Instance.ChangeGameState(GameState.MainMenu);
         SceneManager.LoadScene(0);
     }
 

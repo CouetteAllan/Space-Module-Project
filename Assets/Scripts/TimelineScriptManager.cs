@@ -15,7 +15,13 @@ public class TimelineScriptManager : Singleton<TimelineScriptManager>
 
     private void OnGameStateChanged(GameState newState)
     {
-        if (newState == GameState.StartGame)
+        if (newState == GameState.StartGame && !GameManager.Instance.HasShownTutoOnce)
             _timeline.Play();
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnGameStateChanged -= OnGameStateChanged;
+
     }
 }

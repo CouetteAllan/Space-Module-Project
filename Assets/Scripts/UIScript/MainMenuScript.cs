@@ -45,4 +45,9 @@ public class MainMenuScript : MonoBehaviour
         GameObject selectedButton = showCredits ? _creditsBackButton : _playButton;
         _eventSystem.SetSelectedGameObject(selectedButton);
     }
+
+    public void OnDisable()
+    {
+        _inputSystem.cancel.action.performed -= Action_performed;
+    }
 }
