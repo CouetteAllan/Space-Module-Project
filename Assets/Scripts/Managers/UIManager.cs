@@ -223,7 +223,7 @@ public class UIManager : Singleton<UIManager>
 
     public void Quit()
     {
-        Application.Quit();
+        SceneManager.LoadScene(0);
     }
 
     #endregion

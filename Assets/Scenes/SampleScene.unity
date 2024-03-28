@@ -3947,6 +3947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.8
+  MovingCam: 1
 --- !u!23 &565435664
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4813,6 +4814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.06
+  MovingCam: 1
 --- !u!23 &693349154
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6243,7 +6245,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.005936803, g: 0.0021804918, b: 0.066037714, a: 1}
+  m_Color: {r: 0.0018689893, g: 0.07845895, b: 0.13207549, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -9913,7 +9915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_FocusTracksTarget: 0
-  m_FocusTracking: 2
+  m_FocusTracking: 0
   m_FocusTarget: {fileID: 0}
   m_FocusOffset: 0.83
   m_Profile: {fileID: 11400000, guid: 788bfaa09ffe85c4a8cedb744fe3a87a, type: 2}
@@ -10742,6 +10744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.2
+  MovingCam: 1
 --- !u!23 &1691976021
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11436,6 +11439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  MovingCam: 1
 --- !u!23 &1907049863
 MeshRenderer:
   m_ObjectHideFlags: 0
