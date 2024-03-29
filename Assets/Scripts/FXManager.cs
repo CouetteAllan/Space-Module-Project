@@ -12,7 +12,6 @@ public class FXManager : Singleton<FXManager>
     [SerializeField] private GameObject _blowFX;
     [SerializeField] private GameObject _lvlUpFX;
     [SerializeField] private VolumeProfile _baseProfile;
-    [SerializeField] private VolumeProfile _replaceModuleProfile;
     [SerializeField] private CinemachineVolumeSettings _volumeSettings;
     [SerializeField] private PlayFXScript[] _pickUpFX;
 
@@ -24,7 +23,7 @@ public class FXManager : Singleton<FXManager>
 
     private void UIManager_OnToggleReplaceModule(bool toggleOn)
     {
-        _volumeSettings.m_Profile = toggleOn ? _replaceModuleProfile : _baseProfile;
+
     }
 
     private void Module_OnModuleDestroyed(Module mod)
@@ -48,11 +47,11 @@ public class FXManager : Singleton<FXManager>
                 break;
 
             case "attackSpeed":
-                var fxAttackSpeed = Instantiate(_pickUpFX[0],pos, rotation);
+                var fxAttackSpeed = Instantiate(_pickUpFX[0],pos, rotation,transformParent);
                 fxAttackSpeed.PlayFX(value);
                 break;
             case "damageUp":
-                var fxDamage = Instantiate(_pickUpFX[1], pos, rotation);
+                var fxDamage = Instantiate(_pickUpFX[1], pos, rotation,transformParent);
                 fxDamage.PlayFX(value);
                 break;
         }

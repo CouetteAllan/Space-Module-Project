@@ -9375,7 +9375,6 @@ MonoBehaviour:
   _blowFX: {fileID: 5524511428484013597, guid: 86d62861ae32b7e4cba25953f4e0f37a, type: 3}
   _lvlUpFX: {fileID: 93860881438329798, guid: d31a3e1a7ab4b9f48bc5289f8349dba9, type: 3}
   _baseProfile: {fileID: 11400000, guid: 788bfaa09ffe85c4a8cedb744fe3a87a, type: 2}
-  _replaceModuleProfile: {fileID: 11400000, guid: dd5aade6e143d0d4cb9530cdc6cc79bb, type: 2}
   _volumeSettings: {fileID: 1584451412}
   _pickUpFX:
   - {fileID: 3376451067461627123, guid: ef8c4649e3bccdb4e9fb9477f87ba8d2, type: 3}
@@ -11962,8 +11961,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8d93e583447bd0a47b5fb5ec0f07d942, type: 2}
   - {fileID: 11400000, guid: d41f2ef174174434e8f4396fb61a6454, type: 2}
   - {fileID: 11400000, guid: d4be9d919a9b7eb47badf513409f3120, type: 2}
+  - {fileID: 11400000, guid: f02a54c466122b04e918e1102610f5ec, type: 2}
   - {fileID: 11400000, guid: 282ff143f56bc7746a605280bad1a842, type: 2}
-  - {fileID: 11400000, guid: b2a8605339894fa42bd299ec59238125, type: 2}
   - {fileID: 11400000, guid: 0adc4bbe96d77f4479421c097efa4e71, type: 2}
   - {fileID: 11400000, guid: d17ef62c72f9af84184751e367b84895, type: 2}
 --- !u!4 &1984262327
