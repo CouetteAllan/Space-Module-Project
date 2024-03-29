@@ -166,9 +166,9 @@ MonoBehaviour:
     playOnAwake: 0
     source: {fileID: 0}
   - name: Space Pirates
-    clip: {fileID: 8300000, guid: 7def331cfad81ca4f8c34ed19fc1909c, type: 3}
+    clip: {fileID: 8300000, guid: 4a91f1a96273e1746bc5b5ca0349fb7f, type: 3}
     output: {fileID: 4471798669282559186, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
-    volume: 0.432
+    volume: 1
     pitch: 0
     loop: 1
     playOnAwake: 1
