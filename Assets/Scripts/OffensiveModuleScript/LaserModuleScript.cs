@@ -18,6 +18,7 @@ public class LaserModuleScript : BaseOffensiveScript , IDamageSource
     public override void Fire(bool firstProjectile, Quaternion currentModuleRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success)
     {
         success = true;
+        MonoBehaviourOnScene.Instance.StartCoroutine(FXCoroutine());
         foreach (Transform t in projectilePositions)
         {
             Vector3 position = firstProjectile ? t.position : t.position + UtilsClass.GetRandomDir() * Random.Range(0.1f, 0.6f);
@@ -35,6 +36,20 @@ public class LaserModuleScript : BaseOffensiveScript , IDamageSource
                 }
             }
         }
+    }
+
+    IEnumerator FXCoroutine()
+    {
+        float time = 0;
+        float targetTime = 0.15f;
+        while(time < targetTime)
+        {
+
+
+            yield return null;
+            time += Time.deltaTime;
+        }
+        yield return null;
     }
 
 }
