@@ -181,6 +181,8 @@ public class Module : MonoBehaviour, IGatherScrap
 
     private void TimeTickSystemDataHandler_OnTick(uint tick)
     {
+        if(this.transform == null)
+            return;
         if (tick % GetTickNeeded() == 0)
         {
                 for (int i = 0; i < _playerStatClass.GetStatValue(StatType.NbProjectile); i++)
