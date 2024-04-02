@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour, IGatherScrap, IPickUpObject
 {
     [SerializeField] private GameObject _explosionParticles;
+    [SerializeField] private ParticleSystem _healEffect;
     [SerializeField] private SpriteRenderer _graph;
     [SerializeField] private SpriteRenderer _circleGraph;
     [SerializeField] private Color _targetColorLowHealth;
@@ -74,6 +75,10 @@ public class PlayerController : MonoBehaviour, IGatherScrap, IPickUpObject
         if(health < 0)
         {
             StartCoroutine(ChangeHealthCoroutine());
+        }
+        else
+        {
+
         }
         _circleGraph.color = Color.Lerp(_startColor, _targetColorLowHealth, 1.0f - (float)_healthScript.Health / (float)_healthScript.MaxHealth);
 

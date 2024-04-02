@@ -48,4 +48,5 @@ public class WaveManager : MonoBehaviour
         TimerManagerDataHandler.OnTriggerWave -= OnTriggerWave;
 
     }
+
 }
