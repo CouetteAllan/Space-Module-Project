@@ -4967,7 +4967,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0923e22918ba6d74aa4440f52920d69c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particleSystem: {fileID: 3773275686186591968}
+  _particleSystems: []
+  _laserTargetTransform: {fileID: 0}
+  _laserTargetEndTransform: {fileID: 0}
 --- !u!1 &2188094165116593209
 GameObject:
   m_ObjectHideFlags: 0
@@ -5417,7 +5419,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.9469855, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.8117647, g: 0.7019608, b: 0.19607843, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
