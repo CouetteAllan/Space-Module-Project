@@ -70,7 +70,7 @@ public class DropModuleOnCanvas : MonoBehaviour, IDropHandler, IPointerEnterHand
 
         ModuleImageScript moduleDragged = eventData.pointerDrag.GetComponent<ModuleImageScript>();
 
-        if (moduleDragged.GetModuleDatas().ModuleClass == Module.ModuleClass.StatBuff)
+        if (moduleDragged.GetModuleDatas().ModuleClass == Module.ModuleClass.StatBuff || moduleDragged.GetModuleDatas().ModuleClass == Module.ModuleClass.Heal)
             return;
 
         if (_attachPointScript.IsActive)

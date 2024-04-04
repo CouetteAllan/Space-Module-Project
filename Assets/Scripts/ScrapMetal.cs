@@ -5,6 +5,7 @@ using UnityEngine;
 public class ScrapMetal : MonoBehaviour
 {
     [SerializeField] private CircleCollider2D _collider;
+    [SerializeField] private SpriteRenderer[] _sprites;
     private int _value = 1;
     private Rigidbody2D _rigidbody2D;
     private ScrapManager _scrapManager;
@@ -39,6 +40,10 @@ public class ScrapMetal : MonoBehaviour
             if (playerPos == null)
                 break;
             _rigidbody2D.position = Vector2.Lerp(_rigidbody2D.position, playerPos.position,5.0f * Time.deltaTime);
+            foreach(SpriteRenderer sprite in _sprites)
+            {
+                sprite.color = Color.Lerp(sprite.color, new Color(1, 1, 1, 0), Time.deltaTime * 5.0f);
+            }
             yield return null;
         }
 

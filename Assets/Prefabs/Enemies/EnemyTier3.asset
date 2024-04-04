@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d98edb1720a72bd4f819380acaaf2963, type: 3}
-  m_Name: EnemyTier2
+  m_Name: EnemyTier3
   m_EditorClassIdentifier: 
-  Tier: 2
+  Tier: 3
   Type: 0
-  BaseHealth: 12
+  BaseHealth: 15
   HealthMultplier: 2.5
   BaseDamage: 5
-  BaseSpeed: 7
-  TurnRate: 2.007
+  BaseSpeed: 6
+  TurnRate: 3
   RecoilResistanceb: 1
-  EnemyPrefab: {fileID: 3491881793978933763, guid: 157e39da7e7816d41a4173605154cae1, type: 3}
+  EnemyPrefab: {fileID: 3491881793978933763, guid: d2e4422bf085c5e438159ce4cd2b4564, type: 3}
   ProjectilePrefab: {fileID: 0}
-  XPGranted: 12
-  ScrapMetalGranted: 2
+  XPGranted: 15
+  ScrapMetalGranted: 3

@@ -5573,7 +5573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scrapTransform: {fileID: 388440602637989478, guid: c8ba7bcab3c94094b8531054b2972419, type: 3}
   _scrapManagerUI: {fileID: 541234869}
-  _numberOfScrap: 0
+  _numberOfScrap: 100
   _maxScrapInWorld: 130
   _scrapParent: {fileID: 180014841}
 --- !u!114 &786017310
@@ -11965,6 +11965,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b2a8605339894fa42bd299ec59238125, type: 2}
   - {fileID: 11400000, guid: 0adc4bbe96d77f4479421c097efa4e71, type: 2}
   - {fileID: 11400000, guid: d17ef62c72f9af84184751e367b84895, type: 2}
+  - {fileID: 11400000, guid: bf574c7210da6bf44a849636deecc625, type: 2}
+  - {fileID: 11400000, guid: a698e81953383e44c8adbb782442584b, type: 2}
 --- !u!4 &1984262327
 Transform:
   m_ObjectHideFlags: 0

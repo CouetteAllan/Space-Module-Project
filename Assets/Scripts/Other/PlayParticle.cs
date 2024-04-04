@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayParticle : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem _particleSystem;
+    [SerializeField] private ParticleSystem[] _particleSystems;
     [SerializeField] private Transform _laserTargetTransform;
     [SerializeField] private Transform _laserTargetEndTransform;
     private Module _module = null;
@@ -19,12 +19,19 @@ public class PlayParticle : MonoBehaviour
     private void Mod_OnModuleFire()
     {
         /*_particleSystem.Stop();*/
-        _particleSystem.Play();
+        foreach (var particles in  _particleSystems)
+        {
+            particles.Play();
+
+        }
         if (_laserTargetTransform != null)
         {
             if (_moveCoroutine != null)
                 StopCoroutine(_moveCoroutine);
-            _particleSystem.Stop();
+            foreach (var particles in _particleSystems)
+            {
+                particles.Stop();
+            }
             _moveCoroutine = StartCoroutine(MoveTargetCoroutine());
         }
     }
@@ -38,9 +45,16 @@ public class PlayParticle : MonoBehaviour
 
     IEnumerator MoveTargetCoroutine()
     {
-        _particleSystem.Stop();
+        foreach (var particles in _particleSystems)
+        {
+            particles.Stop();
+        }
         _laserTargetTransform.position = transform.parent.position;
-        _particleSystem.Play();
+        foreach (var particles in _particleSystems)
+        {
+            particles.Play();
+
+        }
         yield return null;
         yield return null;
         _laserTargetTransform.position = Vector3.Lerp(transform.parent.position,_laserTargetEndTransform.position,0.7f);
@@ -48,6 +62,9 @@ public class PlayParticle : MonoBehaviour
         _laserTargetTransform.position = _laserTargetEndTransform.position;
         yield return null;
         yield return null;
-        _particleSystem.Stop();
+        foreach (var particles in _particleSystems)
+        {
+            particles.Stop();
+        }
     }
 }

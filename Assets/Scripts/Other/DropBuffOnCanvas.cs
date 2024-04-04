@@ -14,13 +14,14 @@ public class DropBuffOnCanvas : MonoBehaviour, IDropHandler
             return;
 
         ModuleImageScript moduleDragged = eventData.pointerDrag.GetComponent<ModuleImageScript>();
+        ModuleDatas moduleDatas = moduleDragged.GetModuleDatas();
 
-        if (moduleDragged.GetModuleDatas().ModuleClass == Module.ModuleClass.StatBuff)
+        if (moduleDatas.ModuleClass == Module.ModuleClass.StatBuff)
         {
             if (!PlaceModule(moduleDragged))
                 return;
 
-            var datas = moduleDragged.GetModuleDatas().BuffDatas;
+            var datas = moduleDatas.BuffDatas;
             var playerStats = StatSystem.Instance.PlayerStat;
 
             SingleStat statApplied = datas.GetStat();
@@ -37,14 +38,19 @@ public class DropBuffOnCanvas : MonoBehaviour, IDropHandler
                     playerStats.MultiplyPercentStat(statApplied.Type, statApplied.BaseValue);
                     break;
             }
-
-            Debug.Log("Buff dropped !: " + datas);
             string fxName = datas.Stat.Type == StatType.ReloadSpeed ? "attackSpeed" : "damageUp";
             float statValue = datas.GetStat().Type == StatType.Weight ? datas.GetStat().Value : datas.GetStat().Value * 100.0f;
             string fxValue = statValue.ToString("0") + '%';
             Transform playerPos = GameManager.Instance.PlayerController.transform;
             FXManager.Instance.PlayEffect(fxName, playerPos.position, Quaternion.identity, playerPos, fxValue);
+        }
+        else if(moduleDatas.ModuleClass == Module.ModuleClass.Heal)
+        {
+            if (!PlaceModule(moduleDragged))
+                return;
 
+            PlayerController playerController = GameManager.Instance.PlayerController;
+            playerController.GetHealthScript().ChangeHealth(moduleDatas.SecondaryModuleDatas.ModuleValue);
         }
 
     }

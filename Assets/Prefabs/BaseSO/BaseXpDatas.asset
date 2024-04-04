@@ -43,7 +43,7 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 15
+      time: 13.483337
       value: 600
       inSlope: 20.984886
       outSlope: 20.984886

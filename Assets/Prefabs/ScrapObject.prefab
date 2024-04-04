@@ -384,6 +384,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 1440242908315874384}
+  _sprites:
+  - {fileID: 8392599619296730934}
+  - {fileID: 8253058410407029908}
+  - {fileID: 2846375796980981569}
+  - {fileID: 3328669362406969397}
+  - {fileID: 7668590171489399347}
+  - {fileID: 819988172921010928}
 --- !u!50 &6022526790662016206
 Rigidbody2D:
   serializedVersion: 4

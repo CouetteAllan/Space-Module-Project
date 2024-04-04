@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour, IGatherScrap, IPickUpObject
 
     private void OnEndDragModule(ModuleDatas moduleDatas)
     {
-        if (moduleDatas.ModuleClass != Module.ModuleClass.StatBuff)
+        if (moduleDatas.ModuleClass != Module.ModuleClass.StatBuff && moduleDatas.ModuleClass != Module.ModuleClass.Heal)
             return;
 
         _pumpAnimator.SetBool("IsPumping", false);
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour, IGatherScrap, IPickUpObject
 
     private void OnStartDragModule(ModuleDatas moduleDatas)
     {
-        if (moduleDatas.ModuleClass != Module.ModuleClass.StatBuff)
+        if (moduleDatas.ModuleClass != Module.ModuleClass.StatBuff && moduleDatas.ModuleClass != Module.ModuleClass.Heal)
             return;
 
         _pumpAnimator.SetBool("IsPumping", true);
