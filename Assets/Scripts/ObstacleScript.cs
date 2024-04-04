@@ -9,6 +9,7 @@ public class ObstacleScript : MonoBehaviour, IObstacle
     [SerializeField] private Color _lowHealthColor;
     [SerializeField] private bool _isIndestructible = false;
     [SerializeField] private Animator _animator;
+    [SerializeField] private Sprite[] _sprites;
     private ObstaclesManager _manager;
     private int _health;
     private int _maxHealth;

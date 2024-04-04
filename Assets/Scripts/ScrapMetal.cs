@@ -42,7 +42,7 @@ public class ScrapMetal : MonoBehaviour
             _rigidbody2D.position = Vector2.Lerp(_rigidbody2D.position, playerPos.position,5.0f * Time.deltaTime);
             foreach(SpriteRenderer sprite in _sprites)
             {
-                sprite.color = Color.Lerp(sprite.color, new Color(1, 1, 1, 0), Time.deltaTime * 5.0f);
+                sprite.color = Color.Lerp(sprite.color, new Color(1, 1, 1, 0), Time.deltaTime * 10.0f);
             }
             yield return null;
         }
