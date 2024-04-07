@@ -142,6 +142,12 @@ public class BossScript : EnemyScript
         EnterState(BossState.Move);
     }
 
+    public void ActivateHitBoxes(bool active)
+    {
+        this._rigidbody.isKinematic = !active;
+        this._rigidbody.simulated = active;
+    }
+
     private void OnDestroy()
     {
         EnemyManagerDataHandler.OnTriggerBossCinematic -= OnTriggerBossCinematic;

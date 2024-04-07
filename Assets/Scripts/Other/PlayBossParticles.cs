@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayBossParticles : MonoBehaviour
 {
     [SerializeField] private ParticleSystem[] _particleSystems;
+    [SerializeField] private BossScript _bossScript;
 
     public void PlayParticles()
     {
@@ -12,5 +13,13 @@ public class PlayBossParticles : MonoBehaviour
         {
             particleSystem.Play();
         }
+    }
+
+    public void ActivateBossHitBoxes()
+    {
+        _bossScript.ActivateHitBoxes(true);
+    }public void DeactivateBossHitBoxes()
+    {
+        _bossScript.ActivateHitBoxes(false);
     }
 }

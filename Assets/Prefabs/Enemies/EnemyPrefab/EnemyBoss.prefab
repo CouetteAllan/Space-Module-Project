@@ -20156,6 +20156,7 @@ MonoBehaviour:
   - {fileID: 2654658608687212675}
   - {fileID: 4062798283732149983}
   - {fileID: 8671536371822103907}
+  _bossScript: {fileID: 3743020057076804829}
 --- !u!1 &3491881793978933763
 GameObject:
   m_ObjectHideFlags: 0
