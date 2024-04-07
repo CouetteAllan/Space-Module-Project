@@ -1,4 +1,5 @@
 
+using Cinemachine;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class BossScript : EnemyScript
     [SerializeField] private HealthScript _healthScript;
     [SerializeField] private EnemyDatas[] _enemyToInstantiate;
     [SerializeField] private Animator _bossAnimator;
+    [SerializeField] private CinemachineVirtualCamera _cam;
 
     [Header("Feedbacks")]
     [SerializeField] private Image _healthBarFill;
@@ -35,6 +37,18 @@ public class BossScript : EnemyScript
         _bossDatas = (BossData)datas;
         _timeNextAttack = _bossDatas.TimeNextAttack;
         _timerAttack = _timeNextAttack;
+        EnemyManagerDataHandler.OnTriggerBossCinematic += OnTriggerBossCinematic;
+        EnemyManager.OnEndBossCinematic += OnEndBossCinematic;
+    }
+
+    private void OnEndBossCinematic()
+    {
+        _cam.Priority = 0;
+    }
+
+    private void OnTriggerBossCinematic(Action callback)
+    {
+        _cam.Priority = 100;
     }
 
     protected override void ChangeHealth(float healthChange)
@@ -82,6 +96,8 @@ public class BossScript : EnemyScript
 
                 break;
             case BossState.Attack:
+                _healthBarFill.color = new Color(205.0f / 255.0f, 205.0f / 255.0f, 205.0f / 255.0f, 150.0f / 255.0f);
+                _shield.SetActive(true);
                 StartCoroutine(AttackCoroutine());
                 break;
             case BossState.Swarm:
@@ -114,10 +130,22 @@ public class BossScript : EnemyScript
 
     private IEnumerator AttackCoroutine()
     {
-        yield return new WaitForSeconds(.5f);
+        this._rigidbody.isKinematic = true;
+        this._rigidbody.simulated = false;
+
+        yield return new WaitForSeconds(.3f);
         _bossAnimator.SetTrigger("Attack");
         yield return new WaitForSeconds(5f);
+
+        this._rigidbody.isKinematic = false;
+        this._rigidbody.simulated = true;
         EnterState(BossState.Move);
+    }
+
+    private void OnDestroy()
+    {
+        EnemyManagerDataHandler.OnTriggerBossCinematic -= OnTriggerBossCinematic;
+        EnemyManager.OnEndBossCinematic -= OnEndBossCinematic;
     }
 
 }

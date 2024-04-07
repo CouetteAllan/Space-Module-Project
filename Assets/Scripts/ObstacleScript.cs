@@ -34,8 +34,28 @@ public class ObstacleScript : MonoBehaviour, IObstacle
     {
         _health = Mathf.Clamp(_health + damage, 0, _maxHealth);
         _renderer.color = Color.Lerp(_lowHealthColor,_startColor, (float)_health/(float)_maxHealth);
+        ChangeSprite(_health);
         if (_health <= 0)
             DestroyObstacle();
+    }
+
+    private void ChangeSprite(int health)
+    {
+        if(health < _maxHealth / 4)
+        {
+            _renderer.sprite = _sprites[2];
+            return;
+        }
+        else if (health < (_maxHealth/4) * 2)
+        {
+            _renderer.sprite = _sprites[1];
+            return;
+        }
+        else
+        {
+            _renderer.sprite = _sprites[0];
+            return;
+        }
     }
 
     public void SetUpObstacle(ObstaclesManager manager,int health)

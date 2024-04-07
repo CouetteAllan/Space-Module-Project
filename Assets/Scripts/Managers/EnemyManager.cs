@@ -1,10 +1,13 @@
 using CodeMonkey.Utils;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    public static event Action OnEndBossCinematic;
+
     [SerializeField] private EnemyDatas[] _enemyDatas;
     [SerializeField] private BossData _bossData;
     [SerializeField] private BasicEnemySpawner[] _spawns; //Change this later
@@ -12,6 +15,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private int _enemyLimit = 60;
     private List<EnemyScript> _enemiesList = new List<EnemyScript>();
     private int _currentTimerLevel = 0;
+    private bool _bossCinematicEnd = false;
 
     private void Awake()
     {
@@ -30,13 +34,36 @@ public class EnemyManager : MonoBehaviour
 
     private void OnEndTimer()
     {
-        //Spawn Boss near Player.
-        float distanceFromPlayer = 25.0f;
-        Vector2 playerPos = GameManager.Instance.PlayerController.transform.position + UtilsClass.GetRandomDir() * distanceFromPlayer;
-        //Set Up Boss
-        OnSpawnEnemy(playerPos, _bossData);
+        StartCoroutine(BossSpawnCoroutine());
+    }
+
+    private IEnumerator BossSpawnCoroutine()
+    {
+        yield return StartCoroutine(BossAppearCinematic());
+        
         //Set Up Camera
         this.BossSpawned();
+    }
+
+    private IEnumerator BossAppearCinematic()
+    {
+        yield return new WaitUntil(() => _enemiesList.Count <= 0);
+        float distanceFromPlayer = 70.0f;
+        Vector2 playerPos = GameManager.Instance.PlayerController.transform.position + UtilsClass.GetRandomDir() * distanceFromPlayer;
+
+        //Set Up Boss
+        OnSpawnEnemy(playerPos, _bossData);
+        //Wait until the end of the timeline/cinematic
+        this.TriggerBossCinematic(EndBossCinematic);
+        yield return new WaitUntil(() => _bossCinematicEnd = true);
+        yield break;
+
+    }
+
+    private void EndBossCinematic()
+    {
+        _bossCinematicEnd = true;
+        OnEndBossCinematic?.Invoke();
     }
 
     private void OnSpawnEnemyWave(EnemyDatas datas, int number)
@@ -78,15 +105,24 @@ public class EnemyManager : MonoBehaviour
     private EnemyDatas OnGetEnemyDatas()
     {
         //Pick datas depending on the current timer level (1 timer level = 10sec);
-        if (_currentTimerLevel < 15 ||(18 < _currentTimerLevel && _currentTimerLevel < 23))
+        switch (_currentTimerLevel)
         {
-            _enemyLimit = 25;
-            return _enemyDatas[0];
-        }
-        else
-        {
-            _enemyLimit = 60;
-            return _enemyDatas[2];
+            case < 15:
+            case < 23 when _currentTimerLevel > 18:
+                
+                _enemyLimit = 25;
+                return _enemyDatas[0];
+
+            case > 15 when _currentTimerLevel < 23:
+                _enemyLimit = 60;
+                return _enemyDatas[2];
+            case > 23:
+                _enemyLimit = 40;
+                return _enemyDatas[3];
+
+            default:
+                _enemyLimit = 25;
+                return _enemyDatas[0];
         }
     }
 
