@@ -23,4 +23,4 @@ MonoBehaviour:
   EnemyPrefab: {fileID: 3491881793978933763, guid: d2e4422bf085c5e438159ce4cd2b4564, type: 3}
   ProjectilePrefab: {fileID: 0}
   XPGranted: 15
-  ScrapMetalGranted: 3
+  ScrapMetalGranted: 2

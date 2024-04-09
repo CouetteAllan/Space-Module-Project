@@ -59,6 +59,7 @@ public class PowerUpObject : MonoBehaviour
         string fxValue = statValue.ToString("0") + '%';
         FXManager.Instance.PlayEffect(fxName, playerPos.position, Quaternion.identity, playerPos, fxValue);
         _powerUpManager.RemoveObjectFromList(this);
+        SoundManager.Instance.Play("PowerUp");
         Destroy(this.gameObject);
         yield break;
     }

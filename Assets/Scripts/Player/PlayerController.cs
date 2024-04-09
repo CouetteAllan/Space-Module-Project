@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour, IGatherScrap, IPickUpObject
         else
         {
             _healEffect.Play();
+            SoundManager.Instance.Play("Regen");
         }
         _circleGraph.color = Color.Lerp(_startColor, _targetColorLowHealth, 1.0f - (float)_healthScript.Health / (float)_healthScript.MaxHealth);
 

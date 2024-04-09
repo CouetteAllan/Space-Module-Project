@@ -1,2 +1,4 @@
 UI skin:
 https://assetstore.unity.com/packages/2d/gui/sci-fi-gui-skin-15606#description
+Power Up Regeneration SFX.wav by Romeo_Kaleikau -- https://freesound.org/s/588251/ -- License: Attribution NonCommercial 3.0	
+Level Up 01 by rhodesmas -- https://freesound.org/s/320655/ -- License: Attribution 3.0

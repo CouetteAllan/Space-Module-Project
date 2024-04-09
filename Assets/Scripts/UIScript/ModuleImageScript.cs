@@ -39,6 +39,7 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         _image.sprite = _moduleDatas.ModuleSprite;
         _description.text = _moduleDatas.ModuleDescription.Replace("\\n", "\n");
         _currentPrice = _moduleDatas.ScrapCost;
+        ScrapManagerDataHandler.OnUpdateScrap += OnUpdateScrap;
         UIManager.OnCloseScrapShop += OnCloseScrapShop;
         if(_moduleDatas.OffensiveModuleDatas == null)
             ScrapManagerDataHandler.OnSellScrapSuccess += OnSellScrapSuccess;
@@ -47,7 +48,6 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
     {
         _startPosition = _rectTransform.anchoredPosition;
         _startLocalScale = _rectTransform.localScale;
-        ScrapManagerDataHandler.OnUpdateScrap += OnUpdateScrap;
         OnUpdateScrap(0);
     }
 

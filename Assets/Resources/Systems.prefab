@@ -148,23 +148,39 @@ MonoBehaviour:
     loop: 0
     playOnAwake: 0
     source: {fileID: 0}
-  - name: Heal
-    clip: {fileID: 8300000, guid: c295443f0f7229f4783545229ef2e74a, type: 3}
+  - name: Regen
+    clip: {fileID: 8300000, guid: be887329874776f4abe81bbfaf42e708, type: 3}
     output: {fileID: 5676675339829177356, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
-    volume: 0.611
+    volume: 0.64
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: LevelUp
+    clip: {fileID: 8300000, guid: a14a86c1d09f00040932e64b8b9aeed8, type: 3}
+    output: {fileID: 5676675339829177356, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
+    volume: 0.76
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: PowerUp
+    clip: {fileID: 8300000, guid: 27bbd95f560b7d24f9f3902db4023f3a, type: 3}
+    output: {fileID: 5676675339829177356, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
+    volume: 0.525
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Scrap
+    clip: {fileID: 8300000, guid: 86fb5da04ca187b4792a96c1c3cd9ff3, type: 3}
+    output: {fileID: 5676675339829177356, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
+    volume: 0.405
     pitch: 0
     loop: 0
     playOnAwake: 0
     source: {fileID: 0}
   musics:
-  - name: Perturbator
-    clip: {fileID: 8300000, guid: 2c30b6f82d3dd3048ac579153b664cde, type: 3}
-    output: {fileID: 4471798669282559186, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
-    volume: 0.653
-    pitch: 0
-    loop: 1
-    playOnAwake: 0
-    source: {fileID: 0}
   - name: Space Pirates
     clip: {fileID: 8300000, guid: 4a91f1a96273e1746bc5b5ca0349fb7f, type: 3}
     output: {fileID: 4471798669282559186, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}

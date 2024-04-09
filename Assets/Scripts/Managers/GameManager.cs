@@ -103,6 +103,7 @@ public class GameManager : Singleton<GameManager>
             case GameState.ShopState:
                 StartCoroutine(SlowMoCoroutine(false));
                 OpenShop();
+                SoundManager.Instance.Play("LevelUp");
                 break;
             case GameState.Pause:
                 StartCoroutine(SlowMoCoroutine(false));

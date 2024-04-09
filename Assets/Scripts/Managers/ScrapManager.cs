@@ -74,6 +74,7 @@ public class ScrapManager : MonoBehaviour
     {
         _numberOfScrap += value;
         ScrapManagerDataHandler.EnoughScrap(AbleToBuyScrap());
+        SoundManager.Instance.Play("Scrap");
     }
 
     private void OnEnemyDeath(object sender, EnemyScript.EnemyStatsOnDeath enemyStats)

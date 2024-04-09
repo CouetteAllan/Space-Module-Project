@@ -140,8 +140,8 @@ public class UIManager : Singleton<UIManager>
     {
         _scrapShop.SetActive(open);
         _scrapTab[_scrapIndex].SetActive(open);
-        int indexToHide = (_scrapIndex+1) == _scrapTab.Length ? 0 : 1;
-        _scrapTab[indexToHide].SetActive(!open);
+        /*int indexToHide = (_scrapIndex+1) == _scrapTab.Length ? 0 : 1;
+        _scrapTab[indexToHide].SetActive(!open);*/
         _scrapTxt.SetActive(open);
         _openScrapShopTxT.SetActive(false);
         if (GameManager.Instance.CurrentState != GameState.ShopState)
