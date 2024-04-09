@@ -760,7 +760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d7cadbe21ff3a643a3c4186e3a87953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minRotationRate: 40
+  _minRotationRate: 50
   _maxRotationRate: 190
 --- !u!114 &113123468733420772
 MonoBehaviour:

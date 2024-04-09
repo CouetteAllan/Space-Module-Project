@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21181e504dc18343a4cffc92a4817bc, type: 3}
   m_Name: SimpleLaserStats
   m_EditorClassIdentifier: 
-  BaseModuleDamage: 20
+  BaseModuleDamage: 12
   AttackSpeedMultiplier: 3
   Type: 2
   LevelUpGraph:
