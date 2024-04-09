@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d98edb1720a72bd4f819380acaaf2963, type: 3}
   m_Name: EnemyElite
   m_EditorClassIdentifier: 
-  Tier: 3
+  Tier: 4
   Type: 0
   BaseHealth: 30
   HealthMultplier: 8
@@ -22,5 +22,5 @@ MonoBehaviour:
   RecoilResistanceb: 1
   EnemyPrefab: {fileID: 3491881793978933763, guid: 188d254b6fdd81d48817d137878ba562, type: 3}
   ProjectilePrefab: {fileID: 0}
-  XPGranted: 100
+  XPGranted: 70
   ScrapMetalGranted: 8

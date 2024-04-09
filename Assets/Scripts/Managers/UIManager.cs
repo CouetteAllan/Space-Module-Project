@@ -115,7 +115,9 @@ public class UIManager : Singleton<UIManager>
             }
         }
         else
+        {
             _skipButton.SetActive(false);
+        }
 
         _moduleShop.SetActive(true);
         _levelUpAnimatorInShop.SetTrigger("LevelUp");

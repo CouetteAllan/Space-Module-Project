@@ -15,7 +15,7 @@ MonoBehaviour:
   Tier: 1
   Type: 0
   BaseHealth: 3
-  HealthMultplier: 1
+  HealthMultplier: 1.2
   BaseDamage: 2
   BaseSpeed: 4
   TurnRate: 3

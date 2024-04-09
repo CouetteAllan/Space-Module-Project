@@ -14,12 +14,15 @@ public class ScrapMetal : MonoBehaviour
     {
         if(collision.TryGetComponent(out IGatherScrap player))
         {
+            SoundManager.Instance.Play("Scrap");
             StartCoroutine(ScrapCoroutine(collision.gameObject.transform,player));
         }
     }
 
     private IEnumerator ScrapCoroutine(Transform playerPos, IGatherScrap player)
     {
+
+
         _collider.enabled = false;
         Vector2 startPos = _rigidbody2D.position;
         float startTime = Time.time;

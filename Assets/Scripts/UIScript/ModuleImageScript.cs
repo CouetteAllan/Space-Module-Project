@@ -64,7 +64,7 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         string newDesc = _moduleDatas.ModuleDescription;
         int index = newDesc.IndexOf("Cost");
         newDesc = newDesc.Remove(index);
-        newDesc = newDesc.Insert(index, $"<color=orange>Cost: {_currentPrice} Fe) </color>");
+        newDesc = newDesc.Insert(index, $"/n<color=orange>Cost: {_currentPrice} Fe) </color>");
         _description.text = newDesc;
     }
 

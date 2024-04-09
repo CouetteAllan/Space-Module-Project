@@ -74,12 +74,11 @@ public class ScrapManager : MonoBehaviour
     {
         _numberOfScrap += value;
         ScrapManagerDataHandler.EnoughScrap(AbleToBuyScrap());
-        SoundManager.Instance.Play("Scrap");
     }
 
     private void OnEnemyDeath(object sender, EnemyScript.EnemyStatsOnDeath enemyStats)
     {
-        if (Utils.RollChance(chance: .4f) || enemyStats.tier == 3) //40% chances to drop scrap metal
+        if (Utils.RollChance(chance: .4f) || enemyStats.tier == 4) //40% chances to drop scrap metal
         {
             OnCreateScrap(enemyStats.finalPos, enemyStats.scrapGranted);
         }
