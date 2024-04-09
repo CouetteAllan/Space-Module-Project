@@ -111,25 +111,28 @@ public class EnemyScript : MonoBehaviour, IHittable
     {
         _currentHealth += healthChange;
         if (_currentHealth <= 0)
-            Die();
+            Die(true);
 
     }
 
-    private void Die()
+    public void Die(bool grantLoot)
     {
         StopAllCoroutines();
-        GameManager.Instance.GrantXP((uint)_datas.XPGranted);
-        Instantiate(_particleEffect,this.transform.position,Quaternion.identity);
         _gotHit = false;
-        OnDeath?.Invoke(this, new EnemyStatsOnDeath
+        if (grantLoot)
         {
-            enemyRef = this,
-            level = (int)GameManager.Instance.CurrentLevel,
-            tier = (int)_datas.Tier,
-            finalPos = this.transform.position,
-            xpGranted = _datas.XPGranted,
-            scrapGranted = _datas.ScrapMetalGranted,
-        }) ;
+            GameManager.Instance.GrantXP((uint)_datas.XPGranted);
+            Instantiate(_particleEffect, this.transform.position, Quaternion.identity);
+            OnDeath?.Invoke(this, new EnemyStatsOnDeath
+            {
+                enemyRef = this,
+                level = (int)GameManager.Instance.CurrentLevel,
+                tier = (int)_datas.Tier,
+                finalPos = this.transform.position,
+                xpGranted = _datas.XPGranted,
+                scrapGranted = _datas.ScrapMetalGranted,
+            });
+        }
 
         Destroy(this.gameObject);
     }

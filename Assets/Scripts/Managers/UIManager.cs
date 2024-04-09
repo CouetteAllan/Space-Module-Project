@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -24,6 +25,10 @@ public class UIManager : Singleton<UIManager>
 
     [Header("PauseMenu")]
     [SerializeField] private GameObject _pauseGO;
+
+    [Header("VictoryMenu")]
+    [SerializeField] private GameObject _victoryGO;
+    [SerializeField] private TextMeshProUGUI _killsText;
 
     [Space]
     [SerializeField] private UI_XPScript _xpScript;
@@ -70,7 +75,7 @@ public class UIManager : Singleton<UIManager>
                 break;
             case GameState.StartGame:
                 SetPause(false);
-
+                ShowVictoryPanel(false);
                 break;
             case GameState.InGame:
                 //CloseShop();
@@ -86,8 +91,13 @@ public class UIManager : Singleton<UIManager>
             case GameState.Pause:
                 SetPause(true);
                 break;
+            case GameState.Victory:
+                ShowVictoryPanel(true);
+                break;
         }
     }
+
+   
 
     public void OpenShop()
     {
@@ -195,6 +205,16 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
+    private void ShowVictoryPanel(bool show)
+    {
+        _victoryGO.SetActive(show);
+        _killsText.text = GameStatsManager._nbOfEnemiesKilled.ToString();
+        if (show)
+        {
+            _victoryGO.GetComponent<Animator>().SetTrigger("GameOver");
+        }
+    }
+
     private void OnDisable()
     {
         GameManager.OnGameStateChanged -= GameManager_OnGameStateChanged;
@@ -211,6 +231,7 @@ public class UIManager : Singleton<UIManager>
 
     public void ReturnToMainMenu()
     {
+        GameManager.Instance.ChangeGameState(GameState.MainMenu);
         SceneManager.LoadScene(0);
     }
 
@@ -250,7 +271,6 @@ public class UIManager : Singleton<UIManager>
 
     public void SkipLevelUp()
     {
-        //ScrapManagerDataHandler.PickUpScrap(20);
         GameManager.Instance.PlayerController.GetHealthScript().ChangeHealth(15);
         GameManager.Instance.CloseShop();
     }

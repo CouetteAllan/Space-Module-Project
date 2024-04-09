@@ -47,7 +47,9 @@ public class EnemyManager : MonoBehaviour
 
     private IEnumerator BossAppearCinematic()
     {
-        yield return new WaitUntil(() => _enemiesList.Count <= 0);
+        yield return new WaitForSeconds(2);
+
+        ClearAllEnemies();
         float distanceFromPlayer = 70.0f;
         Vector2 playerPos = GameManager.Instance.PlayerController.transform.position + UtilsClass.GetRandomDir() * distanceFromPlayer;
 
@@ -141,6 +143,15 @@ public class EnemyManager : MonoBehaviour
         var newEnemy = EnemyScript.CreateEnemy(pos, datas);
         _enemiesList.Add(newEnemy);
         return newEnemy;
+    }
+
+    private void ClearAllEnemies()
+    {
+        foreach(var enemy in _enemiesList)
+        {
+            enemy.Die(grantLoot: false);
+        }
+        _enemiesList.Clear();
     }
 
 
