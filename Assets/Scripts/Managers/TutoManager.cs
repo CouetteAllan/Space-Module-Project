@@ -19,6 +19,7 @@ public class TutoManager : MonoBehaviour
     }
     public void OnShowTuto(bool showTuto)
     {
+
         if (!GameManager.Instance.HasShownTutoOnce)
         {
             GameManager.Instance.HasShownTutoOnce = true;

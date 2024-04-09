@@ -102,14 +102,17 @@ public class UIManager : Singleton<UIManager>
     public void OpenShop()
     {
         
-        if (GameManager.Instance.CurrentLevel != 1 && GameManager.Instance.PreviousState != GameState.Pause)
+        if (GameManager.Instance.CurrentLevel != 1 )
         {
-            foreach (var moduleImage in _moduleImageScripts)
-            {
-                moduleImage.SetModuleDatas(ModuleManager.Instance.GetRandomModuleData());
-            }
             _skipButton.SetActive(true);
 
+            if (GameManager.Instance.PreviousState != GameState.Pause)
+            {
+                foreach (var moduleImage in _moduleImageScripts)
+                {
+                    moduleImage.SetModuleDatas(ModuleManager.Instance.GetRandomModuleData());
+                }
+            }
         }
         else
             _skipButton.SetActive(false);
@@ -137,13 +140,15 @@ public class UIManager : Singleton<UIManager>
     {
         _scrapShop.SetActive(open);
         _scrapTab[_scrapIndex].SetActive(open);
+        int indexToHide = (_scrapIndex+1) == _scrapTab.Length ? 0 : 1;
+        _scrapTab[indexToHide].SetActive(!open);
         _scrapTxt.SetActive(open);
         _openScrapShopTxT.SetActive(false);
         if (GameManager.Instance.CurrentState != GameState.ShopState)
         {
             if (open)
             {
-                Time.timeScale = 0.03f;
+                Time.timeScale = 0.02f;
                 Time.fixedDeltaTime = Time.timeScale * 0.01f;
 
 
