@@ -48,7 +48,7 @@ public class ModuleImageScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
     {
         _startPosition = _rectTransform.anchoredPosition;
         _startLocalScale = _rectTransform.localScale;
-        OnUpdateScrap(0);
+        OnUpdateScrap(100);
     }
 
     private void OnSellScrapSuccess(StatType buffTypeSold,int nbSold)
