@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -118,12 +119,8 @@ public class UIManager : Singleton<UIManager>
         {
             _skipButton.SetActive(false);
         }
-
-        _moduleShop.SetActive(true);
-        _levelUpAnimatorInShop.SetTrigger("LevelUp");
-        _openScrapShopTxT.SetActive(true);
-        if ((bool)ScrapManagerDataHandler.AbleToBuyScrap())
-            OpenScrapShop(true);
+        HandleOpenShopAnim();
+        
     }
 
     public void CloseShop()
@@ -227,6 +224,20 @@ public class UIManager : Singleton<UIManager>
         GameManager.OnGameStateChanged -= GameManager_OnGameStateChanged;
         ScrapManagerDataHandler.OnEnoughScrap -= OnEnoughScrap;
 
+    }
+
+    private void HandleOpenShopAnim()
+    {
+        var startPos = _moduleShop.transform.position;
+        _moduleShop.transform.position = _moduleShop.transform.position + Vector3.right * 100.0f;
+        DOTween.defaultTimeScaleIndependent = false;
+        var tween = _moduleShop.transform.DOMove(startPos, 1.0f).SetEase(Ease.OutCubic);
+        tween.timeScale = 2.0f;
+        _moduleShop.SetActive(true);
+        _levelUpAnimatorInShop.SetTrigger("LevelUp");
+        _openScrapShopTxT.SetActive(true);
+        if ((bool)ScrapManagerDataHandler.AbleToBuyScrap())
+            OpenScrapShop(true);
     }
 
     #region UIButtonFunctions
