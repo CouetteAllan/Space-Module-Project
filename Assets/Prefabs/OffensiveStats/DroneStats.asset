@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21181e504dc18343a4cffc92a4817bc, type: 3}
   m_Name: DroneStats
   m_EditorClassIdentifier: 
+  OffensiveStrategy: {fileID: 11400000, guid: f8c796db491b0dc429ee39f082b68ebc, type: 2}
   BaseModuleDamage: 10
   AttackSpeedMultiplier: 4
   Type: 3

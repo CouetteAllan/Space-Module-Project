@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "RocketStrategy", menuName = "Module/Strategy/Rocket")]
 public class RocketModuleScript : BaseOffensiveScript
 {
-    public RocketModuleScript(StatClass statClass, ModuleDatas datas, Module.CurrentModuleStats currentModuleStats) : base(statClass, datas, currentModuleStats)
-    {
-    }
+    public float RocketMissileSpeed = 3.0f;
+    public float RocketDuration = 1.0f;
+
 
     public override void Fire(bool firstProjectile, Quaternion currentRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success)
     {
@@ -18,7 +19,7 @@ public class RocketModuleScript : BaseOffensiveScript
 
             var projectile = Object.Instantiate(_datas.ProjectilePrefab, position, currentRotation).GetComponent<ProjectileScript>();
             float projectileDamage = _statClass.GetStatValue(StatType.Damage) * _currentModuleStats.currentDamage;
-            projectile.Launch((t.position - currentModulePosition).normalized, 3.0f, projectileDamage,1.0f,null,_currentModuleStats.currentLevel);
+            projectile.Launch((t.position - currentModulePosition).normalized, RocketMissileSpeed, projectileDamage,RocketDuration,null,_currentModuleStats.currentLevel);
 
         }
     }

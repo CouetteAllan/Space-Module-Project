@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21181e504dc18343a4cffc92a4817bc, type: 3}
   m_Name: SimpleCanonStats
   m_EditorClassIdentifier: 
+  OffensiveStrategy: {fileID: 11400000, guid: 8770c20a45c577f418480ed48fadfd05, type: 2}
   BaseModuleDamage: 10
   AttackSpeedMultiplier: 1
   Type: 1

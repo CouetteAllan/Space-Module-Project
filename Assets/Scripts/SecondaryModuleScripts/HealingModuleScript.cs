@@ -20,4 +20,9 @@ public class HealingModuleScript : IStrategyModule
 
         _playerHealthScript.ChangeHealth((int)_secondaryModuleDatas.ModuleValue);
     }
+
+    public void Init(StatClass statClass, ModuleDatas datas, Transform moduleTransform, Module.CurrentModuleStats currentModuleStats)
+    {
+        
+    }
 }

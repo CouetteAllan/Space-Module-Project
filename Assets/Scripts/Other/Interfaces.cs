@@ -25,6 +25,7 @@ public interface IGatherScrap
 
 public interface IStrategyModule
 {
+    public void Init(StatClass statClass, ModuleDatas datas, Transform moduleTransform, Module.CurrentModuleStats currentModuleStats);
     public void Fire(bool firstProjectile, Quaternion currentRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success);
 }
 

@@ -69,7 +69,11 @@ public class Module : MonoBehaviour, IGatherScrap
     
     public static Transform CreateModPreview(Vector2 position, ModuleDatas datas, Transform parentTransform)
     {
-        Transform module = Instantiate(datas.ModulePrefab/*.transform.Find("Graph")*/, position + (Vector2)parentTransform.up * 0.5f, parentTransform.rotation , parentTransform).transform;
+        Transform module = Instantiate(datas.ModulePrefab/*.transform.Find("Graph")*/,
+            position + (Vector2)parentTransform.up * 0.5f,
+            parentTransform.rotation ,
+            parentTransform)
+            .transform;
         return module;
     }
 
@@ -82,7 +86,6 @@ public class Module : MonoBehaviour, IGatherScrap
         _moduleClass = datas.ModuleClass;
         _attachPoint = attachPointScript;
         _playerStatClass = StatSystem.Instance.PlayerStat;
-
 
         _currentLevel = 1;
 
@@ -119,7 +122,9 @@ public class Module : MonoBehaviour, IGatherScrap
                 _healthScript.SetHealthScript(attachPointScript, _data.Health);
                 _healthScript.OnDeath += OnModuleBranchDestroyed;
                 break;
+                 
         }
+
 
         _playParticle?.SetUpPlayParticle(this);
 

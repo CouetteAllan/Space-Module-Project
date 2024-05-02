@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "CanonStrategy", menuName = "Module/Strategy/SimpleCanon")]
 public class CanonModuleScript : BaseOffensiveScript
 {
-    public CanonModuleScript(StatClass statClass, ModuleDatas datas,Module.CurrentModuleStats currentModuleStats) : base(statClass, datas, currentModuleStats) { }
-
+    public float BulletSpeed = 12.0f;
     public override void Fire(bool firstProjectile, Quaternion currentModuleRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success)
     {
         success = true;
@@ -16,7 +16,7 @@ public class CanonModuleScript : BaseOffensiveScript
 
             var projectile = Object.Instantiate(_datas.ProjectilePrefab, position, currentModuleRotation).GetComponent<ProjectileScript>();
             float projectileDamage = _statClass.GetStatValue(StatType.Damage) * _currentModuleStats.currentDamage;
-            projectile.Launch((t.position - currentModulePosition).normalized, 12.0f, projectileDamage);
+            projectile.Launch((t.position - currentModulePosition).normalized, BulletSpeed, projectileDamage);
 
         }
     }

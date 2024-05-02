@@ -3,22 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "MeleeStrategy", menuName = "Module/Strategy/Melee")]
 public class MeleeModuleScript : BaseOffensiveScript, IDamageSource
 {
+    public int AttackPerSecond = 6;
+    public float BaseRadius = 2.5f;
+    public float UpgradedRadius = 3.6f;
+
+
     private Transform _moduleTransform;
     private Coroutine _attackCoroutine;
     private Transform _attackpointTransform;
-    private int _attackPerSecond = 6;
     private bool _isActive = false;
 
-    public MeleeModuleScript(StatClass statClass, ModuleDatas datas, Module.CurrentModuleStats currentModuleStats, Transform moduleTransform) : base(statClass, datas, currentModuleStats)
-    {
-        _moduleTransform = moduleTransform;
-    }
 
     public Transform Transform => _moduleTransform;
 
-    public float RecoilMultiplier => 0.6f;
+    public float RecoilMultiplier => 0.8f;
+
+    public override void Init(StatClass statClass, ModuleDatas datas, Transform moduleTransform, Module.CurrentModuleStats currentModuleStats)
+    {
+        base.Init(statClass, datas, moduleTransform, currentModuleStats);
+        _moduleTransform = moduleTransform;
+    }
 
     public override void Fire(bool firstProjectile, Quaternion currentModuleRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success)
     {
@@ -47,19 +54,19 @@ public class MeleeModuleScript : BaseOffensiveScript, IDamageSource
             if (attackPosition == null)
                 yield break;
             DealDamageToEnemy(attackPosition.position);
-            yield return new WaitForSeconds(1.0f / _attackPerSecond);
+            yield return new WaitForSeconds(1.0f / AttackPerSecond);
         }
     }
 
     private void DealDamageToEnemy(Vector2 position)
     {
-        float radius = _currentModuleStats.currentLevel > 1 ? 3.6f : 2.5f;
+        float radius = _currentModuleStats.currentLevel > 1 ? UpgradedRadius : BaseRadius;
         var enemies = Physics2D.OverlapCircleAll(position, radius);
         foreach (var enemy in enemies)
         {
             if(enemy.TryGetComponent(out IHittable hittable))
             {
-                hittable.TryHit(this, (int)((_currentModuleStats.currentDamage / _attackPerSecond) * _statClass.GetStatValue(StatType.Damage)));
+                hittable.TryHit(this, (int)((_currentModuleStats.currentDamage / AttackPerSecond) * _statClass.GetStatValue(StatType.Damage)));
             }
 
 

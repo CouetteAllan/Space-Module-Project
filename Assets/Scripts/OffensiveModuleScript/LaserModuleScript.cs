@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
+
+[CreateAssetMenu(fileName = "Laser Strategy", menuName = "Module/Strategy/Laser")]
 public class LaserModuleScript : BaseOffensiveScript , IDamageSource
 {
+    public float LaserLenght = 17.0f;
     private Transform _moduleTransform;
-    public LaserModuleScript(StatClass statClass, ModuleDatas datas, Module.CurrentModuleStats currentModuleStats, Transform moduleTransform) : base(statClass, datas, currentModuleStats)
-    {
-        _moduleTransform = moduleTransform;
-    }
+
 
     public Transform Transform => _moduleTransform;
 
@@ -18,18 +18,16 @@ public class LaserModuleScript : BaseOffensiveScript , IDamageSource
     public override void Fire(bool firstProjectile, Quaternion currentModuleRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success)
     {
         success = true;
-        MonoBehaviourOnScene.Instance.StartCoroutine(FXCoroutine());
-        foreach (Transform t in projectilePositions)
+        foreach (Transform projectileTransform in projectilePositions)
         {
-            Vector3 position = firstProjectile ? t.position : t.position + UtilsClass.GetRandomDir() * Random.Range(0.1f, 0.6f);
+            Vector3 position = firstProjectile ? projectileTransform.position : projectileTransform.position + UtilsClass.GetRandomDir() * Random.Range(0.1f, 0.6f);
 
             //Instantiate a physic cast in a straight line.
             float hitboxWidth = 3.5f;
-            float hitBoxLength = 17f;
-            var laser = Physics2D.BoxCastAll(position, Vector2.one * hitboxWidth, 0, t.up, hitBoxLength);
-            foreach (var l in laser)
+            var laser = Physics2D.BoxCastAll(position, Vector2.one * hitboxWidth, angle: 0, projectileTransform.up, LaserLenght);
+            foreach (var hittable in laser)
             {
-                if (l.transform.gameObject.TryGetComponent(out IHittable enemy))
+                if (hittable.transform.gameObject.TryGetComponent(out IHittable enemy))
                 {
                     int damageToDeal = (int)(_statClass.GetStatValue(StatType.Damage) * _currentModuleStats.currentDamage);
                     enemy.TryHit(this, damageToDeal);
@@ -38,18 +36,10 @@ public class LaserModuleScript : BaseOffensiveScript , IDamageSource
         }
     }
 
-    IEnumerator FXCoroutine()
+    public override void Init(StatClass statClass, ModuleDatas datas, Transform moduleTransform, Module.CurrentModuleStats currentModuleStats)
     {
-        float time = 0;
-        float targetTime = 0.15f;
-        while(time < targetTime)
-        {
-
-
-            yield return null;
-            time += Time.deltaTime;
-        }
-        yield return null;
+        base.Init(statClass, datas, moduleTransform, currentModuleStats);
+        _moduleTransform = moduleTransform;
     }
 
 }

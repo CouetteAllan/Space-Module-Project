@@ -17,30 +17,17 @@ public class OffensiveModuleDatas : ScriptableObject
         Rocket,
         DoubleCanon
     }
+    public BaseOffensiveScript OffensiveStrategy;
     public float BaseModuleDamage = 1.0f;
     public float AttackSpeedMultiplier = 1.0f;
-    public OffensiveType Type = OffensiveType.Canon;
+    public OffensiveType Type;
     public GameObject[] LevelUpGraph;
+
 
     public IStrategyModule GetOffensiveStrategy(StatClass statClass, ModuleDatas datas, Transform moduleTransform, Module.CurrentModuleStats currentModuleStats)
     {
-        switch (Type)
-        {
-            case OffensiveType.Canon:
-            case OffensiveType.DoubleCanon:
-                return new CanonModuleScript(statClass, datas, currentModuleStats);
-            case OffensiveType.Laser:
-                return new LaserModuleScript(statClass, datas, currentModuleStats, moduleTransform);
-            case OffensiveType.Drone:
-                return new DroneModuleScript(statClass, datas, currentModuleStats, moduleTransform);
-            case OffensiveType.Breath:
-                return new CanonModuleScript(statClass, datas, currentModuleStats);
-            case OffensiveType.Melee:
-                return new MeleeModuleScript(statClass, datas, currentModuleStats, moduleTransform);
-            case OffensiveType.Rocket:
-                return new RocketModuleScript(statClass, datas, currentModuleStats);
-            default:
-                return null;
-        }
+        OffensiveStrategy.Init(statClass, datas, moduleTransform, currentModuleStats);
+        return OffensiveStrategy;
     }
+
 }

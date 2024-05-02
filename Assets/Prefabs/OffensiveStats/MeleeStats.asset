@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21181e504dc18343a4cffc92a4817bc, type: 3}
   m_Name: MeleeStats
   m_EditorClassIdentifier: 
+  OffensiveStrategy: {fileID: 11400000, guid: 469c0773e0cf8e04d93c54391dbed3ee, type: 2}
   BaseModuleDamage: 24
   AttackSpeedMultiplier: 0.5
   Type: 5
