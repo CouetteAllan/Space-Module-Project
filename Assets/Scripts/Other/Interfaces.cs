@@ -13,6 +13,11 @@ public interface IDamageSource
     float RecoilMultiplier { get; }
 }
 
+public interface IProjectile
+{
+    public void Launch(Vector2 dir, float speed, float damage, float duration = 1.0f, Transform modTransform = null, int currentModuleLevel = 1);
+}
+
 public interface IObstacle : IHittable
 {
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class ProjectileScript : MonoBehaviour, IDamageSource
+public class ProjectileScript : MonoBehaviour, IDamageSource, IProjectile
 {
 
     [SerializeField] private ProjectileType _type;
