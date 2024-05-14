@@ -89,6 +89,8 @@ MonoBehaviour:
   _sprites:
   - {fileID: 4158321797660781214}
   - {fileID: 1554764255043646241}
+  _graphs: []
+  _projectileBehaviour: {fileID: 11400000, guid: 45ad72577339899458cdcf33feadc5b1, type: 2}
 --- !u!1 &1126138040430249213
 GameObject:
   m_ObjectHideFlags: 0

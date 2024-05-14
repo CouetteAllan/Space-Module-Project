@@ -947,8 +947,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33654b8d67a1c6b44861ca923a4c2424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 2
   _deathParticles: {fileID: 0}
+  _sprites: []
+  _graphs: []
+  _projectileBehaviour: {fileID: 11400000, guid: 7748d235e8ec3f046a18413f441a7210, type: 2}
 --- !u!1 &8649832522881085070
 GameObject:
   m_ObjectHideFlags: 0

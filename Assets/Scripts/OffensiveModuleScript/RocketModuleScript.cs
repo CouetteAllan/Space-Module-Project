@@ -19,7 +19,13 @@ public class RocketModuleScript : BaseOffensiveScript
 
             var projectile = Object.Instantiate(_datas.ProjectilePrefab, position, currentRotation).GetComponent<ProjectileScript>();
             float projectileDamage = _statClass.GetStatValue(StatType.Damage) * _currentModuleStats.currentDamage;
-            projectile.Launch((t.position - currentModulePosition).normalized, RocketMissileSpeed, projectileDamage,RocketDuration,null,_currentModuleStats.currentLevel);
+            projectile.Launch(new ProjectileScript.ProjectileParameter
+            {
+                dir = (t.position - currentModulePosition).normalized,
+                speed = RocketMissileSpeed,
+                duration = RocketDuration,
+                damage = projectileDamage,
+            });
 
         }
     }

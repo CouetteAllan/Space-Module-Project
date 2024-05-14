@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af8c8374c47acfd47aece2b9a35dec51, type: 3}
-  m_Name: RocketStrategy
+  m_Script: {fileID: 11500000, guid: 00b05ec48cc8c114d9ff02bbf91102ad, type: 3}
+  m_Name: Bullet
   m_EditorClassIdentifier: 
-  RocketMissileSpeed: 8
-  RocketDuration: 1.5
+  RecoilMult: 1.3

@@ -6,17 +6,20 @@ using UnityEngine.VFX;
 public class ProjectileScript : MonoBehaviour, IDamageSource, IProjectile
 {
 
-    [SerializeField] private ProjectileType _type;
     [SerializeField] private ParticleSystem _deathParticles;
     [SerializeField] private SpriteRenderer[] _sprites;
     [SerializeField] private GameObject[] _graphs;
+    [SerializeField] private ProjectileBehaviour _projectileBehaviour;
 
-    public enum ProjectileType
+    public struct ProjectileParameter
     {
-        Bullet,
-        Rocket,
-        Drone
+        public Vector2 dir;
+        public float speed;
+        public float damage;
+        public float duration;
+        public Transform modTransform;
     }
+
 
     private Rigidbody2D _rigidbody;
 
@@ -25,37 +28,14 @@ public class ProjectileScript : MonoBehaviour, IDamageSource, IProjectile
     public float RecoilMultiplier => 1.3f;
 
     private float _damage;
-    private int _currentModuleLevel;
-    private float _speed;
-
-    public void Launch(Vector2 dir, float speed, float damage,float duration = 1.0f, Transform modTransform = null, int currentModuleLevel = 1)
+    private ProjectileParameter _parameter;
+    public void Launch(ProjectileParameter parameters)
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _damage = damage;
-        _currentModuleLevel = currentModuleLevel;
-        _speed = speed;
-        switch (_type)
-        {
-            case ProjectileType.Bullet:
-                Invoke("Die", 2.0f);
-                _rigidbody.velocity = dir * speed;
+        _damage = parameters.damage;
+        _parameter = parameters;
+        _projectileBehaviour.LaunchProjectile(this.gameObject,parameters);
 
-                break;
-            case ProjectileType.Rocket:
-                if(_currentModuleLevel >= 5)
-                {
-                    Destroy(_graphs[0]);
-                    Instantiate(_graphs[1],this.transform);
-                }
-                Invoke("Blow", duration);
-                _rigidbody.velocity = dir * speed;
-
-                break;
-            case ProjectileType.Drone:
-                //Drone revolve around the module
-                RevolveAroundModule(modTransform);
-                break;
-        }
     }
 
     private void Die()
@@ -63,30 +43,7 @@ public class ProjectileScript : MonoBehaviour, IDamageSource, IProjectile
         StartCoroutine(BulletFade());
     }
 
-    private void Blow()
-    {
-        var colls = Physics2D.OverlapCircleAll(this.transform.position, 6.0f);
-        foreach (var coll in colls)
-        {
-            if(coll.TryGetComponent(out IHittable hittable))
-            {
-                hittable.TryHit(this, (int)_damage);
-            }
-        }
-        //Play particles
-        FXManager.Instance.PlayEffect("rocketBlow", this.transform.position,Quaternion.identity);
-        if(_currentModuleLevel >= 5)
-        {
-            for(int i = 0; i < 2; i++)
-            {
-                Vector3 dir = i > 0 ? -this.transform.right : this.transform.right;
-                Vector3 lookRotation = i> 0 ? -this.transform.up : this.transform.up;
-                ProjectileScript proj = Instantiate(this.gameObject, this.transform.position, Quaternion.LookRotation(this.transform.forward,dir)).GetComponent<ProjectileScript>();
-                proj.Launch(dir, _speed * 5.0f, _damage / 2,0.3f);
-            }
-        }
-        Destroy(gameObject);
-    }
+    
 
     private void RevolveAroundModule(Transform modTransform)
     {
@@ -145,13 +102,13 @@ public class ProjectileScript : MonoBehaviour, IDamageSource, IProjectile
             objectHit.TryHit(this,(int)_damage);
             _rigidbody.velocity = Vector3.zero;
             StartCoroutine(BulletFade());
-
+            _projectileBehaviour.ProjectileEnd(this.gameObject,_parameter);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (_type != ProjectileType.Drone)
+        if (!(this._projectileBehaviour is DroneProjectile))
             return;
         if (collision.gameObject.TryGetComponent<IHittable>(out IHittable objectHit))
         {

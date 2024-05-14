@@ -15,7 +15,7 @@ public interface IDamageSource
 
 public interface IProjectile
 {
-    public void Launch(Vector2 dir, float speed, float damage, float duration = 1.0f, Transform modTransform = null, int currentModuleLevel = 1);
+    public void Launch(ProjectileScript.ProjectileParameter parameters);
 }
 
 public interface IObstacle : IHittable

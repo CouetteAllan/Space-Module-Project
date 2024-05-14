@@ -88,6 +88,7 @@ public class Module : MonoBehaviour, IGatherScrap
         _playerStatClass = StatSystem.Instance.PlayerStat;
 
         _currentLevel = 1;
+        
 
         switch (_moduleClass)
         {
