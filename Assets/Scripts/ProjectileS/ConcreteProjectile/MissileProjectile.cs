@@ -25,9 +25,9 @@ public class MissileProjectile : ProjectileBehaviour
 
         //Invoke method after a certain amount of time
         
-        var sequence = DOTween.Sequence();
+        /*var sequence = DOTween.Sequence();
         sequence.AppendInterval(projectileParameter.duration);
-        sequence.AppendCallback(() => ProjectileEnd(projectileGO,projectileParameter));
+        sequence.AppendCallback(() => ProjectileEnd(projectileGO,projectileParameter));*/
     }
 
     public override void ProjectileEnd(GameObject projectileGO, ProjectileScript.ProjectileParameter projectileParameters)

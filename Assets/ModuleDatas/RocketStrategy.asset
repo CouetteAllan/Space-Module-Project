@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af8c8374c47acfd47aece2b9a35dec51, type: 3}
   m_Name: RocketStrategy
   m_EditorClassIdentifier: 
-  RocketMissileSpeed: 8
-  RocketDuration: 1.5
+  RocketMissileSpeed: 7
+  RocketDuration: 1

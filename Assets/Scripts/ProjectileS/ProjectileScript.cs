@@ -108,11 +108,13 @@ public class ProjectileScript : MonoBehaviour, IDamageSource, IProjectile
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!(this._projectileBehaviour is DroneProjectile))
-            return;
         if (collision.gameObject.TryGetComponent<IHittable>(out IHittable objectHit))
         {
-            objectHit.TryHit(this, (int)_damage);
+            if (!(this._projectileBehaviour is DroneProjectile))
+                _projectileBehaviour.ProjectileEnd(this.gameObject, _parameter);
+            else
+                objectHit.TryHit(this, (int)_damage);
+
         }
     }
 
