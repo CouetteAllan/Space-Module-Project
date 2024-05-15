@@ -34,24 +34,24 @@ public class ProjectileScript : MonoBehaviour, IDamageSource, IProjectile
         _rigidbody = GetComponent<Rigidbody2D>();
         _damage = parameters.damage;
         _parameter = parameters;
-        _projectileBehaviour.LaunchProjectile(this.gameObject,parameters);
+        _projectileBehaviour.LaunchProjectile(this,parameters);
 
     }
     
 
-    private void RevolveAroundModule(Transform modTransform)
+    public void RevolveAroundModule(ProjectileParameter parameters)
     {
-        StartCoroutine(RevolveCoroutine(modTransform));
+        StartCoroutine(RevolveCoroutine(parameters));
     }
 
-    IEnumerator RevolveCoroutine(Transform modTransform)
+    IEnumerator RevolveCoroutine(ProjectileParameter parameters)
     {
-        Vector3 offset = modTransform.position + (modTransform.up * 6.0f);
+        Vector3 offset = parameters.modTransform.position + (parameters.modTransform.up * 6.0f);
         while (Vector2.Distance(offset,this.transform.position) > 0.05f)
         {
             Vector2 dir = transform.position - offset;
             transform.position += (Vector3)(-dir.normalized) * 20.0f * Time.deltaTime;
-            offset = modTransform.position + modTransform.up * 6.0f;
+            offset = parameters.modTransform.position + parameters.modTransform.up * 6.0f;
             yield return null;
         }
 
@@ -76,7 +76,7 @@ public class ProjectileScript : MonoBehaviour, IDamageSource, IProjectile
         {
             objectHit.TryHit(this,(int)_damage);
             _rigidbody.velocity = Vector3.zero;
-            _projectileBehaviour.ProjectileEnd(this.gameObject,_parameter);
+            _projectileBehaviour.ProjectileEnd(this,_parameter);
         }
     }
 
@@ -84,11 +84,8 @@ public class ProjectileScript : MonoBehaviour, IDamageSource, IProjectile
     {
         if (collision.gameObject.TryGetComponent<IHittable>(out IHittable objectHit))
         {
-            if (!(this._projectileBehaviour is DroneProjectile))
-                _projectileBehaviour.ProjectileEnd(this.gameObject, _parameter);
-            else
+            if (this._projectileBehaviour is DroneProjectile)
                 objectHit.TryHit(this, (int)_damage);
-
         }
     }
 

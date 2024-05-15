@@ -8,7 +8,7 @@ public abstract class ProjectileBehaviour : ScriptableObject
     public float RecoilMult = 1.3f;
 
 
-    public abstract void LaunchProjectile(GameObject projectileGO, ProjectileScript.ProjectileParameter projectileParameters);
+    public abstract void LaunchProjectile(ProjectileScript projectile, ProjectileScript.ProjectileParameter projectileParameters);
 
-    public abstract void ProjectileEnd(GameObject projectileGO, ProjectileScript.ProjectileParameter projectileParameters);
+    public abstract void ProjectileEnd(ProjectileScript projectile, ProjectileScript.ProjectileParameter projectileParameters);
 }
