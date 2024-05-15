@@ -7,6 +7,7 @@ using UnityEngine;
 public class CanonModuleScript : BaseOffensiveScript
 {
     public float BulletSpeed = 12.0f;
+    public float BulletLifeTime = 5.0f;
     public override void Fire(bool firstProjectile, Quaternion currentModuleRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success)
     {
         success = true;
@@ -21,6 +22,7 @@ public class CanonModuleScript : BaseOffensiveScript
                 dir = (t.position - currentModulePosition).normalized,
                 damage = projectileDamage,
                 speed = BulletSpeed,
+                duration = BulletLifeTime,
             });
 
         }

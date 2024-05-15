@@ -37,36 +37,11 @@ public class ProjectileScript : MonoBehaviour, IDamageSource, IProjectile
         _projectileBehaviour.LaunchProjectile(this.gameObject,parameters);
 
     }
-
-    private void Die()
-    {
-        StartCoroutine(BulletFade());
-    }
-
     
 
     private void RevolveAroundModule(Transform modTransform)
     {
         StartCoroutine(RevolveCoroutine(modTransform));
-    }
-    IEnumerator BulletFade()
-    {
-        float startTime = Time.time;
-        float timeDuration = 0.25f;
-        while (Time.time < startTime + timeDuration)
-        {
-            foreach(SpriteRenderer sprite in _sprites)
-            {
-                Color alpha = sprite.color;
-                alpha.a -= 3f * Time.deltaTime;
-                sprite.color = alpha;
-
-                sprite.transform.localScale += (new Vector3(2.8f,2.8f,2.8f) * Time.deltaTime);
-            }
-            yield return null;
-        }
-
-        Destroy(this.gameObject);
     }
 
     IEnumerator RevolveCoroutine(Transform modTransform)
@@ -101,7 +76,6 @@ public class ProjectileScript : MonoBehaviour, IDamageSource, IProjectile
         {
             objectHit.TryHit(this,(int)_damage);
             _rigidbody.velocity = Vector3.zero;
-            StartCoroutine(BulletFade());
             _projectileBehaviour.ProjectileEnd(this.gameObject,_parameter);
         }
     }

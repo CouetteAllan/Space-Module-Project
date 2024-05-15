@@ -28,6 +28,11 @@ namespace Tools
             float randomNumber = Random.value;
             return randomNumber < chance;
         }
+
+        public class DelayAction
+        {
+
+        }
     }
 
 }
