@@ -12,7 +12,7 @@ public class MissileProjectile : ProjectileBehaviour
     public override void LaunchProjectile(GameObject projectileGO, ProjectileScript.ProjectileParameter projectileParameter)
     {
         //Spawn the missile
-        projectileGO.transform.DOPunchScale(new Vector3(.4f, .4f, .4f), .6f, 3, .8f);
+        projectileGO.transform.DOPunchScale(new Vector3(.4f, .4f, .4f), .6f, 3, .8f).SetTarget(projectileGO);
 
         //Launch missile at a certain speed then explode after a certain duration;
         var rb = projectileGO.GetComponent<Rigidbody2D>();
@@ -20,18 +20,29 @@ public class MissileProjectile : ProjectileBehaviour
         Vector2 velocity = rb.velocity;
 
 
-        DOTween.To(() => velocity, x => { velocity = x; rb.velocity = velocity; },projectileParameter.dir * projectileParameter.speed * 2f, .9f).SetEase(Ease.InSine);
+        DOTween.To(
+            () => velocity,
+            x => {
+            if (rb == null)
+                return;
+            velocity = x;
+            rb.velocity = velocity;
+        }, projectileParameter.dir * projectileParameter.speed * 2f, .9f)
+            .SetEase(Ease.InSine)
+            .SetTarget(projectileGO);
 
 
         //Invoke method after a certain amount of time
         
-        /*var sequence = DOTween.Sequence();
-        sequence.AppendInterval(projectileParameter.duration);
-        sequence.AppendCallback(() => ProjectileEnd(projectileGO,projectileParameter));*/
+        var sequence = DOTween.Sequence().SetTarget(projectileGO);
+        sequence.AppendInterval(projectileParameter.duration).SetTarget(projectileGO);
+        sequence.AppendCallback(() => ProjectileEnd(projectileGO,projectileParameter)).SetTarget(projectileGO);
     }
 
     public override void ProjectileEnd(GameObject projectileGO, ProjectileScript.ProjectileParameter projectileParameters)
     {
+        if(projectileGO == null) 
+            return;
         MissileBlow(projectileGO, projectileParameters);
     }
 

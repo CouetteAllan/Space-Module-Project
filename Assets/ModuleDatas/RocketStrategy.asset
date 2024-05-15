@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: RocketStrategy
   m_EditorClassIdentifier: 
   RocketMissileSpeed: 7
-  RocketDuration: 1
+  RocketDuration: 4

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1040558456017096686}
   - component: {fileID: 8207672221393358722}
-  - component: {fileID: 4392694690904380931}
   - component: {fileID: 1360880420624199866}
+  - component: {fileID: 2899424110304027876}
   m_Layer: 9
   m_Name: RocketProjectile
   m_TagString: Untagged
@@ -56,22 +56,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &4392694690904380931
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 332420518921955079}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.75
 --- !u!114 &1360880420624199866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,6 +74,32 @@ MonoBehaviour:
   - {fileID: 1126138040430249213}
   - {fileID: 4169547373291848137, guid: 947cc1e363f1be24c8ea973e89d01e4d, type: 3}
   _projectileBehaviour: {fileID: 11400000, guid: 2f2a8f9ae22505849a8966fd5affd700, type: 2}
+--- !u!61 &2899424110304027876
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332420518921955079}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.18}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.78, y: 1.81}
+  m_EdgeRadius: 0
 --- !u!1001 &3926555766162392372
 PrefabInstance:
   m_ObjectHideFlags: 0
