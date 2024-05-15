@@ -10,7 +10,7 @@ public class EnemyProjectile : MonoBehaviour, IDamageSource, IHittable
 
     public Transform Transform => this.transform;
 
-    public float RecoilMultiplier => 1.2f;
+    public float RecoilMultiplier { get; set; } = 1.2f;
 
     private float _damage;
 

@@ -10,7 +10,7 @@ public interface IHittable
 public interface IDamageSource
 {
     Transform Transform { get; }
-    float RecoilMultiplier { get; }
+    float RecoilMultiplier { get; set; }
 }
 
 public interface IProjectile

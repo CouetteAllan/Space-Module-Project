@@ -6,6 +6,7 @@ using UnityEngine;
 public class MissileProjectile : ProjectileBehaviour
 {
     public float BlowRadius = 6.0f;
+    public float RecoilBoost = 2.0f;
     public ParticleSystem BlowParticles;
 
     public AudioClip BlowSound;
@@ -54,7 +55,8 @@ public class MissileProjectile : ProjectileBehaviour
         {
             if (coll.TryGetComponent(out IHittable hittable))
             {
-                hittable.TryHit(projectile.GetComponent<IDamageSource>(), (int)projectileParameter.damage) ;
+                projectile.RecoilMultiplier += RecoilBoost;
+                hittable.TryHit(projectile, (int)projectileParameter.damage) ;
             }
         }
         //Play particles

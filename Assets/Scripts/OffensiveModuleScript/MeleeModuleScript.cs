@@ -19,7 +19,7 @@ public class MeleeModuleScript : BaseOffensiveScript, IDamageSource
 
     public Transform Transform => _moduleTransform;
 
-    public float RecoilMultiplier => 0.8f;
+    public float RecoilMultiplier { get; set; } = 0.9f;
 
     public override void Init(StatClass statClass, ModuleDatas datas, Transform moduleTransform, Module.CurrentModuleStats currentModuleStats)
     {

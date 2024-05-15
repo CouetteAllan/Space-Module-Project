@@ -6,7 +6,9 @@ using UnityEngine;
 public class ModuleDatas : ScriptableObject
 {
     [Header("General Module Settings")]
+    [TextArea(3, 6)]
     public string ModuleName = "New Module Name";
+    [TextArea(3,6)]
     public string ModuleDescription = "New Module description";
     public Module.ModuleClass ModuleClass = Module.ModuleClass.Offense;
     public Sprite ModuleSprite = null;

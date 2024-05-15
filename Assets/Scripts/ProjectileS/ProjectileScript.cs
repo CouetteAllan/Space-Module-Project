@@ -23,7 +23,7 @@ public class ProjectileScript : MonoBehaviour, IDamageSource, IProjectile
 
     public Transform Transform => this.transform;
 
-    public float RecoilMultiplier => 1.3f;
+    public float RecoilMultiplier { get; set; } = 1.4f;
 
     private float _damage;
     private ProjectileParameter _parameter;
@@ -41,6 +41,22 @@ public class ProjectileScript : MonoBehaviour, IDamageSource, IProjectile
         _audio?.Play();
     }
     
+    public void Oscillate(Vector2 dir)
+    {
+        StartCoroutine(OscillateCoroutine(dir));
+    }
+
+    private IEnumerator OscillateCoroutine(Vector2 dir)
+    {
+        float baseX = transform.position.x;
+        while (true)
+        {
+            float x = Mathf.Cos(Time.time * 5.0f) * 10.0f;  
+            transform.position = new Vector3(baseX + x, transform.position.y, 0);
+            transform.Translate(dir * Time.deltaTime * 50.0f);
+            yield return null;
+        }
+    }
 
     public void RevolveAroundModule(ProjectileParameter parameters)
     {
@@ -73,6 +89,7 @@ public class ProjectileScript : MonoBehaviour, IDamageSource, IProjectile
         Destroy(gameObject);
     }
 
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.TryGetComponent<IHittable>(out IHittable objectHit))
@@ -87,8 +104,8 @@ public class ProjectileScript : MonoBehaviour, IDamageSource, IProjectile
     {
         if (collision.gameObject.TryGetComponent<IHittable>(out IHittable objectHit))
         {
-            if (this._projectileBehaviour is DroneProjectile)
-                objectHit.TryHit(this, (int)_damage);
+            if (this._projectileBehaviour is IProjectileTrigger projectile)
+                projectile.HitObject(objectHit,this,_parameter);
         }
     }
 
