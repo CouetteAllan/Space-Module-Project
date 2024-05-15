@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: CanonStrategy
   m_EditorClassIdentifier: 
   BulletSpeed: 12
+  BulletLifeTime: 3

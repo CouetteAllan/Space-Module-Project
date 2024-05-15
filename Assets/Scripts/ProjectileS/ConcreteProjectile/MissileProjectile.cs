@@ -8,6 +8,7 @@ public class MissileProjectile : ProjectileBehaviour
     public float BlowRadius = 6.0f;
     public ParticleSystem BlowParticles;
 
+    public AudioClip BlowSound;
 
     public override void LaunchProjectile(ProjectileScript projectile, ProjectileScript.ProjectileParameter projectileParameter)
     {
@@ -41,7 +42,7 @@ public class MissileProjectile : ProjectileBehaviour
 
     public override void ProjectileEnd(ProjectileScript projectile, ProjectileScript.ProjectileParameter projectileParameters)
     {
-        if(projectile.gameObject == null) 
+        if(projectile == null) 
             return;
         MissileBlow(projectile, projectileParameters);
     }
@@ -58,6 +59,6 @@ public class MissileProjectile : ProjectileBehaviour
         }
         //Play particles
         FXManager.Instance.PlayEffect("rocketBlow", projectile.transform.position, Quaternion.identity);
-        Destroy(projectile);
+        Destroy(projectile.gameObject);
     }
 }

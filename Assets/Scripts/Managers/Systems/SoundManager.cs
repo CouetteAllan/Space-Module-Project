@@ -67,6 +67,7 @@ public class SoundManager : Singleton<SoundManager>
         s.source.Play();
     }
 
+
     public void PlayOnAwake(string name, bool playOnAwake)
     {
         Sound s = Array.Find(soundsEffects, sound => sound.name == name);

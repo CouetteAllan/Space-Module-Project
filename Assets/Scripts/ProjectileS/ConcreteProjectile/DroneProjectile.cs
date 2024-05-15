@@ -17,7 +17,7 @@ public class DroneProjectile : ProjectileBehaviour
     public override void ProjectileEnd(ProjectileScript projectile, ProjectileScript.ProjectileParameter projectileParameter)
     {
         //Destroy the drone;
-        if (projectile.gameObject == null)
+        if (projectile == null)
             return;
 
         projectile.transform.DOPunchPosition(projectile.transform.up,1.0f).OnComplete(() => Destroy(projectile.gameObject));

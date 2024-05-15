@@ -18,11 +18,11 @@ public class BulletProjectile : ProjectileBehaviour
 
     public override void ProjectileEnd(ProjectileScript projectile, ProjectileScript.ProjectileParameter projectileParameter)
     {
-        if (projectile.gameObject == null)
+        if (projectile == null)
             return;
 
         //Fade bullet
-        projectile.transform.DOScale(4.0f, .3f).SetTarget(projectile).OnComplete(() => Destroy(projectile));
+        projectile.transform.DOScale(4.0f, .3f).SetTarget(projectile).OnComplete(() => Destroy(projectile.gameObject));
         var spriteRenderer = projectile.transform.GetComponentsInChildren<SpriteRenderer>();
         foreach (var sprite in spriteRenderer)
         {

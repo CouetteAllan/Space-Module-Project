@@ -6,10 +6,8 @@ using UnityEngine.VFX;
 public class ProjectileScript : MonoBehaviour, IDamageSource, IProjectile
 {
 
-    [SerializeField] private ParticleSystem _deathParticles;
-    [SerializeField] private SpriteRenderer[] _sprites;
-    [SerializeField] private GameObject[] _graphs;
     [SerializeField] private ProjectileBehaviour _projectileBehaviour;
+    [SerializeField] private AudioSource _audio;
 
     public struct ProjectileParameter
     {
@@ -37,6 +35,11 @@ public class ProjectileScript : MonoBehaviour, IDamageSource, IProjectile
         _projectileBehaviour.LaunchProjectile(this,parameters);
 
     }
+
+    public void PlaySound()
+    {
+        _audio?.Play();
+    }
     
 
     public void RevolveAroundModule(ProjectileParameter parameters)
@@ -62,7 +65,7 @@ public class ProjectileScript : MonoBehaviour, IDamageSource, IProjectile
 
         while (Time.time < time + timeRevolve)
         {
-            transform.parent.Rotate(Vector3.forward * 100.0f* Time.deltaTime);
+            transform.parent.Rotate(Vector3.forward * 12.0f * parameters.speed * Time.deltaTime);
             
             yield return null;
         }

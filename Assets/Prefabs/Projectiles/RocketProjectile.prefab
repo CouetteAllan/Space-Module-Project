@@ -68,12 +68,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33654b8d67a1c6b44861ca923a4c2424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deathParticles: {fileID: 0}
-  _sprites: []
-  _graphs:
-  - {fileID: 1126138040430249213}
-  - {fileID: 4169547373291848137, guid: 947cc1e363f1be24c8ea973e89d01e4d, type: 3}
   _projectileBehaviour: {fileID: 11400000, guid: 2f2a8f9ae22505849a8966fd5affd700, type: 2}
+  _audio: {fileID: 0}
 --- !u!61 &2899424110304027876
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -157,11 +153,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2387dc032647a14db02e76d55b2b034, type: 3}
---- !u!1 &1126138040430249213 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4169547373291848137, guid: d2387dc032647a14db02e76d55b2b034, type: 3}
-  m_PrefabInstance: {fileID: 3926555766162392372}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6369445097792338960 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7933439545265944868, guid: d2387dc032647a14db02e76d55b2b034, type: 3}
