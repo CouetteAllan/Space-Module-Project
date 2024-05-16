@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ShockwaveStats
   m_EditorClassIdentifier: 
   OffensiveStrategy: {fileID: 11400000, guid: 9d50cb8438991224796085dfdd1107a2, type: 2}
-  BaseModuleDamage: 12
-  AttackSpeedMultiplier: 2
+  BaseModuleDamage: 11
+  AttackSpeedMultiplier: 2.5
   Type: 8
   LevelUpGraph:
   - {fileID: 8611333869893919163, guid: 445dc59dfc3122643affacd01137cf72, type: 3}

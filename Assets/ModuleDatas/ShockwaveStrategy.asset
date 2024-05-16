@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31b4d815644fe145aa03dcd8d45bc19, type: 3}
   m_Name: ShockwaveStrategy
   m_EditorClassIdentifier: 
-  ShockwaveSpeed: 16
+  ShockwaveSpeed: 17
+  ShockwaveLifetime: 1.5

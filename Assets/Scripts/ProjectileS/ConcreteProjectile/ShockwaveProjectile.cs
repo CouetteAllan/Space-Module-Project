@@ -17,9 +17,10 @@ public class ShockwaveProjectile : ProjectileBehaviour, IProjectileTrigger
 
     public override void LaunchProjectile(ProjectileScript projectile, ProjectileScript.ProjectileParameter projectileParameters)
     {
-        projectile.Oscillate(projectileParameters.dir);
-        /*projectile.transform.DOMove(destination, 5.0f).SetEase(Ease.InCubic).OnComplete(() => ProjectileEnd(projectile,projectileParameters));
-        projectile.transform.DOPunchPosition(projectile.transform.right * 3, 2.5f,2).SetLoops(-1, LoopType.Yoyo);*/
+        var rb = projectile.GetComponent<Rigidbody2D>();
+        rb.velocity = projectileParameters.dir * projectileParameters.speed;
+        projectile.transform.DOBlendableMoveBy(-projectile.transform.right * 4.0f, .1f).SetEase(Ease.OutSine);
+        projectile.transform.DOBlendableMoveBy(projectile.transform.right * 9, .3f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetTarget(projectile.gameObject).SetDelay(.15f);
         
         //Execute the end projectile method after the end of the projectile's duration
         FunctionTimer.Create(() => ProjectileEnd(projectile, projectileParameters), projectileParameters.duration);
