@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89150d2f8cfb26541b83fa36721d0c3c, type: 3}
+  m_Name: ShotGunModule
+  m_EditorClassIdentifier: 
+  ModuleName: Fire a single shockwave that deals damage in a straight line
+  ModuleDescription: 'Shotgun Canon \n<color=#a52a2aff> weight: 4t </color>'
+  ModuleClass: 0
+  ModuleSprite: {fileID: 21300000, guid: 748ee3eb418eff84ca5c39f83dea16c4, type: 3}
+  ModulePrefab: {fileID: 1310436615563555467, guid: 1df4681651cb7ec4aa302aa71e012049, type: 3}
+  Weight: 20
+  ScrapCost: 0
+  Health: 20
+  PonderationWeight: 256
+  ProjectilePrefab: {fileID: 332420518921955079, guid: dfdd6d5792e2e33458683cf1b6ee5d01, type: 3}
+  OffensiveModuleDatas: {fileID: 11400000, guid: f6fa5d83c1a90e04a84f0be00faebafd, type: 2}
+  BuffDatas: {fileID: 0}
+  SecondaryModuleDatas: {fileID: 0}
