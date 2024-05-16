@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OffensiveStrategy: {fileID: 11400000, guid: f3949fa3eced2684a912e5970f5f1d72, type: 2}
   BaseModuleDamage: 26
-  AttackSpeedMultiplier: 2
+  AttackSpeedMultiplier: 4
   Type: 10
   LevelUpGraph:
   - {fileID: 8611333869893919163, guid: 7bdf72aa988acd747818bf951e8d3eac, type: 3}
