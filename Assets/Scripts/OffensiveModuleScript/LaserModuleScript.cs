@@ -9,8 +9,6 @@ public class LaserModuleScript : BaseOffensiveScript, IDamageSource
 {
     public float LaserLenght = 17.0f;
     private Transform _moduleTransform;
-
-
     public Transform Transform => _moduleTransform;
 
     public float RecoilMultiplier { get; set; } = 2.0f;

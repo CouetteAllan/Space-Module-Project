@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89150d2f8cfb26541b83fa36721d0c3c, type: 3}
+  m_Name: FlameThrowerModule
+  m_EditorClassIdentifier: 
+  ModuleName: Deal continuous in front of the module
+  ModuleDescription: 'FlameThrower  \n<color=#a52a2aff> weight: 4t </color>'
+  ModuleClass: 0
+  ModuleSprite: {fileID: 21300000, guid: e69a7d97129d0f74cb388156acefaab2, type: 3}
+  ModulePrefab: {fileID: 1310436615563555467, guid: 316cf7ff6a187144a916ceef4d969938, type: 3}
+  Weight: 20
+  ScrapCost: 0
+  Health: 20
+  PonderationWeight: 256
+  ProjectilePrefab: {fileID: 0}
+  OffensiveModuleDatas: {fileID: 11400000, guid: 711faa3a8593e75428cf42ac2f2ac3f1, type: 2}
+  BuffDatas: {fileID: 0}
+  SecondaryModuleDatas: {fileID: 0}

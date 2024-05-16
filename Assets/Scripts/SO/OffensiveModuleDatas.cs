@@ -17,7 +17,8 @@ public class OffensiveModuleDatas : ScriptableObject
         Rocket,
         DoubleCanon,
         Shockwave,
-        ShotGun
+        ShotGun,
+        FlameThrower
     }
     public BaseOffensiveScript OffensiveStrategy;
     public float BaseModuleDamage = 1.0f;
