@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ShotGunStats
   m_EditorClassIdentifier: 
   OffensiveStrategy: {fileID: 11400000, guid: 7f7587beb7b15ae4ab6fc0c7f02ca3da, type: 2}
-  BaseModuleDamage: 15
-  AttackSpeedMultiplier: 3
+  BaseModuleDamage: 10
+  AttackSpeedMultiplier: 3.5
   Type: 9
   LevelUpGraph:
   - {fileID: 6517457609969996457, guid: 0296e2f8b8157244693a5a45a39e8e55, type: 3}

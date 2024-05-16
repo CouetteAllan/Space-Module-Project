@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcf683f882d3a2941b9189b75837a149, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
-  RecoilMult: 2
+  RecoilMult: 0.5

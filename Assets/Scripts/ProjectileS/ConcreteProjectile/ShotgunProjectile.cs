@@ -33,7 +33,7 @@ public class ShotgunProjectile : ProjectileBehaviour, IProjectileTrigger
                     return;
                 velocity = x;
                 rb.velocity = velocity;
-            }, Vector2.zero, projectileParameters.duration)
+            }, projectileParameters.dir, projectileParameters.duration)
             .SetEase(Ease.OutCubic)
             .SetTarget(projectile)
             .OnComplete(() => ProjectileEnd(projectile,projectileParameters));
@@ -44,7 +44,7 @@ public class ShotgunProjectile : ProjectileBehaviour, IProjectileTrigger
         if(projectile == null) return;
 
 
-        projectile.transform.DORotate(Vector3.forward * 1.0f, 0.0f, RotateMode.FastBeyond360).SetEase(Ease.Linear).OnComplete(() => Destroy(projectile.gameObject));
+        projectile.transform.DOScale(Vector3.one * 1, 1.0f).SetEase(Ease.Linear).SetRelative().OnComplete(() => Destroy(projectile.gameObject));
         var spriteRenderer = projectile.transform.GetComponentsInChildren<SpriteRenderer>();
         foreach (var sprite in spriteRenderer)
         {

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcddac49ec950354488d99a75f452522, type: 3}
   m_Name: ShotgunStrategy
   m_EditorClassIdentifier: 
-  ShotgunMissileSpeed: 16
-  ShotgunMissileDuration: 2
+  ShotgunMissileSpeed: 30
+  ShotgunMissileDuration: 1
