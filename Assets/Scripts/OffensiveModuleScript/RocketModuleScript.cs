@@ -10,7 +10,7 @@ public class RocketModuleScript : BaseOffensiveScript
     public float RocketDuration = 1.0f;
 
 
-    public override void Fire(bool firstProjectile, Quaternion currentRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success)
+    public override void Fire(Module module, bool firstProjectile, Quaternion currentRotation, Vector3 currentModulePosition, Transform[] projectilePositions, ref bool success)
     {
         success = true;
         foreach (Transform t in projectilePositions)

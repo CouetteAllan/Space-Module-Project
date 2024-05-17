@@ -27,7 +27,7 @@ public class MeleeModuleScript : BaseOffensiveScript, IDamageSource
         _moduleTransform = moduleTransform;
     }
 
-    public override void Fire(bool firstProjectile, Quaternion currentModuleRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success)
+    public override void Fire(Module module, bool firstProjectile, Quaternion currentModuleRotation, Vector3 currentModulePosition, Transform[] projectilePositions, ref bool success)
     {
         if (!_isActive)
         {

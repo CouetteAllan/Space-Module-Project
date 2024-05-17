@@ -1,46 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "FlameStrategy", menuName = "Module/Strategy/Flame")]
 
-public class FlameThrowerModuleScript : BaseOffensiveScript, IDamageSource
+public class FlameThrowerModuleScript : BaseOffensiveScript
 {
     public int AttackPerSecond = 6;
     public float FlameLenght = 15.0f;
     public float FlameDuration = 4.0f;
 
-    private Transform _moduleTransform;
-
-    private bool _isNotActive = true;
-    private Coroutine _attackCoroutine;
-
-    public Transform Transform => _moduleTransform;
 
     public float RecoilMultiplier { get; set; } = 0.8f;
 
-    public override void Fire(bool firstProjectile, Quaternion currentRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success)
+    public override void Fire(Module module, bool firstProjectile, Quaternion currentRotation, Vector3 currentModulePosition, Transform[] projectilePositions, ref bool isActive)
     {
-        Debug.Log("is flaming more even more");
-        Debug.Log(_isNotActive);
-        if (_isNotActive == true)
+        if (!isActive)
         {
-            Debug.Log("is flaming more even mooooooooooqgfksjre");
-            _isNotActive = false;
-            if (_attackCoroutine != null)
-            {
-                MonoBehaviourOnScene.Instance.StopCoroutine(_attackCoroutine);
-                _attackCoroutine = null;
-            }
-            _attackCoroutine = MonoBehaviourOnScene.Instance.StartCoroutine(Attack(projectilePositions[0]));
-            success = true;
-            Debug.Log("is flaming more");
+            MonoBehaviourOnScene.Instance.StartCoroutine(Attack(projectilePositions[0],module, new BooleanHolder(ref isActive)));
+            isActive = true;
         }
-        else
-            success = false;
     }
 
-    private IEnumerator Attack(Transform attackPosition)
+    private IEnumerator Attack(Transform attackPosition, IDamageSource damageSource, BooleanHolder boolean)
     {
         if (attackPosition == null)
             yield break;
@@ -50,30 +33,22 @@ public class FlameThrowerModuleScript : BaseOffensiveScript, IDamageSource
         {
             if (attackPosition == null)
                 yield break;
-            DealDamageToEnemy(attackPosition.position);
-            Debug.Log("is flaming");
+            DealDamageToEnemy(attackPosition,damageSource);
             yield return new WaitForSeconds(1.0f / AttackPerSecond);
         }
-        _isNotActive = true;
+        boolean.ChangeBoolean(false);
     }
 
-    private void DealDamageToEnemy(Vector2 position)
+    private void DealDamageToEnemy(Transform transform,IDamageSource source)
     {
-        var enemies = Physics2D.BoxCastAll(position, Vector2.one * 3.5f, angle: 0, _moduleTransform.up, FlameLenght);
+        var enemies = Physics2D.BoxCastAll(transform.position, Vector2.one * 3.5f, angle: 0, transform.up, FlameLenght);
         foreach (var enemy in enemies)
         {
             if (enemy.transform.TryGetComponent(out IHittable hittable))
             {
-                hittable.TryHit(this, (int)((_currentModuleStats.currentDamage / AttackPerSecond) * _statClass.GetStatValue(StatType.Damage)));
+                hittable.TryHit(source, (int)((_currentModuleStats.currentDamage / AttackPerSecond) * _statClass.GetStatValue(StatType.Damage)));
             }
         }
     }
 
-
-
-    public override void Init(StatClass statClass, ModuleDatas datas, Transform moduleTransform, Module.CurrentModuleStats currentModuleStats)
-    {
-        base.Init(statClass, datas, moduleTransform, currentModuleStats);
-        _moduleTransform = moduleTransform;
-    }
 }

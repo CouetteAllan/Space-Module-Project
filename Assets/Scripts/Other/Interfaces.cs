@@ -31,7 +31,7 @@ public interface IGatherScrap
 public interface IStrategyModule
 {
     public void Init(StatClass statClass, ModuleDatas datas, Transform moduleTransform, Module.CurrentModuleStats currentModuleStats);
-    public void Fire(bool firstProjectile, Quaternion currentRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success);
+    public void Fire(Module module, bool firstProjectile, Quaternion currentRotation, Vector3 currentModulePosition, Transform[] projectilePositions, ref bool success);
 }
 
 public interface IEnemyBehaviour

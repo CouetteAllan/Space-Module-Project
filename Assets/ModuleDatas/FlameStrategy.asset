@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf40c26b5f548a649ac021fd150b275b, type: 3}
   m_Name: FlameStrategy
   m_EditorClassIdentifier: 
-  AttackPerSecond: 4
+  AttackPerSecond: 8
   FlameLenght: 15
-  FlameDuration: 4
+  FlameDuration: 2

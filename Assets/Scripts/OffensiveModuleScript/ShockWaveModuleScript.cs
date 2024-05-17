@@ -8,7 +8,7 @@ public class ShockWaveModuleScript : BaseOffensiveScript
 {
     public float ShockwaveSpeed = 16.0f;
     public float ShockwaveLifetime = 2.0f;
-    public override void Fire(bool firstProjectile, Quaternion currentRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success)
+    public override void Fire(Module module, bool firstProjectile, Quaternion currentRotation, Vector3 currentModulePosition, Transform[] projectilePositions, ref bool success)
     {
         success = true;
         foreach (Transform t in projectilePositions)

@@ -13,7 +13,7 @@ public class HealingModuleScript : IStrategyModule
         _secondaryModuleDatas = _datas;
     }
 
-    public void Fire(bool firstProjectile, Quaternion currentRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success)
+    public void Fire(Module module,bool firstProjectile, Quaternion currentRotation, Vector3 currentModulePosition, Transform[] projectilePositions, ref bool success)
     {
         //Heal the player when it ticks
         success = true;

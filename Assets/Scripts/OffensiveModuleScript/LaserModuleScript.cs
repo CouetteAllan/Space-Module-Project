@@ -13,7 +13,7 @@ public class LaserModuleScript : BaseOffensiveScript, IDamageSource
 
     public float RecoilMultiplier { get; set; } = 2.0f;
 
-    public override void Fire(bool firstProjectile, Quaternion currentModuleRotation, Vector3 currentModulePosition, Transform[] projectilePositions, out bool success)
+    public override void Fire(Module module, bool firstProjectile, Quaternion currentModuleRotation, Vector3 currentModulePosition, Transform[] projectilePositions, ref bool success)
     {
         success = true;
         foreach (Transform projectileTransform in projectilePositions)

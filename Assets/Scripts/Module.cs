@@ -4,7 +4,7 @@ using UnityEngine;
 using CodeMonkey.Utils;
 using System;
 
-public class Module : MonoBehaviour, IGatherScrap
+public class Module : MonoBehaviour, IGatherScrap, IDamageSource
 {
     public static event Action<Module> OnModuleDestroyed;
     public static event Action<Module> OnModuleLevelUp;
@@ -58,6 +58,12 @@ public class Module : MonoBehaviour, IGatherScrap
     public int CurrentLevel => _currentLevel;
     private int _maxLevel = 2;
     public int MaxLevel => _maxLevel;
+
+    public Transform Transform => this.transform;
+
+    public float RecoilMultiplier { get; set; } = 1.3f;
+
+    private bool _isActive = false;
     #endregion
 
     public static Module CreateMod(Vector2 position, ModuleDatas datas, Transform parentTransform)
@@ -193,8 +199,8 @@ public class Module : MonoBehaviour, IGatherScrap
         {
                 for (int i = 0; i < _playerStatClass.GetStatValue(StatType.NbProjectile); i++)
                 {
-                    _moduleStrategy.Fire(i == 0, this.transform.rotation, this.transform.position, _firePoints, out bool success);
-                    if (success)
+                    _moduleStrategy.Fire(this,i == 0, this.transform.rotation, this.transform.position, _firePoints, ref _isActive);
+                    if (_isActive)
                     {
                         OnModuleFire?.Invoke();
                         if (_audioClipName != string.Empty)
