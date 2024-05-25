@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
 using System;
+using MoreMountains.Feedbacks;
+
 
 public class Module : MonoBehaviour, IGatherScrap, IDamageSource
 {
@@ -10,8 +10,12 @@ public class Module : MonoBehaviour, IGatherScrap, IDamageSource
     public static event Action<Module> OnModuleLevelUp;
 
     [SerializeField] private Transform[] _firePoints;
+    [SerializeField] private Transform _parentGraph;
     [SerializeField] private PlayParticle _playParticle;
     [SerializeField] private string _audioClipName = null;
+    [SerializeField] private MMF_Player _moduleShootFeedback;
+
+
     public event Action OnModuleFire;
 
     public enum ModuleClass
@@ -165,8 +169,18 @@ public class Module : MonoBehaviour, IGatherScrap, IDamageSource
         //Change Color + Add feedback or change graph
         if (_data.OffensiveModuleDatas.LevelUpGraph.Length < 1)
             return;
-        Destroy(this.transform.GetChild(0).gameObject);
-        Instantiate(_data.OffensiveModuleDatas.LevelUpGraph[_data.OffensiveModuleDatas.LevelUpGraph.Length - 1],this.transform);
+        if(_parentGraph != null)
+        {
+            Destroy(_parentGraph.GetChild(0).gameObject);
+            Instantiate(_data.OffensiveModuleDatas.LevelUpGraph[_data.OffensiveModuleDatas.LevelUpGraph.Length - 1], _parentGraph);
+
+        }
+        else
+        {
+            Destroy(this.transform.GetChild(0).gameObject);
+            Instantiate(_data.OffensiveModuleDatas.LevelUpGraph[_data.OffensiveModuleDatas.LevelUpGraph.Length - 1],this.transform);
+
+        }
     }
 
     public void RemoveModule()
@@ -205,6 +219,8 @@ public class Module : MonoBehaviour, IGatherScrap, IDamageSource
                         OnModuleFire?.Invoke();
                         if (_audioClipName != string.Empty)
                             SoundManager.Instance.Play(_audioClipName);
+                    if (_moduleShootFeedback != null)
+                        _moduleShootFeedback.PlayFeedbacks();
                     }
 
                 }

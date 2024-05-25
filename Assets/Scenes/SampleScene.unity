@@ -10749,6 +10749,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729aad4491e915a41bda2b8325cf757a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_FocusTracksTarget: 0
+  m_FocusTracking: 0
+  m_FocusTarget: {fileID: 0}
+  m_FocusOffset: 0
+  m_Profile: {fileID: 0}
 --- !u!114 &1584451411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14365,7 +14370,7 @@ PrefabInstance:
     - target: {fileID: 3316655932920586862, guid: 1244555cb12e7eb42b351b2f5d2a6511, type: 3}
       propertyPath: _moduleDatas
       value: 
-      objectReference: {fileID: 11400000, guid: e88a4bc9fc646854ab15b542b9d80807, type: 2}
+      objectReference: {fileID: 11400000, guid: f3f039913279ef2449d3037d27ff9c7c, type: 2}
     - target: {fileID: 3316655932920586863, guid: 1244555cb12e7eb42b351b2f5d2a6511, type: 3}
       propertyPath: m_IgnoreParentGroups
       value: 0

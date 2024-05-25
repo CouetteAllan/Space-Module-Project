@@ -2,16 +2,20 @@
     "name": "SpaceModuleScriptAssembly",
     "rootNamespace": "",
     "references": [
+        "GUID:8087d854c1f812e4b9a74437dfc524e0",
         "GUID:75469ad4d38634e559750d17036d5f7c",
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
         "GUID:4307f53044263cf4b835bd812fc161a4",
         "GUID:df380645f10b7bc4b97d4f5eb6303d95",
         "GUID:f06555f75b070af458a003d92f9efb00",
-        "GUID:15fc0a57446b3144c949da3e2b9737a9"
+        "GUID:15fc0a57446b3144c949da3e2b9737a9",
+        "GUID:4a1cb1490dc4df8409b2580d6b44e75e",
+        "GUID:1dbcca72f42070548a895178556c5bc3",
+        "GUID:f7ad05cb15ef6674793ec2174827bc98"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
-    "allowUnsafeCode": false,
+    "allowUnsafeCode": true,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
