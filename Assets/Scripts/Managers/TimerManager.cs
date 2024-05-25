@@ -7,7 +7,7 @@ public class TimerManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _timerText;
     [SerializeField] private float _maxSeconds = 300.0f; //5min
-    [SerializeField] private Animator _timerAnimator;
+    [SerializeField] private TimeTweener _timerAnimator;
     private float _elapsedTime;
     private int _currentTimeLevel = 0;
     private float _timerAnotherEvent = 0.0f;
@@ -98,7 +98,7 @@ public class TimerManager : MonoBehaviour
        
         if(_elapsedTime % 60.0f <= 0.1f && _elapsedTime > 1)
         {
-            _timerAnimator.SetTrigger("Bounce");
+            _timerAnimator.BounceTime();
         }
     }
 

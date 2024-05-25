@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ShotgunStrategy
   m_EditorClassIdentifier: 
   ShotgunMissileSpeed: 30
-  ShotgunMissileDuration: 1
+  ShotgunMissileDuration: 1.1
