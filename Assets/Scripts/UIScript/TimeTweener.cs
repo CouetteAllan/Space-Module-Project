@@ -18,7 +18,7 @@ public class TimeTweener : MonoBehaviour
 
     private void Start()
     {
-        _startTransform = _chronoText.transform;
+        _startTransform = _textTransform.transform;
     }
     public void BounceTime()
     {
