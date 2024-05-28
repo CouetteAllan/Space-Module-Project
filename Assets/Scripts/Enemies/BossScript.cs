@@ -13,6 +13,8 @@ public class BossScript : EnemyScript
     [SerializeField] private EnemyDatas[] _enemyToInstantiate;
     [SerializeField] private Animator _bossAnimator;
     [SerializeField] private CinemachineVirtualCamera _cam;
+    [SerializeField] private GameObject[] _graphs;
+    [SerializeField] private Collider2D[] _colliders;
 
     [Header("Feedbacks")]
     [SerializeField] private Image _healthBarFill;
@@ -26,7 +28,8 @@ public class BossScript : EnemyScript
     {
         Move,
         Attack,
-        Swarm
+        Swarm,
+        Debut
     }
 
     private BossState _currentState = BossState.Move;
@@ -39,6 +42,16 @@ public class BossScript : EnemyScript
         _timerAttack = _timeNextAttack;
         EnemyManagerDataHandler.OnTriggerBossCinematic += OnTriggerBossCinematic;
         EnemyManager.OnEndBossCinematic += OnEndBossCinematic;
+        _currentState = BossState.Debut;
+        foreach (var go in _graphs)
+        {
+            go.SetActive(false);
+        }
+
+        foreach (var col in _colliders)
+        {
+            col.enabled = false;
+        }
     }
 
     private void OnEndBossCinematic()
@@ -146,6 +159,20 @@ public class BossScript : EnemyScript
     {
         this._rigidbody.isKinematic = !active;
         this._rigidbody.simulated = active;
+    }
+
+    public void ActivateBoss()
+    {
+        foreach (var go in _graphs)
+        {
+            go.SetActive(true);
+        }
+
+        foreach (var col in _colliders)
+        {
+            col.enabled = true;
+        }
+        _currentState = BossState.Move;
     }
 
     private void OnDestroy()

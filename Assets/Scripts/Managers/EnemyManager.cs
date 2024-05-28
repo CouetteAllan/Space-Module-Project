@@ -2,6 +2,7 @@ using CodeMonkey.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
@@ -21,6 +22,7 @@ public class EnemyManager : MonoBehaviour
     {
         EnemyManagerDataHandler.OnSpawnEnemy += OnSpawnEnemy;
         EnemyManagerDataHandler.OnGetEnemyDatas += OnGetEnemyDatas;
+        EnemyManagerDataHandler.OnShowBoss += OnShowBoss;
         EnemyScript.OnDeath += EnemyScript_OnDeath;
 
         TimerManagerDataHandler.OnTimeElapsed += OnTimeElapsed;
@@ -30,6 +32,13 @@ public class EnemyManager : MonoBehaviour
 
         EnemyManagerDataHandler.OnSpawnEnemyWave += OnSpawnEnemyWave;
 
+    }
+
+    public void OnShowBoss()
+    {
+        //Set the boss active to true
+        BossScript boss = (BossScript)_enemiesList.Where((e) => e is BossScript).FirstOrDefault();
+        boss.ActivateBoss();
     }
 
     private void OnEndTimer()
@@ -159,6 +168,7 @@ public class EnemyManager : MonoBehaviour
     {
         EnemyManagerDataHandler.OnSpawnEnemy -= OnSpawnEnemy;
         EnemyManagerDataHandler.OnGetEnemyDatas -= OnGetEnemyDatas;
+        EnemyManagerDataHandler.OnShowBoss -= OnShowBoss;
         EnemyScript.OnDeath -= EnemyScript_OnDeath;
 
         TimerManagerDataHandler.OnTimeElapsed -= OnTimeElapsed;

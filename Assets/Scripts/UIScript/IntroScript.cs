@@ -10,7 +10,7 @@ public class IntroScript : MonoBehaviour
 
     [SerializeField] private RectTransform _upBorder, _downBorder;
     [SerializeField] private CanvasGroup _textCanvaGroup;
-    [SerializeField] private CanvasGroup _wholeCangaGroup;
+    [SerializeField] private CanvasGroup _wholeCanvaGroup;
     [SerializeField] private Transform _textTransform;
     [SerializeField] private RectTransform _textBackgroundRectTransform;
     [SerializeField] private GameObject _mainHUD;

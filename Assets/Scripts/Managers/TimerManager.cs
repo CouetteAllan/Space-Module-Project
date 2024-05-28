@@ -15,6 +15,7 @@ public class TimerManager : MonoBehaviour
     private bool _didFireEvent = false;
     private bool _countDown = true;
     private bool _stop = false;
+    private bool _dangerZone = false;
 
     private float _nextWaveTime = 10000.0f;
     private List<float> _waveTimes;
@@ -77,6 +78,13 @@ public class TimerManager : MonoBehaviour
         {
             this.TimeElapsed(_elapsedTime);
             _didFireEvent = true;
+        }
+
+        if(Mathf.Abs(_elapsedTime - _maxSeconds) < 20.0f && !_dangerZone)
+        {
+            _dangerZone = true;
+            _timerAnimator.AlertTime();
+            _timerAnimator.BounceTime();
         }
 
         if (_didFireEvent)
