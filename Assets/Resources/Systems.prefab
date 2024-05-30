@@ -180,6 +180,14 @@ MonoBehaviour:
     loop: 0
     playOnAwake: 0
     source: {fileID: 0}
+  - name: Alarm
+    clip: {fileID: 8300000, guid: 132b1e1a92eeb7b4694ba581af059644, type: 3}
+    output: {fileID: 5676675339829177356, guid: 8988992ec93a38b4aaba6ca496122eac, type: 2}
+    volume: 0.448
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
   musics:
   - name: Space Pirates
     clip: {fileID: 8300000, guid: 4a91f1a96273e1746bc5b5ca0349fb7f, type: 3}

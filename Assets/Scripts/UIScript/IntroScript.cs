@@ -60,6 +60,10 @@ public class IntroScript : MonoBehaviour
             .Join(_downBorder.DOLocalMoveY(170.0f, .5f).SetEase(Ease.OutQuad).SetRelative())
             .Join(_textBackgroundRectTransform.DOSizeDelta(_startSizeDelta, 1.0f).SetEase(Ease.InOutSine))
             .Append(_textBackgroundRectTransform.DOSizeDelta(new Vector2(_startSizeDelta.x, _startSizeDelta.y * .7f), .5f).SetEase(Ease.OutQuint))
+            .JoinCallback(() => {
+                if (!_sequence.IsBackwards())
+                    SoundManager.Instance.Play("Alarm");
+            })
             .Join(_textCanvaGroup.DOFade(1.0f, .2f))
             .Join(_textTransform.DOPunchScale(Vector3.one * 1.7f, .5f, vibrato: 1, elasticity: 0))
             .AppendCallback(() => { 

@@ -1,5 +1,6 @@
 
 using Cinemachine;
+using DG.Tweening;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -173,6 +174,7 @@ public class BossScript : EnemyScript
 
     public void ActivateBoss()
     {
+        this.transform.localScale = Vector3.one * .1f;
         foreach (var go in _graphs)
         {
             go.SetActive(true);
@@ -182,7 +184,8 @@ public class BossScript : EnemyScript
         {
             col.enabled = true;
         }
-        _currentState = BossState.Move;
+        this.transform.DOScale(1.0f, .8f).SetEase(Ease.OutBack).OnComplete(() => _currentState = BossState.Move);
+        
     }
 
     private void OnDestroy()

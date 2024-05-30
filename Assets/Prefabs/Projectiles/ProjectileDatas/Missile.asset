@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Missile
   m_EditorClassIdentifier: 
   RecoilMult: 2
-  BlowRadius: 8
+  BlowRadius: 10
+  RecoilBoost: 2
   BlowParticles: {fileID: 0}
+  BlowSound: {fileID: 0}

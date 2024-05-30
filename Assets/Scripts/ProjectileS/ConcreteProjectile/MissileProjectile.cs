@@ -29,8 +29,8 @@ public class MissileProjectile : ProjectileBehaviour
                 return;
             velocity = x;
             rb.velocity = velocity;
-        }, projectileParameter.dir * projectileParameter.speed * 2f, .9f)
-            .SetEase(Ease.InSine)
+        }, projectileParameter.dir * projectileParameter.speed * 2f, 1.5f)
+            .SetEase(Ease.InCubic)
             .SetTarget(projectile);
 
 

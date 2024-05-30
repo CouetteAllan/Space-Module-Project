@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RocketLauncherStats
   m_EditorClassIdentifier: 
   OffensiveStrategy: {fileID: 11400000, guid: e347788f05830af408c4eac0a03cbdab, type: 2}
-  BaseModuleDamage: 32
+  BaseModuleDamage: 34
   AttackSpeedMultiplier: 4
   Type: 6
   LevelUpGraph:

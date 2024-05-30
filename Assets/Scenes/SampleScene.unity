@@ -9234,6 +9234,245 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170942556}
   m_CullTransparentMesh: 1
+--- !u!1 &1179675544
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1179675546}
+  - component: {fileID: 1179675545}
+  m_Layer: 0
+  m_Name: CinemachineShakerExplosion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1179675545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179675544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Feedbacks: []
+  InitializationMode: 2
+  AutoInitialization: 1
+  SafeMode: 3
+  Direction: 0
+  AutoChangeDirectionOnEnd: 0
+  AutoPlayOnStart: 0
+  AutoPlayOnEnable: 0
+  ForceTimescaleMode: 0
+  ForcedTimescaleMode: 1
+  DurationMultiplier: 1
+  RandomizeDuration: 0
+  RandomDurationMultiplier: {x: 0.5, y: 1.5}
+  DisplayFullDurationDetails: 0
+  PlayerTimescaleMode: 1
+  OnlyPlayIfWithinRange: 0
+  RangeCenter: {fileID: 0}
+  RangeDistance: 5
+  UseRangeFalloff: 0
+  RangeFalloff:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  RemapRangeFalloff: {x: 0, y: 1}
+  IgnoreRangeEvents: 0
+  CooldownDuration: 0
+  InitialDelay: 0
+  CanPlay: 1
+  CanPlayWhileAlreadyPlaying: 1
+  ChanceToPlay: 100
+  FeedbacksIntensity: 1
+  Events:
+    TriggerMMFeedbacksEvents: 0
+    TriggerUnityEvents: 1
+    OnPlay:
+      m_PersistentCalls:
+        m_Calls: []
+    OnPause:
+      m_PersistentCalls:
+        m_Calls: []
+    OnResume:
+      m_PersistentCalls:
+        m_Calls: []
+    OnRevert:
+      m_PersistentCalls:
+        m_Calls: []
+    OnComplete:
+      m_PersistentCalls:
+        m_Calls: []
+    OnRestoreInitialValues:
+      m_PersistentCalls:
+        m_Calls: []
+    OnSkipToTheEnd:
+      m_PersistentCalls:
+        m_Calls: []
+  DebugActive: 0
+  FeedbacksList:
+  - rid: 8116424005668044800
+  KeepPlayModeChanges: 0
+  PerformanceMode: 0
+  StopFeedbacksOnDisable: 0
+  PlayCount: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 8116424005668044800
+      type: {class: MMF_CinemachineImpulse, ns: MoreMountains.FeedbacksForThirdParty, asm: MoreMountains.Feedbacks.Cinemachine}
+      data:
+        Active: 1
+        UniqueID: 913806534
+        Label: Cinemachine Impulse
+        ChannelMode: 0
+        Channel: 0
+        MMChannelDefinition: {fileID: 0}
+        Chance: 100
+        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
+        Timing:
+          TimescaleMode: 0
+          ExcludeFromHoldingPauses: 0
+          ContributeToTotalDuration: 1
+          InitialDelay: 0
+          CooldownDuration: 0.7
+          InterruptsOnStop: 1
+          NumberOfRepeats: 0
+          RepeatForever: 0
+          DelayBetweenRepeats: 1
+          MMFeedbacksDirectionCondition: 0
+          PlayDirection: 0
+          ConstantIntensity: 0
+          UseIntensityInterval: 0
+          IntensityIntervalMin: 0
+          IntensityIntervalMax: 0
+          Sequence: {fileID: 0}
+          TrackID: 0
+          Quantized: 0
+          TargetBPM: 120
+        AutomatedTargetAcquisition:
+          Mode: 0
+          ChildIndex: 0
+        RandomizeOutput: 1
+        RandomMultiplier: {x: 0.5, y: 1}
+        RandomizeDuration: 1
+        RandomDurationMultiplier: {x: 0.5, y: 2}
+        UseRange: 0
+        RangeDistance: 5
+        UseRangeFalloff: 0
+        RangeFalloff:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        RemapRangeFalloff: {x: 0, y: 1}
+        Owner: {fileID: 1179675545}
+        DebugActive: 0
+        m_ImpulseDefinition:
+          m_ImpulseChannel: -1
+          m_ImpulseShape: 3
+          m_CustomImpulseShape:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          m_ImpulseDuration: 0.25
+          m_ImpulseType: 0
+          m_DissipationRate: 0
+          m_RawSignal: {fileID: 0}
+          m_AmplitudeGain: 1
+          m_FrequencyGain: 1
+          m_RepeatMode: 0
+          m_Randomize: 1
+          m_TimeEnvelope:
+            m_AttackShape:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            m_DecayShape:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            m_AttackTime: 0
+            m_SustainTime: 0.2
+            m_DecayTime: 0.7
+            m_ScaleWithImpact: 1
+            m_HoldForever: 0
+          m_ImpactRadius: 100
+          m_DirectionMode: 0
+          m_DissipationMode: 2
+          m_DissipationDistance: 100
+          m_PropagationSpeed: 343
+        Velocity: {x: 0.5, y: 0, z: 0}
+        ClearImpulseOnStop: 0
+--- !u!4 &1179675546
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179675544}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.721861, y: 0.15649778, z: 32.187923}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1584451408}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1189205464
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10406,7 +10645,7 @@ PrefabInstance:
     - target: {fileID: 3316655932920586862, guid: 1244555cb12e7eb42b351b2f5d2a6511, type: 3}
       propertyPath: _moduleDatas
       value: 
-      objectReference: {fileID: 11400000, guid: fab3b1fbc04880043ba3787a7835ef0e, type: 2}
+      objectReference: {fileID: 11400000, guid: e811fba581ee15b4da85c20f01a8762c, type: 2}
     - target: {fileID: 3688230214795261789, guid: 1244555cb12e7eb42b351b2f5d2a6511, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 2.9999084
@@ -10621,7 +10860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timerText: {fileID: 1166081425}
-  _maxSeconds: 20
+  _maxSeconds: 300
   _timerAnimator: {fileID: 1324283109}
 --- !u!4 &1324283108
 Transform:
@@ -11147,7 +11386,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2054464348}
-  - {fileID: 1727739257}
   m_Father: {fileID: 541234867}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11415,6 +11653,7 @@ MonoBehaviour:
   _pickUpFX:
   - {fileID: 3376451067461627123, guid: ef8c4649e3bccdb4e9fb9477f87ba8d2, type: 3}
   - {fileID: 3376451067461627123, guid: b8f5b1eb9bfc3a84aa809a2c5c8324e4, type: 3}
+  _feedBackRocketExplosion: {fileID: 1179675545}
 --- !u!4 &1456647849
 Transform:
   m_ObjectHideFlags: 0
@@ -12003,6 +12242,7 @@ GameObject:
   - component: {fileID: 1584451407}
   - component: {fileID: 1584451410}
   - component: {fileID: 1584451411}
+  - component: {fileID: 1584451412}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Camera
@@ -12061,6 +12301,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 99533612}
+  - {fileID: 1179675546}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12088,6 +12329,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 268e8e36033f66247aa54a4de5b2f3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1584451412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584451406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ApplyAfter: 2
+  m_ChannelMask: -1
+  m_Gain: 1
+  m_Use2DDistance: 1
+  m_UseCameraSpace: 1
+  m_ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1001 &1585331397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13700,72 +13964,6 @@ RectTransform:
   m_AnchoredPosition: {x: 255.24353, y: -220}
   m_SizeDelta: {x: 501.4141, y: 136.6339}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1727739256
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1727739257}
-  - component: {fileID: 1727739258}
-  m_Layer: 5
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1727739257
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1727739256}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1383389000}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!320 &1727739258
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1727739256}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: ef3203d654a30a24b97d606d9b03611f, type: 2}
-  m_InitialState: 0
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: 8512594642051206586, guid: ef3203d654a30a24b97d606d9b03611f, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: 4346371647616523781, guid: ef3203d654a30a24b97d606d9b03611f, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: -235955463591594067, guid: ef3203d654a30a24b97d606d9b03611f, type: 2}
-    value: {fileID: 2054464347}
-  - key: {fileID: -4506546633931826964, guid: ef3203d654a30a24b97d606d9b03611f, type: 2}
-    value: {fileID: 1324283106}
-  - key: {fileID: -5325035236165033152, guid: ef3203d654a30a24b97d606d9b03611f, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: 566776810608689071, guid: ef3203d654a30a24b97d606d9b03611f, type: 2}
-    value: {fileID: 0}
-  m_ExposedReferences:
-    m_References: []
 --- !u!1 &1729497735
 GameObject:
   m_ObjectHideFlags: 0

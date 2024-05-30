@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
 using Cinemachine.PostFX;
 using UnityEngine.Rendering;
-using System.Linq;
 using UnityEngine.VFX;
+using MoreMountains.Feedbacks;
 
 public class FXManager : Singleton<FXManager>
 {
@@ -16,6 +15,7 @@ public class FXManager : Singleton<FXManager>
     [SerializeField] private VolumeProfile _baseProfile;
     [SerializeField] private CinemachineVolumeSettings _volumeSettings;
     [SerializeField] private PlayFXScript[] _pickUpFX;
+    [SerializeField] private MMF_Player _feedBackRocketExplosion;
 
     private void Start()
     {
@@ -40,6 +40,7 @@ public class FXManager : Singleton<FXManager>
             case "rocketBlow":
                 Instantiate(_blowFX,pos,Quaternion.identity);
                 SoundManager.Instance.Play("Rocket");
+                _feedBackRocketExplosion.PlayFeedbacks();
                 break;
             case "lvlup":
                 Instantiate(_lvlUpFX, pos, rotation,transformParent);
