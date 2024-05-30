@@ -5,12 +5,14 @@ using Cinemachine;
 using Cinemachine.PostFX;
 using UnityEngine.Rendering;
 using System.Linq;
+using UnityEngine.VFX;
 
 public class FXManager : Singleton<FXManager>
 {
     [SerializeField] private GameObject _explosionFX;
     [SerializeField] private GameObject _blowFX;
     [SerializeField] private GameObject _lvlUpFX;
+    [SerializeField] private VisualEffect _bossAppearEffect;
     [SerializeField] private VolumeProfile _baseProfile;
     [SerializeField] private CinemachineVolumeSettings _volumeSettings;
     [SerializeField] private PlayFXScript[] _pickUpFX;
@@ -53,6 +55,10 @@ public class FXManager : Singleton<FXManager>
             case "damageUp":
                 var fxDamage = Instantiate(_pickUpFX[1], pos, rotation,transformParent);
                 fxDamage.PlayFX(value);
+                break;
+            case "boss":
+                var effectSpawned = Instantiate(_bossAppearEffect, pos, rotation,transformParent);
+                effectSpawned.Play();
                 break;
         }
     }

@@ -13,6 +13,13 @@ public class BossIntroScript : MonoBehaviour
     private void Awake()
     {
         EnemyManagerDataHandler.OnTriggerBossCinematic += OnTriggerBossCinematic;
+        EnemyManager.OnEndBossCinematic += OnEndBossCinematic;
+    }
+
+    private void OnEndBossCinematic()
+    {
+        _upBorder.DOPlayBackwards();
+        _downBorder.DOPlayBackwards();
     }
 
     private void OnTriggerBossCinematic(System.Action obj)
@@ -22,8 +29,8 @@ public class BossIntroScript : MonoBehaviour
 
     public void PlayBossIntro()
     {
-        _upBorder.DOLocalMoveY(-170.0f, .5f).SetEase(Ease.OutQuad).SetRelative();
-        _downBorder.DOLocalMoveY(170.0f, .5f).SetEase(Ease.OutQuad).SetRelative();
+        _upBorder.DOLocalMoveY(-170.0f, .5f).SetEase(Ease.OutQuad).SetRelative().SetAutoKill(false);
+        _downBorder.DOLocalMoveY(170.0f, .5f).SetEase(Ease.OutQuad).SetRelative().SetAutoKill(false);
 
         _bossIntroFeedback.PlayFeedbacks();
     }
@@ -31,6 +38,8 @@ public class BossIntroScript : MonoBehaviour
     private void OnDisable()
     {
         EnemyManagerDataHandler.OnTriggerBossCinematic -= OnTriggerBossCinematic;
+        EnemyManager.OnEndBossCinematic -= OnEndBossCinematic;
+
 
     }
 }

@@ -62,6 +62,16 @@ public class BossScript : EnemyScript
     private void OnTriggerBossCinematic(Action callback)
     {
         _cam.Priority = 100;
+        FXManager.Instance.PlayEffect("boss",this.transform.position,this.transform.rotation);
+        StartCoroutine(AppearBoss());
+    }
+
+    private IEnumerator AppearBoss()
+    {
+        yield return new WaitForSeconds(7);
+        EnemyManagerDataHandler.ShowBoss();
+        yield return new WaitForSeconds(1);
+        
     }
 
     protected override void ChangeHealth(float healthChange)

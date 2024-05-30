@@ -39,6 +39,7 @@ public class EnemyManager : MonoBehaviour
         //Set the boss active to true
         BossScript boss = (BossScript)_enemiesList.Where((e) => e is BossScript).FirstOrDefault();
         boss.ActivateBoss();
+        OnEndBossCinematic?.Invoke();
     }
 
     private void OnEndTimer()
@@ -60,10 +61,10 @@ public class EnemyManager : MonoBehaviour
 
         ClearAllEnemies();
         float distanceFromPlayer = 70.0f;
-        Vector2 playerPos = GameManager.Instance.PlayerController.transform.position + UtilsClass.GetRandomDir() * distanceFromPlayer;
+        Vector2 bossPos = GameManager.Instance.PlayerController.transform.position + UtilsClass.GetRandomDir() * distanceFromPlayer;
 
         //Set Up Boss
-        OnSpawnEnemy(playerPos, _bossData);
+        OnSpawnEnemy(bossPos, _bossData);
         //Wait until the end of the timeline/cinematic
         this.TriggerBossCinematic(EndBossCinematic);
         yield return new WaitUntil(() => _bossCinematicEnd = true);
