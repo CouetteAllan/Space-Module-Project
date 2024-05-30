@@ -17,9 +17,9 @@ public class SoundManager : Singleton<SoundManager>
     protected override void Awake()
     {
 
-        //audioMix.GetFloat("MasterVolume",out masterVolume);
-        //audioMix.GetFloat("MusicsVolume", out musicVolume);
-        //audioMix.GetFloat("SFXVolume", out sfxVolume);
+        audioMix.GetFloat("MasterVolume",out masterVolume);
+        audioMix.GetFloat("MusicsVolume", out musicVolume);
+        audioMix.GetFloat("SFXVolume", out sfxVolume);
 
         base.Awake();
 
@@ -65,6 +65,21 @@ public class SoundManager : Singleton<SoundManager>
             return;
         }
         s.source.Play();
+    }
+
+    public void PlayRandomPitch(string name)
+    {
+        Sound s = Array.Find(soundsEffects, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.Log("sound name not find : " + name);
+            return;
+        }
+
+        float randomPitch = s.source.pitch + UnityEngine.Random.Range(-1.0f, 1.0f);
+        s.source.pitch = randomPitch;
+        s.source.Play();
+        s.source.pitch = s.pitch;
     }
 
 
