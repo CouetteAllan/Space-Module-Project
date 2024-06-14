@@ -39,7 +39,7 @@ public class FXManager : Singleton<FXManager>
         {
             case "rocketBlow":
                 Instantiate(_blowFX,pos,Quaternion.identity);
-                SoundManager.Instance.PlayRandomPitch("Rocket");
+                SoundManager.Instance.Play("Rocket");
                 _feedBackRocketExplosion.PlayFeedbacks();
                 break;
             case "lvlup":

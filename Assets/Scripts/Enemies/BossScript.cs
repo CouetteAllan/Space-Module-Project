@@ -1,6 +1,7 @@
 
 using Cinemachine;
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -20,6 +21,7 @@ public class BossScript : EnemyScript
     [Header("Feedbacks")]
     [SerializeField] private Image _healthBarFill;
     [SerializeField] private GameObject _shield;
+    [SerializeField] private MMF_Player _feedbackDeath;
 
     private BossData _bossDatas;
     private float _timeNextAttack;
@@ -62,9 +64,14 @@ public class BossScript : EnemyScript
 
     private void OnTriggerBossCinematic(Action callback)
     {
-        _cam.Priority = 100;
+        ActivateCamera();
         FXManager.Instance.PlayEffect("boss",this.transform.position,this.transform.rotation);
         StartCoroutine(AppearBoss());
+    }
+
+    public void ActivateCamera()
+    {
+        _cam.Priority = 100;
     }
 
     private IEnumerator AppearBoss()
@@ -77,8 +84,22 @@ public class BossScript : EnemyScript
 
     protected override void ChangeHealth(float healthChange)
     {
-        base.ChangeHealth(healthChange);
+        _currentHealth += healthChange;
+        if (_currentHealth <= 0)
+            Die(true);
         _healthScript.ChangeHealth(healthChange,canBeInvincible: false);
+    }
+
+    public override void Die(bool grantLoot)
+    {
+        _feedbackDeath.PlayFeedbacks();
+    }
+
+    public void FeedbackDone()
+    {
+        _cam.gameObject.SetActive(false);
+        SendDeath();
+        Destroy(gameObject,.2f);
     }
 
     protected override void Update()

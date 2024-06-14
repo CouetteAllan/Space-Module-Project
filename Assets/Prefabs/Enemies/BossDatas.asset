@@ -15,9 +15,9 @@ MonoBehaviour:
   Tier: 5
   Type: 2
   BaseHealth: 900
-  HealthMultplier: 260
+  HealthMultplier: 280
   BaseDamage: 35
-  BaseSpeed: 5
+  BaseSpeed: 6
   TurnRate: 1
   RecoilResistanceb: 1
   EnemyPrefab: {fileID: 3491881793978933763, guid: 08c2a20cbc4524949becf4115c2683be, type: 3}
@@ -25,4 +25,4 @@ MonoBehaviour:
   XPGranted: 0
   ScrapMetalGranted: 0
   TimeNextAttack: 5
-  NbEnemiesToInstantiate: 15
+  NbEnemiesToInstantiate: 30

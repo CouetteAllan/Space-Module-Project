@@ -115,26 +115,31 @@ public class EnemyScript : MonoBehaviour, IHittable
 
     }
 
-    public void Die(bool grantLoot)
+    public virtual void Die(bool grantLoot)
     {
         StopAllCoroutines();
         _gotHit = false;
         if (grantLoot)
         {
-            GameManager.Instance.GrantXP((uint)_datas.XPGranted);
             Instantiate(_particleEffect, this.transform.position, Quaternion.identity);
-            OnDeath?.Invoke(this, new EnemyStatsOnDeath
-            {
-                enemyRef = this,
-                level = (int)GameManager.Instance.CurrentLevel,
-                tier = (int)_datas.Tier,
-                finalPos = this.transform.position,
-                xpGranted = _datas.XPGranted,
-                scrapGranted = _datas.ScrapMetalGranted,
-            });
+            SendDeath();
         }
 
         Destroy(this.gameObject);
+    }
+
+    protected void SendDeath()
+    {
+        GameManager.Instance.GrantXP((uint)_datas.XPGranted);
+        OnDeath?.Invoke(this, new EnemyStatsOnDeath
+        {
+            enemyRef = this,
+            level = (int)GameManager.Instance.CurrentLevel,
+            tier = (int)_datas.Tier,
+            finalPos = this.transform.position,
+            xpGranted = _datas.XPGranted,
+            scrapGranted = _datas.ScrapMetalGranted,
+        });
     }
 
     private IEnumerator ChangeColorCoroutine()
