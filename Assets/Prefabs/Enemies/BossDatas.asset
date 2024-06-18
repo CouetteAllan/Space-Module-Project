@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tier: 5
   Type: 2
-  BaseHealth: 900
-  HealthMultplier: 280
+  BaseHealth: 800
+  HealthMultplier: 250
   BaseDamage: 35
   BaseSpeed: 6
   TurnRate: 1

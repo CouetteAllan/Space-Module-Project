@@ -74,6 +74,20 @@ public class BossScript : EnemyScript
         _cam.Priority = 100;
     }
 
+    public void HideBoss()
+    {
+        StartCoroutine(DelayHideBoss());
+    }
+
+    IEnumerator DelayHideBoss()
+    {
+        yield return new WaitForSeconds(2.5f);
+        foreach (var graph in _graphs)
+        {
+            graph.SetActive(false);
+        }
+    }
+
     private IEnumerator AppearBoss()
     {
         yield return new WaitForSeconds(7);
@@ -93,6 +107,12 @@ public class BossScript : EnemyScript
     public override void Die(bool grantLoot)
     {
         _feedbackDeath.PlayFeedbacks();
+        EnterState(BossState.Debut);
+
+        foreach (var col in _colliders)
+        {
+            col.enabled = false;
+        }
     }
 
     public void FeedbackDone()
@@ -162,8 +182,8 @@ public class BossScript : EnemyScript
         //Instantiate over time
         for (int i = 0; i < _bossDatas.NbEnemiesToInstantiate; i++)
         {
-            EnemyManagerDataHandler.SpawnEnemy(_spawnPositions[i % 2].position, _enemyToInstantiate[i % 3]);
-            yield return new WaitForSeconds(0.2f);
+            EnemyManagerDataHandler.SpawnEnemy(_spawnPositions[i % 3].position, _enemyToInstantiate[i % 4]);
+            yield return new WaitForSeconds(0.25f);
         }
 
         this._rigidbody.isKinematic = false;

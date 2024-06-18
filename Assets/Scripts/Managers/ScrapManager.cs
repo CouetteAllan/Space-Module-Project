@@ -78,7 +78,7 @@ public class ScrapManager : MonoBehaviour
 
     private void OnEnemyDeath(object sender, EnemyScript.EnemyStatsOnDeath enemyStats)
     {
-        if (Utils.RollChance(chance: .4f) || enemyStats.tier == 4) //40% chances to drop scrap metal
+        if (Utils.RollChance(chance: .25f) || enemyStats.tier == 4) //25% chances to drop scrap metal
         {
             OnCreateScrap(enemyStats.finalPos, enemyStats.scrapGranted);
         }

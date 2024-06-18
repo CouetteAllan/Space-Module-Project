@@ -37,6 +37,7 @@ public class GameManager : Singleton<GameManager>
     public GameState PreviousState { get { return _previousState; } }
 
     private bool _isPause;
+    private bool _setTime = false;
 
     private void Start()
     {
@@ -57,10 +58,21 @@ public class GameManager : Singleton<GameManager>
     private void SceneManager_activeSceneChanged(Scene arg0, Scene arg1)
     {
         if (arg1.buildIndex == 1)
+        {
+            if(_setTime)
+                TimerManagerDataHandler.SetStartTime(10.0f);
             ChangeGameState(GameState.StartGame);
+        }
     }
 
-    public void ChangeGameState(GameState newState)
+    public void SetTimerLow()
+    {
+        TimerManagerDataHandler.SetStartTime(10.0f);
+        _setTime = true;
+
+}
+
+public void ChangeGameState(GameState newState)
     {
         if (newState == CurrentState)
             return;
@@ -86,7 +98,9 @@ public class GameManager : Singleton<GameManager>
                 OpenShop();
                 WaveManagerDataHandler.SetUpWaveManager();
                 ModuleManager.Instance.SetModuleManager();
-                
+                if (_setTime)
+                    TimerManagerDataHandler.SetStartTime(10.0f);
+
                 break;
             case GameState.InGame:
                 Time.timeScale = 1.0f;

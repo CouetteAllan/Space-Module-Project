@@ -28,6 +28,14 @@ public class TimerManager : MonoBehaviour
 
         GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
         WaveManagerDataHandler.OnSendWaveTimeData += OnSendWaveTimeData;
+        TimerManagerDataHandler.OnSetStartTime += OnSetStartTime;
+    }
+
+    private void OnSetStartTime(float startTime)
+    {
+        if (startTime <= 0.0f)
+            return;
+        _maxSeconds = startTime;
     }
 
     private void OnSendWaveTimeData(List<float> waveTimes)
@@ -128,6 +136,8 @@ public class TimerManager : MonoBehaviour
     {
         GameManager.OnGameStateChanged -= GameManager_OnGameStateChanged;
         WaveManagerDataHandler.OnSendWaveTimeData -= OnSendWaveTimeData;
+        TimerManagerDataHandler.OnSetStartTime -= OnSetStartTime;
+
     }
     private IEnumerator WaitOneSecond()
     {

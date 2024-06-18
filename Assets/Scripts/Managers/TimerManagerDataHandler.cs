@@ -6,9 +6,12 @@ public static class TimerManagerDataHandler
     public static event Action<int> OnSendTimeLevel;
     public static event Action<int> OnTriggerWave;
     public static event Action OnEndTimer;
+    public static event Action<float> OnSetStartTime;
 
     public static void TimeElapsed(this TimerManager chronoManager,float timeElapsed) => OnTimeElapsed?.Invoke(timeElapsed);
     public static void SendTimeLevel(this TimerManager chrono, int timeLevel) => OnSendTimeLevel?.Invoke(timeLevel);
     public static void TriggerWave(this TimerManager chrono, int waveIndex) => OnTriggerWave?.Invoke(waveIndex);
     public static void EndTimer(this TimerManager chrono) => OnEndTimer?.Invoke();
+
+    public static void SetStartTime(float time) => OnSetStartTime?.Invoke(time);
 }

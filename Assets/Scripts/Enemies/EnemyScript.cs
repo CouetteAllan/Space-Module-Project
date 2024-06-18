@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ public class EnemyScript : MonoBehaviour, IHittable
 
     [SerializeField] private GameObject _particleEffect;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private MMF_Player _feedbackHit;
     protected Color _baseColor;
     protected Rigidbody2D _rigidbody;
     protected PlayerController _playerController;
@@ -110,6 +112,10 @@ public class EnemyScript : MonoBehaviour, IHittable
     protected virtual void ChangeHealth(float healthChange)
     {
         _currentHealth += healthChange;
+        if(_feedbackHit != null)
+        {
+            _feedbackHit.PlayFeedbacks();
+        }
         if (_currentHealth <= 0)
             Die(true);
 
